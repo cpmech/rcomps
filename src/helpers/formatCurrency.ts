@@ -15,7 +15,7 @@ export const formatCurrency = (
   // ref: https://codepen.io/559wade/pen/LRzEjj
 
   // don't validate empty input
-  if (inputVal === '') {
+  if (!inputVal) {
     return '';
   }
 
@@ -30,7 +30,7 @@ export const formatCurrency = (
     // get position of last decimal
     // this prevents multiple decimals from
     // being entered
-    const decimalPos = inputVal.lastIndexOf(point);
+    const decimalPos = inputVal.indexOf(point);
 
     // split number by decimal point
     let leftSide = inputVal.substring(0, decimalPos);
