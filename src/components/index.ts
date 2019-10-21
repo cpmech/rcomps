@@ -1,1 +1,1 @@
-export * from './MyComp';
+export * from './InputCurrency';
