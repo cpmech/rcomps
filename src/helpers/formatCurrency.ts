@@ -16,7 +16,7 @@ export const formatCurrency = (
 
   // don't validate empty input
   if (inputVal === '') {
-    return;
+    return '';
   }
 
   // original length
