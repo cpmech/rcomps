@@ -7,15 +7,17 @@ const formatLongNumber = (n: string, comma = ',') => {
 // ref: https://codepen.io/559wade/pen/LRzEjj
 export const formatCurrency = (
   inputVal: string,
-  unit = '$',
-  point = '.',
-  comma = ',',
-  onBlur?: boolean,
+  prefix: string = '$ ',
+  swapDotByComma: boolean = false,
 ) => {
   // don't validate empty input
   if (!inputVal) {
     return '';
   }
+
+  // constants
+  const point = swapDotByComma ? ',' : '.';
+  const comma = swapDotByComma ? '.' : ',';
 
   // check for decimal
   if (inputVal.indexOf(point) >= 0) {
@@ -38,25 +40,15 @@ export const formatCurrency = (
     // add commas to left side of number
     leftSide = formatLongNumber(leftSide, comma);
 
-    // On blur make sure 2 numbers after decimal
-    if (onBlur) {
-      rightSide += '00';
-    }
-
     // Limit decimal to only 2 digits
     rightSide = rightSide.substring(0, 2);
 
     // join number by .
-    inputVal = unit + ' ' + leftSide + point + rightSide;
+    inputVal = prefix + leftSide + point + rightSide;
   } else {
     // no decimal entered./ add commas to number and remove all non-digits
     inputVal = formatLongNumber(inputVal, comma);
-    inputVal = unit + ' ' + inputVal;
-
-    // final formatting
-    if (onBlur) {
-      inputVal += point + '00';
-    }
+    inputVal = prefix + inputVal;
   }
 
   // results

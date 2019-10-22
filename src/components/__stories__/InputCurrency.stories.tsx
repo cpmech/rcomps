@@ -8,3 +8,5 @@ const stories = storiesOf('InputCurrency', module);
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => <InputCurrency />);
+
+stories.add('Brazil', () => <InputCurrency prefix="R$ " swapDotByComma={true} />);

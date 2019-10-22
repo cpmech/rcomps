@@ -21,6 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "tw": "react-scripts test --watch",
+    "cov": "react-scripts test --coverage",
     "type-check": "tsc",
     "lint": "eslint --ignore-path .eslintignore . --ext ts --ext tsx",
     "lint:fix": "yarn lint --fix",
