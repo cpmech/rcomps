@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatCurrency } from '../helpers';
+import { formatCurrency } from './helpers';
 
 interface IInputCurrencyProps {
   prefix?: string; // e.g. '$ ' [default] or 'R$ '
