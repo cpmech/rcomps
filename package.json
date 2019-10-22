@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:app": "react-scripts build",
     "test": "react-scripts test",
     "tw": "react-scripts test --watch",
     "cov": "react-scripts test --coverage",
@@ -27,8 +27,13 @@
     "lint:fix": "yarn lint --fix",
     "eject": "react-scripts eject",
     "sb": "start-storybook -p 9009 -s public",
-    "bsb": "build-storybook -c .storybook -o docs"
+    "bsb": "build-storybook -c .storybook -o docs",
+    "build": "rm -rf dist && rollup --config rollup.config-rlib.js",
+    "dist": "yarn build && cp package.rlib.json dist/package.json && cd dist/ && yarn publish --access=public || true && cd .. && rm -rf dist/"
   },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -61,6 +66,10 @@
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
-    "require-context.macro": "^1.2.2"
+    "require-context.macro": "^1.2.2",
+    "rollup": "^1.25.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript2": "^0.24.3"
   }
 }
