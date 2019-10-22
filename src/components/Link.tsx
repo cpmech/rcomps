@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface IProps {
+export interface ILinkProps {
   href?: string;
   onClick?: () => void;
 }
 
-export const Link: React.FC<IProps> = ({ href, children, ...rest }) => {
+export const Link: React.FC<ILinkProps> = ({ href, children, ...rest }) => {
   if (href) {
     return (
       <a href={href} {...rest}>
