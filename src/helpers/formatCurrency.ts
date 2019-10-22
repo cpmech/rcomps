@@ -1,46 +1,42 @@
+// formatLongNumber formats number 1000000 to 1,234,567
 const formatLongNumber = (n: string, comma = ',') => {
-  // format number 1000000 to 1,234,567
   return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, comma);
 };
 
+// formatCurrency appends $ to value and validates decimal side
+// ref: https://codepen.io/559wade/pen/LRzEjj
 export const formatCurrency = (
   inputVal: string,
-  onBlur?: boolean,
-  unit = 'US$',
+  unit = '$',
   point = '.',
   comma = ',',
+  onBlur?: boolean,
 ) => {
-  // appends $ to value, validates decimal side
-  // and puts cursor back in right position.
-  // ref: https://codepen.io/559wade/pen/LRzEjj
-
   // don't validate empty input
   if (!inputVal) {
     return '';
   }
 
-  // original length
-  // let originalLen = inputVal.length;
-
-  // initial caret position
-  // let caretPos = input.prop('selectionStart');
-
   // check for decimal
   if (inputVal.indexOf(point) >= 0) {
-    // get position of last decimal
-    // this prevents multiple decimals from
-    // being entered
+    // get position of last decimal. this prevents multiple decimals from being entered
     const decimalPos = inputVal.indexOf(point);
 
     // split number by decimal point
-    let leftSide = inputVal.substring(0, decimalPos);
-    let rightSide = inputVal.substring(decimalPos);
+    let leftSide = inputVal.substring(0, decimalPos).replace(/\D/g, '');
+    let rightSide = inputVal.substring(decimalPos).replace(/\D/g, '');
+
+    // handle left = 0
+    if (leftSide.length === 0) {
+      leftSide += '0';
+    } else {
+      if (Number(leftSide) === 0) {
+        leftSide = '0';
+      }
+    }
 
     // add commas to left side of number
     leftSide = formatLongNumber(leftSide, comma);
-
-    // clear right side
-    rightSide = rightSide.replace(/\D/g, '');
 
     // On blur make sure 2 numbers after decimal
     if (onBlur) {
@@ -53,9 +49,7 @@ export const formatCurrency = (
     // join number by .
     inputVal = unit + ' ' + leftSide + point + rightSide;
   } else {
-    // no decimal entered
-    // add commas to number
-    // remove all non-digits
+    // no decimal entered./ add commas to number and remove all non-digits
     inputVal = formatLongNumber(inputVal, comma);
     inputVal = unit + ' ' + inputVal;
 
@@ -67,11 +61,4 @@ export const formatCurrency = (
 
   // results
   return inputVal;
-
-  /*
-  // put caret back in the right position
-  var updatedLen = inputVal.length;
-  caretPos = updatedLen - originalLen + caretPos;
-  input[0].setSelectionRange(caretPos, caretPos);
-  */
 };
