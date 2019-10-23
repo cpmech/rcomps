@@ -13,10 +13,13 @@ stories.add('default', () => <Button onClick={action('Button')}>Hello World</But
 stories.add('styled', () => (
   <Button
     onClick={action('Button')}
+    color="white"
+    fontWeight="bold"
     backgroundColor="#803ced"
     hoverColor="#9f6cf1"
     paddingHoriz={100}
     paddingVert={20}
+    borderRadius={100}
   >
     HELLO WORLD
   </Button>

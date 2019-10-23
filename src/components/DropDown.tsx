@@ -1,24 +1,42 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { ILinkProps, Link } from './Link';
+import { IconAngleDown } from '@cpmech/react-icons';
+import { Link } from './Link';
+import { Pair } from './Pair';
 
 export interface IDropDownEntry {
   message: string;
-  link: ILinkProps;
+  href?: string;
+  onClick?: () => void;
 }
 
 export interface IDropDownProps {
   title: string;
   entries: IDropDownEntry[];
-  styles?: {
-    button?: {
-      backgroundColor?: string;
-      hoverColor?: string;
-    };
-  };
+  withIcon?: boolean;
+  btnColor?: string;
+  btnFontSize?: number;
+  btnFontWeight?: string;
+  btnBackgroundColor?: string;
+  btnHoverColor?: string;
+  btnPaddingHoriz?: number;
+  btnPaddingVert?: number;
+  btnBorderRadius?: number;
 }
 
-export const DropDown: React.FC<IDropDownProps> = ({ title, entries, styles }) => {
+export const DropDown: React.FC<IDropDownProps> = ({
+  title,
+  entries,
+  withIcon = true,
+  btnColor = '#343434',
+  btnBackgroundColor = '#ebebeb',
+  btnHoverColor = '#d7d7d7',
+  btnFontSize = 14,
+  btnFontWeight = 'normal',
+  btnPaddingHoriz = 28,
+  btnPaddingVert = 10,
+  btnBorderRadius = 0,
+}) => {
   return (
     <div
       css={css`
@@ -31,22 +49,21 @@ export const DropDown: React.FC<IDropDownProps> = ({ title, entries, styles }) =
     >
       <button
         css={css`
-          background-color: ${styles && styles.button && styles.button.backgroundColor
-            ? styles.button.backgroundColor
-            : '#4caf50'};
-          color: white;
-          padding: 16px;
-          font-size: 16px;
-          border: none;
+          padding: ${btnPaddingVert}px ${btnPaddingHoriz}px;
+          border-radius: ${btnBorderRadius}px;
+          border-width: 0;
+          color: ${btnColor};
+          background-color: ${btnBackgroundColor};
+          font-size: ${btnFontSize}px;
+          font-weight: ${btnFontWeight};
           cursor: pointer;
+          transition: all 0.3s ease;
           &:hover {
-            background-color: ${styles && styles.button && styles.button.hoverColor
-              ? styles.button.hoverColor
-              : '#3e8e41'};
+            background-color: ${btnHoverColor};
           }
         `}
       >
-        {title}
+        {withIcon ? <Pair left={title} right={<IconAngleDown size={btnFontSize} />} /> : title}
       </button>
       <div
         css={css`
@@ -69,7 +86,7 @@ export const DropDown: React.FC<IDropDownProps> = ({ title, entries, styles }) =
         `}
       >
         {entries.map(e => (
-          <Link key={e.message} {...e.link}>
+          <Link key={e.message} href={e.href} onClick={e.onClick}>
             {e.message}
           </Link>
         ))}

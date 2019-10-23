@@ -8,28 +8,23 @@ const stories = storiesOf('DropDown', module);
 
 stories.addDecorator(withKnobs);
 
-stories.add('default', () => (
-  <DropDown
-    title="Please select one"
-    entries={[
-      {
-        message: 'First entry',
-        link: {
-          onClick: action('First entry was clicked'),
-        },
-      },
-      {
-        message: 'Second entry',
-        link: {
-          onClick: action('Second entry was clicked'),
-        },
-      },
-      {
-        message: 'Third entry',
-        link: {
-          onClick: action('Third entry was clicked'),
-        },
-      },
-    ]}
-  />
+const entries = [
+  {
+    message: 'First entry',
+    onClick: action('First entry was clicked'),
+  },
+  {
+    message: 'Second entry',
+    onClick: action('Second entry was clicked'),
+  },
+  {
+    message: 'Third entry',
+    onClick: action('Third entry was clicked'),
+  },
+];
+
+stories.add('default', () => <DropDown title="Please select one" entries={entries} />);
+
+stories.add('no icon', () => (
+  <DropDown title="Please select one" entries={entries} withIcon={false} />
 ));
