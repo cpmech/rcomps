@@ -17,9 +17,7 @@
     "postpublish": "yarn fix:ver1 && yarn fix:ver2 && yarn git:all && yarn message"
   },
   "repository": "cpmech/rcomps",
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
-  "types": "esm/index.d.ts",
+  "main": "index.ts",
   "description": "My components for React projects",
   "keywords": ["React", "Components"]
 }
