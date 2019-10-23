@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Button } from '../Button';
-import { ReactComponent as HouseIcon } from '../../assets/house.svg';
 
 const stories = storiesOf('Button', module);
 
