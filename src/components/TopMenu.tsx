@@ -8,7 +8,6 @@ export interface ITopMenuProps {
   centered?: boolean;
   desktopMaxWidth?: number;
   entriesSpacing?: number;
-  entriesSpacingNarrow?: number;
   paddingLeft?: number;
   paddingRight?: number;
   minHeight?: number;
@@ -19,7 +18,6 @@ export const TopMenu: React.FC<ITopMenuProps> = ({
   centered: narrow,
   desktopMaxWidth = 960,
   entriesSpacing = 30,
-  entriesSpacingNarrow = 10,
   paddingLeft = 15,
   paddingRight = 15,
   minHeight = 60,
