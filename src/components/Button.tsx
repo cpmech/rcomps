@@ -1,7 +1,7 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
-export interface IRoundButtonProps {
+export interface IButtonProps {
   href?: string;
   onClick?: () => void;
   color?: string;
@@ -13,7 +13,7 @@ export interface IRoundButtonProps {
   borderRadius?: number;
 }
 
-export const Button: React.FC<IRoundButtonProps> = ({
+export const Button: React.FC<IButtonProps> = ({
   href,
   onClick,
   color = '#343434',
