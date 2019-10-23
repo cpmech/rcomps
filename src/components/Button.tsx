@@ -4,30 +4,36 @@ import React from 'react';
 export interface IRoundButtonProps {
   href?: string;
   onClick?: () => void;
+  color?: string;
+  fontWeight?: string;
   backgroundColor?: string;
   hoverColor?: string;
   paddingHoriz?: number;
   paddingVert?: number;
+  borderRadius?: number;
 }
 
 export const Button: React.FC<IRoundButtonProps> = ({
   href,
   onClick,
-  backgroundColor = '#4caf50',
-  hoverColor = '#3e8e41',
-  paddingHoriz = 40,
-  paddingVert = 12,
+  color = '#343434',
+  backgroundColor = '#ebebeb',
+  hoverColor = '#d7d7d7',
+  fontWeight = 'normal',
+  paddingHoriz = 28,
+  paddingVert = 10,
+  borderRadius = 6,
   children,
 }) => {
   return (
     <button
       css={css`
         padding: ${paddingVert}px ${paddingHoriz}px;
-        border-radius: 100px;
+        border-radius: ${borderRadius}px;
         border-width: 0;
-        color: white;
+        color: ${color};
         background-color: ${backgroundColor};
-        font-weight: bold;
+        font-weight: ${fontWeight};
         cursor: pointer;
         transition: all 0.3s ease;
         &:hover {
