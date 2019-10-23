@@ -22,6 +22,7 @@ export const Pair: React.FC<IPairProps> = ({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        lineHeight: 0,
       }}
     >
       <span style={{ paddingRight: spacing, ...styleLeft }}>{left}</span>

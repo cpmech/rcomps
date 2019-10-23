@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from '@reach/router';
-import { DropDown, IDropDownEntry } from '../components';
+import { IconAccount } from '@cpmech/react-icons';
+import { DropDown, IDropDownEntry, Pair } from '../components';
 import { MainMenu } from './MainMenu';
 
 interface IHomeProps extends RouteComponentProps {}
@@ -58,6 +59,14 @@ export const Home: React.FC<IHomeProps> = () => {
               hoverColor: '#548fe2',
             },
           }}
+        />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Pair
+          left={<IconAccount size={40} style={{ color: 'red' }} />}
+          right="---ACCOUNT---"
+          spacing={0}
+          styleRight={{ fontSize: 32 }}
         />
       </div>
     </div>

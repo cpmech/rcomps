@@ -51,6 +51,7 @@
     "typescript": "^3.6.4"
   },
   "devDependencies": {
+    "@cpmech/react-icons": "^2.3.0",
     "@storybook/addon-actions": "^5.2.5",
     "@storybook/addon-links": "^5.2.5",
     "@storybook/addons": "^5.2.5",
