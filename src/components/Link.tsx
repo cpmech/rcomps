@@ -8,11 +8,15 @@ export interface ILinkProps {
 export const Link: React.FC<ILinkProps> = ({ href, children, ...rest }) => {
   if (href) {
     return (
-      <a href={href} {...rest}>
+      <a href={href} {...rest} style={{ cursor: 'pointer' }}>
         {children}
       </a>
     );
   }
   // eslint-disable-next-line
-  return <a {...rest}>{children}</a>;
+  return (
+    <a {...rest} style={{ cursor: 'pointer' }}>
+      {children}
+    </a>
+  );
 };

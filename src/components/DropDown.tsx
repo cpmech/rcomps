@@ -2,12 +2,12 @@ import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { ILinkProps, Link } from './Link';
 
-interface IDropDownEntry {
+export interface IDropDownEntry {
   message: string;
   link: ILinkProps;
 }
 
-interface IDropDownProps {
+export interface IDropDownProps {
   title: string;
   entries: IDropDownEntry[];
   styles?: {
