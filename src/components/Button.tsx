@@ -6,6 +6,8 @@ export interface IRoundButtonProps {
   onClick?: () => void;
   backgroundColor?: string;
   hoverColor?: string;
+  paddingHoriz?: number;
+  paddingVert?: number;
 }
 
 export const Button: React.FC<IRoundButtonProps> = ({
@@ -13,12 +15,14 @@ export const Button: React.FC<IRoundButtonProps> = ({
   onClick,
   backgroundColor = '#4caf50',
   hoverColor = '#3e8e41',
+  paddingHoriz = 40,
+  paddingVert = 12,
   children,
 }) => {
   return (
     <button
       css={css`
-        padding: 12px 40px 12px 40px;
+        padding: ${paddingVert}px ${paddingHoriz}px;
         border-radius: 100px;
         border-width: 0;
         color: white;
