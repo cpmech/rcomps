@@ -8,8 +8,8 @@ export interface IButtonProps {
   fontWeight?: string;
   backgroundColor?: string;
   hoverColor?: string;
+  height?: number;
   paddingHoriz?: number;
-  paddingVert?: number;
   borderRadius?: number;
 }
 
@@ -20,15 +20,17 @@ export const Button: React.FC<IButtonProps> = ({
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
   fontWeight = 'normal',
+  height = 40,
   paddingHoriz = 28,
-  paddingVert = 10,
   borderRadius = 6,
   children,
 }) => {
   return (
     <button
       css={css`
-        padding: ${paddingVert}px ${paddingHoriz}px;
+        height: ${height}px;
+        padding-left: ${paddingHoriz}px;
+        padding-right: ${paddingHoriz}px;
         border-radius: ${borderRadius}px;
         border-width: 0;
         color: ${color};

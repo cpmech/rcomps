@@ -19,8 +19,8 @@ export interface IDropDownProps {
   btnFontWeight?: string;
   btnBackgroundColor?: string;
   btnHoverColor?: string;
+  btnHeight?: number;
   btnPaddingHoriz?: number;
-  btnPaddingVert?: number;
   btnBorderRadius?: number;
 }
 
@@ -33,8 +33,8 @@ export const DropDown: React.FC<IDropDownProps> = ({
   btnHoverColor = '#d7d7d7',
   btnFontSize = 14,
   btnFontWeight = 'normal',
+  btnHeight = 40,
   btnPaddingHoriz = 28,
-  btnPaddingVert = 10,
   btnBorderRadius = 0,
 }) => {
   return (
@@ -49,7 +49,9 @@ export const DropDown: React.FC<IDropDownProps> = ({
     >
       <button
         css={css`
-          padding: ${btnPaddingVert}px ${btnPaddingHoriz}px;
+          height: ${btnHeight}px;
+          padding-left: ${btnPaddingHoriz}px;
+          padding-right: ${btnPaddingHoriz}px;
           border-radius: ${btnBorderRadius}px;
           border-width: 0;
           color: ${btnColor};

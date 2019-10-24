@@ -17,8 +17,8 @@ stories.add('styled', () => (
     fontWeight="bold"
     backgroundColor="#803ced"
     hoverColor="#9f6cf1"
+    height={60}
     paddingHoriz={100}
-    paddingVert={20}
     borderRadius={100}
   >
     HELLO WORLD

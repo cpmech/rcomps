@@ -28,3 +28,29 @@ stories.add('default', () => <DropDown title="Please select one" entries={entrie
 stories.add('no icon', () => (
   <DropDown title="Please select one" entries={entries} withIcon={false} />
 ));
+
+stories.add('styled', () => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    }}
+  >
+    <DropDown
+      title="Please select one"
+      entries={entries}
+      btnColor="white"
+      btnBackgroundColor="#803ced"
+      btnHoverColor="#9f6cf1"
+      btnHeight={60}
+    />
+    <DropDown
+      title="Please select another one"
+      entries={entries}
+      btnColor="white"
+      btnBackgroundColor="#236cd2"
+      btnHoverColor="#548fe2"
+    />
+  </div>
+));
