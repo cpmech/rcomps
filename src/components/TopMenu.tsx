@@ -57,7 +57,12 @@ export const TopMenu: React.FC<ITopMenuProps> = ({
       `}
     >
       <div>{entries[0]}</div>
-      <div>
+      <div
+        css={css`
+          display: flex;
+          align-items: center;
+        `}
+      >
         {entries.slice(1).map((e, i) => (
           <span
             key={(e as any).key}
