@@ -15,7 +15,7 @@ export interface ITopMenuProps {
 
 export const TopMenu: React.FC<ITopMenuProps> = ({
   entries,
-  centered: narrow,
+  centered,
   desktopMaxWidth = 960,
   entriesSpacing = 30,
   paddingLeft = 15,
@@ -26,7 +26,7 @@ export const TopMenu: React.FC<ITopMenuProps> = ({
     throw new Error('entries array must have at least two values');
   }
 
-  if (narrow) {
+  if (centered) {
     return (
       <header
         css={css`
