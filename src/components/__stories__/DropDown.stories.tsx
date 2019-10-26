@@ -29,6 +29,10 @@ stories.add('no icon', () => (
   <DropDown title="Please select one" entries={entries} withIcon={false} />
 ));
 
+stories.add('show on click', () => (
+  <DropDown title="Please select one" entries={entries} showOnHover={false} />
+));
+
 stories.add('styled', () => (
   <div
     style={{

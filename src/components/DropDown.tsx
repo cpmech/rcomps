@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { IconAngleDown } from '@cpmech/react-icons';
 import { Link } from './Link';
@@ -13,6 +13,7 @@ export interface IDropDownEntry {
 export interface IDropDownProps {
   title: string;
   entries: IDropDownEntry[];
+  showOnHover?: boolean;
   withIcon?: boolean;
   btnColor?: string;
   btnFontSize?: number;
@@ -28,6 +29,7 @@ export interface IDropDownProps {
 export const DropDown: React.FC<IDropDownProps> = ({
   title,
   entries,
+  showOnHover = true,
   withIcon = true,
   btnColor = '#343434',
   btnBackgroundColor = '#ebebeb',
@@ -39,14 +41,22 @@ export const DropDown: React.FC<IDropDownProps> = ({
   btnBorderRadius = 0,
   fixedHeight,
 }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if (!showOnHover) {
+      setOpen(!open);
+    }
+  };
+
+  const usingHover = showOnHover ? '&:hover > div { display: block; }' : '';
   return (
     <div
       css={css`
         position: relative;
         display: inline-block;
-        &:hover > div {
-          display: block;
-        }
+        ${usingHover}
       `}
     >
       <button
@@ -66,12 +76,13 @@ export const DropDown: React.FC<IDropDownProps> = ({
             background-color: ${btnHoverColor};
           }
         `}
+        onClick={handleButtonClick}
       >
         {withIcon ? <Pair left={title} right={<IconAngleDown size={btnFontSize} />} /> : title}
       </button>
       <div
         css={css`
-          display: none;
+          display: ${showOnHover ? 'none' : open ? 'block' : 'none'};
           position: absolute;
           background-color: #f9f9f9;
           min-width: 160px;
