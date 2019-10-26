@@ -22,6 +22,7 @@ export interface IDropDownProps {
   btnHeight?: number;
   btnPaddingHoriz?: number;
   btnBorderRadius?: number;
+  fixedHeight?: number;
 }
 
 export const DropDown: React.FC<IDropDownProps> = ({
@@ -36,6 +37,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
   btnHeight = 40,
   btnPaddingHoriz = 28,
   btnBorderRadius = 0,
+  fixedHeight,
 }) => {
   return (
     <div
@@ -75,6 +77,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
           min-width: 160px;
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           z-index: 1;
+          ${fixedHeight && `height: ${fixedHeight}px; overflow: auto;`}
           a {
             color: black;
             padding: 12px 16px;
