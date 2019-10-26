@@ -921,10 +921,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cpmech/react-icons@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@cpmech/react-icons/-/react-icons-2.3.0.tgz#4c94115166a351eb29419309a9996f682b07d0b3"
-  integrity sha512-cF4OrfVW8ZGxfAR0Ai/5tgO3Aw8pASxe246OtjSLVb+dVpi5vQn1hy7d3GybGXRSZJu6gjOnXjtkR5bvRYtPEA==
+"@cpmech/react-icons@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@cpmech/react-icons/-/react-icons-2.4.0.tgz#2035dce9fd378cb5b4f1e08b6aedfd9c0612596b"
+  integrity sha512-2+DiDkYFfdY6z/SbWXa+6+1EDd4Uww02LAwH2giKgblG7/AybHHfvrVOLRrhA/0oO1b8sgW4p4/Zxh8kOO52pA==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"

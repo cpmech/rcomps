@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { IconAngleDown } from '@cpmech/react-icons';
+import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Link } from './Link';
 import { Pair } from './Pair';
 
@@ -50,6 +50,16 @@ export const DropDown: React.FC<IDropDownProps> = ({
     }
   };
 
+  const buttonContent = () => {
+    if (!withIcon) {
+      return title;
+    }
+    if (showOnHover || !open) {
+      return <Pair left={title} right={<IconAngleDown size={btnFontSize} />} />;
+    }
+    return <Pair left={title} right={<IconAngleUp size={btnFontSize} />} />;
+  };
+
   const usingHover = showOnHover ? '&:hover > div { display: block; }' : '';
   return (
     <div
@@ -78,7 +88,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
         `}
         onClick={handleButtonClick}
       >
-        {withIcon ? <Pair left={title} right={<IconAngleDown size={btnFontSize} />} /> : title}
+        {buttonContent()}
       </button>
       <div
         css={css`
