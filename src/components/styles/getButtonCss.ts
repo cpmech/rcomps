@@ -1,4 +1,4 @@
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+import { css } from '@emotion/core';
 
 export const getButtonCss = (
   width = 0, // optional

@@ -1,4 +1,4 @@
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+import { css } from '@emotion/core';
 
 export const getFloatCss = (show: boolean, height?: number) => css`
   display: ${show ? 'block' : 'none'};
