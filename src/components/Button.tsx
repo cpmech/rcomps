@@ -1,47 +1,50 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
+import { getButtonCss } from './styles';
 
 export interface IButtonProps {
   href?: string;
   onClick?: () => void;
-  color?: string;
-  fontWeight?: string;
-  backgroundColor?: string;
-  hoverColor?: string;
+  width?: number;
   height?: number;
   paddingHoriz?: number;
   borderRadius?: number;
+  fontSize?: number;
+  fontWeight?: string;
+  color?: string;
+  backgroundColor?: string;
+  hoverColor?: string;
 }
 
 export const Button: React.FC<IButtonProps> = ({
   href,
   onClick,
-  color = '#343434',
-  backgroundColor = '#ebebeb',
-  hoverColor = '#d7d7d7',
-  fontWeight = 'normal',
+  width = 0, // optional
   height = 40,
   paddingHoriz = 28,
   borderRadius = 6,
+  fontSize = 0, // optional
+  fontWeight = 'normal',
+  color = '#343434',
+  backgroundColor = '#ebebeb',
+  hoverColor = '#d7d7d7',
   children,
 }) => {
+  const buttonCss = getButtonCss(
+    width,
+    height,
+    paddingHoriz,
+    borderRadius,
+    fontSize,
+    fontWeight,
+    color,
+    backgroundColor,
+    hoverColor,
+  );
+
   return (
     <button
-      css={css`
-        height: ${height}px;
-        padding-left: ${paddingHoriz}px;
-        padding-right: ${paddingHoriz}px;
-        border-radius: ${borderRadius}px;
-        border-width: 0;
-        color: ${color};
-        background-color: ${backgroundColor};
-        font-weight: ${fontWeight};
-        cursor: pointer;
-        transition: all 0.3s ease;
-        &:hover {
-          background-color: ${hoverColor};
-        }
-      `}
+      css={buttonCss}
       onClick={e => {
         e.preventDefault();
         if (href) {

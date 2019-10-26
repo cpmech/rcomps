@@ -5,7 +5,7 @@ export const getButtonCss = (
   height = 40,
   paddingHoriz = 28,
   borderRadius = 0,
-  fontSize = 14,
+  fontSize = 0, // optional
   fontWeight = 'normal',
   color = '#343434',
   backgroundColor = '#ebebeb',
@@ -17,7 +17,7 @@ export const getButtonCss = (
   padding-right: ${paddingHoriz}px;
   border-radius: ${borderRadius}px;
   border-width: 0;
-  font-size: ${fontSize}px;
+  ${fontSize > 0 ? `font-size: ${fontSize}px;` : ''}
   font-weight: ${fontWeight};
   cursor: pointer;
   color: ${color};
