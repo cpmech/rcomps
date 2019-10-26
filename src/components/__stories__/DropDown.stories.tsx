@@ -37,6 +37,12 @@ stories.add('show on click / no icon', () => (
   <DropDown title="Please select one" entries={entries} showOnHover={false} withIcon={false} />
 ));
 
+stories.add('use width', () => <DropDown title="Choose one" entries={entries} width={400} />);
+
+stories.add('replace title', () => (
+  <DropDown title="Please select one" entries={entries} replaceTitleWithSelected={true} />
+));
+
 stories.add('styled', () => (
   <div
     style={{
@@ -48,17 +54,17 @@ stories.add('styled', () => (
     <DropDown
       title="Please select one"
       entries={entries}
-      btnColor="white"
-      btnBackgroundColor="#803ced"
-      btnHoverColor="#9f6cf1"
-      btnHeight={60}
+      color="white"
+      backgroundColor="#803ced"
+      hoverColor="#9f6cf1"
+      height={60}
     />
     <DropDown
       title="Please select another one"
       entries={entries}
-      btnColor="white"
-      btnBackgroundColor="#236cd2"
-      btnHoverColor="#548fe2"
+      color="white"
+      backgroundColor="#236cd2"
+      hoverColor="#548fe2"
     />
   </div>
 ));
@@ -70,10 +76,18 @@ const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
   }),
 );
 
-stories.add('fixed height', () => (
-  <DropDown title="Choose one" entries={manyEntries} fixedHeight={200} />
+stories.add('use size', () => <DropDown title="Choose one" entries={manyEntries} size={200} />);
+
+stories.add('use size / show on click', () => (
+  <DropDown title="Choose one" entries={manyEntries} size={200} showOnHover={false} />
 ));
 
-stories.add('fixed height / show on click', () => (
-  <DropDown title="Choose one" entries={manyEntries} fixedHeight={200} showOnHover={false} />
+stories.add('use size / show on click / replace title', () => (
+  <DropDown
+    title="Choose one"
+    entries={manyEntries}
+    size={200}
+    showOnHover={false}
+    replaceTitleWithSelected={true}
+  />
 ));

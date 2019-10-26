@@ -37,16 +37,16 @@ export const Home: React.FC<IHomeProps> = () => {
         <DropDown
           title="Please select one"
           entries={dropdownEntries}
-          btnColor="white"
-          btnBackgroundColor="#803ced"
-          btnHoverColor="#9f6cf1"
+          color="white"
+          backgroundColor="#803ced"
+          hoverColor="#9f6cf1"
         />
         <DropDown
           title="Please select another one"
           entries={dropdownEntries}
-          btnColor="white"
-          btnBackgroundColor="#236cd2"
-          btnHoverColor="#548fe2"
+          color="white"
+          backgroundColor="#236cd2"
+          hoverColor="#548fe2"
         />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>

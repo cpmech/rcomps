@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Link } from './Link';
@@ -13,35 +13,49 @@ export interface IDropDownEntry {
 export interface IDropDownProps {
   title: string;
   entries: IDropDownEntry[];
+  replaceTitleWithSelected?: boolean; // should be used with given width
   showOnHover?: boolean;
   withIcon?: boolean;
-  btnColor?: string;
-  btnFontSize?: number;
-  btnFontWeight?: string;
-  btnBackgroundColor?: string;
-  btnHoverColor?: string;
-  btnHeight?: number;
-  btnPaddingHoriz?: number;
-  btnBorderRadius?: number;
-  fixedHeight?: number;
+  color?: string;
+  fontSize?: number;
+  fontWeight?: string;
+  backgroundColor?: string;
+  hoverColor?: string;
+  height?: number;
+  paddingHoriz?: number;
+  borderRadius?: number;
+  width?: number;
+  size?: number;
 }
 
 export const DropDown: React.FC<IDropDownProps> = ({
   title,
   entries,
+  replaceTitleWithSelected = false,
   showOnHover = true,
   withIcon = true,
-  btnColor = '#343434',
-  btnBackgroundColor = '#ebebeb',
-  btnHoverColor = '#d7d7d7',
-  btnFontSize = 14,
-  btnFontWeight = 'normal',
-  btnHeight = 40,
-  btnPaddingHoriz = 28,
-  btnBorderRadius = 0,
-  fixedHeight,
+  color = '#343434',
+  backgroundColor = '#ebebeb',
+  hoverColor = '#d7d7d7',
+  fontSize = 14,
+  fontWeight = 'normal',
+  height = 40,
+  paddingHoriz = 28,
+  borderRadius = 0,
+  width,
+  size,
 }) => {
+  const [buttonWidth, setButtonWidth] = useState(width || 0);
+  const [selected, setSelected] = useState(title);
   const [open, setOpen] = useState(false);
+  const refButton = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (refButton.current) {
+      setButtonWidth(refButton.current.offsetWidth);
+      console.log('>>>', refButton.current.offsetWidth);
+    }
+  }, [refButton]);
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -70,12 +84,12 @@ export const DropDown: React.FC<IDropDownProps> = ({
 
   const buttonContent = () => {
     if (!withIcon) {
-      return title;
+      return selected;
     }
     if (showOnHover || !open) {
-      return <Pair left={title} right={<IconAngleDown size={btnFontSize} />} />;
+      return <Pair left={selected} right={<IconAngleDown size={fontSize} />} />;
     }
-    return <Pair left={title} right={<IconAngleUp size={btnFontSize} />} />;
+    return <Pair left={selected} right={<IconAngleUp size={fontSize} />} />;
   };
 
   return (
@@ -86,20 +100,22 @@ export const DropDown: React.FC<IDropDownProps> = ({
       `}
     >
       <button
+        ref={refButton}
         css={css`
-          height: ${btnHeight}px;
-          padding-left: ${btnPaddingHoriz}px;
-          padding-right: ${btnPaddingHoriz}px;
-          border-radius: ${btnBorderRadius}px;
+          ${buttonWidth > 0 ? `width: ${buttonWidth}px;` : ''}
+          height: ${height}px;
+          padding-left: ${paddingHoriz}px;
+          padding-right: ${paddingHoriz}px;
+          border-radius: ${borderRadius}px;
           border-width: 0;
-          color: ${btnColor};
-          background-color: ${btnBackgroundColor};
-          font-size: ${btnFontSize}px;
-          font-weight: ${btnFontWeight};
+          color: ${color};
+          background-color: ${backgroundColor};
+          font-size: ${fontSize}px;
+          font-weight: ${fontWeight};
           cursor: pointer;
           transition: all 0.3s ease;
           &:hover {
-            background-color: ${btnHoverColor};
+            background-color: ${hoverColor};
           }
         `}
         onClick={handleButtonClick}
@@ -116,7 +132,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
           min-width: 160px;
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           z-index: 1;
-          ${fixedHeight && `height: ${fixedHeight}px; overflow: auto;`}
+          ${size && `height: ${size}px; overflow: auto;`}
           a {
             color: black;
             padding: 12px 16px;
@@ -137,6 +153,12 @@ export const DropDown: React.FC<IDropDownProps> = ({
             href={e.href}
             onClick={() => {
               setOpen(false);
+              if (replaceTitleWithSelected) {
+                if (refButton.current) {
+                  console.log('###', buttonWidth);
+                }
+                setSelected(e.message);
+              }
               if (e.onClick) {
                 e.onClick();
               }
