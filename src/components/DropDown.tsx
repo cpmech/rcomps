@@ -49,13 +49,28 @@ export const DropDown: React.FC<IDropDownProps> = ({
   const [selected, setSelected] = useState(title);
   const [open, setOpen] = useState(false);
   const refButton = useRef<HTMLButtonElement>(null);
+  const refRoot = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (refButton.current) {
       setButtonWidth(refButton.current.offsetWidth);
-      console.log('>>>', refButton.current.offsetWidth);
     }
-  }, [refButton]);
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (refRoot.current && e.target) {
+        if (!refRoot.current.contains(e.target as Node)) {
+          setOpen(false);
+        }
+      }
+    };
+
+    if (!showOnHover) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [refButton, refRoot, showOnHover]);
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -94,6 +109,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
 
   return (
     <div
+      ref={refRoot}
       css={css`
         position: relative;
         display: inline-block;
@@ -154,9 +170,6 @@ export const DropDown: React.FC<IDropDownProps> = ({
             onClick={() => {
               setOpen(false);
               if (replaceTitleWithSelected) {
-                if (refButton.current) {
-                  console.log('###', buttonWidth);
-                }
                 setSelected(e.message);
               }
               if (e.onClick) {
