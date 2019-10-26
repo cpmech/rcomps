@@ -16,3 +16,13 @@ stories.add('default', () => (
     styleRight={{ fontSize: 40 }}
   />
 ));
+
+stories.add('space between', () => (
+  <Pair
+    left={<HouseIcon width={64} />}
+    right="Hello World"
+    spacing={20}
+    styleRight={{ fontSize: 40 }}
+    spaceBetween={true}
+  />
+));

@@ -87,9 +87,9 @@ export const DropDown: React.FC<IDropDownProps> = ({
       return selected;
     }
     if (showOnHover || !open) {
-      return <Pair left={selected} right={<IconAngleDown size={fontSize} />} />;
+      return <Pair left={selected} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />;
     }
-    return <Pair left={selected} right={<IconAngleUp size={fontSize} />} />;
+    return <Pair left={selected} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />;
   };
 
   return (

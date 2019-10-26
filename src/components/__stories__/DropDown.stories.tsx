@@ -65,6 +65,7 @@ stories.add('styled', () => (
       color="white"
       backgroundColor="#236cd2"
       hoverColor="#548fe2"
+      replaceTitleWithSelected={true}
     />
   </div>
 ));

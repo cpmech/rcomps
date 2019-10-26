@@ -6,6 +6,7 @@ interface IPairProps {
   spacing?: number;
   styleLeft?: React.CSSProperties;
   styleRight?: React.CSSProperties;
+  spaceBetween?: boolean;
 }
 
 export const Pair: React.FC<IPairProps> = ({
@@ -14,13 +15,14 @@ export const Pair: React.FC<IPairProps> = ({
   spacing = 10,
   styleLeft,
   styleRight,
+  spaceBetween,
 }) => {
   return (
     <div
       style={{
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: spaceBetween ? 'space-between' : 'center',
         alignItems: 'center',
         lineHeight: 0,
       }}
