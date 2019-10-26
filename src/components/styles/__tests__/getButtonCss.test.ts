@@ -11,7 +11,7 @@ describe('getButtonCss', () => {
         '  padding-right: 28px;\n' +
         '  border-radius: 0px;\n' +
         '  border-width: 0;\n' +
-        '  font-size: 14px;\n' +
+        '  \n' +
         '  font-weight: normal;\n' +
         '  cursor: pointer;\n' +
         '  color: #343434;\n' +
