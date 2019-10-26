@@ -50,6 +50,24 @@ export const DropDown: React.FC<IDropDownProps> = ({
     }
   };
 
+  const handleOnMouseEnter = (
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
+    if (showOnHover) {
+      setOpen(true);
+    }
+  };
+
+  const handleOnMouseLeave = (
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
+    if (showOnHover) {
+      setOpen(false);
+    }
+  };
+
   const buttonContent = () => {
     if (!withIcon) {
       return title;
@@ -60,13 +78,11 @@ export const DropDown: React.FC<IDropDownProps> = ({
     return <Pair left={title} right={<IconAngleUp size={btnFontSize} />} />;
   };
 
-  const usingHover = showOnHover ? '&:hover > div { display: block; }' : '';
   return (
     <div
       css={css`
         position: relative;
         display: inline-block;
-        ${usingHover}
       `}
     >
       <button
@@ -87,12 +103,14 @@ export const DropDown: React.FC<IDropDownProps> = ({
           }
         `}
         onClick={handleButtonClick}
+        onMouseEnter={handleOnMouseEnter}
+        onMouseLeave={handleOnMouseLeave}
       >
         {buttonContent()}
       </button>
       <div
         css={css`
-          display: ${showOnHover ? 'none' : open ? 'block' : 'none'};
+          display: ${open ? 'block' : 'none'};
           position: absolute;
           background-color: #f9f9f9;
           min-width: 160px;
@@ -110,9 +128,20 @@ export const DropDown: React.FC<IDropDownProps> = ({
             background-color: #f1f1f1;
           }
         `}
+        onMouseEnter={handleOnMouseEnter}
+        onMouseLeave={handleOnMouseLeave}
       >
         {entries.map(e => (
-          <Link key={e.message} href={e.href} onClick={e.onClick}>
+          <Link
+            key={e.message}
+            href={e.href}
+            onClick={() => {
+              setOpen(false);
+              if (e.onClick) {
+                e.onClick();
+              }
+            }}
+          >
             {e.message}
           </Link>
         ))}

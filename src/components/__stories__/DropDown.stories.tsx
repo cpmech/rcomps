@@ -73,3 +73,7 @@ const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
 stories.add('fixed height', () => (
   <DropDown title="Choose one" entries={manyEntries} fixedHeight={200} />
 ));
+
+stories.add('fixed height / show on click', () => (
+  <DropDown title="Choose one" entries={manyEntries} fixedHeight={200} showOnHover={false} />
+));
