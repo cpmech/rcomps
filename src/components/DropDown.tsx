@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Link } from './Link';
 import { Pair } from './Pair';
+import { getButtonCss, getFloatCss } from './styles';
 
 export interface IDropDownEntry {
   message: string;
@@ -13,49 +14,40 @@ export interface IDropDownEntry {
 export interface IDropDownProps {
   title: string;
   entries: IDropDownEntry[];
-  replaceTitleWithSelected?: boolean; // should be used with given width
   showOnHover?: boolean;
   withIcon?: boolean;
-  color?: string;
-  fontSize?: number;
-  fontWeight?: string;
-  backgroundColor?: string;
-  hoverColor?: string;
+  size?: number;
+  width?: number;
   height?: number;
   paddingHoriz?: number;
   borderRadius?: number;
-  width?: number;
-  size?: number;
+  fontSize?: number;
+  fontWeight?: string;
+  color?: string;
+  backgroundColor?: string;
+  hoverColor?: string;
 }
 
 export const DropDown: React.FC<IDropDownProps> = ({
   title,
   entries,
-  replaceTitleWithSelected = false,
   showOnHover = true,
   withIcon = true,
-  color = '#343434',
-  backgroundColor = '#ebebeb',
-  hoverColor = '#d7d7d7',
-  fontSize = 14,
-  fontWeight = 'normal',
+  size,
+  width,
   height = 40,
   paddingHoriz = 28,
   borderRadius = 0,
-  width,
-  size,
+  fontSize = 14,
+  fontWeight = 'normal',
+  color = '#343434',
+  backgroundColor = '#ebebeb',
+  hoverColor = '#d7d7d7',
 }) => {
-  const [buttonWidth, setButtonWidth] = useState(width || 0);
-  const [selected, setSelected] = useState(title);
   const [open, setOpen] = useState(false);
-  const refButton = useRef<HTMLButtonElement>(null);
   const refRoot = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (refButton.current) {
-      setButtonWidth(refButton.current.offsetWidth);
-    }
-
     const handleClickOutside = (e: MouseEvent) => {
       if (refRoot.current && e.target) {
         if (!refRoot.current.contains(e.target as Node)) {
@@ -63,14 +55,13 @@ export const DropDown: React.FC<IDropDownProps> = ({
         }
       }
     };
-
     if (!showOnHover) {
       document.addEventListener('mousedown', handleClickOutside);
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
       };
     }
-  }, [refButton, refRoot, showOnHover]);
+  }, [refRoot, showOnHover]);
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -99,13 +90,27 @@ export const DropDown: React.FC<IDropDownProps> = ({
 
   const buttonContent = () => {
     if (!withIcon) {
-      return selected;
+      return title;
     }
     if (showOnHover || !open) {
-      return <Pair left={selected} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />;
+      return <Pair left={title} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />;
     }
-    return <Pair left={selected} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />;
+    return <Pair left={title} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />;
   };
+
+  const buttonCss = getButtonCss(
+    width,
+    height,
+    paddingHoriz,
+    borderRadius,
+    fontSize,
+    fontWeight,
+    color,
+    backgroundColor,
+    hoverColor,
+  );
+
+  const floatCss = getFloatCss(open, size);
 
   return (
     <div
@@ -116,62 +121,20 @@ export const DropDown: React.FC<IDropDownProps> = ({
       `}
     >
       <button
-        ref={refButton}
-        css={css`
-          ${buttonWidth > 0 ? `width: ${buttonWidth}px;` : ''}
-          height: ${height}px;
-          padding-left: ${paddingHoriz}px;
-          padding-right: ${paddingHoriz}px;
-          border-radius: ${borderRadius}px;
-          border-width: 0;
-          color: ${color};
-          background-color: ${backgroundColor};
-          font-size: ${fontSize}px;
-          font-weight: ${fontWeight};
-          cursor: pointer;
-          transition: all 0.3s ease;
-          &:hover {
-            background-color: ${hoverColor};
-          }
-        `}
+        css={buttonCss}
         onClick={handleButtonClick}
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
       >
         {buttonContent()}
       </button>
-      <div
-        css={css`
-          display: ${open ? 'block' : 'none'};
-          position: absolute;
-          background-color: #f9f9f9;
-          min-width: 160px;
-          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-          z-index: 1;
-          ${size && `height: ${size}px; overflow: auto;`}
-          a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            cursor: pointer;
-          }
-          a:hover {
-            background-color: #f1f1f1;
-          }
-        `}
-        onMouseEnter={handleOnMouseEnter}
-        onMouseLeave={handleOnMouseLeave}
-      >
+      <div css={floatCss} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
         {entries.map(e => (
           <Link
             key={e.message}
             href={e.href}
             onClick={() => {
               setOpen(false);
-              if (replaceTitleWithSelected) {
-                setSelected(e.message);
-              }
               if (e.onClick) {
                 e.onClick();
               }

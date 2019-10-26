@@ -29,19 +29,11 @@ stories.add('no icon', () => (
   <DropDown title="Please select one" entries={entries} withIcon={false} />
 ));
 
-stories.add('show on click', () => (
+stories.add('on click', () => (
   <DropDown title="Please select one" entries={entries} showOnHover={false} />
 ));
 
-stories.add('show on click / no icon', () => (
-  <DropDown title="Please select one" entries={entries} showOnHover={false} withIcon={false} />
-));
-
-stories.add('use width', () => <DropDown title="Choose one" entries={entries} width={400} />);
-
-stories.add('replace title', () => (
-  <DropDown title="Please select one" entries={entries} replaceTitleWithSelected={true} />
-));
+stories.add('fixed width', () => <DropDown title="Choose one" entries={entries} width={400} />);
 
 stories.add('styled', () => (
   <div
@@ -54,18 +46,28 @@ stories.add('styled', () => (
     <DropDown
       title="Please select one"
       entries={entries}
+      height={80}
       color="white"
       backgroundColor="#803ced"
       hoverColor="#9f6cf1"
-      height={60}
     />
+
     <DropDown
       title="Please select another one"
       entries={entries}
+      height={60}
       color="white"
       backgroundColor="#236cd2"
       hoverColor="#548fe2"
-      replaceTitleWithSelected={true}
+    />
+
+    <DropDown
+      title="Final one"
+      entries={entries}
+      height={40}
+      color="white"
+      backgroundColor="#17b580"
+      hoverColor="#33e5a9"
     />
   </div>
 ));
@@ -77,18 +79,8 @@ const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
   }),
 );
 
-stories.add('use size', () => <DropDown title="Choose one" entries={manyEntries} size={200} />);
+stories.add('sized', () => <DropDown title="Choose one" entries={manyEntries} size={200} />);
 
-stories.add('use size / show on click', () => (
+stories.add('sized / on click', () => (
   <DropDown title="Choose one" entries={manyEntries} size={200} showOnHover={false} />
-));
-
-stories.add('use size / show on click / replace title', () => (
-  <DropDown
-    title="Choose one"
-    entries={manyEntries}
-    size={200}
-    showOnHover={false}
-    replaceTitleWithSelected={true}
-  />
 ));
