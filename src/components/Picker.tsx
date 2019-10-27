@@ -63,12 +63,11 @@ export const Picker: React.FC<IPickerProps> = ({
     setOpen(!open);
   };
 
-  const buttonContent = () => {
-    if (open) {
-      return <Pair left={title} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />;
-    }
-    return <Pair left={title} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />;
-  };
+  const buttonContent = open ? (
+    <Pair left={title} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />
+  ) : (
+    <Pair left={title} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />
+  );
 
   const buttonCss = getButtonCss(
     width,
@@ -93,7 +92,7 @@ export const Picker: React.FC<IPickerProps> = ({
       `}
     >
       <button css={buttonCss} onClick={handleButtonClick}>
-        {buttonContent()}
+        {buttonContent}
       </button>
       <div css={floatCss}>
         {entries.map(e => (
