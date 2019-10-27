@@ -88,15 +88,13 @@ export const DropDown: React.FC<IDropDownProps> = ({
     }
   };
 
-  const buttonContent = () => {
-    if (!withIcon) {
-      return title;
-    }
-    if (showOnHover || !open) {
-      return <Pair left={title} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />;
-    }
-    return <Pair left={title} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />;
-  };
+  const buttonContent = !withIcon ? (
+    title
+  ) : showOnHover || !open ? (
+    <Pair left={title} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />
+  ) : (
+    <Pair left={title} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />
+  );
 
   const buttonCss = getButtonCss(
     width,
@@ -126,7 +124,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
         onMouseEnter={handleOnMouseEnter}
         onMouseLeave={handleOnMouseLeave}
       >
-        {buttonContent()}
+        {buttonContent}
       </button>
       <div css={floatCss} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
         {entries.map(e => (
