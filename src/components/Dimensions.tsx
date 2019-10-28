@@ -68,6 +68,16 @@ export const NotDesktop: React.FC = ({ children }) => {
   return <>{isDesktop ? null : children}</>;
 };
 
+export const LandscapeOrDesktop: React.FC = ({ children }) => {
+  const isLandscapeOrDesktop = useMediaQuery({ minWidth: sizes.tablet.maxWidth + 1 });
+  return <>{isLandscapeOrDesktop ? children : null}</>;
+};
+
+export const NotLandscapeOrDesktop: React.FC = ({ children }) => {
+  const isLandscapeOrDesktop = useMediaQuery({ minWidth: sizes.tablet.maxWidth + 1 });
+  return <>{isLandscapeOrDesktop ? null : children}</>;
+};
+
 export const Narrow = Phone;
 
 export const Wide = NotPhone;

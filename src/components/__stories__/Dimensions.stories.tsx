@@ -9,6 +9,8 @@ import {
   NotLandscape,
   Desktop,
   NotDesktop,
+  LandscapeOrDesktop,
+  NotLandscapeOrDesktop,
   Narrow,
   Wide,
 } from '../Dimensions';
@@ -74,6 +76,20 @@ const H: React.FC<IProps> = ({ bgColor, children }) => {
           <div style={{ fontSize: 18 }}>(wide)</div>
         </div>
       </Wide>
+      <LandscapeOrDesktop>
+        <div
+          style={{ position: 'absolute', top: '30%', right: 0, fontSize: 24, fontWeight: 'normal' }}
+        >
+          LANDSCAPE OR DESKTOP
+        </div>
+      </LandscapeOrDesktop>
+      <NotLandscapeOrDesktop>
+        <div
+          style={{ position: 'absolute', top: '30%', left: 0, fontSize: 24, fontWeight: 'normal' }}
+        >
+          NOT (LANDSCAPE OR DESKTOP)
+        </div>
+      </NotLandscapeOrDesktop>
     </div>
   );
 };
@@ -91,7 +107,7 @@ stories.add('default', () => (
       <H bgColor="#ffcdcd">TABLET</H>
     </Tablet>
     <NotTablet>
-      <div style={{ position: 'absolute', top: '50%', left: 0, zIndex: 1 }}>NOT TABLET</div>
+      <div style={{ position: 'absolute', top: '60%', left: 0, zIndex: 1 }}>NOT TABLET</div>
     </NotTablet>
 
     <Landscape>
