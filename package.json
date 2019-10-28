@@ -51,9 +51,9 @@
     "@storybook/react": "^5.2.5",
     "@types/jest": "24.0.20",
     "@types/node": "12.11.7",
+    "@types/reach__router": "^1.2.6",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.3",
-    "@types/reach__router": "^1.2.6",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
     "babel-loader": "^8.0.6",
@@ -62,12 +62,16 @@
     "eslint-plugin-jest": "^22.20.1",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
-    "node-sass": "^4.13.0",
-    "react-scripts": "3.2.0",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
+    "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
+    "react-scripts": "3.2.0",
     "require-context.macro": "^1.2.2",
     "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@types/react-responsive": "^8.0.1",
+    "react-responsive": "^8.0.1"
   }
 }
