@@ -25,7 +25,6 @@ export interface ISelectorProps {
 export const Selector: React.FC<ISelectorProps> = ({
   entries,
   size,
-  withIcon = true,
   color = '#343434',
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
