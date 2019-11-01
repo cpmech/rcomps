@@ -13,7 +13,7 @@ interface IChartRingProps {
   fontSizeMessage?: string;
   fontSizeSufix?: string;
   maxWidthPct?: number;
-  maxHeight?: number;
+  height?: number;
 }
 
 export const ChartRing: React.FC<IChartRingProps> = ({
@@ -28,7 +28,7 @@ export const ChartRing: React.FC<IChartRingProps> = ({
   fontSizeMessage = 10,
   fontSizeSufix = 4,
   maxWidthPct = 100,
-  maxHeight = 250,
+  height = 250,
 }) => {
   return (
     <div
@@ -42,7 +42,7 @@ export const ChartRing: React.FC<IChartRingProps> = ({
           display: block;
           margin: 10px auto;
           max-width: ${maxWidthPct}%;
-          max-height: ${maxHeight}px;
+          height: ${height}px;
         `}
       >
         <path
