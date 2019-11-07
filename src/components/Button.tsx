@@ -12,8 +12,10 @@ export interface IButtonProps {
   fontSize?: number;
   fontWeight?: string;
   color?: string;
+  colorDisabled?: string;
   backgroundColor?: string;
   hoverColor?: string;
+  disabled?: boolean;
 }
 
 export const Button: React.FC<IButtonProps> = ({
@@ -26,8 +28,10 @@ export const Button: React.FC<IButtonProps> = ({
   fontSize = 0, // optional
   fontWeight = 'normal',
   color = '#343434',
+  colorDisabled = '#666666',
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
+  disabled,
   children,
 }) => {
   const buttonCss = getButtonCss(
@@ -38,13 +42,16 @@ export const Button: React.FC<IButtonProps> = ({
     fontSize,
     fontWeight,
     color,
+    colorDisabled,
     backgroundColor,
     hoverColor,
+    disabled,
   );
 
   return (
     <button
       css={buttonCss}
+      disabled={disabled}
       onClick={e => {
         e.preventDefault();
         if (href) {
