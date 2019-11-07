@@ -7,5 +7,6 @@ export * from './InputCurrency';
 export * from './Link';
 export * from './Pair';
 export * from './Picker';
+export * from './Spinner';
 export * from './TopMenu';
 export * from './YouTube';
