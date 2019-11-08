@@ -3,7 +3,7 @@ import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { hex2rgb } from './helpers';
 
-interface ISpinnerProps {
+export interface ISpinnerProps {
   size?: number;
   color?: string;
   thickness?: number;

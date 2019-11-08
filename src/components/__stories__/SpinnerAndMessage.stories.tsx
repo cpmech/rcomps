@@ -2,9 +2,9 @@ import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { Spinner } from '../Spinner';
+import { SpinnerAndMessage } from '../SpinnerAndMessage';
 
-const stories = storiesOf('Spinner', module);
+const stories = storiesOf('SpinnerAndMessage', module);
 
 stories.addDecorator(withKnobs);
 
@@ -19,7 +19,7 @@ stories.add('default', () => (
       width: 100%;
     `}
   >
-    <Spinner />
+    <SpinnerAndMessage message="Loading..." />
   </div>
 ));
 
@@ -33,7 +33,7 @@ stories.add('green', () => (
       width: 100%;
     `}
   >
-    <Spinner size={400} color="#2ecc71" />
+    <SpinnerAndMessage size={100} fontSize={20} color="#2ecc71" message="Loading..." />
   </div>
 ));
 
@@ -55,7 +55,7 @@ stories.add('both', () => (
         width: 100%;
       `}
     >
-      <Spinner size={200} />
+      <SpinnerAndMessage size={100} fontSize={20} message="Loading..." />
     </div>
     <div
       css={css`
@@ -66,7 +66,7 @@ stories.add('both', () => (
         width: 100%;
       `}
     >
-      <Spinner size={200} color="#2ecc71" />
+      <SpinnerAndMessage size={100} fontSize={20} color="#2ecc71" message="Loading..." />
     </div>
   </div>
 ));
