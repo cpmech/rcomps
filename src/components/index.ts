@@ -5,6 +5,7 @@ export * from './ChartRing';
 export * from './Dimensions';
 export * from './DropDown';
 export * from './InputCurrency';
+export * from './InputMaterial';
 export * from './Link';
 export * from './Pair';
 export * from './Picker';
