@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -83,4 +84,16 @@ stories.add('sized', () => <DropDown title="Choose one" entries={manyEntries} si
 
 stories.add('sized / on click', () => (
   <DropDown title="Choose one" entries={manyEntries} size={200} showOnHover={false} />
+));
+
+stories.add('message / styled', () => (
+  <DropDown
+    title="Choose one"
+    entries={entries}
+    messageStyle={css`
+      line-height: 2;
+      font-size: 20px;
+      color: #343434;
+    `}
+  />
 ));
