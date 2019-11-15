@@ -6,6 +6,7 @@ export * from './Dimensions';
 export * from './DropDown';
 export * from './InputCurrency';
 export * from './InputMaterial';
+export * from './InputTypeA';
 export * from './Link';
 export * from './Pair';
 export * from './Picker';

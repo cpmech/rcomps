@@ -1,7 +1,7 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
-interface IInputMaterialProps {
+export interface IInputMaterialProps {
   name: string;
   type?: string;
   label?: string;
