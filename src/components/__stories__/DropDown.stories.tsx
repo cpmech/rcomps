@@ -26,7 +26,9 @@ const entries = [
 
 stories.add('default', () => <DropDown title="Please select one" entries={entries} />);
 
-stories.add('100%', () => <DropDown title="Please select one" entries={entries} width="100%" />);
+stories.add('100%', () => (
+  <DropDown title="Please select one" entries={entries} width="100%" widthBox="100%" />
+));
 
 stories.add('no icon', () => (
   <DropDown title="Please select one" entries={entries} withIcon={false} />
@@ -82,20 +84,18 @@ const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
   }),
 );
 
-stories.add('sized', () => <DropDown title="Choose one" entries={manyEntries} size={200} />);
-
-stories.add('sized / on click', () => (
-  <DropDown title="Choose one" entries={manyEntries} size={200} showOnHover={false} />
+stories.add('with scrollbar', () => (
+  <DropDown title="Choose one" entries={manyEntries} heightBox={200} />
 ));
 
-stories.add('message / styled', () => (
+stories.add('messageStyle', () => (
   <DropDown
     title="Choose one"
     entries={entries}
     messageStyle={css`
       line-height: 2;
       font-size: 20px;
-      color: #343434;
+      color: red;
     `}
   />
 ));

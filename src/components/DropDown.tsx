@@ -16,9 +16,10 @@ export interface IDropDownProps {
   entries: IDropDownEntry[];
   showOnHover?: boolean;
   withIcon?: boolean;
-  size?: number;
   width?: string;
   height?: number;
+  widthBox?: string; // width of entries box
+  heightBox?: number;
   paddingHoriz?: number;
   borderRadius?: number;
   fontSize?: number;
@@ -34,9 +35,10 @@ export const DropDown: React.FC<IDropDownProps> = ({
   entries,
   showOnHover = true,
   withIcon = true,
-  size,
   width,
   height = 40,
+  widthBox,
+  heightBox,
   paddingHoriz = 28,
   borderRadius = 0,
   fontSize = 14,
@@ -106,7 +108,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
     hoverColor,
   );
 
-  const floatCss = getFloatCss(open, size);
+  const floatCss = getFloatCss(open, heightBox, widthBox);
 
   return (
     <div

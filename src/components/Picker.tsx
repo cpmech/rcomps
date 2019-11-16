@@ -16,9 +16,10 @@ export interface IPickerProps {
   entries: IPickerEntry[];
   selected?: string; // title [use on uncontrolled component]
   value?: string; // title [use on controlled component]
-  size?: number; // height of floating box
   width?: string; // button style
   height?: number; // button style
+  heightBox?: number; // height of entries box
+  widthBox?: string; // width of entries box
   paddingHoriz?: number; // button style
   borderRadius?: number; // button style
   fontSize?: number; // button style
@@ -34,8 +35,9 @@ export const Picker: React.FC<IPickerProps> = ({
   selected,
   value,
   width,
-  size,
   height = 40,
+  widthBox,
+  heightBox,
   paddingHoriz = 28,
   borderRadius = 0,
   fontSize = 14,
@@ -86,7 +88,7 @@ export const Picker: React.FC<IPickerProps> = ({
     hoverColor,
   );
 
-  const floatCss = getFloatCss(open, size);
+  const floatCss = getFloatCss(open, heightBox, widthBox);
 
   return (
     <div
