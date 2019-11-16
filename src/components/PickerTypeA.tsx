@@ -1,0 +1,194 @@
+import React, { useState, useRef, useEffect } from 'react';
+/** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
+import { Link } from './Link';
+import { IPickerEntry } from './Picker';
+import { getFloatCss } from './styles';
+
+export interface IPickerTypeAProps {
+  entries: IPickerEntry[];
+  selected?: string; // title [use on uncontrolled component]
+  value?: string; // title [use on controlled component]
+  size?: number; // height of floating box
+  name?: string;
+  label?: string;
+  height?: number;
+  width?: string;
+  borderRadius?: number;
+  fontSize?: number;
+  scaleLabel?: number;
+  paddingHoriz?: number;
+  labelPaddingHoriz?: number;
+  color?: string;
+  mutedColor?: string;
+  hlColor?: string;
+  bgColor?: string;
+  borderColor?: string;
+  darkMode?: boolean;
+  marginVert?: number;
+  messageStyle?: SerializedStyles;
+  iconPaddingRight?: number;
+}
+
+export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
+  entries,
+  selected,
+  value,
+  size,
+  name,
+  label,
+  height = 50,
+  borderRadius = 300,
+  width = '100%',
+  fontSize = 18,
+  scaleLabel = 0.8,
+  paddingHoriz = 20,
+  labelPaddingHoriz = 10,
+  color = '#484848',
+  mutedColor = '#898989',
+  hlColor = '#1ca086', // green
+  bgColor = '#ffffff',
+  borderColor = '#cccccc',
+  darkMode,
+  marginVert,
+  messageStyle,
+  iconPaddingRight = 15,
+}) => {
+  const [btnText, setBtnText] = useState(selected || '');
+  const [open, setOpen] = useState(false);
+  const refRoot = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (refRoot.current && e.target) {
+        if (!refRoot.current.contains(e.target as Node)) {
+          setOpen(false);
+        }
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [refRoot]);
+
+  const handleButtonClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    e.preventDefault();
+    setOpen(!open);
+  };
+
+  const deltaLabel = height / 2 + fontSize / 2;
+  const deltaLine = height / 2;
+  const marginTop = marginVert || (scaleLabel * fontSize) / 2;
+
+  if (darkMode) {
+    color = 'white';
+    hlColor = 'white';
+    mutedColor = '#cccccc';
+  }
+
+  const floatCss = getFloatCss(open, size);
+
+  return (
+    <div
+      css={css`
+        position: relative;
+      `}
+    >
+      <div
+        css={css`
+          height: ${height}px;
+          margin-top: ${marginTop + 2}px;
+          width: ${width};
+
+          input {
+            font-size: ${fontSize}px;
+            box-sizing: border-box;
+            height: ${height}px;
+            width: 100%;
+            padding-left: ${paddingHoriz}px;
+            padding-right: ${paddingHoriz}px;
+            border: 1px solid ${borderColor};
+            border-radius: ${borderRadius}px;
+            color: ${color};
+            background-color: ${bgColor};
+            resize: none;
+            outline: none;
+            text-align: left;
+          }
+          input[required]:focus {
+            border-color: ${hlColor};
+          }
+          input[required]:focus + label[placeholder]:before {
+            color: ${hlColor};
+          }
+          input[required]:invalid + label[placeholder][alt]:before {
+            content: attr(placeholder);
+          }
+          input[required] + label[placeholder] {
+            display: block;
+            pointer-events: none;
+            line-height: ${fontSize}px;
+            margin-top: -${deltaLabel + deltaLine}px;
+          }
+          input[required] + label[placeholder]:before {
+            content: attr(placeholder);
+            display: inline-block;
+            font-size: ${fontSize * scaleLabel}px;
+            margin-left: ${paddingHoriz}px;
+            padding-left: ${labelPaddingHoriz}px;
+            padding-right: ${labelPaddingHoriz}px;
+            color: ${mutedColor};
+            white-space: nowrap;
+            transition: 0.3s ease-in-out;
+            background-image: linear-gradient(to bottom, ${bgColor}, ${bgColor});
+            background-size: 100% ${height}px;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+        `}
+      >
+        <input
+          ref={refRoot}
+          name={name}
+          required={true}
+          type="button"
+          value={value || btnText}
+          onClick={handleButtonClick}
+        />
+        <label placeholder={label}></label>
+      </div>
+      <div css={floatCss}>
+        {entries.map(e => (
+          <Link
+            key={e.message}
+            href={e.href}
+            onClick={() => {
+              setOpen(false);
+              if (!value) {
+                setBtnText(e.title || e.message);
+              }
+              if (e.onClick) {
+                e.onClick();
+              }
+            }}
+          >
+            {messageStyle ? <span css={messageStyle}>{e.message}</span> : <span>{e.message}</span>}
+          </Link>
+        ))}
+      </div>
+      <div
+        css={css`
+          position: absolute;
+          top: ${height / 2}px;
+          right: ${iconPaddingRight}px;
+          z-index: 2;
+          color: ${color};
+        `}
+        onClick={handleButtonClick}
+      >
+        {open ? <IconAngleUp size={fontSize} /> : <IconAngleDown size={fontSize} />}
+      </div>
+    </div>
+  );
+};

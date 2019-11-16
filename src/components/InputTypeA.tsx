@@ -1,7 +1,7 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
-export interface IInputtypeAProps {
+export interface IInputTypeAProps {
   name: string;
   type?: string;
   label?: string;
@@ -25,7 +25,7 @@ export interface IInputtypeAProps {
   marginVert?: number;
 }
 
-export const InputTypeA: React.FC<IInputtypeAProps> = ({
+export const InputTypeA: React.FC<IInputTypeAProps> = ({
   name,
   type,
   label,
