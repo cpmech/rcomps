@@ -30,6 +30,10 @@ stories.add('100%', () => (
   <DropDown title="Please select one" entries={entries} width="100%" widthBox="100%" />
 ));
 
+stories.add('box to right', () => (
+  <DropDown title="Please select one item below" entries={entries} boxToRight={true} />
+));
+
 stories.add('no icon', () => (
   <DropDown title="Please select one" entries={entries} withIcon={false} />
 ));

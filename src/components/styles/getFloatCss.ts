@@ -1,8 +1,14 @@
 import { css } from '@emotion/core';
 
-export const getFloatCss = (show: boolean, height?: number, width?: string) => css`
+export const getFloatCss = (
+  show: boolean,
+  height?: number,
+  width?: string,
+  boxToRight?: boolean,
+) => css`
   display: ${show ? 'block' : 'none'};
   position: absolute;
+  ${boxToRight && `right: 0;`}
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);

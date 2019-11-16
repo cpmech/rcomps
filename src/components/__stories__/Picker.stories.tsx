@@ -49,6 +49,10 @@ stories.add('100%', () => (
   <Picker selected={entries[1].message} entries={entries} width="100%" widthBox="100%" />
 ));
 
+stories.add('box to right', () => (
+  <Picker selected={entries[1].message} entries={entries} width="100%" boxToRight={true} />
+));
+
 stories.add('messageStyle', () => (
   <Picker
     selected={entries[1].message}

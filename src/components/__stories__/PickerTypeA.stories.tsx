@@ -47,6 +47,17 @@ stories.add('100%', () => (
   />
 ));
 
+stories.add('box to right', () => (
+  <PickerTypeA
+    name="sel1"
+    selected={entries[1].message}
+    entries={entries}
+    label="Please, choose one"
+    width="100%"
+    boxToRight={true}
+  />
+));
+
 stories.add('centered', () => (
   <div
     css={css`

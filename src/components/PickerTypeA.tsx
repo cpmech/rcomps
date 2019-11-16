@@ -15,6 +15,7 @@ export interface IPickerTypeAProps {
   height?: number;
   widthBox?: string; // width of entries box
   heightBox?: number; // height of entries box
+  boxToRight?: boolean;
   borderRadius?: number;
   fontSize?: number;
   labelFontSize?: number;
@@ -42,6 +43,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
   height = 50,
   widthBox,
   heightBox,
+  boxToRight,
   borderRadius = 300,
   fontSize = 18,
   labelFontSize = 18,
@@ -91,7 +93,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
     mutedColor = '#cccccc';
   }
 
-  const floatCss = getFloatCss(open, heightBox, widthBox);
+  const floatCss = getFloatCss(open, heightBox, widthBox, boxToRight);
 
   return (
     <div ref={refRoot}>
