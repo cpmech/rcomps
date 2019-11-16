@@ -1,5 +1,4 @@
 import React from 'react';
-/** @jsx jsx */ import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { InputMaterial } from '../InputMaterial';
