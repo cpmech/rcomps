@@ -57,19 +57,15 @@ export const DropDown: React.FC<IDropDownProps> = ({
         }
       }
     };
-    if (!showOnHover) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, [refRoot, showOnHover]);
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    if (!showOnHover) {
-      setOpen(!open);
-    }
+    setOpen(!open);
   };
 
   const handleOnMouseEnter = (
