@@ -156,7 +156,6 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
             position: absolute;
             top: ${height / 2 - fontSize / 2}px;
             right: ${iconPaddingRight}px;
-            z-index: 2;
             color: ${color};
           `}
           onClick={handleButtonClick}
