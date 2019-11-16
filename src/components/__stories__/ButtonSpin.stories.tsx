@@ -9,7 +9,7 @@ const stories = storiesOf('ButtonSpin', module);
 stories.addDecorator(withKnobs);
 
 stories.add('spinning', () => (
-  <ButtonSpin onClick={action('Spinning button clicked')} spin={true} width={200}>
+  <ButtonSpin onClick={action('Spinning button clicked')} spin={true} width="200px">
     Hello World
   </ButtonSpin>
 ));
@@ -19,14 +19,14 @@ stories.add('spinning / disabled', () => (
     onClick={action('Disabled spinning button clicked')}
     disabled={true}
     spin={true}
-    width={200}
+    width="200px"
   >
     Hello World
   </ButtonSpin>
 ));
 
 stories.add('not spinning', () => (
-  <ButtonSpin onClick={action('Not spinning button clicked')} spin={false} width={200}>
+  <ButtonSpin onClick={action('Not spinning button clicked')} spin={false} width="200px">
     Hello World
   </ButtonSpin>
 ));

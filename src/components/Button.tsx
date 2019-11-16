@@ -5,7 +5,7 @@ import { getButtonCss } from './styles';
 export interface IButtonProps {
   href?: string;
   onClick?: () => void;
-  width?: number;
+  width?: string;
   height?: number;
   paddingHoriz?: number;
   borderRadius?: number;
@@ -21,7 +21,7 @@ export interface IButtonProps {
 export const Button: React.FC<IButtonProps> = ({
   href,
   onClick,
-  width = 0, // optional
+  width,
   height = 40,
   paddingHoriz = 28,
   borderRadius = 6,

@@ -43,14 +43,14 @@ const entriesT = [
 ];
 
 stories.add('default', () => (
-  <Picker selected={entries[1].message} entries={entries} width={250} />
+  <Picker selected={entries[1].message} entries={entries} width="100%" />
 ));
 
 stories.add('messageStyle', () => (
   <Picker
     selected={entries[1].message}
     entries={entries}
-    width={250}
+    width="250px"
     messageStyle={css`
       color: red;
     `}
@@ -58,7 +58,7 @@ stories.add('messageStyle', () => (
 ));
 
 stories.add('use title', () => (
-  <Picker selected={entriesT[1].title} entries={entriesT} width={150} />
+  <Picker selected={entriesT[1].title} entries={entriesT} width="250px" />
 ));
 
 stories.add('styled', () => (
@@ -72,7 +72,7 @@ stories.add('styled', () => (
     <Picker
       selected={entries[0].message}
       entries={entries}
-      width={200}
+      width="200px"
       height={80}
       color="white"
       backgroundColor="#803ced"
@@ -82,7 +82,7 @@ stories.add('styled', () => (
     <Picker
       selected={entries[1].message}
       entries={entries}
-      width={200}
+      width="200px"
       height={60}
       color="white"
       backgroundColor="#236cd2"
@@ -92,7 +92,7 @@ stories.add('styled', () => (
     <Picker
       selected={entries[1].message}
       entries={entries}
-      width={200}
+      width="200px"
       height={40}
       color="white"
       backgroundColor="#17b580"
@@ -109,7 +109,7 @@ const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
 );
 
 stories.add('sized', () => (
-  <Picker selected="Number 5" entries={manyEntries} width={200} size={300} />
+  <Picker selected="Number 5" entries={manyEntries} width="200px" size={300} />
 ));
 
 const Controlled = () => {
@@ -140,7 +140,7 @@ const Controlled = () => {
           },
         },
       ]}
-      width={250}
+      width="250px"
     />
   );
 };

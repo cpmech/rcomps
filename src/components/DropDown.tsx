@@ -17,7 +17,7 @@ export interface IDropDownProps {
   showOnHover?: boolean;
   withIcon?: boolean;
   size?: number;
-  width?: number;
+  width?: string;
   height?: number;
   paddingHoriz?: number;
   borderRadius?: number;

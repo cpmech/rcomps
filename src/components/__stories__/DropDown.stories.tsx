@@ -34,7 +34,7 @@ stories.add('on click', () => (
   <DropDown title="Please select one" entries={entries} showOnHover={false} />
 ));
 
-stories.add('fixed width', () => <DropDown title="Choose one" entries={entries} width={400} />);
+stories.add('fixed width', () => <DropDown title="Choose one" entries={entries} width="400px" />);
 
 stories.add('styled', () => (
   <div

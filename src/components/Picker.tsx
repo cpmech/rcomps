@@ -17,7 +17,7 @@ export interface IPickerProps {
   selected?: string; // title [use on uncontrolled component]
   value?: string; // title [use on controlled component]
   size?: number; // height of floating box
-  width: number; // button style
+  width: string; // button style
   height?: number; // button style
   paddingHoriz?: number; // button style
   borderRadius?: number; // button style

@@ -16,15 +16,13 @@ describe('getButtonCss', () => {
         '  cursor: pointer;\n' +
         '  color: #343434;\n' +
         '  background-color: #ebebeb;\n' +
-        '  &:hover {\n' +
-        '    background-color: #d7d7d7;\n' +
-        '  }\n' +
+        '  &:hover { background-color: #d7d7d7; }\n' +
         '  transition: all 0.3s ease;\n',
     );
   });
 
   it('should return styled values', () => {
-    const res = getButtonCss(100, 60, 10, 5, 20, 'bold', 'red', 'blue', 'green');
+    const res = getButtonCss('100px', 60, 10, 5, 20, 'bold', 'red', '#ccc', 'blue', 'green');
     expect(res.styles).toBe(
       '\n' +
         `  width: 100px;\n` +
@@ -38,9 +36,7 @@ describe('getButtonCss', () => {
         '  cursor: pointer;\n' +
         '  color: red;\n' +
         '  background-color: blue;\n' +
-        '  &:hover {\n' +
-        '    background-color: green;\n' +
-        '  }\n' +
+        '  &:hover { background-color: green; }\n' +
         '  transition: all 0.3s ease;\n',
     );
   });
