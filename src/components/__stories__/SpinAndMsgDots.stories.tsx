@@ -27,7 +27,7 @@ stories.add('green', () => (
       width: 100%;
     `}
   >
-    <SpinAndMsgDots size={100} fontSize={20} color="#2ecc71" message="Loading..." />
+    <SpinAndMsgDots color="#2ecc71" message="Loading..." />
   </div>
 ));
 
@@ -49,7 +49,7 @@ stories.add('both', () => (
         width: 100%;
       `}
     >
-      <SpinAndMsgDots size={100} fontSize={20} message="Loading..." />
+      <SpinAndMsgDots message="Loading..." />
     </div>
     <div
       css={css`
@@ -60,7 +60,7 @@ stories.add('both', () => (
         width: 100%;
       `}
     >
-      <SpinAndMsgDots size={100} fontSize={20} color="#2ecc71" message="Loading..." />
+      <SpinAndMsgDots color="#2ecc71" message="Loading..." />
     </div>
   </div>
 ));

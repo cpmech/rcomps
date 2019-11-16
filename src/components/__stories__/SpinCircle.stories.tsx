@@ -10,15 +10,20 @@ stories.addDecorator(withKnobs);
 stories.add('default', () => (
   <div
     css={css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background-color: #2ecc71;
-      height: 100vh;
-      width: 100%;
     `}
   >
     <SpinCircle />
+  </div>
+));
+
+stories.add('large', () => (
+  <div
+    css={css`
+      background-color: #2ecc71;
+    `}
+  >
+    <SpinCircle size={128} thickness={20} />
   </div>
 ));
 

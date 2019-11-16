@@ -10,28 +10,26 @@ export interface ISpinCircleProps {
 }
 
 export const SpinCircle: React.FC<ISpinCircleProps> = ({
-  size = 60,
+  size = 64,
   color = '#ffffff',
   thickness = 6,
   time = '0.6s',
 }) => {
-  const width = Math.SQRT2 * size;
+  const len = size - 2 * thickness;
   const { r, g, b } = hex2rgb(color);
   return (
     <div
       css={css`
         position: relative;
-        width: ${width}px;
-        height: ${width}px;
+        width: ${size}px;
+        height: ${size}px;
       `}
     >
       <div
         css={css`
           position: absolute;
-          left: calc(50% - ${width / 2.3}px);
-          top: calc(50% - ${width / 2.3}px);
-          height: ${size}px;
-          width: ${size}px;
+          height: ${len}px;
+          width: ${len}px;
           -webkit-animation: rotation ${time} infinite linear;
           -moz-animation: rotation ${time} infinite linear;
           -o-animation: rotation ${time} infinite linear;
