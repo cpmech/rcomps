@@ -10,6 +10,7 @@ export interface ITextTypeAProps {
   width?: string;
   borderRadius?: number;
   fontSize?: number;
+  labelFontSize?: number;
   scaleLabel?: number;
   paddingHoriz?: number;
   labelPaddingHoriz?: number;
@@ -30,6 +31,7 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
   borderRadius = 300,
   width = '100%',
   fontSize = 18,
+  labelFontSize = 18,
   scaleLabel = 0.8,
   paddingHoriz = 20,
   labelPaddingHoriz = 5,
@@ -40,9 +42,9 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
   marginVert,
   borderWidth = 1,
 }) => {
-  const deltaLabel = height / 2 + fontSize / 2;
+  const deltaLabel = height / 2 + labelFontSize / 2;
   const deltaLine = height / 2;
-  const marginTop = marginVert || (scaleLabel * fontSize) / 2;
+  const marginTop = marginVert || (scaleLabel * labelFontSize) / 2;
   if (darkMode) {
     mutedColor = '#cccccc';
   }
@@ -70,7 +72,7 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
         input[required] + label[placeholder] {
           display: block;
           pointer-events: none;
-          line-height: ${fontSize}px;
+          line-height: ${labelFontSize}px;
           margin-top: -${deltaLabel}px;
         }
         input[required] + label[placeholder]:before {
@@ -79,7 +81,7 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
           padding-left: ${borderWidth === 0 ? 0 : labelPaddingHoriz}px;
           content: attr(placeholder);
           display: inline-block;
-          font-size: ${fontSize}px;
+          font-size: ${labelFontSize}px;
           margin-left: ${borderWidth === 0 ? 0 : paddingHoriz + labelPaddingHoriz}px;
           padding-right: ${labelPaddingHoriz}px;
           color: ${mutedColor};
@@ -91,7 +93,7 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
         }
       `}
     >
-      <input required={true} type={type || 'text'} value={value} disabled={true} />
+      <input required={true} type={type || 'text'} value={value} readOnly={true} />
       <label placeholder={label}></label>
     </div>
   );

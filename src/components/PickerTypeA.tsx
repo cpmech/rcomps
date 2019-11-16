@@ -16,6 +16,7 @@ export interface IPickerTypeAProps {
   width?: string;
   borderRadius?: number;
   fontSize?: number;
+  labelFontSize?: number;
   scaleLabel?: number;
   paddingHoriz?: number;
   labelPaddingHoriz?: number;
@@ -41,6 +42,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
   borderRadius = 300,
   width = '100%',
   fontSize = 18,
+  labelFontSize = 18,
   scaleLabel = 0.8,
   paddingHoriz = 20,
   labelPaddingHoriz = 5,
@@ -77,9 +79,9 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
     setOpen(!open);
   };
 
-  const deltaLabel = height / 2 + fontSize / 2;
+  const deltaLabel = height / 2 + labelFontSize / 2;
   const deltaLine = height / 2;
-  const marginTop = marginVert || (scaleLabel * fontSize) / 2;
+  const marginTop = marginVert || (scaleLabel * labelFontSize) / 2;
 
   if (darkMode) {
     color = 'white';
@@ -125,7 +127,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
           input[required] + label[placeholder] {
             display: block;
             pointer-events: none;
-            line-height: ${fontSize}px;
+            line-height: ${labelFontSize}px;
             margin-top: -${deltaLabel}px;
           }
           input[required] + label[placeholder]:before {
@@ -134,7 +136,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
             padding-left: ${labelPaddingHoriz}px;
             content: attr(placeholder);
             display: inline-block;
-            font-size: ${fontSize}px;
+            font-size: ${labelFontSize}px;
             margin-left: ${paddingHoriz + labelPaddingHoriz}px;
             padding-right: ${labelPaddingHoriz}px;
             color: ${mutedColor};

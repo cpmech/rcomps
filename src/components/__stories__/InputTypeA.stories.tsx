@@ -37,9 +37,32 @@ stories.add('sizing', () => (
     `}
   >
     <form>
-      <InputTypeA name="name" label="Name" value="Hello World!" marginVert={40} width="400px" />
-      <InputTypeA name="email" label="Email" marginVert={40} width="400px" />
-      <InputTypeA name="password" label="Password" type="password" marginVert={40} width="400px" />
+      <InputTypeA
+        name="name"
+        label="Name"
+        value="Hello World!"
+        marginVert={40}
+        width="400px"
+        labelFontSize={12}
+        scaleLabel={1}
+      />
+      <InputTypeA
+        name="email"
+        label="Email"
+        marginVert={40}
+        width="400px"
+        labelFontSize={12}
+        scaleLabel={1}
+      />
+      <InputTypeA
+        name="password"
+        label="Password"
+        type="password"
+        marginVert={40}
+        width="400px"
+        labelFontSize={12}
+        scaleLabel={1}
+      />
     </form>
   </div>
 ));
