@@ -36,6 +36,17 @@ stories.add('default', () => (
   />
 ));
 
+stories.add('100%', () => (
+  <PickerTypeA
+    name="sel1"
+    selected={entries[1].message}
+    entries={entries}
+    label="Please, choose one"
+    width="100%"
+    widthBox="100%"
+  />
+));
+
 stories.add('centered', () => (
   <div
     css={css`
@@ -162,12 +173,25 @@ stories.add('with others', () => (
     <InputTypeA name="email" label="E" width="250px" value="First entry" />
     <InputTypeA name="email" label="EEEEEE" width="250px" value="First entry" />
     <InputTypeA name="email" label="EEEEEEEEEEEEE" width="250px" value="First entry" />
-    <PickerTypeA selected={entries[0].message} entries={entries} width="250px" label="E" />
-    <PickerTypeA selected={entries[0].message} entries={entries} width="250px" label="EEEEEE" />
     <PickerTypeA
       selected={entries[0].message}
       entries={entries}
       width="250px"
+      widthBox="250px"
+      label="E"
+    />
+    <PickerTypeA
+      selected={entries[0].message}
+      entries={entries}
+      width="250px"
+      widthBox="250px"
+      label="EEEEEE"
+    />
+    <PickerTypeA
+      selected={entries[0].message}
+      entries={entries}
+      width="250px"
+      widthBox="250px"
       label="EEEEEEEEEEEEE"
     />
   </div>

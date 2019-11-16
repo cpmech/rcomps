@@ -18,8 +18,8 @@ export interface IPickerProps {
   value?: string; // title [use on controlled component]
   width?: string; // button style
   height?: number; // button style
-  heightBox?: number; // height of entries box
   widthBox?: string; // width of entries box
+  heightBox?: number; // height of entries box
   paddingHoriz?: number; // button style
   borderRadius?: number; // button style
   fontSize?: number; // button style
