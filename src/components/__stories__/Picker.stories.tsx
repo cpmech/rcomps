@@ -1,4 +1,5 @@
 import React from 'react';
+/** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -23,8 +24,41 @@ const entries = [
   },
 ];
 
+const entriesT = [
+  {
+    title: '1st',
+    message: 'First entry',
+    onClick: action('First entry was clicked'),
+  },
+  {
+    title: '2nd',
+    message: 'Second entry',
+    onClick: action('Second entry was clicked'),
+  },
+  {
+    title: '3rd',
+    message: 'Third entry',
+    onClick: action('Third entry was clicked'),
+  },
+];
+
 stories.add('default', () => (
   <Picker selected={entries[1].message} entries={entries} width={250} />
+));
+
+stories.add('messageStyle', () => (
+  <Picker
+    selected={entries[1].message}
+    entries={entries}
+    width={250}
+    messageStyle={css`
+      color: red;
+    `}
+  />
+));
+
+stories.add('use title', () => (
+  <Picker selected={entriesT[1].title} entries={entriesT} width={150} />
 ));
 
 stories.add('styled', () => (

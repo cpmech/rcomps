@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Link } from './Link';
 import { Pair } from './Pair';
@@ -9,6 +9,7 @@ export interface IPickerEntry {
   message: string;
   href?: string;
   onClick?: () => void;
+  title?: string; // set title with this instead of message
 }
 
 export interface IPickerProps {
@@ -24,6 +25,7 @@ export interface IPickerProps {
   color?: string; // button style
   backgroundColor?: string; // button style
   hoverColor?: string; // button style
+  messageStyle?: SerializedStyles;
 }
 
 export const Picker: React.FC<IPickerProps> = ({
@@ -39,6 +41,7 @@ export const Picker: React.FC<IPickerProps> = ({
   color = '#343434',
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
+  messageStyle,
 }) => {
   const [title, setTitle] = useState(selected);
   const [open, setOpen] = useState(false);
@@ -101,13 +104,13 @@ export const Picker: React.FC<IPickerProps> = ({
             href={e.href}
             onClick={() => {
               setOpen(false);
-              setTitle(e.message);
+              setTitle(e.title || e.message);
               if (e.onClick) {
                 e.onClick();
               }
             }}
           >
-            {e.message}
+            {messageStyle ? <span css={messageStyle}>{e.message}</span> : <span>{e.message}</span>}
           </Link>
         ))}
       </div>
