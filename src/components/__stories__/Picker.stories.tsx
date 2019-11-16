@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -111,3 +111,38 @@ const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
 stories.add('sized', () => (
   <Picker selected="Number 5" entries={manyEntries} width={200} size={300} />
 ));
+
+const Controlled = () => {
+  const [title, setTitle] = useState(entries[1].message);
+  return (
+    <Picker
+      title={title}
+      entries={[
+        {
+          message: 'First entry',
+          onClick: () => {
+            setTitle('First');
+            action('First entry was clicked');
+          },
+        },
+        {
+          message: 'Second entry',
+          onClick: () => {
+            setTitle('Second');
+            action('Second entry was clicked');
+          },
+        },
+        {
+          message: 'Third entry',
+          onClick: () => {
+            setTitle('Third');
+            action('Third entry was clicked');
+          },
+        },
+      ]}
+      width={250}
+    />
+  );
+};
+
+stories.add('controlled', () => <Controlled />);

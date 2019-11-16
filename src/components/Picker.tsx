@@ -13,8 +13,9 @@ export interface IPickerEntry {
 }
 
 export interface IPickerProps {
-  selected: string;
   entries: IPickerEntry[];
+  selected?: string; // title [use on uncontrolled component]
+  title?: string; // title [use on controlled component]
   size?: number; // height of floating box
   width: number; // button style
   height?: number; // button style
@@ -29,8 +30,9 @@ export interface IPickerProps {
 }
 
 export const Picker: React.FC<IPickerProps> = ({
-  selected,
   entries,
+  selected,
+  title,
   width,
   size,
   height = 40,
@@ -43,7 +45,7 @@ export const Picker: React.FC<IPickerProps> = ({
   hoverColor = '#d7d7d7',
   messageStyle,
 }) => {
-  const [title, setTitle] = useState(selected);
+  const [btnText, setBtnText] = useState(selected || '');
   const [open, setOpen] = useState(false);
   const refRoot = useRef<HTMLDivElement>(null);
 
@@ -67,9 +69,9 @@ export const Picker: React.FC<IPickerProps> = ({
   };
 
   const buttonContent = open ? (
-    <Pair left={title} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />
+    <Pair left={title || btnText} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />
   ) : (
-    <Pair left={title} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />
+    <Pair left={title || btnText} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />
   );
 
   const buttonCss = getButtonCss(
@@ -104,7 +106,9 @@ export const Picker: React.FC<IPickerProps> = ({
             href={e.href}
             onClick={() => {
               setOpen(false);
-              setTitle(e.title || e.message);
+              if (!title) {
+                setBtnText(e.title || e.message);
+              }
               if (e.onClick) {
                 e.onClick();
               }
