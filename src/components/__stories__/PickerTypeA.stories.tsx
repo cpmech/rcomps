@@ -31,7 +31,6 @@ stories.add('default', () => (
     name="sel1"
     selected={entries[1].message}
     entries={entries}
-    width="250px"
     label="Please, choose one"
   />
 ));

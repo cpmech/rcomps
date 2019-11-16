@@ -8,7 +8,9 @@ const stories = storiesOf('InputTypeA', module);
 
 stories.addDecorator(withKnobs);
 
-stories.add('default', () => (
+stories.add('default', () => <InputTypeA name="email" label="Email" />);
+
+stories.add('stacked', () => (
   <div
     css={css`
       display: flex;
