@@ -98,7 +98,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
       <div
         css={css`
           height: ${height}px;
-          margin-top: ${marginTop + 2}px;
+          margin-top: ${marginTop}px;
           width: ${width};
 
           input {
@@ -119,9 +119,6 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
           input[required]:focus {
             border-color: ${hlColor};
           }
-          input[required]:focus + label[placeholder]:before {
-            color: ${hlColor};
-          }
           input[required]:invalid + label[placeholder][alt]:before {
             content: attr(placeholder);
           }
@@ -129,14 +126,15 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
             display: block;
             pointer-events: none;
             line-height: ${fontSize}px;
-            margin-top: -${deltaLabel + deltaLine}px;
+            margin-top: -${deltaLabel}px;
           }
           input[required] + label[placeholder]:before {
+            transform: translate(0, -${deltaLine}px) scale(${scaleLabel}, ${scaleLabel});
+            padding-left: ${labelPaddingHoriz}px;
             content: attr(placeholder);
             display: inline-block;
-            font-size: ${fontSize * scaleLabel}px;
+            font-size: ${fontSize}px;
             margin-left: ${paddingHoriz}px;
-            padding-left: ${labelPaddingHoriz}px;
             padding-right: ${labelPaddingHoriz}px;
             color: ${mutedColor};
             white-space: nowrap;
