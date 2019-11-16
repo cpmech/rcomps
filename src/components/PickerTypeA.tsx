@@ -158,6 +158,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
         <div
           css={css`
             position: absolute;
+            line-height: ${fontSize}px;
             top: ${height / 2 - fontSize / 2}px;
             right: ${iconPaddingRight}px;
             color: ${color};
