@@ -90,13 +90,10 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
   const floatCss = getFloatCss(open, size);
 
   return (
-    <div
-      css={css`
-        position: relative;
-      `}
-    >
+    <div>
       <div
         css={css`
+          position: relative;
           height: ${height}px;
           margin-top: ${marginTop}px;
           width: ${width};
@@ -155,6 +152,18 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
           onClick={handleButtonClick}
         />
         <label placeholder={label}></label>
+        <div
+          css={css`
+            position: absolute;
+            top: ${height / 2 - fontSize / 2}px;
+            right: ${iconPaddingRight}px;
+            z-index: 2;
+            color: ${color};
+          `}
+          onClick={handleButtonClick}
+        >
+          {open ? <IconAngleUp size={fontSize} /> : <IconAngleDown size={fontSize} />}
+        </div>
       </div>
       <div css={floatCss}>
         {entries.map(e => (
@@ -174,18 +183,6 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
             {messageStyle ? <span css={messageStyle}>{e.message}</span> : <span>{e.message}</span>}
           </Link>
         ))}
-      </div>
-      <div
-        css={css`
-          position: absolute;
-          top: ${height / 2}px;
-          right: ${iconPaddingRight}px;
-          z-index: 2;
-          color: ${color};
-        `}
-        onClick={handleButtonClick}
-      >
-        {open ? <IconAngleUp size={fontSize} /> : <IconAngleDown size={fontSize} />}
       </div>
     </div>
   );

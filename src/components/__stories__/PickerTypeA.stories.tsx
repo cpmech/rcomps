@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PickerTypeA } from '../PickerTypeA';
+import { InputTypeA } from '../InputTypeA';
 
 const stories = storiesOf('PickerTypeA', module);
 
@@ -143,3 +144,58 @@ stories.add('light and dark bg', () => (
     </div>
   </div>
 ));
+
+stories.add('with input', () => (
+  <div
+    css={css`
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    `}
+  >
+    <InputTypeA name="email" label="EEEEEEEEEEEEE" width="250px" value="First entry" />
+    <PickerTypeA
+      selected={entries[0].message}
+      entries={entries}
+      width="250px"
+      label="EEEEEEEEEEEEE"
+    />
+  </div>
+));
+
+const Controlled = () => {
+  const [title, setTitle] = useState(entries[1].message);
+  return (
+    <PickerTypeA
+      value={title}
+      entries={[
+        {
+          message: 'First entry',
+          onClick: () => {
+            setTitle('First');
+            action('First entry was clicked');
+          },
+        },
+        {
+          message: 'Second entry',
+          onClick: () => {
+            setTitle('Second');
+            action('Second entry was clicked');
+          },
+        },
+        {
+          message: 'Third entry',
+          onClick: () => {
+            setTitle('Third');
+            action('Third entry was clicked');
+          },
+        },
+      ]}
+      width="250px"
+    />
+  );
+};
+
+stories.add('controlled', () => <Controlled />);
