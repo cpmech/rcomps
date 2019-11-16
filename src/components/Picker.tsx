@@ -15,7 +15,7 @@ export interface IPickerEntry {
 export interface IPickerProps {
   entries: IPickerEntry[];
   selected?: string; // title [use on uncontrolled component]
-  title?: string; // title [use on controlled component]
+  value?: string; // title [use on controlled component]
   size?: number; // height of floating box
   width: number; // button style
   height?: number; // button style
@@ -32,7 +32,7 @@ export interface IPickerProps {
 export const Picker: React.FC<IPickerProps> = ({
   entries,
   selected,
-  title,
+  value,
   width,
   size,
   height = 40,
@@ -69,9 +69,9 @@ export const Picker: React.FC<IPickerProps> = ({
   };
 
   const buttonContent = open ? (
-    <Pair left={title || btnText} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />
+    <Pair left={value || btnText} right={<IconAngleUp size={fontSize} />} spaceBetween={true} />
   ) : (
-    <Pair left={title || btnText} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />
+    <Pair left={value || btnText} right={<IconAngleDown size={fontSize} />} spaceBetween={true} />
   );
 
   const buttonCss = getButtonCss(
@@ -106,7 +106,7 @@ export const Picker: React.FC<IPickerProps> = ({
             href={e.href}
             onClick={() => {
               setOpen(false);
-              if (!title) {
+              if (!value) {
                 setBtnText(e.title || e.message);
               }
               if (e.onClick) {

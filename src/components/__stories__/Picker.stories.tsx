@@ -116,7 +116,7 @@ const Controlled = () => {
   const [title, setTitle] = useState(entries[1].message);
   return (
     <Picker
-      title={title}
+      value={title}
       entries={[
         {
           message: 'First entry',
