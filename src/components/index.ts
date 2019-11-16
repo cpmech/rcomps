@@ -13,5 +13,6 @@ export * from './Picker';
 export * from './PickerTypeA';
 export * from './Spinner';
 export * from './SpinnerAndMessage';
+export * from './TextTypeA';
 export * from './TopMenu';
 export * from './YouTube';
