@@ -3,14 +3,14 @@ import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { hex2rgb } from './helpers';
 
-export interface ISpinnerProps {
+export interface ISpinDotsProps {
   size?: number;
   color?: string;
   thickness?: number;
   time?: string;
 }
 
-export const Spinner: React.FC<ISpinnerProps> = ({
+export const SpinDots: React.FC<ISpinDotsProps> = ({
   size = 64,
   color = '#ffffff',
   thickness,

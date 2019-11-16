@@ -1,8 +1,8 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { SpinnerCircle, ISpinnerCircleProps } from './SpinnerCircle';
+import { SpinCircle, ISpinCircleProps } from './SpinCircle';
 
-export interface ISpinCircleMsgProps extends ISpinnerCircleProps {
+export interface ISpinAndMsgCircleProps extends ISpinCircleProps {
   message: string;
   size?: number;
   color?: string;
@@ -10,7 +10,7 @@ export interface ISpinCircleMsgProps extends ISpinnerCircleProps {
   gap?: number;
 }
 
-export const SpinCircleMsg: React.FC<ISpinCircleMsgProps> = ({
+export const SpinAndMsgCircle: React.FC<ISpinAndMsgCircleProps> = ({
   message,
   size = 60,
   color = '#ffffff',
@@ -27,7 +27,7 @@ export const SpinCircleMsg: React.FC<ISpinCircleMsgProps> = ({
         align-items: center;
       `}
     >
-      <SpinnerCircle size={size} color={color} {...rest} />
+      <SpinCircle size={size} color={color} {...rest} />
       <div
         css={css`
           color: ${color};

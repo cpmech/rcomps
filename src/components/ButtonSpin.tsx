@@ -1,7 +1,7 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { IButtonProps, Button } from './Button';
-import { Spinner } from './Spinner';
+import { SpinDots } from './SpinDots';
 
 interface IButtonSpinProps extends IButtonProps {
   spin?: boolean;
@@ -25,7 +25,7 @@ export const ButtonSpin: React.FC<IButtonSpinProps> = ({
             align-items: center;
           `}
         >
-          <Spinner size={height && height > 25 ? height - 15 : 25} color={colorSpinner} />
+          <SpinDots size={height && height > 25 ? height - 15 : 25} color={colorSpinner} />
         </div>
       ) : (
         children

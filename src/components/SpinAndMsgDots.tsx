@@ -1,15 +1,15 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { Spinner, ISpinnerProps } from './Spinner';
+import { SpinDots, ISpinDotsProps } from './SpinDots';
 
-export interface ISpinnerAndMessageProps extends ISpinnerProps {
+export interface ISpinAndMsgDotsProps extends ISpinDotsProps {
   message: string;
   color?: string;
   fontSize?: number;
   gap?: number;
 }
 
-export const SpinnerAndMessage: React.FC<ISpinnerAndMessageProps> = ({
+export const SpinAndMsgDots: React.FC<ISpinAndMsgDotsProps> = ({
   message,
   color = '#ffffff',
   fontSize = 14,
@@ -30,7 +30,7 @@ export const SpinnerAndMessage: React.FC<ISpinnerAndMessageProps> = ({
           margin-bottom: ${gap}px;
         `}
       >
-        <Spinner color={color} {...rest} />
+        <SpinDots color={color} {...rest} />
       </div>
       <div
         css={css`

@@ -1,16 +1,15 @@
 import React from 'react';
-// tslint:disable-next-line: align
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { hex2rgb } from './helpers';
 
-export interface ISpinnerCircleProps {
+export interface ISpinCircleProps {
   size?: number;
   color?: string;
   thickness?: number;
   time?: string;
 }
 
-export const SpinnerCircle: React.FC<ISpinnerCircleProps> = ({
+export const SpinCircle: React.FC<ISpinCircleProps> = ({
   size = 60,
   color = '#ffffff',
   thickness = 6,

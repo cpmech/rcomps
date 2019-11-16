@@ -1,9 +1,9 @@
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { Spinner } from '../Spinner';
+import { SpinDots } from '../SpinDots';
 
-const stories = storiesOf('Spinner', module);
+const stories = storiesOf('SpinDots', module);
 
 stories.addDecorator(withKnobs);
 
@@ -18,7 +18,7 @@ stories.add('default', () => (
       width: 100%;
     `}
   >
-    <Spinner />
+    <SpinDots />
   </div>
 ));
 
@@ -32,7 +32,7 @@ stories.add('green', () => (
       width: 100%;
     `}
   >
-    <Spinner size={400} color="#2ecc71" />
+    <SpinDots color="#2ecc71" />
   </div>
 ));
 
@@ -54,7 +54,7 @@ stories.add('both', () => (
         width: 100%;
       `}
     >
-      <Spinner size={200} />
+      <SpinDots />
     </div>
     <div
       css={css`
@@ -65,7 +65,7 @@ stories.add('both', () => (
         width: 100%;
       `}
     >
-      <Spinner size={200} color="#2ecc71" />
+      <SpinDots color="#2ecc71" />
     </div>
   </div>
 ));

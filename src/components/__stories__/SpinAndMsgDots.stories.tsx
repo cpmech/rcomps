@@ -1,24 +1,19 @@
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { SpinnerCircle } from '../SpinnerCircle';
+import { SpinAndMsgDots } from '../SpinAndMsgDots';
 
-const stories = storiesOf('SpinnerCircle', module);
+const stories = storiesOf('SpinAndMsgDots', module);
 
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => (
   <div
     css={css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background-color: #2ecc71;
-      height: 100vh;
-      width: 100%;
     `}
   >
-    <SpinnerCircle />
+    <SpinAndMsgDots message="-^-" fontSize={34} />
   </div>
 ));
 
@@ -32,7 +27,7 @@ stories.add('green', () => (
       width: 100%;
     `}
   >
-    <SpinnerCircle color="#2ecc71" />
+    <SpinAndMsgDots size={100} fontSize={20} color="#2ecc71" message="Loading..." />
   </div>
 ));
 
@@ -54,7 +49,7 @@ stories.add('both', () => (
         width: 100%;
       `}
     >
-      <SpinnerCircle />
+      <SpinAndMsgDots size={100} fontSize={20} message="Loading..." />
     </div>
     <div
       css={css`
@@ -65,7 +60,7 @@ stories.add('both', () => (
         width: 100%;
       `}
     >
-      <SpinnerCircle color="#2ecc71" />
+      <SpinAndMsgDots size={100} fontSize={20} color="#2ecc71" message="Loading..." />
     </div>
   </div>
 ));
