@@ -10,6 +10,12 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => <Button onClick={action('Button clicked')}>Hello World</Button>);
 
+stories.add('100%', () => (
+  <Button onClick={action('Button clicked')} width="100%">
+    Hello World
+  </Button>
+));
+
 stories.add('disabled', () => (
   <Button onClick={action('Disabled button clicked')} disabled={true}>
     Hello World

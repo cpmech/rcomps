@@ -43,9 +43,9 @@ const entriesT = [
   },
 ];
 
-stories.add('default', () => (
-  <Picker selected={entries[1].message} entries={entries} width="100%" />
-));
+stories.add('default', () => <Picker selected={entries[1].message} entries={entries} />);
+
+stories.add('100%', () => <Picker selected={entries[1].message} entries={entries} width="100%" />);
 
 stories.add('messageStyle', () => (
   <Picker

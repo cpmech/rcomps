@@ -26,4 +26,6 @@ export const getButtonCss = (
   background-color: ${backgroundColor};
   ${!disabled && `&:hover { background-color: ${hoverColor}; }`}
   transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
 `;

@@ -17,7 +17,7 @@ export interface IPickerProps {
   selected?: string; // title [use on uncontrolled component]
   value?: string; // title [use on controlled component]
   size?: number; // height of floating box
-  width: string; // button style
+  width?: string; // button style
   height?: number; // button style
   paddingHoriz?: number; // button style
   borderRadius?: number; // button style
@@ -94,6 +94,7 @@ export const Picker: React.FC<IPickerProps> = ({
       css={css`
         position: relative;
         display: inline-block;
+        ${width && `width:${width};`}
       `}
     >
       <button css={buttonCss} onClick={handleButtonClick}>

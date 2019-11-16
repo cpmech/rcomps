@@ -26,6 +26,8 @@ const entries = [
 
 stories.add('default', () => <DropDown title="Please select one" entries={entries} />);
 
+stories.add('100%', () => <DropDown title="Please select one" entries={entries} width="100%" />);
+
 stories.add('no icon', () => (
   <DropDown title="Please select one" entries={entries} withIcon={false} />
 ));

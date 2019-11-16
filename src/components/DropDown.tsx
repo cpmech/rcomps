@@ -114,6 +114,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
       css={css`
         position: relative;
         display: inline-block;
+        ${width && `width:${width};`}
       `}
     >
       <button
