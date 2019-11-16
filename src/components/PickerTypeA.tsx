@@ -56,7 +56,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
 }) => {
   const [btnText, setBtnText] = useState(selected || '');
   const [open, setOpen] = useState(false);
-  const refRoot = useRef<HTMLInputElement>(null);
+  const refRoot = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -90,7 +90,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
   const floatCss = getFloatCss(open, size);
 
   return (
-    <div>
+    <div ref={refRoot}>
       <div
         css={css`
           position: relative;
@@ -144,7 +144,6 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
         `}
       >
         <input
-          ref={refRoot}
           name={name}
           required={true}
           type="button"
