@@ -43,7 +43,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
   fontSize = 18,
   scaleLabel = 0.8,
   paddingHoriz = 20,
-  labelPaddingHoriz = 10,
+  labelPaddingHoriz = 5,
   color = '#484848',
   mutedColor = '#898989',
   hlColor = '#1ca086', // green
@@ -129,12 +129,13 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
             margin-top: -${deltaLabel}px;
           }
           input[required] + label[placeholder]:before {
+            transform-origin: center left;
             transform: translate(0, -${deltaLine}px) scale(${scaleLabel}, ${scaleLabel});
             padding-left: ${labelPaddingHoriz}px;
             content: attr(placeholder);
             display: inline-block;
             font-size: ${fontSize}px;
-            margin-left: ${paddingHoriz}px;
+            margin-left: ${paddingHoriz + labelPaddingHoriz}px;
             padding-right: ${labelPaddingHoriz}px;
             color: ${mutedColor};
             white-space: nowrap;

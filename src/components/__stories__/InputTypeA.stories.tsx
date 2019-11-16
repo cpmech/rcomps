@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -89,3 +89,12 @@ stories.add('light and dark bg', () => (
     </div>
   </div>
 ));
+
+const Controlled = () => {
+  const [value, setValue] = useState();
+  return (
+    <InputTypeA name="name" label="Name" value={value} onChange={e => setValue(e.target.value)} />
+  );
+};
+
+stories.add('controlled', () => <Controlled />);

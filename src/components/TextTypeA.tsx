@@ -32,7 +32,7 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
   fontSize = 18,
   scaleLabel = 0.8,
   paddingHoriz = 20,
-  labelPaddingHoriz = 10,
+  labelPaddingHoriz = 5,
   mutedColor = '#898989',
   bgColor = '#ffffff',
   borderColor = '#cccccc',
@@ -74,12 +74,13 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
           margin-top: -${deltaLabel}px;
         }
         input[required] + label[placeholder]:before {
+          transform-origin: center left;
           transform: translate(0, -${deltaLine}px) scale(${scaleLabel}, ${scaleLabel});
           padding-left: ${borderWidth === 0 ? 0 : labelPaddingHoriz}px;
           content: attr(placeholder);
           display: inline-block;
           font-size: ${fontSize}px;
-          margin-left: ${borderWidth === 0 ? 0 : paddingHoriz}px;
+          margin-left: ${borderWidth === 0 ? 0 : paddingHoriz + labelPaddingHoriz}px;
           padding-right: ${labelPaddingHoriz}px;
           color: ${mutedColor};
           white-space: nowrap;

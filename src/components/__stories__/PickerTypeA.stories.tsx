@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PickerTypeA } from '../PickerTypeA';
 import { InputTypeA } from '../InputTypeA';
+import { TextTypeA } from '../TextTypeA';
 
 const stories = storiesOf('PickerTypeA', module);
 
@@ -145,7 +146,7 @@ stories.add('light and dark bg', () => (
   </div>
 ));
 
-stories.add('with input', () => (
+stories.add('with others', () => (
   <div
     css={css`
       display: flex;
@@ -155,7 +156,14 @@ stories.add('with input', () => (
       height: 100vh;
     `}
   >
+    <TextTypeA name="name" label="E" value="Hello World!" width="250px" />
+    <TextTypeA name="name" label="EEEEEE" value="Hello World!" width="250px" />
+    <TextTypeA name="name" label="EEEEEEEEEEEEE" value="Hello World!" width="250px" />
+    <InputTypeA name="email" label="E" width="250px" value="First entry" />
+    <InputTypeA name="email" label="EEEEEE" width="250px" value="First entry" />
     <InputTypeA name="email" label="EEEEEEEEEEEEE" width="250px" value="First entry" />
+    <PickerTypeA selected={entries[0].message} entries={entries} width="250px" label="E" />
+    <PickerTypeA selected={entries[0].message} entries={entries} width="250px" label="EEEEEE" />
     <PickerTypeA
       selected={entries[0].message}
       entries={entries}

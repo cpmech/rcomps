@@ -38,7 +38,7 @@ export const InputTypeA: React.FC<IInputTypeAProps> = ({
   fontSize = 18,
   scaleLabel = 0.8,
   paddingHoriz = 20,
-  labelPaddingHoriz = 10,
+  labelPaddingHoriz = 5,
   transTime = '300ms',
   color = '#484848',
   mutedColor = '#898989',
@@ -88,6 +88,7 @@ export const InputTypeA: React.FC<IInputTypeAProps> = ({
         input[required]:focus + label[placeholder]:before,
         input[required]:valid + label[placeholder]:before {
           transition-duration: ${transTime};
+          transform-origin: center left;
           transform: translate(0, -${deltaLine}px) scale(${scaleLabel}, ${scaleLabel});
           padding-left: ${labelPaddingHoriz}px;
         }
@@ -104,7 +105,7 @@ export const InputTypeA: React.FC<IInputTypeAProps> = ({
           content: attr(placeholder);
           display: inline-block;
           font-size: ${fontSize}px;
-          margin-left: ${paddingHoriz}px;
+          margin-left: ${paddingHoriz + labelPaddingHoriz}px;
           padding-right: ${labelPaddingHoriz}px;
           color: ${mutedColor};
           white-space: nowrap;
