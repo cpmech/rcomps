@@ -7,9 +7,15 @@ export interface ISpinnerProps {
   size?: number;
   color?: string;
   thickness?: number;
+  time?: string;
 }
 
-export const Spinner: React.FC<ISpinnerProps> = ({ size = 64, color = '#ffffff', thickness }) => {
+export const Spinner: React.FC<ISpinnerProps> = ({
+  size = 64,
+  color = '#ffffff',
+  thickness,
+  time = '0.6s',
+}) => {
   const f = size / 7;
   const d = thickness || size / 5;
 
@@ -40,8 +46,8 @@ export const Spinner: React.FC<ISpinnerProps> = ({ size = 64, color = '#ffffff',
           border-radius: 50%;
           position: relative;
           text-indent: -9999em;
-          -webkit-animation: ${label} 1.1s infinite ease;
-          animation: ${label} 1.1s infinite ease;
+          -webkit-animation: ${label} ${time} infinite ease;
+          animation: ${label} ${time} infinite ease;
           -webkit-transform: translateZ(0);
           -ms-transform: translateZ(0);
           transform: translateZ(0);

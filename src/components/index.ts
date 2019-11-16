@@ -12,6 +12,8 @@ export * from './Pair';
 export * from './Picker';
 export * from './PickerTypeA';
 export * from './Spinner';
+export * from './SpinCircleMsg';
+export * from './SpinnerCircle';
 export * from './SpinnerAndMessage';
 export * from './TextTypeA';
 export * from './TopMenu';
