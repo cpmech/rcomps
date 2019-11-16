@@ -116,6 +116,9 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
           input[required]:focus {
             border-color: ${hlColor};
           }
+          input[required]:focus + label[placeholder]:before {
+            color: ${hlColor};
+          }
           input[required]:invalid + label[placeholder][alt]:before {
             content: attr(placeholder);
           }
