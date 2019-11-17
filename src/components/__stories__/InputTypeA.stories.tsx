@@ -21,11 +21,22 @@ stories.add('stacked', () => (
       height: 100vh;
     `}
   >
-    <form>
-      <InputTypeA name="name" label="Name" value="Hello World!" />
-      <InputTypeA name="email" label="Email" />
-      <InputTypeA name="password" label="Password" type="password" />
-    </form>
+    <InputTypeA name="name" label="Name" value="Hello World!" />
+    <InputTypeA name="email" label="Email" />
+    <InputTypeA name="password" label="Password" type="password" />
+  </div>
+));
+
+stories.add('on row', () => (
+  <div
+    css={css`
+      display: flex;
+      flex-direction: row;
+    `}
+  >
+    <InputTypeA name="name" label="Name" value="Hello World!" flatRight={true} />
+    <InputTypeA name="email" label="Email" flatLeft={true} flatRight={true} />
+    <InputTypeA name="password" label="Password" type="password" flatLeft={true} />
   </div>
 ));
 
