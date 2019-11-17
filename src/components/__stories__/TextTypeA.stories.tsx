@@ -16,6 +16,19 @@ stories.add('default', () => <TextTypeA label="Name" value="Hello World!" />);
 
 stories.add('no border', () => <TextTypeA label="Name" value="Hello World!" borderWidth={0} />);
 
+stories.add('on row', () => (
+  <div
+    css={css`
+      display: flex;
+      flex-direction: row;
+    `}
+  >
+    <TextTypeA name="name" label="Name" value="Hello World!" flatRight={true} />
+    <TextTypeA name="email" label="Email" flatLeft={true} flatRight={true} />
+    <TextTypeA name="password" label="Password" type="password" flatLeft={true} />
+  </div>
+));
+
 const bgColor = '#2ecc71';
 
 stories.add('light and dark bg', () => (

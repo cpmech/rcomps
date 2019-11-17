@@ -58,7 +58,7 @@ stories.add('box to right', () => (
   />
 ));
 
-stories.add('centered', () => (
+stories.add('stacked', () => (
   <div
     css={css`
       display: flex;
@@ -85,6 +85,39 @@ stories.add('centered', () => (
       entries={entries}
       width="250px"
       label="More, choose more!"
+    />
+  </div>
+));
+
+stories.add('on row', () => (
+  <div
+    css={css`
+      display: flex;
+      flex-direction: row;
+    `}
+  >
+    <PickerTypeA
+      selected={entries[0].message}
+      entries={entries}
+      width="250px"
+      label="Please, choose one"
+      flatRight={true}
+    />
+    <PickerTypeA
+      selected={entries[1].message}
+      entries={entries}
+      width="250px"
+      label="Please, choose another"
+      flatLeft={true}
+      flatRight={true}
+      widthBox="250px"
+    />
+    <PickerTypeA
+      selected={entries[2].message}
+      entries={entries}
+      width="250px"
+      label="More, choose more!"
+      flatLeft={true}
     />
   </div>
 ));
@@ -204,6 +237,33 @@ stories.add('with others', () => (
       width="250px"
       widthBox="250px"
       label="EEEEEEEEEEEEE"
+    />
+  </div>
+));
+
+stories.add('with others on row', () => (
+  <div
+    css={css`
+      display: flex;
+      flex-direction: row;
+    `}
+  >
+    <TextTypeA name="name" label="Hello" value="Hello World!" width="250px" flatRight={true} />
+    <InputTypeA
+      name="email"
+      label="Results"
+      width="250px"
+      value="First entry"
+      flatLeft={true}
+      flatRight={true}
+    />
+    <PickerTypeA
+      label="Choose one"
+      selected={entries[0].message}
+      entries={entries}
+      width="250px"
+      widthBox="250px"
+      flatLeft={true}
     />
   </div>
 ));

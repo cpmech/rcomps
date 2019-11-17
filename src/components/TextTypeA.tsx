@@ -9,6 +9,8 @@ export interface ITextTypeAProps {
   height?: number;
   width?: string;
   borderRadius?: number;
+  flatLeft?: boolean;
+  flatRight?: boolean;
   fontSize?: number;
   labelFontSize?: number;
   scaleLabel?: number;
@@ -29,6 +31,8 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
   value,
   height = 50,
   borderRadius = 300,
+  flatLeft,
+  flatRight,
   width = '100%',
   fontSize = 18,
   labelFontSize = 18,
@@ -64,6 +68,8 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
           padding-right: ${paddingHoriz}px;
           border: ${borderWidth}px solid ${borderColor};
           border-radius: ${borderRadius}px;
+          ${flatLeft && `border-top-left-radius:0;border-bottom-left-radius:0;`}
+          ${flatRight && `border-top-right-radius:0;border-bottom-right-radius:0;`}
           color: ${mutedColor};
           background-color: ${bgColor};
           resize: none;

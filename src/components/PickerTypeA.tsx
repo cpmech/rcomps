@@ -17,6 +17,8 @@ export interface IPickerTypeAProps {
   heightBox?: number; // height of entries box
   boxToRight?: boolean;
   borderRadius?: number;
+  flatLeft?: boolean;
+  flatRight?: boolean;
   fontSize?: number;
   labelFontSize?: number;
   scaleLabel?: number;
@@ -45,6 +47,8 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
   heightBox,
   boxToRight,
   borderRadius = 300,
+  flatLeft,
+  flatRight,
   fontSize = 18,
   labelFontSize = 18,
   scaleLabel = 0.8,
@@ -113,6 +117,8 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
             padding-right: ${paddingHoriz}px;
             border: 1px solid ${borderColor};
             border-radius: ${borderRadius}px;
+            ${flatLeft && `border-top-left-radius:0;border-bottom-left-radius:0;`}
+            ${flatRight && `border-top-right-radius:0;border-bottom-right-radius:0;`}
             color: ${color};
             background-color: ${bgColor};
             resize: none;
