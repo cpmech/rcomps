@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { InputTypeA } from '../InputTypeA';
-import { IconExclamation } from '@cpmech/react-icons';
+import { IconExclamation, IconEye, IconEyeNo } from '@cpmech/react-icons';
 
 const stories = storiesOf('InputTypeA', module);
 
@@ -149,3 +149,34 @@ const Controlled = () => {
 };
 
 stories.add('controlled', () => <Controlled />);
+
+const Password = () => {
+  const [value, setValue] = useState('1234-5678');
+  const [show, setShow] = useState(false);
+  const icon = (
+    <div onClick={() => setShow(!show)}>
+      {show ? <IconEye size={18} /> : <IconEyeNo size={18} />}
+    </div>
+  );
+  return (
+    <InputTypeA
+      type={show ? 'text' : 'password'}
+      label="Password"
+      value={value}
+      suffix={icon}
+      onChange={e => setValue(e.target.value)}
+    />
+  );
+};
+
+stories.add('password', () => (
+  <div
+    css={css`
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+    `}
+  >
+    <Password />
+  </div>
+));
