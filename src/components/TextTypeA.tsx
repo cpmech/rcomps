@@ -48,7 +48,7 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
   marginVert,
   borderWidth = 1,
   suffix,
-  suffixPaddingRight = 15,
+  suffixPaddingRight = 20,
 }) => {
   const deltaLabel = height / 2 + labelFontSize / 2;
   const deltaLine = height / 2;

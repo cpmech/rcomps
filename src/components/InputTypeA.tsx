@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
 export interface IInputTypeAProps {
@@ -26,6 +26,8 @@ export interface IInputTypeAProps {
   borderColor?: string;
   darkMode?: boolean;
   marginVert?: number;
+  suffix?: ReactNode;
+  suffixPaddingRight?: number;
 }
 
 export const InputTypeA: React.FC<IInputTypeAProps> = ({
@@ -55,6 +57,8 @@ export const InputTypeA: React.FC<IInputTypeAProps> = ({
   borderColor = '#cccccc',
   darkMode,
   marginVert,
+  suffix,
+  suffixPaddingRight = 20,
 }) => {
   const deltaLabel = height / 2 + labelFontSize / 2;
   const deltaLine = height / 2;
@@ -67,6 +71,7 @@ export const InputTypeA: React.FC<IInputTypeAProps> = ({
   return (
     <div
       css={css`
+        position: relative;
         height: ${height}px;
         margin-top: ${marginTop}px;
         width: ${width};
@@ -134,6 +139,19 @@ export const InputTypeA: React.FC<IInputTypeAProps> = ({
         onBlur={onBlur}
       />
       <label placeholder={label}></label>
+      {suffix && (
+        <div
+          css={css`
+            position: absolute;
+            line-height: ${fontSize}px;
+            top: ${height / 2 - fontSize / 2}px;
+            right: ${suffixPaddingRight}px;
+            color: ${mutedColor};
+          `}
+        >
+          {suffix}
+        </div>
+      )}
     </div>
   );
 };

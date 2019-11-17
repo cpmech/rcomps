@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { InputTypeA } from '../InputTypeA';
+import { IconExclamation } from '@cpmech/react-icons';
 
 const stories = storiesOf('InputTypeA', module);
 
@@ -37,6 +38,19 @@ stories.add('on row', () => (
     <InputTypeA name="name" label="Name" value="Hello World!" flatRight={true} />
     <InputTypeA name="email" label="Email" flatLeft={true} flatRight={true} />
     <InputTypeA name="password" label="Password" type="password" flatLeft={true} />
+  </div>
+));
+
+stories.add('with suffix', () => (
+  <div
+    css={css`
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+    `}
+  >
+    <InputTypeA label="Energy" value="123.456" suffix="kWh" />
+    <InputTypeA label="Energy" value="123.456" suffix={<IconExclamation size={18} />} />
   </div>
 ));
 
