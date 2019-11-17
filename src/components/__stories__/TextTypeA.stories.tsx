@@ -7,6 +7,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { TextTypeA } from '../TextTypeA';
 import { PickerTypeA } from '../PickerTypeA';
 import { InputTypeA } from '../InputTypeA';
+import { IconExclamation } from '@cpmech/react-icons';
 
 const stories = storiesOf('TextTypeA', module);
 
@@ -26,6 +27,19 @@ stories.add('on row', () => (
     <TextTypeA name="name" label="Name" value="Hello World!" flatRight={true} />
     <TextTypeA name="email" label="Email" flatLeft={true} flatRight={true} />
     <TextTypeA name="password" label="Password" type="password" flatLeft={true} />
+  </div>
+));
+
+stories.add('with suffix', () => (
+  <div
+    css={css`
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+    `}
+  >
+    <TextTypeA label="Energy" value="123.456" suffix="kWh" />
+    <TextTypeA label="Energy" value="123.456" suffix={<IconExclamation size={18} />} />
   </div>
 ));
 

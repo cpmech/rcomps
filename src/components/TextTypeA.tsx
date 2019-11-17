@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
 export interface ITextTypeAProps {
@@ -23,6 +23,8 @@ export interface ITextTypeAProps {
   darkMode?: boolean;
   marginVert?: number;
   borderWidth?: number;
+  suffix?: ReactNode;
+  suffixPaddingRight?: number;
 }
 
 export const TextTypeA: React.FC<ITextTypeAProps> = ({
@@ -45,6 +47,8 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
   darkMode,
   marginVert,
   borderWidth = 1,
+  suffix,
+  suffixPaddingRight = 15,
 }) => {
   const deltaLabel = height / 2 + labelFontSize / 2;
   const deltaLine = height / 2;
@@ -55,6 +59,7 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
   return (
     <div
       css={css`
+        position: relative;
         height: ${height}px;
         margin-top: ${marginTop}px;
         width: ${width};
@@ -101,6 +106,19 @@ export const TextTypeA: React.FC<ITextTypeAProps> = ({
     >
       <input required={true} type={type || 'text'} value={value} readOnly={true} />
       <label placeholder={label}></label>
+      {suffix && (
+        <div
+          css={css`
+            position: absolute;
+            line-height: ${fontSize}px;
+            top: ${height / 2 - fontSize / 2}px;
+            right: ${suffixPaddingRight}px;
+            color: ${mutedColor};
+          `}
+        >
+          {suffix}
+        </div>
+      )}
     </div>
   );
 };
