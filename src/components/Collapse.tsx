@@ -5,7 +5,6 @@ import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 export interface ICollapseProps {
   title: string;
   initOpen?: boolean;
-  withIcon?: boolean;
   fontSize?: number;
   iconsize?: number;
   width?: string;
@@ -23,7 +22,6 @@ export interface ICollapseProps {
 export const Collapse: React.FC<ICollapseProps> = ({
   title,
   initOpen,
-  withIcon,
   fontSize = 18,
   iconsize = 18,
   width,
@@ -41,13 +39,15 @@ export const Collapse: React.FC<ICollapseProps> = ({
   const [open, setOpen] = useState(initOpen);
 
   return (
-    <div>
+    <div
+      css={css`
+        ${width && `width:${width};`}
+        cursor: pointer;
+      `}
+    >
       <div
         css={css`
           position: relative;
-          cursor: pointer;
-          height: ${height}px;
-          ${width && `width:${width};`}
           color: ${color};
           background-color: ${bgColor};
         `}
@@ -65,7 +65,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
             ${titleBorderColor ? `border-bottom: 1px solid ${titleBorderColor};` : ''}
             padding-left: ${paddingHoriz}px;
             padding-right: ${paddingHoriz}px;
-          `}
+        `}
         >
           {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
         </div>
@@ -85,17 +85,18 @@ export const Collapse: React.FC<ICollapseProps> = ({
             `}
           ></div>
         )}
-      </div>
-      <div
-        css={css`
-          position: absolute;
-          line-height: ${fontSize}px;
-          top: ${height / 2 - fontSize / 2}px;
-          right: ${iconPaddingRight}px;
-          color: ${color};
-        `}
-      >
-        {open ? <IconAngleUp size={iconsize} /> : <IconAngleDown size={iconsize} />}
+        <div
+          css={css`
+            position: absolute;
+            line-height: ${fontSize}px;
+            top: ${height / 2 - fontSize / 2}px;
+            right: ${iconPaddingRight}px;
+            color: ${color};
+          `}
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <IconAngleUp size={iconsize} /> : <IconAngleDown size={iconsize} />}
+        </div>
       </div>
     </div>
   );
