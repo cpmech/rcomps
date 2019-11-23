@@ -2,6 +2,7 @@ export * from './Button';
 export * from './ButtonLink';
 export * from './ButtonSpin';
 export * from './ChartRing';
+export * from './Collapse';
 export * from './Dimensions';
 export * from './DropDown';
 export * from './InputCurrency';
