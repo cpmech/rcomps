@@ -14,12 +14,13 @@ interface IModalProps {
   iconPadding?: number;
   color?: string;
   bgColor?: string;
-  borderColor?: string;
+  bgOpacity?: number;
   titleBgColor?: string;
   titleBorderColor?: string;
   titleStyle?: SerializedStyles;
   width?: string;
   height?: string;
+  zIndex?: number;
   allowClickOutsideToClose?: boolean;
 }
 
@@ -35,28 +36,28 @@ export const Modal: React.FC<IModalProps> = ({
   iconPadding = 25,
   color = '#484848',
   bgColor = '#ffffff',
-  borderColor = '#cccccc',
+  bgOpacity = 0.4,
   titleBgColor,
   titleBorderColor,
   titleStyle,
   width,
   height,
+  zIndex = 1,
   allowClickOutsideToClose = true,
   children,
 }) => {
   return (
     <div
       css={css`
-        /* The Modal (background) */
+        /* background */
         display: ${isOpen ? 'block' : 'none'};
         position: fixed;
-        z-index: 1;
+        z-index: ${zIndex};
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgb(0, 0, 0);
         background-color: rgba(0, 0, 0, 0.4);
       `}
       onClick={e => {
@@ -77,7 +78,6 @@ export const Modal: React.FC<IModalProps> = ({
           transform: translate(-50%, -50%);
           color: ${color};
           background-color: ${bgColor};
-          border-top: 1px solid ${borderColor};
           ${width ? `width:${width}; overflow:auto;` : ''}
           ${height ? `height:${height}; overflow:auto;` : ''}
         `}

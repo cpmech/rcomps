@@ -15,17 +15,16 @@ stories.add('default', () => {
     <div>
       <button onClick={() => setOpen(true)}>Show Notifier</button>
       {loremIpsum}
-      {open && (
-        <Notifier
-          title="Notifications"
-          message="Hello World!"
-          titleStyle={css`
-            font-weight: bold;
-            color: #e62739;
-          `}
-          onClose={() => setOpen(false)}
-        />
-      )}
+      <Notifier
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Notifications"
+        message="Hello World!"
+        titleStyle={css`
+          font-weight: bold;
+          color: #e62739;
+        `}
+      />
     </div>
   );
 });
@@ -36,13 +35,12 @@ stories.add('with caption', () => {
     <div>
       <button onClick={() => setOpen(true)}>Show Notifier</button>
       {loremIpsum}
-      {open && (
-        <Notifier
-          caption="Warning. "
-          message="Hello World! This is a very long message used to check text wrapping."
-          onClose={() => setOpen(false)}
-        />
-      )}
+      <Notifier
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        caption="Warning. "
+        message="Hello World! This is a very long message used to check text wrapping."
+      />
     </div>
   );
 });
