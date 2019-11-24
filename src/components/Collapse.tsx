@@ -17,6 +17,7 @@ export interface ICollapseProps {
   titleBgColor?: string;
   titleBorderColor?: string;
   titleStyle?: SerializedStyles;
+  closeOnClickBody?: boolean;
 }
 
 export const Collapse: React.FC<ICollapseProps> = ({
@@ -34,6 +35,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
   titleBgColor,
   titleBorderColor,
   titleStyle,
+  closeOnClickBody = true,
   children,
 }) => {
   const [open, setOpen] = useState(initOpen);
@@ -51,7 +53,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
           color: ${color};
           background-color: ${bgColor};
         `}
-        onClick={() => setOpen(!open)}
+        onClick={() => closeOnClickBody && setOpen(!open)}
       >
         <div
           css={css`
@@ -66,6 +68,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
             padding-left: ${paddingHoriz}px;
             padding-right: ${paddingHoriz}px;
         `}
+          onClick={() => setOpen(!open)}
         >
           {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
         </div>
