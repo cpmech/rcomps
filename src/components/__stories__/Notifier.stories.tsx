@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Notifier } from '../Notifier';
 
@@ -22,6 +21,22 @@ stories.add('default', () => {
             font-weight: bold;
             color: #e62739;
           `}
+          onClose={() => setOpen(false)}
+        />
+      )}
+    </div>
+  );
+});
+
+stories.add('with caption', () => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div>
+      <button onClick={() => setOpen(true)}>Show Notifier</button>
+      {open && (
+        <Notifier
+          caption="Warning. "
+          message="Hello World! This is a very long message used to check text wrapping."
           onClose={() => setOpen(false)}
         />
       )}

@@ -4,8 +4,9 @@ import { IconClose } from '@cpmech/react-icons';
 
 interface INotifierProps {
   onClose: () => void;
-  title: string;
-  message: string;
+  title?: string;
+  caption?: string;
+  message?: string;
   titleFontSize?: number;
   messageFontSize?: number;
   iconSize?: number;
@@ -19,18 +20,23 @@ interface INotifierProps {
   titleBgColor?: string;
   titleBorderColor?: string;
   titleStyle?: SerializedStyles;
+  captionStyle?: SerializedStyles;
   messageStyle?: SerializedStyles;
+  heightPhone?: number;
+  heightTablet?: number;
+  heightDesktop?: number;
 }
 
 export const Notifier: React.FC<INotifierProps> = ({
   onClose,
   title,
+  caption,
   message,
   titleFontSize = 16,
   messageFontSize = 14,
   iconSize = 20,
   marginVert = 10,
-  verticalGap = 5,
+  verticalGap = 10,
   paddingHoriz = 20,
   iconPadding = 25,
   color = '#484848',
@@ -39,7 +45,15 @@ export const Notifier: React.FC<INotifierProps> = ({
   titleBgColor,
   titleBorderColor,
   titleStyle,
+  captionStyle = css`
+    font-size: 14;
+    font-weight: bold;
+    color: #e62739;
+  `,
   messageStyle,
+  heightPhone = 60,
+  heightTablet = 100,
+  heightDesktop = 150,
 }) => {
   return (
     <div
@@ -52,18 +66,19 @@ export const Notifier: React.FC<INotifierProps> = ({
         color: ${color};
         background-color: ${bgColor};
         border-top: 1px solid ${borderColor};
-        height: 80px;
+        height: ${heightPhone}px;
         @media only screen and (min-width: 375px) {
-          height: 120px;
+          height: ${heightTablet}px;
         }
         @media only screen and (min-width: 600px) {
-          height: 180px;
+          height: ${heightDesktop}px;
         }
         overflow: auto;
       `}
     >
-      <div
-        css={css`
+      {title && (
+        <div
+          css={css`
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -75,19 +90,26 @@ export const Notifier: React.FC<INotifierProps> = ({
           padding-left: ${paddingHoriz}px;
           padding-right: ${paddingHoriz}px;
         `}
-      >
-        {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
-      </div>
-      <div
-        css={css`
-          padding-left: ${paddingHoriz}px;
-          padding-right: ${paddingHoriz}px;
-          font-size: ${messageFontSize}px;
-          margin-top: ${verticalGap}px;
-        `}
-      >
-        {messageStyle ? <span css={messageStyle}>{message}</span> : <span>{message}</span>}
-      </div>
+        >
+          {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
+        </div>
+      )}
+      {message && (
+        <div
+          css={css`
+            padding-left: ${paddingHoriz}px;
+            padding-right: ${paddingHoriz}px;
+            font-size: ${messageFontSize}px;
+            margin-top: ${verticalGap}px;
+            width: 85%;
+          `}
+        >
+          <React.Fragment>
+            {caption && <span css={captionStyle}>{caption}</span>}
+            {messageStyle ? <span css={messageStyle}>{message}</span> : <span>{message}</span>}
+          </React.Fragment>
+        </div>
+      )}
       <div
         css={css`
           position: absolute;
