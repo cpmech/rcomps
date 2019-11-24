@@ -9,6 +9,7 @@ export * from './InputCurrency';
 export * from './InputMaterial';
 export * from './InputTypeA';
 export * from './Link';
+export * from './Notifier';
 export * from './Pair';
 export * from './Picker';
 export * from './PickerTypeA';

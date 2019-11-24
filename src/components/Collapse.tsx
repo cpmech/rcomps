@@ -6,7 +6,7 @@ export interface ICollapseProps {
   title: string;
   initOpen?: boolean;
   fontSize?: number;
-  iconsize?: number;
+  iconSize?: number;
   width?: string;
   height?: number;
   paddingHoriz?: number;
@@ -23,7 +23,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
   title,
   initOpen,
   fontSize = 18,
-  iconsize = 18,
+  iconSize = 18,
   width,
   height = 50,
   paddingHoriz = 20,
@@ -95,7 +95,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
           `}
           onClick={() => setOpen(!open)}
         >
-          {open ? <IconAngleUp size={iconsize} /> : <IconAngleDown size={iconsize} />}
+          {open ? <IconAngleUp size={iconSize} /> : <IconAngleDown size={iconSize} />}
         </div>
       </div>
     </div>
