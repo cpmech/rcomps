@@ -12,6 +12,8 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => <InputTypeA name="email" label="Email" />);
 
+stories.add('error', () => <InputTypeA name="email" label="Email" error={true} />);
+
 stories.add('stacked', () => (
   <div
     css={css`

@@ -28,6 +28,8 @@ export interface IInputTypeAProps {
   marginVert?: number;
   suffix?: ReactNode;
   suffixPaddingRight?: number;
+  error?: boolean;
+  colorError?: string;
 }
 
 export const InputTypeA: React.FC<IInputTypeAProps> = ({
@@ -59,6 +61,8 @@ export const InputTypeA: React.FC<IInputTypeAProps> = ({
   marginVert,
   suffix,
   suffixPaddingRight = 20,
+  error,
+  colorError = '#e62739',
 }) => {
   const deltaLabel = height / 2 + labelFontSize / 2;
   const deltaLine = height / 2;
@@ -67,6 +71,12 @@ export const InputTypeA: React.FC<IInputTypeAProps> = ({
     color = 'white';
     hlColor = 'white';
     mutedColor = '#cccccc';
+  }
+  if (error) {
+    color = colorError;
+    hlColor = colorError;
+    mutedColor = colorError;
+    borderColor = colorError;
   }
   return (
     <div
