@@ -2,7 +2,7 @@ import React from 'react';
 /** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
 import { IconClose } from '@cpmech/react-icons';
 
-interface IModalProps {
+export interface IModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
@@ -39,7 +39,10 @@ export const Modal: React.FC<IModalProps> = ({
   bgOpacity = 0.4,
   titleBgColor,
   titleBorderColor,
-  titleStyle,
+  titleStyle = css`
+    font-weight: bold;
+    font-size: 1.2em;
+  `,
   width,
   height,
   zIndex = 1,
@@ -58,7 +61,7 @@ export const Modal: React.FC<IModalProps> = ({
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, ${bgOpacity});
       `}
       onClick={e => {
         if (allowClickOutsideToClose) {
