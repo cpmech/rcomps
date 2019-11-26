@@ -52,7 +52,7 @@ export const TopMenu: React.FC<ITopMenuProps> = ({
         min-height: ${minHeight}px;
         margin: auto;
         line-height: 0;
-        max-width: ${desktopMaxWidth};
+        max-width: ${desktopMaxWidth}px;
         padding: ${paddingLeft}px ${paddingRight}px;
       `}
     >
