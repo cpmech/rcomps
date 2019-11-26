@@ -22,6 +22,12 @@ stories.add('disabled', () => (
   </Button>
 ));
 
+stories.add('outline', () => (
+  <Button onClick={action('Outline button clicked')} outline={true}>
+    Hello World
+  </Button>
+));
+
 stories.add('styled', () => (
   <Button
     onClick={action('Button')}

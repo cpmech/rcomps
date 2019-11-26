@@ -11,7 +11,9 @@ export const getButtonCss = (
   colorDisabled = '#666666',
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
+  hoverColorOutline = '#efefef',
   disabled = false,
+  outline = false,
 ) => css`
   ${width && `width: ${width};`}
   height: ${height}px;
@@ -21,10 +23,11 @@ export const getButtonCss = (
   border-width: 0;
   ${fontSize && `font-size: ${fontSize}px;`}
   font-weight: ${fontWeight};
-  ${!disabled && `cursor: pointer`};
   color: ${disabled ? colorDisabled : color};
-  background-color: ${backgroundColor};
-  ${!disabled && `&:hover { background-color: ${hoverColor}; }`}
+  ${!disabled && `cursor: pointer`};
+  ${!disabled && `&:hover { background-color: ${outline ? hoverColorOutline : hoverColor}; }`}
+  ${outline && `border: 1px solid ${color};`}
+  ${outline ? `background-color: rgba(0,0,0,0);` : `background-color: ${backgroundColor};`}
   transition: all 0.3s ease;
   white-space: nowrap;
   overflow: hidden;

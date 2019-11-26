@@ -15,7 +15,9 @@ export interface IButtonProps {
   colorDisabled?: string;
   backgroundColor?: string;
   hoverColor?: string;
+  hoverColorOutline?: string;
   disabled?: boolean;
+  outline?: boolean;
 }
 
 export const Button: React.FC<IButtonProps> = ({
@@ -31,7 +33,9 @@ export const Button: React.FC<IButtonProps> = ({
   colorDisabled = '#666666',
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
+  hoverColorOutline = '#efefef',
   disabled,
+  outline,
   children,
 }) => {
   const buttonCss = getButtonCss(
@@ -45,7 +49,9 @@ export const Button: React.FC<IButtonProps> = ({
     colorDisabled,
     backgroundColor,
     hoverColor,
+    hoverColorOutline,
     disabled,
+    outline,
   );
 
   return (
