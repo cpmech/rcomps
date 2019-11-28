@@ -20,6 +20,8 @@ export interface IModalProps {
   titleStyle?: SerializedStyles;
   width?: string;
   height?: string;
+  minHeight?: string;
+  maxHeight?: string;
   zIndex?: number;
   allowClickOutsideToClose?: boolean;
 }
@@ -45,6 +47,8 @@ export const Modal: React.FC<IModalProps> = ({
   `,
   width,
   height,
+  minHeight,
+  maxHeight,
   zIndex = 1,
   allowClickOutsideToClose = true,
   children,
@@ -83,6 +87,8 @@ export const Modal: React.FC<IModalProps> = ({
           background-color: ${bgColor};
           ${width ? `width:${width}; overflow:auto;` : ''}
           ${height ? `height:${height}; overflow:auto;` : ''}
+          ${minHeight ? `min-height:${minHeight}; overflow:auto;` : ''}
+          ${maxHeight ? `max-height:${maxHeight}; overflow:auto;` : ''}
         `}
       >
         {title && (
