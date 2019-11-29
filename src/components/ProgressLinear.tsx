@@ -18,7 +18,6 @@ export const ProgressLinear: React.FC<IProgressLinearProps> = ({
   barColor = '#4d50c6',
   borderRadius = 300,
 }) => {
-  console.log(progress);
   const p = progress || 0;
   const width = p < 0 ? 0 : p > 100 ? 100 : p;
   return (
