@@ -30,3 +30,51 @@ stories.add('default', () => {
     </div>
   );
 });
+
+stories.add('no click outside', () => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div>
+      <button onClick={() => setOpen(true)}>Show Modal</button>
+      <Modal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Notifications"
+        titleStyle={css`
+          font-weight: bold;
+          color: #e62739;
+        `}
+        height="70vh"
+        width="90%"
+        allowClickOutsideToClose={false}
+      >
+        {loremIpsum}
+      </Modal>
+    </div>
+  );
+});
+
+stories.add('with buttons', () => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div>
+      <button onClick={() => setOpen(true)}>Show Modal</button>
+      <Modal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Notifications"
+        titleStyle={css`
+          font-weight: bold;
+          color: #e62739;
+        `}
+        height="70vh"
+        width="90%"
+      >
+        <div>
+          <h3>Upload file</h3>
+          <input type="file" />
+        </div>
+      </Modal>
+    </div>
+  );
+});

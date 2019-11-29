@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 /** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
 import { IconClose } from '@cpmech/react-icons';
 
@@ -53,6 +53,24 @@ export const Modal: React.FC<IModalProps> = ({
   allowClickOutsideToClose = true,
   children,
 }) => {
+  const refRoot = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (allowClickOutsideToClose) {
+        if (refRoot.current && e.target) {
+          if (!refRoot.current.contains(e.target as Node)) {
+            onClose();
+          }
+        }
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose, allowClickOutsideToClose]);
+
   return (
     <div
       css={css`
@@ -67,16 +85,9 @@ export const Modal: React.FC<IModalProps> = ({
         overflow: auto;
         background-color: rgba(0, 0, 0, ${bgOpacity});
       `}
-      onClick={e => {
-        if (allowClickOutsideToClose) {
-          e.preventDefault();
-          if (e.target === e.currentTarget) {
-            onClose();
-          }
-        }
-      }}
     >
       <div
+        ref={refRoot}
         css={css`
           /* modal-content */
           position: absolute;
