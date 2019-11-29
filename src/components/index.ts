@@ -15,6 +15,7 @@ export * from './Notifier';
 export * from './Pair';
 export * from './Picker';
 export * from './PickerTypeA';
+export * from './ProgressLinear';
 export * from './SpinAndMsgCircle';
 export * from './SpinAndMsgDots';
 export * from './SpinCircle';
