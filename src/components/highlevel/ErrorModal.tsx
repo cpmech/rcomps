@@ -3,6 +3,7 @@ import React from 'react';
 import { Modal } from '../Modal';
 
 interface IErrorModelProps {
+  title?: string;
   isOpen: boolean;
   onClose: () => void;
   message: string;
@@ -10,6 +11,7 @@ interface IErrorModelProps {
 }
 
 export const ErrorModal: React.FC<IErrorModelProps> = ({
+  title = 'Error',
   isOpen,
   onClose,
   message,
@@ -19,7 +21,7 @@ export const ErrorModal: React.FC<IErrorModelProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Erro"
+      title={title}
       titleStyle={css`
         color: ${colorTitle};
         font-weight: bold;
