@@ -6,6 +6,7 @@ export * from './ChartRing';
 export * from './Collapse';
 export * from './Dimensions';
 export * from './DropDown';
+export * from './FlexTable';
 export * from './InputCurrency';
 export * from './InputMaterial';
 export * from './InputTypeA';
