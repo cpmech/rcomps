@@ -225,9 +225,9 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     }
   `;
 
-  const styleContentWide = css`
+  const styleRowWide = css`
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
   `;
 
   // narrow /////////////////////////////////////////////////////////////////////////////////////////
@@ -253,47 +253,44 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
         </div>
 
         {/* ----------------- content ----------------- */}
-        <div>
-          {/* <div css={styleContent}> */}
-          {rows.map((_, i) => (
-            <React.Fragment key={i}>
-              {/* --- first column --- */}
-              <div css={styleFirstColumnNarrow}>
-                {valueOrEmpty(i, mainColumn)}
-                <div
-                  css={styleShowHideIcon}
-                  onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
-                >
-                  {hiddenRows[i] ? (
-                    <IconAngleDown size={showHideIconSize} />
-                  ) : (
-                    <IconAngleUp size={showHideIconSize} />
-                  )}
-                </div>
+        {rows.map((_, i) => (
+          <React.Fragment key={i}>
+            {/* --- first column --- */}
+            <div css={styleFirstColumnNarrow}>
+              {valueOrEmpty(i, mainColumn)}
+              <div
+                css={styleShowHideIcon}
+                onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
+              >
+                {hiddenRows[i] ? (
+                  <IconAngleDown size={showHideIconSize} />
+                ) : (
+                  <IconAngleUp size={showHideIconSize} />
+                )}
               </div>
+            </div>
 
-              {/* --- other columns --- */}
-              {otherColumns.map(col => (
-                <div
-                  key={col}
-                  css={css`
-                    width: 100%;
-                    display: ${hiddenRows[i] ? 'none' : 'block'};
-                    border-bottom: 1px solid ${colorBorderNarrow};
-                    ${styleColumns}
-                  `}
-                >
-                  {showLabelsNarrow && (
-                    <div>
-                      <span css={styleLabelsNarrow}>{(allLabels as any)[col]}</span>
-                    </div>
-                  )}
-                  {valueOrEmpty(i, col)}
-                </div>
-              ))}
-            </React.Fragment>
-          ))}
-        </div>
+            {/* --- other columns --- */}
+            {otherColumns.map(col => (
+              <div
+                key={col}
+                css={css`
+                  width: 100%;
+                  display: ${hiddenRows[i] ? 'none' : 'block'};
+                  border-bottom: 1px solid ${colorBorderNarrow};
+                  ${styleColumns}
+                `}
+              >
+                {showLabelsNarrow && (
+                  <div>
+                    <span css={styleLabelsNarrow}>{(allLabels as any)[col]}</span>
+                  </div>
+                )}
+                {valueOrEmpty(i, col)}
+              </div>
+            ))}
+          </React.Fragment>
+        ))}
       </div>
     );
   }
@@ -320,36 +317,34 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
       )}
 
       {/* ----------------- content ----------------- */}
-      <div css={styleContentWide}>
-        {rows.map((_, i) => (
-          <React.Fragment key={i}>
-            {/* --- first column --- */}
+      {rows.map((_, i) => (
+        <div key={i} css={styleRowWide}>
+          {/* --- first column --- */}
+          <div
+            css={css`
+              width: ${widths[0]}%;
+              ${styleFirstColumnWide}
+            `}
+          >
+            {valueOrEmpty(i, mainColumn)}
+          </div>
+
+          {/* --- other columns --- */}
+          {otherColumns.map((col, J) => (
             <div
+              key={col}
               css={css`
-                width: ${widths[0]}%;
-                ${styleFirstColumnWide}
+                width: ${widths[J + 1]}%;
+                border-top: ${i === 0 ? 1 : 0}px solid ${colorBorderWide};
+                border-bottom: 1px solid ${colorBorderWide};
+                ${styleColumns}
               `}
             >
-              {valueOrEmpty(i, mainColumn)}
+              {valueOrEmpty(i, col)}
             </div>
-
-            {/* --- other columns --- */}
-            {otherColumns.map((col, J) => (
-              <div
-                key={col}
-                css={css`
-                  width: ${widths[J + 1]}%;
-                  border-top: ${i === 0 ? 1 : 0}px solid ${colorBorderWide};
-                  border-bottom: 1px solid ${colorBorderWide};
-                  ${styleColumns}
-                `}
-              >
-                {valueOrEmpty(i, col)}
-              </div>
-            ))}
-          </React.Fragment>
-        ))}
-      </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };
