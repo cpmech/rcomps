@@ -36,6 +36,7 @@ export interface IFlexTableProps {
   controlShowAllText?: string;
   controlHeight?: number;
   controlButtonsProps?: IButtonProps;
+  showHideIconSize?: number;
 }
 
 type IHiddenRows = { [i: number]: boolean };
@@ -86,6 +87,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   controlButtonsProps = {
     height: 28,
   },
+  showHideIconSize = 24,
 }) => {
   const [hiddenRows, setHiddenRows] = useState<IHiddenRows>({});
   const isNarrow = useMediaQuery({ maxWidth: narrowWidth });
@@ -204,13 +206,18 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   `;
 
   const styleShowHideIcon = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: ${colorIconMainColumn};
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 5px;
     position: absolute;
-    padding-left: 10px;
-    width: 34px;
+    line-height: 0;
+    width: ${2 * showHideIconSize}px;
+    height: ${1.5 * showHideIconSize}px;
     right: 12px;
     top: 8px;
     :hover {
@@ -257,7 +264,11 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                   css={styleShowHideIcon}
                   onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
                 >
-                  {hiddenRows[i] ? <IconAngleDown size={24} /> : <IconAngleUp size={24} />}
+                  {hiddenRows[i] ? (
+                    <IconAngleDown size={showHideIconSize} />
+                  ) : (
+                    <IconAngleUp size={showHideIconSize} />
+                  )}
                 </div>
               </div>
 
