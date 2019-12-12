@@ -183,14 +183,11 @@ stories.add('styled', () => {
         font-size: 1.1em;
         font-weight: 500;
       `}
-      styleMainColumnText={css`
+      styleMainNarrow={css`
         color: white;
         font-weight: bold;
       `}
-      // bgColorMainColumn="#76c1d4"
-      // bgColorMainColumn="#3d7c47"
-      // bgColorMainColumn="#f7f7f7"
-      bgColorMainColumn="#bccbde"
+      colorMainNarrow="#bccbde"
       controlButtonsProps={{
         color: '#316678',
         backgroundColor: '#c2dde6',

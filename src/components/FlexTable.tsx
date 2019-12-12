@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+import { useMediaQuery } from 'react-responsive';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Button, IButtonProps } from './Button';
 import { hasProp } from './helpers';
@@ -17,11 +18,13 @@ export interface IFlexTableProps {
   showLabelsWide?: boolean;
   showControlButtons?: boolean;
   narrowWidth?: number;
+  colorMainNarrow?: string;
+  colorMainWide?: string;
   colorMissing?: string;
   colorIconMainColumn?: string;
   colorBorderMainColumn?: string;
-  bgColorMainColumn?: string;
-  styleMainColumnText?: SerializedStyles;
+  styleMainNarrow?: SerializedStyles;
+  styleMainWide?: SerializedStyles;
   styleLabelsNarrow?: SerializedStyles;
   styleLabelsWide?: SerializedStyles;
   styleText?: SerializedStyles;
@@ -44,12 +47,17 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   showLabelsWide = true,
   showControlButtons = true,
   narrowWidth = 600,
+  colorMainNarrow = 'slategrey',
+  colorMainWide = '#ccc',
   colorMissing = '#e62739',
   colorIconMainColumn = 'white',
   colorBorderMainColumn = 'white',
-  bgColorMainColumn = 'slategrey',
-  styleMainColumnText = css`
+  styleMainNarrow = css`
     color: white;
+    font-weight: bold;
+  `,
+  styleMainWide = css`
+    color: #484848;
     font-weight: bold;
   `,
   styleLabelsNarrow = css`
@@ -74,6 +82,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   },
 }) => {
   const [hiddenRows, setHiddenRows] = useState<IHiddenRows>({});
+  const isNarrow = useMediaQuery({ maxWidth: narrowWidth });
 
   if (rows.length < 1) {
     return null;
@@ -125,7 +134,11 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     if (hasProp(rows[rowIndex], colLabel)) {
       const value = (rows[rowIndex] as any)[colLabel];
       if (typeof value === 'string' || typeof value === 'number') {
-        return <span css={colLabel === mainColumn ? styleMainColumnText : styleText}>{value}</span>;
+        if (isNarrow) {
+          return <span css={colLabel === mainColumn ? styleMainNarrow : styleText}>{value}</span>;
+        } else {
+          return <span css={colLabel === mainColumn ? styleMainWide : styleText}>{value}</span>;
+        }
       } else {
         return value;
       }
@@ -180,9 +193,10 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   `;
 
   const styleFirstColumn = css`
-    background-color: ${bgColorMainColumn};
+    background-color: ${colorMainWide};
     position: relative;
     @media all and (max-width: ${narrowWidth}px) {
+      background-color: ${colorMainNarrow};
       display: block;
       width: 100% !important;
       cursor: pointer;
