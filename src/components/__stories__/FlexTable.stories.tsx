@@ -187,6 +187,8 @@ stories.add('styled', () => {
         color: white;
         font-weight: bold;
       `}
+      colorBorderNarrow="#dedede"
+      colorBorderWide="red"
       colorMainNarrow="#bccbde"
       controlButtonsProps={{
         color: '#316678',

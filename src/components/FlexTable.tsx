@@ -22,7 +22,10 @@ export interface IFlexTableProps {
   colorMainWide?: string;
   colorMissing?: string;
   colorIconMainColumn?: string;
-  colorBorderMainColumn?: string;
+  colorBorderNarrow?: string;
+  colorBorderWide?: string;
+  colorBorderMainNarrow?: string;
+  colorBorderMainWide?: string;
   styleMainNarrow?: SerializedStyles;
   styleMainWide?: SerializedStyles;
   styleLabelsNarrow?: SerializedStyles;
@@ -51,7 +54,10 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   colorMainWide = '#ccc',
   colorMissing = '#e62739',
   colorIconMainColumn = 'white',
-  colorBorderMainColumn = 'white',
+  colorBorderNarrow = '#ccc',
+  colorBorderWide = '#ccc',
+  colorBorderMainNarrow = 'white',
+  colorBorderMainWide = 'white',
   styleMainNarrow = css`
     color: white;
     font-weight: bold;
@@ -159,18 +165,12 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     position: relative;
     height: ${controlHeight}px;
     display: ${showControlButtons ? 'block' : 'none'};
-    @media all and (min-width: ${narrowWidth + 1}px) {
-      display: none;
-    }
   `;
 
   const styleControlButtons = css`
     position: absolute;
     bottom: 3px;
     right: 3px;
-    @media all and (max-width: ${narrowWidth}px) {
-      display: block;
-    }
   `;
 
   const styleHeader = css`
@@ -178,9 +178,6 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     align-items: center;
     padding: 0;
     line-height: 1.2em;
-    @media all and (max-width: ${narrowWidth}px) {
-      display: none;
-    }
   `;
 
   const styleColumns = `
@@ -192,66 +189,108 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     list-style: none;
   `;
 
-  const styleFirstColumn = css`
-    background-color: ${colorMainWide};
+  const styleFirstColumnNarrow = css`
+    width: 100%;
     position: relative;
-    @media all and (max-width: ${narrowWidth}px) {
-      background-color: ${colorMainNarrow};
-      display: block;
-      width: 100% !important;
-      cursor: pointer;
-    }
-    border-bottom: 1px solid ${colorBorderMainColumn};
+    background-color: ${colorMainNarrow};
+    border-bottom: 1px solid ${colorBorderMainNarrow};
     ${styleColumns}
   `;
 
-  const styleControlIcon = css`
+  const styleFirstColumnWide = css`
+    background-color: ${colorMainWide};
+    border-bottom: 1px solid ${colorBorderMainWide};
+    ${styleColumns}
+  `;
+
+  const styleShowHideIcon = css`
     color: ${colorIconMainColumn};
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
     position: absolute;
+    padding-left: 10px;
+    width: 34px;
     right: 12px;
-    top: 12px;
-    display: none;
-    @media all and (max-width: ${narrowWidth}px) {
-      display: block;
+    top: 8px;
+    :hover {
+      background-color: rgba(0, 0, 0, 0.1);
     }
   `;
 
-  const styleContent = css`
+  const styleContentWide = css`
     display: flex;
     flex-wrap: wrap;
-    padding: 0;
-    @media all and (max-width: ${narrowWidth}px) {
-      display: block;
-    }
   `;
 
-  const styleLabelContainer = css`
-    display: none;
-    @media all and (max-width: ${narrowWidth}px) {
-      display: block;
-    }
-  `;
+  // narrow /////////////////////////////////////////////////////////////////////////////////////////
+
+  if (isNarrow) {
+    return (
+      <div>
+        {/* ----------------- control ----------------- */}
+        <div css={styleControl}>
+          <div css={styleControlButtons}>
+            <Button
+              onClick={() => {
+                setHiddenRows(rows.reduce((a, _, i) => ({ ...a, [i]: true }), {} as IHiddenRows));
+              }}
+              {...controlButtonsProps}
+            >
+              {controlHideAllText}
+            </Button>{' '}
+            <Button onClick={() => setHiddenRows({})} {...controlButtonsProps}>
+              {controlShowAllText}
+            </Button>
+          </div>
+        </div>
+
+        {/* ----------------- content ----------------- */}
+        <div>
+          {/* <div css={styleContent}> */}
+          {rows.map((_, i) => (
+            <React.Fragment key={i}>
+              {/* --- first column --- */}
+              <div css={styleFirstColumnNarrow}>
+                {valueOrEmpty(i, mainColumn)}
+                <div
+                  css={styleShowHideIcon}
+                  onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
+                >
+                  {hiddenRows[i] ? <IconAngleDown size={24} /> : <IconAngleUp size={24} />}
+                </div>
+              </div>
+
+              {/* --- other columns --- */}
+              {otherColumns.map(col => (
+                <div
+                  key={col}
+                  css={css`
+                    width: 100%;
+                    display: ${hiddenRows[i] ? 'none' : 'block'};
+                    border-bottom: 1px solid ${colorBorderNarrow};
+                    ${styleColumns}
+                  `}
+                >
+                  {showLabelsNarrow && (
+                    <div>
+                      <span css={styleLabelsNarrow}>{(allLabels as any)[col]}</span>
+                    </div>
+                  )}
+                  {valueOrEmpty(i, col)}
+                </div>
+              ))}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // wide ///////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div>
-      {/* ----------------- control ----------------- */}
-      <div css={styleControl}>
-        {/* control buttons */}
-        <div css={styleControlButtons}>
-          <Button
-            onClick={() => {
-              setHiddenRows(rows.reduce((a, _, i) => ({ ...a, [i]: true }), {} as IHiddenRows));
-            }}
-            {...controlButtonsProps}
-          >
-            {controlHideAllText}
-          </Button>{' '}
-          <Button onClick={() => setHiddenRows({})} {...controlButtonsProps}>
-            {controlShowAllText}
-          </Button>
-        </div>
-      </div>
-
       {/* ----------------- header ----------------- */}
       {showLabelsWide && (
         <div css={styleHeader}>
@@ -270,52 +309,30 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
       )}
 
       {/* ----------------- content ----------------- */}
-      <div css={styleContent}>
-        {/* for each row */}
+      <div css={styleContentWide}>
         {rows.map((_, i) => (
           <React.Fragment key={i}>
-            {/* first column => mainColumn */}
+            {/* --- first column --- */}
             <div
               css={css`
                 width: ${widths[0]}%;
-                ${styleFirstColumn}
+                ${styleFirstColumnWide}
               `}
-              onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
             >
-              {/* data */}
               {valueOrEmpty(i, mainColumn)}
-
-              {/* control icon */}
-              <div css={styleControlIcon}>
-                {hiddenRows[i] ? <IconAngleDown size={24} /> : <IconAngleUp size={24} />}
-              </div>
             </div>
 
-            {/* other columns */}
+            {/* --- other columns --- */}
             {otherColumns.map((col, J) => (
               <div
                 key={col}
                 css={css`
                   width: ${widths[J + 1]}%;
-                  @media all and (max-width: ${narrowWidth}px) {
-                    display: ${hiddenRows[i] ? 'none' : 'block'};
-                    width: 100% !important;
-                  }
-                  @media all and (min-width: ${narrowWidth + 1}px) {
-                    border-top: ${i === 0 ? 1 : 0}px solid #ccc;
-                  }
-                  border-bottom: 1px solid #ccc;
+                  border-top: ${i === 0 ? 1 : 0}px solid ${colorBorderWide};
+                  border-bottom: 1px solid ${colorBorderWide};
                   ${styleColumns}
                 `}
               >
-                {/* label */}
-                {showLabelsNarrow && (
-                  <div css={styleLabelContainer}>
-                    <span css={styleLabelsNarrow}>{(allLabels as any)[col]}</span>
-                  </div>
-                )}
-
-                {/* data */}
                 {valueOrEmpty(i, col)}
               </div>
             ))}
