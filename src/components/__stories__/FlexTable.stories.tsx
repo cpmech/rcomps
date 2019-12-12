@@ -196,9 +196,61 @@ stories.add('styled', () => {
         backgroundColor: '#c2dde6',
         hoverColor: '#a3ccd9',
         borderRadius: 300,
+        height: 28,
       }}
       controlHideAllText="Esconder todos"
       controlShowAllText="Mostrar todos"
+    />
+  );
+});
+
+stories.add('proportions', () => {
+  const labels = {
+    job: 'Job description',
+    ability: 'Ability',
+    knowledge: 'Knowledge',
+    id: 'Id',
+  };
+  const columns = ['name', 'id', 'job', 'ability', 'knowledge'];
+  const proportions = [2, 0.7, 1, 1, 2.3];
+  const rows = [
+    {
+      name: 'Bender Rodriguez',
+      job: 'Delivery robot',
+      ability: 'Robbery',
+      knowledge: 'Bending girders',
+      id: 10101,
+    },
+    {
+      name: 'Turanga Leela',
+      job: 'Ship captain',
+      ability: 'Kung fu',
+      knowledge: 'Pilot ship',
+      id: 22222,
+    },
+    {
+      name: 'Philip J Fry',
+      job: 'Delivery boy',
+      ability: 'Useless',
+      knowledge: 'Nada',
+      id: 0,
+    },
+    {
+      name: 'Hermes Conrad',
+      job: 'Bureaucrat',
+      ability: 'Stamping',
+      knowledge: 'Paperwork',
+      id: 23,
+    },
+  ];
+
+  return (
+    <FlexTable
+      mainColumn="name"
+      rows={rows}
+      columns={columns}
+      labels={labels}
+      proportions={proportions}
     />
   );
 });

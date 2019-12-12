@@ -12,6 +12,7 @@ export interface IFlexTableProps {
   rows: IFlexTableEntry[];
   columns?: string[]; // labels of columns: used to sort and select specific columns
   labels?: IFlexTableLabels; // label-to-text conversion; may have missing entries
+  proportions?: number[]; // width proportions of columns. must have the same number of total columns
   showLabelsNarrow?: boolean;
   showLabelsWide?: boolean;
   showControlButtons?: boolean;
@@ -27,6 +28,7 @@ export interface IFlexTableProps {
   missingDataMessage?: string;
   controlHideAllText?: string;
   controlShowAllText?: string;
+  controlHeight?: number;
   controlButtonsProps?: IButtonProps;
 }
 
@@ -37,6 +39,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   rows,
   columns,
   labels,
+  proportions,
   showLabelsNarrow = true,
   showLabelsWide = true,
   showControlButtons = true,
@@ -65,7 +68,10 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   missingDataMessage = 'Missing data',
   controlHideAllText = 'Hide all',
   controlShowAllText = 'Show all',
-  controlButtonsProps,
+  controlHeight = 34,
+  controlButtonsProps = {
+    height: 28,
+  },
 }) => {
   const [hiddenRows, setHiddenRows] = useState<IHiddenRows>({});
 
@@ -104,7 +110,13 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   }
 
   // width of cells, on Wide mode
-  const cellWidth = 100 / allColumns.length;
+  if (!proportions) {
+    proportions = allColumns.map((_, j) => 1);
+  } else if (proportions.length !== allColumns.length) {
+    proportions = allColumns.map((_, j) => 1);
+  }
+  const total = proportions.reduce((a, c) => a + c, 0);
+  const widths = proportions.map((w, j) => (100 * w) / total);
 
   const valueOrEmpty = (rowIndex: number, colLabel: string) => {
     if (!rows[rowIndex]) {
@@ -130,66 +142,111 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     }
   };
 
+  const styleControl = css`
+    position: relative;
+    height: ${controlHeight}px;
+    display: ${showControlButtons ? 'block' : 'none'};
+    @media all and (min-width: ${narrowWidth + 1}px) {
+      display: none;
+    }
+  `;
+
+  const styleControlButtons = css`
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    @media all and (max-width: ${narrowWidth}px) {
+      display: block;
+    }
+  `;
+
+  const styleHeader = css`
+    display: flex;
+    align-items: center;
+    padding: 0;
+    line-height: 1.2em;
+    @media all and (max-width: ${narrowWidth}px) {
+      display: none;
+    }
+  `;
+
+  const styleColumns = `
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 0.8em 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    list-style: none;
+  `;
+
+  const styleFirstColumn = css`
+    background-color: ${bgColorMainColumn};
+    position: relative;
+    @media all and (max-width: ${narrowWidth}px) {
+      display: block;
+      width: 100% !important;
+      cursor: pointer;
+    }
+    border-bottom: 1px solid ${colorBorderMainColumn};
+    ${styleColumns}
+  `;
+
+  const styleControlIcon = css`
+    color: ${colorIconMainColumn};
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    display: none;
+    @media all and (max-width: ${narrowWidth}px) {
+      display: block;
+    }
+  `;
+
+  const styleContent = css`
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    @media all and (max-width: ${narrowWidth}px) {
+      display: block;
+    }
+  `;
+
+  const styleLabelContainer = css`
+    display: none;
+    @media all and (max-width: ${narrowWidth}px) {
+      display: block;
+    }
+  `;
+
   return (
     <div>
-      <div
-        css={css`
-          position: relative;
-          height: 40px;
-          display: ${showControlButtons ? 'block' : 'none'};
-          @media all and (min-width: ${narrowWidth + 1}px) {
-            display: none;
-          }
-        `}
-      >
-        {/* control */}
-        <div
-          css={css`
-            position: absolute;
-            bottom: 3px;
-            right: 3px;
-            /* display: none; */
-            @media all and (max-width: ${narrowWidth}px) {
-              display: block;
-            }
-          `}
-        >
+      {/* ----------------- control ----------------- */}
+      <div css={styleControl}>
+        {/* control buttons */}
+        <div css={styleControlButtons}>
           <Button
             onClick={() => {
               setHiddenRows(rows.reduce((a, _, i) => ({ ...a, [i]: true }), {} as IHiddenRows));
             }}
-            height={32}
             {...controlButtonsProps}
           >
             {controlHideAllText}
           </Button>{' '}
-          <Button onClick={() => setHiddenRows({})} height={32} {...controlButtonsProps}>
+          <Button onClick={() => setHiddenRows({})} {...controlButtonsProps}>
             {controlShowAllText}
           </Button>
         </div>
       </div>
 
-      {/* header */}
+      {/* ----------------- header ----------------- */}
       {showLabelsWide && (
-        <div
-          css={css`
-            display: flex;
-            align-items: center;
-            padding: 0;
-            line-height: 1.2em;
-            @media all and (max-width: ${narrowWidth}px) {
-              display: none;
-            }
-          `}
-        >
-          {allColumns.map(col => (
+        <div css={styleHeader}>
+          {allColumns.map((col, j) => (
             <div
               key={col}
               css={css`
-                width: ${cellWidth}%;
-                padding: 0.8em 1.2em;
-                overflow: hidden;
-                list-style: none;
+                width: ${widths[j]}%;
+                ${styleColumns}
               `}
             >
               <span css={styleLabelsWide}>{(allLabels as any)[col]}</span>
@@ -198,93 +255,54 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
         </div>
       )}
 
-      {/* table content */}
-      <div
-        css={css`
-          display: flex;
-          flex-wrap: wrap;
-          padding: 0;
-          @media all and (max-width: ${narrowWidth}px) {
-            display: block;
-          }
-        `}
-      >
+      {/* ----------------- content ----------------- */}
+      <div css={styleContent}>
+        {/* for each row */}
         {rows.map((_, i) => (
           <React.Fragment key={i}>
-            {/* first column => key */}
+            {/* first column => mainColumn */}
             <div
               css={css`
-                background-color: ${bgColorMainColumn};
-                width: ${cellWidth}%;
-                position: relative;
-                @media all and (max-width: ${narrowWidth}px) {
-                  display: block;
-                  width: 100% !important;
-                  cursor: pointer;
-                }
-                flex-grow: 1;
-                box-sizing: border-box;
-                padding: 0.8em 1.2em;
-                overflow: hidden;
-                list-style: none;
-                border-bottom: 1px solid ${colorBorderMainColumn};
+                width: ${widths[0]}%;
+                ${styleFirstColumn}
               `}
               onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
             >
-              <div>{valueOrEmpty(i, mainColumn)}</div>
-              <div
-                css={css`
-                  color: ${colorIconMainColumn};
-                  position: absolute;
-                  right: 12px;
-                  top: 12px;
-                  display: none;
-                  @media all and (max-width: ${narrowWidth}px) {
-                    display: block;
-                  }
-                `}
-              >
+              {/* data */}
+              {valueOrEmpty(i, mainColumn)}
+
+              {/* control icon */}
+              <div css={styleControlIcon}>
                 {hiddenRows[i] ? <IconAngleDown size={24} /> : <IconAngleUp size={24} />}
               </div>
             </div>
 
             {/* other columns */}
-            {otherColumns.map(col => (
+            {otherColumns.map((col, J) => (
               <div
                 key={col}
                 css={css`
-                  width: ${cellWidth}%;
+                  width: ${widths[J + 1]}%;
                   @media all and (max-width: ${narrowWidth}px) {
                     display: ${hiddenRows[i] ? 'none' : 'block'};
                     width: 100% !important;
                   }
-                  flex-grow: 1;
-                  box-sizing: border-box;
-                  padding: 0.8em 1.2em;
-                  overflow: hidden;
-                  list-style: none;
-                  border-bottom: 1px solid #ccc;
                   @media all and (min-width: ${narrowWidth + 1}px) {
                     border-top: ${i === 0 ? 1 : 0}px solid #ccc;
                   }
+                  border-bottom: 1px solid #ccc;
+                  ${styleColumns}
                 `}
               >
                 {/* label */}
                 {showLabelsNarrow && (
-                  <div
-                    css={css`
-                      display: none;
-                      @media all and (max-width: ${narrowWidth}px) {
-                        display: block;
-                      }
-                    `}
-                  >
+                  <div css={styleLabelContainer}>
                     <span css={styleLabelsNarrow}>{(allLabels as any)[col]}</span>
                   </div>
                 )}
 
-                {/* content */}
-                <div>{valueOrEmpty(i, col)}</div>
+                {/* data */}
+                {valueOrEmpty(i, col)}
               </div>
             ))}
           </React.Fragment>
