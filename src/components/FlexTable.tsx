@@ -1,40 +1,54 @@
 import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
-import { Button } from './Button';
+import { Button, IButtonProps } from './Button';
 import { hasProp } from './helpers';
 
 export type IFlexTableLabels = { [column: string]: string };
 export type IFlexTableEntry = { [column: string]: any };
 
 export interface IFlexTableProps {
-  keyColumn: string;
+  mainColumn: string;
   rows: IFlexTableEntry[];
-  labels?: IFlexTableLabels;
+  columns?: string[]; // labels of columns: used to sort and select specific columns
+  labels?: IFlexTableLabels; // label-to-text conversion; may have missing entries
   showLabelsNarrow?: boolean;
   showLabelsWide?: boolean;
+  showControlButtons?: boolean;
   narrowWidth?: number;
-  fontweightKeyColumn?: string;
-  colorKeyColumn?: string;
   colorMissing?: string;
+  colorIconMainColumn?: string;
+  colorBorderMainColumn?: string;
+  bgColorMainColumn?: string;
+  styleMainColumnText?: SerializedStyles;
   styleLabelsNarrow?: SerializedStyles;
   styleLabelsWide?: SerializedStyles;
   styleText?: SerializedStyles;
   missingDataMessage?: string;
+  controlHideAllText?: string;
+  controlShowAllText?: string;
+  controlButtonsProps?: IButtonProps;
 }
 
 type IHiddenRows = { [i: number]: boolean };
 
 export const FlexTable: React.FC<IFlexTableProps> = ({
-  keyColumn,
+  mainColumn,
   rows,
+  columns,
   labels,
   showLabelsNarrow = true,
   showLabelsWide = true,
+  showControlButtons = true,
   narrowWidth = 600,
-  fontweightKeyColumn = 'bold',
-  colorKeyColumn = 'slategrey',
   colorMissing = '#e62739',
+  colorIconMainColumn = 'white',
+  colorBorderMainColumn = 'white',
+  bgColorMainColumn = 'slategrey',
+  styleMainColumnText = css`
+    color: white;
+    font-weight: bold;
+  `,
   styleLabelsNarrow = css`
     color: #5d5c61;
     font-weight: bold;
@@ -49,6 +63,9 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     color: #5d5c61;
   `,
   missingDataMessage = 'Missing data',
+  controlHideAllText = 'Hide all',
+  controlShowAllText = 'Show all',
+  controlButtonsProps,
 }) => {
   const [hiddenRows, setHiddenRows] = useState<IHiddenRows>({});
 
@@ -56,26 +73,73 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     return null;
   }
 
-  const rowsNames = rows
-    .filter(row => !!(row as any)[keyColumn])
-    .map(row => (row as any)[keyColumn]);
+  // list of columns
+  const allColumns = columns || Object.keys(rows[0]);
+  if (allColumns.findIndex(col => col === mainColumn) < 0) {
+    allColumns.unshift(mainColumn);
+  }
 
-  const allColumns = Object.keys(rows[0]);
-  const otherColumns = allColumns.filter(col => col !== keyColumn);
+  // list of columns that are not the "mainColumn"
+  const otherColumns = allColumns.filter(col => col !== mainColumn);
+
+  // list of all column labels, including the "mainColumn"
+  // use empty '' if the entry is missing
   const allLabels = allColumns.reduce(
     (a, c) => ({ ...a, [c]: labels && hasProp(labels, c) ? labels[c] : '' }),
     {},
   );
 
-  const nCols = allColumns.length;
-  const cellWidth = 100 / nCols;
+  // check if all labels are empty
+  const allLabelsAreEmpty = Object.keys(allLabels).reduce((a, c) => {
+    if ((allLabels as any)[c] !== '') {
+      return false;
+    }
+    return a;
+  }, true);
+
+  // disable showing labels
+  if (allLabelsAreEmpty) {
+    showLabelsNarrow = false;
+    showLabelsWide = false;
+  }
+
+  // width of cells, on Wide mode
+  const cellWidth = 100 / allColumns.length;
+
+  const valueOrEmpty = (rowIndex: number, colLabel: string) => {
+    if (!rows[rowIndex]) {
+      return null;
+    }
+    if (hasProp(rows[rowIndex], colLabel)) {
+      const value = (rows[rowIndex] as any)[colLabel];
+      if (typeof value === 'string' || typeof value === 'number') {
+        return <span css={colLabel === mainColumn ? styleMainColumnText : styleText}>{value}</span>;
+      } else {
+        return value;
+      }
+    } else {
+      return (
+        <span
+          css={css`
+            color: ${colorMissing};
+          `}
+        >
+          {missingDataMessage}
+        </span>
+      );
+    }
+  };
 
   return (
     <div>
       <div
         css={css`
           position: relative;
-          /* height: 40px; */
+          height: 40px;
+          display: ${showControlButtons ? 'block' : 'none'};
+          @media all and (min-width: ${narrowWidth + 1}px) {
+            display: none;
+          }
         `}
       >
         {/* control */}
@@ -92,17 +156,15 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
         >
           <Button
             onClick={() => {
-              setHiddenRows(
-                rowsNames.reduce((a, _, i) => ({ ...a, [i]: true }), {} as IHiddenRows),
-              );
+              setHiddenRows(rows.reduce((a, _, i) => ({ ...a, [i]: true }), {} as IHiddenRows));
             }}
             height={32}
-            width="100px"
+            {...controlButtonsProps}
           >
-            Hide all
+            {controlHideAllText}
           </Button>{' '}
-          <Button onClick={() => setHiddenRows({})} height={32} width="100px">
-            Show all
+          <Button onClick={() => setHiddenRows({})} height={32} {...controlButtonsProps}>
+            {controlShowAllText}
           </Button>
         </div>
       </div>
@@ -147,16 +209,14 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
           }
         `}
       >
-        {rowsNames.map((name, i) => (
+        {rows.map((_, i) => (
           <React.Fragment key={i}>
             {/* first column => key */}
             <div
               css={css`
+                background-color: ${bgColorMainColumn};
                 width: ${cellWidth}%;
-                background-color: ${colorKeyColumn};
-                color: white;
                 position: relative;
-                font-weight: ${fontweightKeyColumn};
                 @media all and (max-width: ${narrowWidth}px) {
                   display: block;
                   width: 100% !important;
@@ -167,13 +227,14 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                 padding: 0.8em 1.2em;
                 overflow: hidden;
                 list-style: none;
-                border-bottom: 1px solid white;
+                border-bottom: 1px solid ${colorBorderMainColumn};
               `}
               onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
             >
-              <div>{name}</div>
+              <div>{valueOrEmpty(i, mainColumn)}</div>
               <div
                 css={css`
+                  color: ${colorIconMainColumn};
                   position: absolute;
                   right: 12px;
                   top: 12px;
@@ -223,23 +284,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                 )}
 
                 {/* content */}
-                <div>
-                  {hasProp(rows[i], col) ? (
-                    typeof (rows[i] as any)[col] === 'string' ? (
-                      <span css={styleText}>{(rows[i] as any)[col]}</span>
-                    ) : (
-                      (rows[i] as any)[col]
-                    )
-                  ) : (
-                    <span
-                      css={css`
-                        color: ${colorMissing};
-                      `}
-                    >
-                      {missingDataMessage}
-                    </span>
-                  )}
-                </div>
+                <div>{valueOrEmpty(i, col)}</div>
               </div>
             ))}
           </React.Fragment>
