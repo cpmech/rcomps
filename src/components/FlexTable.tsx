@@ -41,6 +41,8 @@ export interface IFlexTableProps {
   showHideIconSize?: number;
   hpadding?: string;
   vpadding?: string;
+  hgapControlButtons?: string;
+  verticalButtonsMainNarrow?: boolean;
   onEdit?: (i: number) => void;
 }
 
@@ -94,9 +96,11 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   controlButtonsProps = {
     height: 28,
   },
-  showHideIconSize = 24,
+  showHideIconSize = 18,
   hpadding = '1.0em',
   vpadding = '0.8em',
+  hgapControlButtons = '6px',
+  verticalButtonsMainNarrow,
   onEdit,
 }) => {
   const [hiddenRows, setHiddenRows] = useState<IHiddenRows>({});
@@ -184,8 +188,8 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
 
   const styleControlButtons = css`
     position: absolute;
-    bottom: 3px;
-    right: 3px;
+    bottom: ${hgapControlButtons};
+    right: 0;
   `;
 
   const styleHeader = css`
@@ -198,6 +202,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   const styleColumnsNarrow = `
     box-sizing: border-box;
     padding: ${vpadding} ${hpadding};
+    overflow: hidden;
   `;
 
   const styleColumnsWide = `
@@ -205,28 +210,28 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     align-items: center;
     box-sizing: border-box;
     padding: ${vpadding} ${hpadding};
+    overflow: hidden;
   `;
 
   const styleFirstColumnNarrow = css`
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
     width: 100%;
     background-color: ${colorMainNarrow};
     border-bottom: 1px solid ${colorBorderMainNarrow};
+    ${!verticalButtonsMainNarrow && `align-items: center;`}
     ${styleColumnsNarrow}
   `;
 
-  const styleFirstColumnWide = css`
-    background-color: ${colorMainWide};
-    border-bottom: 1px solid ${colorBorderMainWide};
-    ${styleColumnsWide}
+  const styleContainerNarrow = css`
+    overflow: hidden;
   `;
 
   const styleActionIcons = css`
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    ${verticalButtonsMainNarrow ? `flex-direction:column;` : `flex-direction:row;`}
   `;
 
   const styleActionIcon = css`
@@ -245,6 +250,12 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     :hover {
       background-color: rgba(0, 0, 0, 0.14);
     }
+  `;
+
+  const styleFirstColumnWide = css`
+    background-color: ${colorMainWide};
+    border-bottom: 1px solid ${colorBorderMainWide};
+    ${styleColumnsWide}
   `;
 
   const styleRowHover = `
@@ -287,12 +298,21 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
           <React.Fragment key={i}>
             {/* --- first column --- */}
             <div css={styleFirstColumnNarrow}>
-              {valueOrEmpty(i, mainColumn)}
+              <div css={styleContainerNarrow}>{valueOrEmpty(i, mainColumn)}</div>
               <div css={styleActionIcons}>
                 {onEdit && (
-                  <div css={styleActionIcon} onClick={() => onEdit(i)}>
-                    <IconPen size={showHideIconSize} />
-                  </div>
+                  <React.Fragment>
+                    <div css={styleActionIcon} onClick={() => onEdit(i)}>
+                      <IconPen size={showHideIconSize} />
+                    </div>
+                    {verticalButtonsMainNarrow && (
+                      <div
+                        css={css`
+                          margin-bottom: ${vpadding};
+                        `}
+                      ></div>
+                    )}
+                  </React.Fragment>
                 )}
                 <div
                   css={styleActionIcon}
