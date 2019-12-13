@@ -1,6 +1,7 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs';
 import { FlexTable } from '../FlexTable';
 
@@ -250,6 +251,56 @@ stories.add('proportions', () => {
       columns={columns}
       labels={labels}
       proportions={proportions}
+    />
+  );
+});
+
+stories.add('onEdit', () => {
+  const labels = {
+    job: 'Job description',
+    ability: 'Ability',
+    knowledge: 'Knowledge',
+    id: 'Id',
+  };
+  const columns = ['name', 'id', 'job', 'ability', 'knowledge'];
+  const rows = [
+    {
+      name: 'Bender Rodriguez',
+      job: 'Delivery robot',
+      ability: 'Robbery',
+      knowledge: 'Bending girders',
+      id: 10101,
+    },
+    {
+      name: 'Turanga Leela',
+      job: 'Ship captain',
+      ability: 'Kung fu',
+      knowledge: 'Pilot ship',
+      id: 22222,
+    },
+    {
+      name: 'Philip J Fry',
+      job: 'Delivery boy',
+      ability: 'Useless',
+      knowledge: 'Nada',
+      id: 0,
+    },
+    {
+      name: 'Hermes Conrad',
+      job: 'Bureaucrat',
+      ability: 'Stamping',
+      knowledge: 'Paperwork',
+      id: 23,
+    },
+  ];
+
+  return (
+    <FlexTable
+      mainColumn="name"
+      rows={rows}
+      columns={columns}
+      labels={labels}
+      onEdit={(i: number) => action(`row ${i} clicked: id = ${rows[i].id}`)()}
     />
   );
 });

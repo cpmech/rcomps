@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
 import { useMediaQuery } from 'react-responsive';
-import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
+import { IconAngleDown, IconAngleUp, IconPen } from '@cpmech/react-icons';
 import { Button, IButtonProps } from './Button';
 import { hasProp } from './helpers';
 
@@ -37,6 +37,7 @@ export interface IFlexTableProps {
   controlHeight?: number;
   controlButtonsProps?: IButtonProps;
   showHideIconSize?: number;
+  onEdit?: (i: number) => void;
 }
 
 type IHiddenRows = { [i: number]: boolean };
@@ -88,6 +89,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     height: 28,
   },
   showHideIconSize = 24,
+  onEdit,
 }) => {
   const [hiddenRows, setHiddenRows] = useState<IHiddenRows>({});
   const isNarrow = useMediaQuery({ maxWidth: narrowWidth });
@@ -192,8 +194,11 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   `;
 
   const styleFirstColumnNarrow = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    position: relative;
     background-color: ${colorMainNarrow};
     border-bottom: 1px solid ${colorBorderMainNarrow};
     ${styleColumns}
@@ -205,21 +210,31 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     ${styleColumns}
   `;
 
-  const styleShowHideIcon = css`
+  const styleActionIcons = css`
+    display: flex;
+    flex-direction: row;
+  `;
+
+  const styleActionIcon = css`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: ${colorIconMainColumn};
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.07);
     border-radius: 5px;
-    position: absolute;
     line-height: 0;
-    width: ${2 * showHideIconSize}px;
+    width: ${2.5 * showHideIconSize}px;
     height: ${1.5 * showHideIconSize}px;
-    right: 12px;
-    top: 8px;
+    margin-left: 12px;
+    :hover {
+      background-color: rgba(0, 0, 0, 0.14);
+    }
+  `;
+
+  const styleRowHover = `
+    cursor: pointer;
     :hover {
       background-color: rgba(0, 0, 0, 0.1);
     }
@@ -228,6 +243,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   const styleRowWide = css`
     display: flex;
     flex-direction: row;
+    ${onEdit && styleRowHover}
   `;
 
   // narrow /////////////////////////////////////////////////////////////////////////////////////////
@@ -258,15 +274,22 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
             {/* --- first column --- */}
             <div css={styleFirstColumnNarrow}>
               {valueOrEmpty(i, mainColumn)}
-              <div
-                css={styleShowHideIcon}
-                onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
-              >
-                {hiddenRows[i] ? (
-                  <IconAngleDown size={showHideIconSize} />
-                ) : (
-                  <IconAngleUp size={showHideIconSize} />
+              <div css={styleActionIcons}>
+                {onEdit && (
+                  <div css={styleActionIcon} onClick={() => onEdit(i)}>
+                    <IconPen size={showHideIconSize} />
+                  </div>
                 )}
+                <div
+                  css={styleActionIcon}
+                  onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
+                >
+                  {hiddenRows[i] ? (
+                    <IconAngleDown size={showHideIconSize} />
+                  ) : (
+                    <IconAngleUp size={showHideIconSize} />
+                  )}
+                </div>
               </div>
             </div>
 
@@ -318,7 +341,15 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
 
       {/* ----------------- content ----------------- */}
       {rows.map((_, i) => (
-        <div key={i} css={styleRowWide}>
+        <div
+          key={i}
+          css={styleRowWide}
+          onClick={() => {
+            if (onEdit) {
+              onEdit(i);
+            }
+          }}
+        >
           {/* --- first column --- */}
           <div
             css={css`
