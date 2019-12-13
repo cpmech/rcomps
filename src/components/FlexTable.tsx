@@ -14,8 +14,10 @@ export interface IFlexTableProps {
   columns?: string[]; // labels of columns: used to sort and select specific columns
   labels?: IFlexTableLabels; // label-to-text conversion; may have missing entries
   proportions?: number[]; // width proportions of columns. must have the same number of total columns
+  hideMainLabelWide?: boolean; // hide main label on wide view
   showLabelsNarrow?: boolean;
   showLabelsWide?: boolean;
+  showMissingLabels?: boolean;
   showControlButtons?: boolean;
   narrowWidth?: number;
   colorMainNarrow?: string;
@@ -50,8 +52,10 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   columns,
   labels,
   proportions,
+  hideMainLabelWide = true,
   showLabelsNarrow = true,
   showLabelsWide = true,
+  showMissingLabels = true,
   showControlButtons = true,
   narrowWidth = 600,
   colorMainNarrow = 'slategrey',
@@ -114,7 +118,10 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   // list of all column labels, including the "mainColumn"
   // use empty '' if the entry is missing
   const allLabels = allColumns.reduce(
-    (a, c) => ({ ...a, [c]: labels && hasProp(labels, c) ? labels[c] : '' }),
+    (a, c) => ({
+      ...a,
+      [c]: labels && hasProp(labels, c) ? labels[c] : showMissingLabels ? c : '',
+    }),
     {},
   );
 
@@ -340,7 +347,9 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                 ${styleColumnsWide}
               `}
             >
-              <span css={styleLabelsWide}>{(allLabels as any)[col]}</span>
+              {j === 0 && hideMainLabelWide ? null : (
+                <span css={styleLabelsWide}>{(allLabels as any)[col]}</span>
+              )}
             </div>
           ))}
         </div>
