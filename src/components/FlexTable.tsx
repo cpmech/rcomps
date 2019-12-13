@@ -185,6 +185,8 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   `;
 
   const styleColumns = `
+    display: flex;
+    align-items: center;
     flex-grow: 1;
     box-sizing: border-box;
     padding: 0.8em 1.2em;
