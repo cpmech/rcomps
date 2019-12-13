@@ -216,7 +216,7 @@ stories.add('proportions', () => {
   const rows = [
     {
       name: 'Bender Rodriguez',
-      job: 'Delivery robot',
+      job: 'Assistent to the delivery boy, supposedly',
       ability: 'Robbery',
       knowledge: 'Bending girders',
       id: 10101,
@@ -266,7 +266,7 @@ stories.add('onEdit', () => {
   const rows = [
     {
       name: 'Bender Rodriguez',
-      job: 'Delivery robot',
+      job: 'Assistent to the delivery boy, supposedly',
       ability: 'Robbery',
       knowledge: 'Bending girders',
       id: 10101,

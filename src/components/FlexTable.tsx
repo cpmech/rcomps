@@ -37,6 +37,8 @@ export interface IFlexTableProps {
   controlHeight?: number;
   controlButtonsProps?: IButtonProps;
   showHideIconSize?: number;
+  hpadding?: string;
+  vpadding?: string;
   onEdit?: (i: number) => void;
 }
 
@@ -89,6 +91,8 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     height: 28,
   },
   showHideIconSize = 24,
+  hpadding = '1.0em',
+  vpadding = '0.8em',
   onEdit,
 }) => {
   const [hiddenRows, setHiddenRows] = useState<IHiddenRows>({});
@@ -184,15 +188,16 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     line-height: 1.2em;
   `;
 
-  const styleColumns = `
+  const styleColumnsNarrow = `
+    box-sizing: border-box;
+    padding: ${vpadding} ${hpadding};
+  `;
+
+  const styleColumnsWide = `
     display: flex;
     align-items: center;
-    flex-grow: 1;
     box-sizing: border-box;
-    padding: 0.8em 1.2em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    list-style: none;
+    padding: ${vpadding} ${hpadding};
   `;
 
   const styleFirstColumnNarrow = css`
@@ -203,13 +208,13 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     width: 100%;
     background-color: ${colorMainNarrow};
     border-bottom: 1px solid ${colorBorderMainNarrow};
-    ${styleColumns}
+    ${styleColumnsNarrow}
   `;
 
   const styleFirstColumnWide = css`
     background-color: ${colorMainWide};
     border-bottom: 1px solid ${colorBorderMainWide};
-    ${styleColumns}
+    ${styleColumnsWide}
   `;
 
   const styleActionIcons = css`
@@ -229,7 +234,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     line-height: 0;
     width: ${2.5 * showHideIconSize}px;
     height: ${1.5 * showHideIconSize}px;
-    margin-left: 12px;
+    margin-left: ${hpadding};
     :hover {
       background-color: rgba(0, 0, 0, 0.14);
     }
@@ -303,7 +308,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                   width: 100%;
                   display: ${hiddenRows[i] ? 'none' : 'block'};
                   border-bottom: 1px solid ${colorBorderNarrow};
-                  ${styleColumns}
+                  ${styleColumnsNarrow}
                 `}
               >
                 {showLabelsNarrow && (
@@ -332,7 +337,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
               key={col}
               css={css`
                 width: ${widths[j]}%;
-                ${styleColumns}
+                ${styleColumnsWide}
               `}
             >
               <span css={styleLabelsWide}>{(allLabels as any)[col]}</span>
@@ -370,7 +375,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                 width: ${widths[J + 1]}%;
                 border-top: ${i === 0 ? 1 : 0}px solid ${colorBorderWide};
                 border-bottom: 1px solid ${colorBorderWide};
-                ${styleColumns}
+                ${styleColumnsWide}
               `}
             >
               {valueOrEmpty(i, col)}
