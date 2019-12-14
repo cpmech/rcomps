@@ -1,4 +1,4 @@
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+import { css } from '@emotion/core';
 
 // hlColor = '#00bafa', // lighter blue
 // hlColor = '#2196F3', // darker blue
