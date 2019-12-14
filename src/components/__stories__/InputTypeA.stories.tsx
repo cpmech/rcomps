@@ -24,6 +24,10 @@ stories.add('default', () => (
 
 stories.add('error', () => <InputTypeA name="email" label="Email" error={true} />);
 
+stories.add('readonly', () => (
+  <InputTypeA name="email" label="Email" value="testing@example.com" readOnly={true} />
+));
+
 stories.add('stacked', () => (
   <div
     css={css`

@@ -91,7 +91,7 @@ export const getTypeAcss = (
       background-color: ${bgColor};
       resize: none;
       outline: none;
-      ${pickerMode ? `cursor:pointer;` : ''}
+      ${pickerMode && !textMode ? `cursor:pointer;` : ''}
     }
     input[required] + label[placeholder] {
       display: block;

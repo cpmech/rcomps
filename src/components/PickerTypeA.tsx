@@ -39,24 +39,32 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
+      if (readOnly) {
+        return;
+      }
       if (refRoot.current && e.target) {
         if (!refRoot.current.contains(e.target as Node)) {
           setOpen(false);
         }
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [refRoot]);
+    if (!readOnly) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [refRoot, readOnly]);
 
   const handleButtonClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    if (readOnly) {
+      return;
+    }
     e.preventDefault();
     setOpen(!open);
   };
 
-  const root = getTypeAcss(false, true, rest);
+  const root = getTypeAcss(readOnly, true, rest);
   const floatCss = getFloatCss(open, heightBox, widthBox, boxToRight);
   const { fontSize = 18, height = 50, color = '#484848' } = rest;
 
@@ -72,18 +80,20 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
           readOnly={true}
         />
         <label placeholder={label}></label>
-        <div
-          css={css`
-            position: absolute;
-            line-height: ${fontSize}px;
-            top: ${height / 2 - fontSize / 2}px;
-            right: ${iconPaddingRight}px;
-            color: ${rest.darkMode ? 'white' : color};
-          `}
-          onClick={handleButtonClick}
-        >
-          {open ? <IconAngleUp size={fontSize} /> : <IconAngleDown size={fontSize} />}
-        </div>
+        {!readOnly && (
+          <div
+            css={css`
+              position: absolute;
+              line-height: ${fontSize}px;
+              top: ${height / 2 - fontSize / 2}px;
+              right: ${iconPaddingRight}px;
+              color: ${rest.darkMode ? 'white' : color};
+            `}
+            onClick={handleButtonClick}
+          >
+            {open ? <IconAngleUp size={fontSize} /> : <IconAngleDown size={fontSize} />}
+          </div>
+        )}
       </div>
       <div css={floatCss}>
         {entries.map(e => (

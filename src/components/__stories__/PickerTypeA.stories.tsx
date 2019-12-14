@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { PickerTypeA } from '../PickerTypeA';
 import { InputTypeA } from '../InputTypeA';
 import { TextTypeA } from '../TextTypeA';
@@ -33,6 +33,16 @@ stories.add('default', () => (
     selected={entries[1].message}
     entries={entries}
     label="Please, choose one"
+  />
+));
+
+stories.add('readonly', () => (
+  <PickerTypeA
+    name="sel1"
+    selected={entries[1].message}
+    entries={entries}
+    label="Please, choose one"
+    readOnly={boolean('readOnly', true)}
   />
 ));
 
