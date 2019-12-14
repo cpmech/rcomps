@@ -26,7 +26,7 @@ stories.add('on row', () => (
   >
     <TextTypeA name="name" label="Name" value="Hello World!" flatRight={true} />
     <TextTypeA name="email" label="Email" flatLeft={true} flatRight={true} />
-    <TextTypeA name="password" label="Password" type="password" flatLeft={true} />
+    <TextTypeA name="password" label="Password" flatLeft={true} />
   </div>
 ));
 

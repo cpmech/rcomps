@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { InputTypeA } from '../InputTypeA';
 import { IconExclamation, IconEye, IconEyeNo } from '@cpmech/react-icons';
 
@@ -10,7 +10,17 @@ const stories = storiesOf('InputTypeA', module);
 
 stories.addDecorator(withKnobs);
 
-stories.add('default', () => <InputTypeA name="email" label="Email" />);
+stories.add('default', () => (
+  <div>
+    <InputTypeA
+      name="email"
+      label="Email"
+      value="testing@example.com"
+      readOnly={boolean('readOnly', false)}
+    />
+    <InputTypeA name="email" label="Email" readOnly={boolean('readOnly', false)} />
+  </div>
+));
 
 stories.add('error', () => <InputTypeA name="email" label="Email" error={true} />);
 
@@ -26,7 +36,7 @@ stories.add('stacked', () => (
   >
     <InputTypeA name="name" label="Name" value="Hello World!" />
     <InputTypeA name="email" label="Email" />
-    <InputTypeA name="password" label="Password" type="password" />
+    <InputTypeA name="password" label="Password" password={true} />
   </div>
 ));
 
@@ -39,7 +49,7 @@ stories.add('on row', () => (
   >
     <InputTypeA name="name" label="Name" value="Hello World!" flatRight={true} />
     <InputTypeA name="email" label="Email" flatLeft={true} flatRight={true} />
-    <InputTypeA name="password" label="Password" type="password" flatLeft={true} />
+    <InputTypeA name="password" label="Password" password={true} flatLeft={true} />
   </div>
 ));
 
@@ -87,7 +97,7 @@ stories.add('sizing', () => (
       <InputTypeA
         name="password"
         label="Password"
-        type="password"
+        password={true}
         marginVert={40}
         width="400px"
         labelFontSize={12}
@@ -124,7 +134,7 @@ stories.add('light and dark bg', () => (
       <InputTypeA
         name="password"
         label="Password"
-        type="password"
+        password={true}
         bgColor={bgColor}
         darkMode={true}
       />
@@ -162,8 +172,8 @@ const Password = () => {
   );
   return (
     <InputTypeA
-      type={show ? 'text' : 'password'}
       label="Password"
+      password={!show}
       value={value}
       suffix={icon}
       onChange={e => setValue(e.target.value)}

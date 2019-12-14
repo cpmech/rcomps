@@ -26,3 +26,4 @@ export * from './TextTypeA';
 export * from './TopMenu';
 export * from './YouTube';
 export * from './highlevel';
+export * from './styles';

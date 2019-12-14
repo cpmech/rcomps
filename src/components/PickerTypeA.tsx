@@ -3,36 +3,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Link } from './Link';
 import { IPickerEntry } from './Picker';
-import { getFloatCss } from './styles';
+import { getFloatCss, ITypeAProps, getTypeAcss } from './styles';
 
-export interface IPickerTypeAProps {
+export interface IPickerTypeAProps extends ITypeAProps {
   entries: IPickerEntry[];
   selected?: string; // title [use on uncontrolled component]
   value?: string; // title [use on controlled component]
   name?: string;
   label?: string;
-  width?: string;
-  height?: number;
   widthBox?: string; // width of entries box
   heightBox?: number; // height of entries box
   boxToRight?: boolean;
-  borderRadius?: number;
-  flatLeft?: boolean;
-  flatRight?: boolean;
-  fontSize?: number;
-  labelFontSize?: number;
-  scaleLabel?: number;
-  paddingHoriz?: number;
-  labelPaddingHoriz?: number;
-  color?: string;
-  mutedColor?: string;
-  hlColor?: string;
-  bgColor?: string;
-  borderColor?: string;
-  darkMode?: boolean;
-  marginVert?: number;
   messageStyle?: SerializedStyles;
   iconPaddingRight?: number;
+  readOnly?: boolean;
 }
 
 export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
@@ -41,28 +25,13 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
   value,
   name,
   label,
-  width,
-  height = 50,
   widthBox,
   heightBox,
   boxToRight,
-  borderRadius = 300,
-  flatLeft,
-  flatRight,
-  fontSize = 18,
-  labelFontSize = 18,
-  scaleLabel = 0.8,
-  paddingHoriz = 20,
-  labelPaddingHoriz = 5,
-  color = '#484848',
-  mutedColor = '#898989',
-  hlColor = '#1ca086', // green
-  bgColor = '#ffffff',
-  borderColor = '#cccccc',
-  darkMode,
-  marginVert,
   messageStyle,
   iconPaddingRight = 15,
+  readOnly = false,
+  ...rest
 }) => {
   const [btnText, setBtnText] = useState(selected || '');
   const [open, setOpen] = useState(false);
@@ -87,84 +56,20 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
     setOpen(!open);
   };
 
-  const deltaLabel = height / 2 + labelFontSize / 2;
-  const deltaLine = height / 2;
-  const marginTop = marginVert || (scaleLabel * labelFontSize) / 2;
-
-  if (darkMode) {
-    color = 'white';
-    hlColor = 'white';
-    mutedColor = '#cccccc';
-  }
-
+  const root = getTypeAcss(false, true, rest);
   const floatCss = getFloatCss(open, heightBox, widthBox, boxToRight);
+  const { fontSize = 18, height = 50, color = '#484848' } = rest;
 
   return (
     <div ref={refRoot}>
-      <div
-        css={css`
-          position: relative;
-          height: ${height}px;
-          margin-top: ${marginTop}px;
-          ${width && `width:${width};`}
-
-          input {
-            font-size: ${fontSize}px;
-            box-sizing: border-box;
-            height: ${height}px;
-            width: 100%;
-            padding-left: ${paddingHoriz}px;
-            padding-right: ${paddingHoriz}px;
-            border: 1px solid ${borderColor};
-            border-radius: ${borderRadius}px;
-            ${flatLeft && `border-top-left-radius:0;border-bottom-left-radius:0;`}
-            ${flatRight && `border-top-right-radius:0;border-bottom-right-radius:0;`}
-            color: ${color};
-            background-color: ${bgColor};
-            resize: none;
-            outline: none;
-            text-align: left;
-          }
-          input[required]:focus {
-            border-color: ${hlColor};
-          }
-          input[required]:focus + label[placeholder]:before {
-            color: ${hlColor};
-          }
-          input[required]:invalid + label[placeholder][alt]:before {
-            content: attr(placeholder);
-          }
-          input[required] + label[placeholder] {
-            display: block;
-            pointer-events: none;
-            line-height: ${labelFontSize}px;
-            margin-top: -${deltaLabel}px;
-          }
-          input[required] + label[placeholder]:before {
-            transform-origin: center left;
-            transform: translate(0, -${deltaLine}px) scale(${scaleLabel}, ${scaleLabel});
-            padding-left: ${labelPaddingHoriz}px;
-            content: attr(placeholder);
-            display: inline-block;
-            font-size: ${labelFontSize}px;
-            margin-left: ${paddingHoriz + labelPaddingHoriz}px;
-            padding-right: ${labelPaddingHoriz}px;
-            color: ${mutedColor};
-            white-space: nowrap;
-            transition: 0.3s ease-in-out;
-            background-image: linear-gradient(to bottom, ${bgColor}, ${bgColor});
-            background-size: 100% ${height}px;
-            background-repeat: no-repeat;
-            background-position: center;
-          }
-        `}
-      >
+      <div css={root}>
         <input
           name={name}
           required={true}
-          type="button"
+          type="text"
           value={value || btnText}
           onClick={handleButtonClick}
+          readOnly={true}
         />
         <label placeholder={label}></label>
         <div
@@ -173,7 +78,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
             line-height: ${fontSize}px;
             top: ${height / 2 - fontSize / 2}px;
             right: ${iconPaddingRight}px;
-            color: ${color};
+            color: ${rest.darkMode ? 'white' : color};
           `}
           onClick={handleButtonClick}
         >
