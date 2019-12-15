@@ -4,7 +4,7 @@ import { getButtonCss } from './styles';
 
 export interface IButtonProps {
   href?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   width?: string;
   height?: number;
   paddingHoriz?: number;
@@ -63,7 +63,7 @@ export const Button: React.FC<IButtonProps> = ({
         if (href) {
           window.location.href = href;
         } else if (onClick) {
-          onClick();
+          onClick(e);
         }
       }}
     >
