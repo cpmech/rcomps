@@ -3,9 +3,11 @@ import React, { ReactNode } from 'react';
 import { ITypeAProps, getTypeAcss } from './styles';
 
 export interface IInputTypeAProps extends ITypeAProps {
+  inputRef?: (e: HTMLInputElement) => void;
   name?: string;
   label?: string;
   value?: string;
+  defaultValue?: string | number;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   password?: boolean;
@@ -15,9 +17,11 @@ export interface IInputTypeAProps extends ITypeAProps {
 }
 
 export const InputTypeA: React.FC<IInputTypeAProps> = ({
+  inputRef,
   name,
   label,
   value,
+  defaultValue,
   onChange,
   onBlur,
   password,
@@ -31,10 +35,12 @@ export const InputTypeA: React.FC<IInputTypeAProps> = ({
   return (
     <div css={root}>
       <input
+        ref={inputRef}
         name={name}
         required={true}
         type={password ? 'password' : 'text'}
         value={value}
+        defaultValue={defaultValue}
         onChange={onChange}
         onBlur={onBlur}
         readOnly={readOnly}
