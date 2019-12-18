@@ -40,6 +40,9 @@ export const FormErrorField: React.FC<IFormErrorFieldProps> = ({
   if (error) {
     message = typeof error === 'string' ? error : error.message || '';
   }
+  if (!message && !fixedHeight) {
+    return null;
+  }
   return (
     <div
       css={css`
