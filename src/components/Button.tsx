@@ -4,6 +4,7 @@ import { getButtonCss } from './styles';
 
 export interface IButtonProps {
   href?: string;
+  type?: 'button' | 'submit' | 'reset' | undefined;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   width?: string;
   height?: number;
@@ -22,6 +23,7 @@ export interface IButtonProps {
 
 export const Button: React.FC<IButtonProps> = ({
   href,
+  type = 'button',
   onClick,
   width,
   height = 40,
@@ -58,6 +60,7 @@ export const Button: React.FC<IButtonProps> = ({
     <button
       css={buttonCss}
       disabled={disabled}
+      type={type}
       onClick={e => {
         e.preventDefault();
         if (href) {
