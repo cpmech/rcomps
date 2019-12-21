@@ -11,7 +11,6 @@ interface IModalYesNoProps extends IModalProps {
   colorNo?: string;
   noAtLeft?: boolean;
   msgBtnGap?: number;
-  minWidth?: number;
   btnWidth?: string;
 }
 
@@ -24,8 +23,8 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
   colorNo = '#e62739',
   noAtLeft,
   msgBtnGap = 30,
-  minWidth = 300,
   btnWidth,
+  minWidth = '300px',
   ...rest
 }) => {
   return (

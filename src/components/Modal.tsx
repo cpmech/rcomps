@@ -20,6 +20,8 @@ export interface IModalProps {
   titleStyle?: SerializedStyles;
   width?: string;
   height?: string;
+  minWidth?: string;
+  maxWidth?: string;
   minHeight?: string;
   maxHeight?: string;
   zIndex?: number;
@@ -46,6 +48,8 @@ export const Modal: React.FC<IModalProps> = ({
   `,
   width,
   height,
+  minWidth,
+  maxWidth,
   minHeight,
   maxHeight,
   zIndex = 1,
@@ -98,6 +102,8 @@ export const Modal: React.FC<IModalProps> = ({
           background-color: ${bgColor};
           ${width ? `width:${width}; overflow:auto;` : ''}
           ${height ? `height:${height}; overflow:auto;` : ''}
+          ${minWidth ? `min-width:${minWidth}; overflow:auto;` : ''}
+          ${maxWidth ? `max-width:${maxWidth}; overflow:auto;` : ''}
           ${minHeight ? `min-height:${minHeight}; overflow:auto;` : ''}
           ${maxHeight ? `max-height:${maxHeight}; overflow:auto;` : ''}
         `}
