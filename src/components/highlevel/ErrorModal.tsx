@@ -1,8 +1,8 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { Modal } from '../Modal';
+import { Modal, IModalProps } from '../Modal';
 
-interface IErrorModelProps {
+interface IErrorModelProps extends IModalProps {
   title?: string;
   onClose: () => void;
   message: string;
@@ -14,6 +14,7 @@ export const ErrorModal: React.FC<IErrorModelProps> = ({
   onClose,
   message,
   colorTitle = '#e62739',
+  ...rest
 }) => {
   return (
     <Modal
@@ -24,6 +25,7 @@ export const ErrorModal: React.FC<IErrorModelProps> = ({
         font-weight: bold;
         font-size: 1.2em;
       `}
+      {...rest}
     >
       <p
         css={css`
