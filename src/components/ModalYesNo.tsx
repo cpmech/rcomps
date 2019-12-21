@@ -1,6 +1,6 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { Button } from './Button';
+import { Button, IButtonProps } from './Button';
 import { Modal, IModalProps } from './Modal';
 
 interface IModalYesNoProps extends IModalProps {
@@ -12,6 +12,8 @@ interface IModalYesNoProps extends IModalProps {
   noAtLeft?: boolean;
   msgBtnGap?: number;
   btnWidth?: string;
+  leftButtonStyle?: IButtonProps;
+  rightButtonStyle?: IButtonProps;
 }
 
 export const ModalYesNo: React.FC<IModalYesNoProps> = ({
@@ -24,7 +26,9 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
   noAtLeft,
   msgBtnGap = 30,
   btnWidth,
-  minWidth = '300px',
+  children,
+  leftButtonStyle,
+  rightButtonStyle,
   ...rest
 }) => {
   return (
@@ -35,20 +39,23 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
           margin-bottom: 20px;
         `}
       >
-        <p
-          css={css`
-            min-width: ${minWidth}px;
-            ${msgBtnGap && `margin-bottom:${msgBtnGap}px;`}
-          `}
-        >
-          {message}
-        </p>
+        {message ? (
+          <p
+            css={css`
+              ${msgBtnGap ? `margin-bottom:${msgBtnGap}px;` : ''}
+            `}
+          >
+            {message}
+          </p>
+        ) : (
+          children
+        )}
         <div
           css={css`
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            ${noAtLeft && `flex-flow: row-reverse;`}
+            ${noAtLeft ? `flex-flow: row-reverse;` : ''}
           `}
         >
           <Button
@@ -59,10 +66,11 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
             outline={true}
             color={colorNo}
             width={btnWidth}
+            {...leftButtonStyle}
           >
             {txtYes}
           </Button>
-          <Button onClick={rest.onClose} outline={true} width={btnWidth}>
+          <Button onClick={rest.onClose} outline={true} width={btnWidth} {...rightButtonStyle}>
             {txtNo}
           </Button>
         </div>
