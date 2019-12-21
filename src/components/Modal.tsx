@@ -3,7 +3,6 @@ import React, { useRef, useEffect } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 
 export interface IModalProps {
-  isOpen: boolean;
   onClose: () => void;
   title?: string;
   titleFontSize?: number;
@@ -27,7 +26,6 @@ export interface IModalProps {
 }
 
 export const Modal: React.FC<IModalProps> = ({
-  isOpen,
   onClose,
   title,
   titleFontSize = 16,
@@ -75,7 +73,6 @@ export const Modal: React.FC<IModalProps> = ({
     <div
       css={css`
         /* background */
-        display: ${isOpen ? 'block' : 'none'};
         position: fixed;
         z-index: ${zIndex};
         left: 0;

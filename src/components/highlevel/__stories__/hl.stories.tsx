@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import {
@@ -23,13 +23,15 @@ stories.add('FormErrorField', () => (
   <FormErrorField error={{ type: '', message: 'Email is invalid' }} />
 ));
 
-stories.add('ErrorModal', () => (
-  <ErrorModal
-    isOpen={boolean('Show Error Modal', true)}
-    onClose={action('Close Erorr Modal')}
-    message="User name is incorrect"
-  />
-));
+stories.add('ErrorModal', () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setOpen(true)}>Show modal</button>
+      {open && <ErrorModal onClose={() => setOpen(false)} message="User name is incorrect" />}
+    </div>
+  );
+});
 
 stories.add('ErrorPage', () => <ErrorPage heightMenu={0} />);
 

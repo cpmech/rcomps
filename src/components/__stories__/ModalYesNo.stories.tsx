@@ -13,12 +13,13 @@ stories.add('default', () => {
   return (
     <div>
       <button onClick={() => setOpen(true)}>Show Modal</button>
-      <ModalYesNo
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        onYes={action('yes clicked')}
-        message="Are you sure you want to have fun with React?"
-      />
+      {open && (
+        <ModalYesNo
+          onClose={() => setOpen(false)}
+          onYes={action('yes clicked')}
+          message="Are you sure you want to have fun with React?"
+        />
+      )}
     </div>
   );
 });
@@ -28,17 +29,18 @@ stories.add('styled', () => {
   return (
     <div>
       <button onClick={() => setOpen(true)}>Show Modal</button>
-      <ModalYesNo
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        onYes={action('yes clicked')}
-        message="Are you sure you want to have fun with React?"
-        noAtLeft={true}
-        txtYes="Of course"
-        txtNo="Maybe"
-        colorNo="green"
-        btnWidth="150px"
-      />
+      {open && (
+        <ModalYesNo
+          onClose={() => setOpen(false)}
+          onYes={action('yes clicked')}
+          message="Are you sure you want to have fun with React?"
+          noAtLeft={true}
+          txtYes="Of course"
+          txtNo="Maybe"
+          colorNo="green"
+          btnWidth="150px"
+        />
+      )}
     </div>
   );
 });

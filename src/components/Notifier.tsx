@@ -3,7 +3,6 @@ import React from 'react';
 import { IconClose } from '@cpmech/react-icons';
 
 interface INotifierProps {
-  isOpen: boolean;
   onClose: () => void;
   title?: string;
   caption?: string;
@@ -29,7 +28,6 @@ interface INotifierProps {
 }
 
 export const Notifier: React.FC<INotifierProps> = ({
-  isOpen,
   onClose,
   title,
   caption,
@@ -60,7 +58,6 @@ export const Notifier: React.FC<INotifierProps> = ({
   return (
     <div
       css={css`
-        display: ${isOpen ? 'block' : 'none'};
         position: fixed;
         left: 0;
         bottom: 0;

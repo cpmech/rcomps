@@ -14,19 +14,22 @@ stories.add('default', () => {
   return (
     <div>
       <button onClick={() => setOpen(true)}>Show Modal</button>
-      <Modal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        title="Notifications"
-        titleStyle={css`
-          font-weight: bold;
-          color: #e62739;
-        `}
-        height="70vh"
-        width="90%"
-      >
-        {loremIpsum}
-      </Modal>
+      <p>{loremIpsum}</p>
+      <p>{loremIpsum}</p>
+      {open && (
+        <Modal
+          onClose={() => setOpen(false)}
+          title="Notifications"
+          titleStyle={css`
+            font-weight: bold;
+            color: #e62739;
+          `}
+          height="70vh"
+          width="90%"
+        >
+          {loremIpsum}
+        </Modal>
+      )}
     </div>
   );
 });
@@ -36,20 +39,21 @@ stories.add('no click outside', () => {
   return (
     <div>
       <button onClick={() => setOpen(true)}>Show Modal</button>
-      <Modal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        title="Notifications"
-        titleStyle={css`
-          font-weight: bold;
-          color: #e62739;
-        `}
-        height="70vh"
-        width="90%"
-        allowClickOutsideToClose={false}
-      >
-        {loremIpsum}
-      </Modal>
+      {open && (
+        <Modal
+          onClose={() => setOpen(false)}
+          title="Notifications"
+          titleStyle={css`
+            font-weight: bold;
+            color: #e62739;
+          `}
+          height="70vh"
+          width="90%"
+          allowClickOutsideToClose={false}
+        >
+          {loremIpsum}
+        </Modal>
+      )}
     </div>
   );
 });
@@ -59,22 +63,23 @@ stories.add('with buttons', () => {
   return (
     <div>
       <button onClick={() => setOpen(true)}>Show Modal</button>
-      <Modal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        title="Notifications"
-        titleStyle={css`
-          font-weight: bold;
-          color: #e62739;
-        `}
-        height="70vh"
-        width="90%"
-      >
-        <div>
-          <h3>Upload file</h3>
-          <input type="file" />
-        </div>
-      </Modal>
+      {open && (
+        <Modal
+          onClose={() => setOpen(false)}
+          title="Notifications"
+          titleStyle={css`
+            font-weight: bold;
+            color: #e62739;
+          `}
+          height="70vh"
+          width="90%"
+        >
+          <div>
+            <h3>Upload file</h3>
+            <input type="file" />
+          </div>
+        </Modal>
+      )}
     </div>
   );
 });
