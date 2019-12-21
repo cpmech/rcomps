@@ -13,7 +13,7 @@ class ScrollBehaviour {
     const dummyScroller = document.createElement('div');
     dummyScroller.setAttribute(
       'style',
-      'width:99px;height:99px;' + 'position:absolute;top:-9999px;overflow:scroll;',
+      'width:99px;height:99px;position:absolute;top:-9999px;overflow:scroll;',
     );
     doc.appendChild(dummyScroller);
     this.scrollbarSize = dummyScroller.offsetWidth - dummyScroller.clientWidth;
