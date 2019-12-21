@@ -119,7 +119,7 @@ export const Switch: React.FC<ISwitchProps> = ({
     >
       <input
         type="checkbox"
-        checked={on}
+        defaultChecked={on}
         onClick={onClick}
         css={css`
           opacity: 0;
