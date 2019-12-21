@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 /** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
 import { IconClose } from '@cpmech/react-icons';
+import { useLockBodyScroll } from './helpers';
 
 export interface IModalProps {
   onClose: () => void;
@@ -68,6 +69,8 @@ export const Modal: React.FC<IModalProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose, allowClickOutsideToClose]);
+
+  useLockBodyScroll();
 
   return (
     <div

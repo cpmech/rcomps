@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Modal } from '../Modal';
 import { loremIpsum } from './loremIpsum';
+import { Button } from '../Button';
 
 const stories = storiesOf('Modal', module);
 
@@ -13,9 +14,35 @@ stories.add('default', () => {
   const [open, setOpen] = useState(true);
   return (
     <div>
-      <button onClick={() => setOpen(true)}>Show Modal</button>
-      <p>{loremIpsum}</p>
-      <p>{loremIpsum}</p>
+      <Button
+        onClick={() => setOpen(true)}
+        fontWeight="bold"
+        color="white"
+        backgroundColor="#803ced"
+        borderRadius={300}
+      >
+        Show Modal
+      </Button>
+      <div>{loremIpsum}</div>
+      <Button
+        onClick={() => setOpen(true)}
+        fontWeight="bold"
+        color="white"
+        backgroundColor="#803ced"
+        borderRadius={300}
+      >
+        Show Modal
+      </Button>
+      <div>{loremIpsum}</div>
+      <Button
+        onClick={() => setOpen(true)}
+        fontWeight="bold"
+        color="white"
+        backgroundColor="#803ced"
+        borderRadius={300}
+      >
+        Show Modal
+      </Button>
       {open && (
         <Modal
           onClose={() => setOpen(false)}

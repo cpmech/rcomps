@@ -68,6 +68,7 @@ export const Button: React.FC<IButtonProps> = ({
         } else if (onClick) {
           onClick(e);
         }
+        return false;
       }}
     >
       {children}
