@@ -5,7 +5,7 @@ import { Modal, IModalProps } from '../Modal';
 interface IErrorModelProps extends IModalProps {
   title?: string;
   onClose: () => void;
-  message: string;
+  message?: string;
   colorTitle?: string;
 }
 
@@ -14,6 +14,7 @@ export const ErrorModal: React.FC<IErrorModelProps> = ({
   onClose,
   message,
   colorTitle = '#e62739',
+  children,
   ...rest
 }) => {
   return (
@@ -27,14 +28,18 @@ export const ErrorModal: React.FC<IErrorModelProps> = ({
       `}
       {...rest}
     >
-      <p
-        css={css`
-          min-height: 100px;
-          min-width: 300px;
-        `}
-      >
-        {message}
-      </p>
+      {message ? (
+        <p
+          css={css`
+            min-height: 100px;
+            min-width: 300px;
+          `}
+        >
+          {message}
+        </p>
+      ) : (
+        children
+      )}
     </Modal>
   );
 };
