@@ -4,7 +4,7 @@ import { Button, IButtonProps } from './Button';
 import { Modal, IModalProps } from './Modal';
 
 interface IModalYesNoProps extends IModalProps {
-  onYes: () => void;
+  onYes: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   txtYes?: string;
   txtNo?: string;
   message?: string;
@@ -59,9 +59,9 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
           `}
         >
           <Button
-            onClick={() => {
+            onClick={e => {
               rest.onClose();
-              onYes();
+              onYes(e);
             }}
             outline={true}
             color={colorNo}
