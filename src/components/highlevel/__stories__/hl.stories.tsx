@@ -8,8 +8,8 @@ import {
   FormErrorField,
   MessagePage,
   SpinnerPage,
+  ProgressPage,
 } from '../index';
-import { action } from '@storybook/addon-actions';
 
 const stories = storiesOf('high-level', module);
 
@@ -38,3 +38,5 @@ stories.add('ErrorPage', () => <ErrorPage heightMenu={0} />);
 stories.add('MessagePage', () => <MessagePage heightMenu={0} />);
 
 stories.add('SpinnerPage', () => <SpinnerPage heightMenu={0} />);
+
+stories.add('ProgressPage', () => <ProgressPage heightMenu={0} progress={50} />);

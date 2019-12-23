@@ -1,7 +1,7 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
-interface IProgressLinearProps {
+export interface IProgressLinearProps {
   progress: number;
   color?: string;
   backgroundColor?: string;
