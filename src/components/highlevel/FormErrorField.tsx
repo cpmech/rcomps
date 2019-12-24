@@ -1,22 +1,8 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
-declare type ValidateResult = string | boolean | undefined;
-
-declare type MultipleFieldErrors = Record<string, ValidateResult>;
-
-declare type Ref = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | any;
-
-interface IFieldError {
-  type: string;
-  ref?: Ref;
-  types?: MultipleFieldErrors;
-  message?: string;
-  isManual?: boolean;
-}
-
 interface IFormErrorFieldProps {
-  error?: string | IFieldError;
+  error?: any;
   fixedHeight?: boolean;
   height?: number;
   fontSize?: number;
@@ -36,11 +22,7 @@ export const FormErrorField: React.FC<IFormErrorFieldProps> = ({
   marginTop = 7,
   color = '#e62739',
 }) => {
-  let message = '';
-  if (error) {
-    message = typeof error === 'string' ? error : error.message || '';
-  }
-  if (!message && !fixedHeight) {
+  if (!error && !fixedHeight) {
     return null;
   }
   return (
@@ -54,7 +36,7 @@ export const FormErrorField: React.FC<IFormErrorFieldProps> = ({
         color: ${color};
       `}
     >
-      {message}
+      {error}
     </div>
   );
 };

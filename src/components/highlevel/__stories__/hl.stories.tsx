@@ -19,9 +19,7 @@ stories.add('ErrorFormField', () => (
   <ErrorFormField canShow={boolean('Show Error Message', true)} message="Email is invalid" />
 ));
 
-stories.add('FormErrorField', () => (
-  <FormErrorField error={{ type: '', message: 'Email is invalid' }} />
-));
+stories.add('FormErrorField', () => <FormErrorField error={'Email is invalid'} />);
 
 stories.add('ErrorModal', () => {
   const [open, setOpen] = useState(false);
