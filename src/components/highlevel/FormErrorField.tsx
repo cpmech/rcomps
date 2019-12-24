@@ -1,5 +1,6 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
+import { hasProp } from '../helpers';
 
 interface IFormErrorFieldProps {
   error?: any;
@@ -22,7 +23,18 @@ export const FormErrorField: React.FC<IFormErrorFieldProps> = ({
   marginTop = 7,
   color = '#e62739',
 }) => {
-  if (!error && !fixedHeight) {
+  if (!error) {
+    return null;
+  }
+  let message = '';
+  if (typeof error === 'string') {
+    message = error;
+  } else if (hasProp(error, 'message')) {
+    message = error.message;
+  } else {
+    message = JSON.stringify(error);
+  }
+  if (!message && !fixedHeight) {
     return null;
   }
   return (
@@ -36,7 +48,7 @@ export const FormErrorField: React.FC<IFormErrorFieldProps> = ({
         color: ${color};
       `}
     >
-      {error}
+      {message}
     </div>
   );
 };
