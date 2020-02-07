@@ -25,6 +25,7 @@ export interface ITypeAProps {
   colorError?: string;
   transTime?: string;
   marginVert?: number;
+  extraDeltaLabel?: number; // to account for weird fonts, because all the computations here are precise
 }
 
 export const getTypeAcss = (
@@ -51,10 +52,11 @@ export const getTypeAcss = (
     hlColor = '#1ca086',
     colorError = '#e62739',
     transTime = '300ms',
+    extraDeltaLabel = 0,
     marginVert,
   }: ITypeAProps,
 ) => {
-  const deltaLabel = height / 2 + labelFontSize / 2;
+  const deltaLabel = height / 2 + labelFontSize / 2 + extraDeltaLabel;
   const deltaLine = height / 2;
   const marginTop = marginVert || (scaleLabel * labelFontSize) / 2;
 

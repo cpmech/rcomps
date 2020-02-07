@@ -22,6 +22,28 @@ stories.add('default', () => (
   </div>
 ));
 
+stories.add('default (smaller)', () => (
+  <div>
+    <InputTypeA
+      name="email"
+      label="Email"
+      value="testing@example.com"
+      readOnly={boolean('readOnly', false)}
+      height={32}
+      fontSize={14}
+      labelFontSize={14}
+    />
+    <InputTypeA
+      name="email"
+      label="Email"
+      readOnly={boolean('readOnly', false)}
+      height={32}
+      fontSize={14}
+      labelFontSize={14}
+    />
+  </div>
+));
+
 stories.add('error', () => <InputTypeA name="email" label="Email" error={true} />);
 
 stories.add('readonly', () => (
