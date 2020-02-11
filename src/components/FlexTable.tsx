@@ -220,7 +220,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     width: 100%;
     background-color: ${colorMainNarrow};
     border-bottom: 1px solid ${colorBorderMainNarrow};
-    ${!verticalButtonsMainNarrow && `align-items: center;`}
+    ${!verticalButtonsMainNarrow ? `align-items: center;` : ''}
     ${styleColumnsNarrow}
   `;
 

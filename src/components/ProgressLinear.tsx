@@ -23,8 +23,8 @@ export const ProgressLinear: React.FC<IProgressLinearProps> = ({
   return (
     <div
       css={css`
-        ${backgroundColor && `background-color: ${backgroundColor};`}
-        ${borderColor && `border: 1px solid ${borderColor};`}
+        ${backgroundColor ? `background-color: ${backgroundColor};` : ''}
+        ${borderColor ? `border: 1px solid ${borderColor};` : ''}
         border-radius: 300px;
       `}
     >

@@ -98,7 +98,7 @@ export const Picker: React.FC<IPickerProps> = ({
       css={css`
         position: relative;
         display: inline-block;
-        ${width && `width:${width};`}
+        ${width ? `width:${width};` : ''}
       `}
     >
       <button css={buttonCss} onClick={handleButtonClick}>

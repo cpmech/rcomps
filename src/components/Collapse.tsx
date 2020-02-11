@@ -43,7 +43,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
   return (
     <div
       css={css`
-        ${width && `width:${width};`}
+        ${width ? `width:${width};` : ''}
         cursor: pointer;
       `}
     >
