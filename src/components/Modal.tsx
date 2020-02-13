@@ -26,6 +26,7 @@ export interface IModalProps {
   maxHeight?: string;
   zIndex?: number;
   allowClickOutsideToClose?: boolean;
+  noCloseButton?: boolean;
 }
 
 export const Modal: React.FC<IModalProps> = ({
@@ -54,6 +55,7 @@ export const Modal: React.FC<IModalProps> = ({
   maxHeight,
   zIndex = 1,
   allowClickOutsideToClose = true,
+  noCloseButton,
   children,
 }) => {
   const refRoot = useRef<HTMLDivElement>(null);
@@ -139,34 +141,36 @@ export const Modal: React.FC<IModalProps> = ({
           {children}
         </div>
 
-        <div
-          css={css`
-            /* icon container */
-            position: absolute;
-            top: 0;
-            right: 0;
-            color: ${color};
-            cursor: pointer;
-          `}
-          onClick={onClose}
-        >
+        {!noCloseButton && (
           <div
             css={css`
-              /* close icon */
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: ${iconSize + iconPadding}px;
-              height: ${iconSize + iconPadding}px;
-              border-radius: 2px;
-              :hover {
-                background-color: rgba(0, 0, 0, 0.1);
-              }
+              /* icon container */
+              position: absolute;
+              top: 0;
+              right: 0;
+              color: ${color};
+              cursor: pointer;
             `}
+            onClick={onClose}
           >
-            <IconClose size={iconSize} />
+            <div
+              css={css`
+                /* close icon */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: ${iconSize + iconPadding}px;
+                height: ${iconSize + iconPadding}px;
+                border-radius: 2px;
+                :hover {
+                  background-color: rgba(0, 0, 0, 0.1);
+                }
+              `}
+            >
+              <IconClose size={iconSize} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

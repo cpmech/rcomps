@@ -85,6 +85,30 @@ stories.add('no click outside', () => {
   );
 });
 
+stories.add('no close button', () => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div>
+      <button onClick={() => setOpen(true)}>Show Modal</button>
+      {open && (
+        <Modal
+          onClose={() => setOpen(false)}
+          title="Notifications"
+          titleStyle={css`
+            font-weight: bold;
+            color: #e62739;
+          `}
+          height="70vh"
+          width="90%"
+          noCloseButton={true}
+        >
+          {loremIpsum}
+        </Modal>
+      )}
+    </div>
+  );
+});
+
 stories.add('with buttons', () => {
   const [open, setOpen] = useState(true);
   return (
