@@ -180,7 +180,7 @@ stories.add('light and dark bg', () => (
 ));
 
 const Controlled = () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState('');
   return (
     <InputTypeA name="name" label="Name" value={value} onChange={e => setValue(e.target.value)} />
   );
