@@ -60,7 +60,9 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
         >
           <Button
             onClick={e => {
-              rest.onClose();
+              if (rest.onClose) {
+                rest.onClose();
+              }
               onYes(e);
             }}
             outline={true}

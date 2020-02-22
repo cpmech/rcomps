@@ -4,7 +4,7 @@ import { IconClose } from '@cpmech/react-icons';
 import { useLockBodyScroll } from './helpers';
 
 export interface IModalProps {
-  onClose: () => void;
+  onClose?: () => void;
   title?: string;
   titleFontSize?: number;
   iconSize?: number;
@@ -69,7 +69,9 @@ export const Modal: React.FC<IModalProps> = ({
       if (allowClickOutsideToClose) {
         if (refRoot.current && e.target) {
           if (!refRoot.current.contains(e.target as Node)) {
-            onClose();
+            if (onClose) {
+              onClose();
+            }
           }
         }
       }
