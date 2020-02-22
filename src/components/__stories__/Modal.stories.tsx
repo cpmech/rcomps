@@ -77,6 +77,7 @@ stories.add('no click outside', () => {
           height="70vh"
           width="90%"
           allowClickOutsideToClose={false}
+          noHightlightCloseButton={false}
         >
           {loremIpsum}
         </Modal>

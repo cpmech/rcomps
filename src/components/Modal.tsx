@@ -24,9 +24,11 @@ export interface IModalProps {
   maxWidth?: string;
   minHeight?: string;
   maxHeight?: string;
+  borderRadius?: number;
   zIndex?: number;
   allowClickOutsideToClose?: boolean;
   noCloseButton?: boolean;
+  noHightlightCloseButton?: boolean;
 }
 
 export const Modal: React.FC<IModalProps> = ({
@@ -53,9 +55,11 @@ export const Modal: React.FC<IModalProps> = ({
   maxWidth,
   minHeight,
   maxHeight,
+  borderRadius = 8,
   zIndex = 1,
   allowClickOutsideToClose = true,
   noCloseButton,
+  noHightlightCloseButton = true,
   children,
 }) => {
   const refRoot = useRef<HTMLDivElement>(null);
@@ -108,6 +112,7 @@ export const Modal: React.FC<IModalProps> = ({
           ${maxWidth ? `max-width:${maxWidth}; overflow:auto;` : ''}
           ${minHeight ? `min-height:${minHeight}; overflow:auto;` : ''}
           ${maxHeight ? `max-height:${maxHeight}; overflow:auto;` : ''}
+          ${borderRadius ? `border-radius: ${borderRadius}px;` : ''}
         `}
       >
         {title && (
@@ -162,9 +167,7 @@ export const Modal: React.FC<IModalProps> = ({
                 width: ${iconSize + iconPadding}px;
                 height: ${iconSize + iconPadding}px;
                 border-radius: 2px;
-                :hover {
-                  background-color: rgba(0, 0, 0, 0.1);
-                }
+                ${noHightlightCloseButton ? '' : `:hover { background-color: rgba(0, 0, 0, 0.1); }`}
               `}
             >
               <IconClose size={iconSize} />
