@@ -148,7 +148,7 @@ export const Modal: React.FC<IModalProps> = ({
           {children}
         </div>
 
-        {!noCloseButton && (
+        {!noCloseButton && onClose && (
           <div
             css={css`
               /* icon container */

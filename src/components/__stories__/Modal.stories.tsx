@@ -136,12 +136,8 @@ stories.add('with buttons', () => {
   );
 });
 
-stories.add('without onClose callback', () => {
-  return (
-    <div>
-      <Modal title="Notifications" noCloseButton={true}>
-        <p>We cannot close this!!!</p>
-      </Modal>
-    </div>
-  );
-});
+stories.add('without onClose callback', () => (
+  <Modal title="Notifications">
+    <p>We cannot close this!!!</p>
+  </Modal>
+));
