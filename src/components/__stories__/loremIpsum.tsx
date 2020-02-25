@@ -56,3 +56,14 @@ export const loremIpsum = (
     </p>
   </div>
 );
+
+export const loremIpsumFew = (
+  <div>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis pharetra turpis, et
+      pharetra turpis. Quisque sit amet metus feugiat, aliquet risus id, egestas elit. Fusce
+      vulputate purus dui, ut molestie purus malesuada eget. Curabitur sed elit magna. Proin
+      accumsan purus a tellus feugiat, ac facilisis neque imperdiet.
+    </p>
+  </div>
+);
