@@ -25,6 +25,7 @@ interface INotifierProps {
   heightPhone?: number;
   heightTablet?: number;
   heightDesktop?: number;
+  noHightlightCloseButton?: boolean;
 }
 
 export const Notifier: React.FC<INotifierProps> = ({
@@ -54,6 +55,7 @@ export const Notifier: React.FC<INotifierProps> = ({
   heightPhone = 60,
   heightTablet = 100,
   heightDesktop = 150,
+  noHightlightCloseButton = true,
 }) => {
   return (
     <div
@@ -128,9 +130,7 @@ export const Notifier: React.FC<INotifierProps> = ({
             width: ${iconSize + iconPadding}px;
             height: ${iconSize + iconPadding}px;
             border-radius: 2px;
-            :hover {
-              background-color: rgba(0, 0, 0, 0.1);
-            }
+            ${noHightlightCloseButton ? '' : `:hover { background-color: rgba(0, 0, 0, 0.1); }`}
           `}
         >
           <IconClose size={iconSize} />
