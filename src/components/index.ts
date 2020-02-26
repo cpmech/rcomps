@@ -2,6 +2,7 @@ export * from './Button';
 export * from './ButtonIcon';
 export * from './ButtonLink';
 export * from './ButtonSpin';
+export * from './Card';
 export * from './ChartRing';
 export * from './Collapse';
 export * from './Dimensions';
