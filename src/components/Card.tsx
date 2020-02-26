@@ -24,6 +24,10 @@ export interface ICardProps {
   paddingHoriz?: number;
   paddingVert?: number;
 
+  heroHeight?: number;
+  heroBg?: string;
+  hero?: any;
+
   noZoom?: boolean;
 }
 
@@ -37,7 +41,7 @@ export const Card: React.FC<ICardProps> = ({
   bgColor = '#ffffff',
 
   headerColor = '#484848',
-  headerBgColor = '#f2f2f2',
+  headerBgColor = '#ffffff',
   headerHeight = 52,
 
   title,
@@ -49,7 +53,11 @@ export const Card: React.FC<ICardProps> = ({
   paddingHoriz = 20,
   paddingVert = 10,
 
-  noZoom,
+  heroHeight = 100,
+  heroBg = `background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);`,
+  hero,
+
+  noZoom = true,
 
   children,
 }) => {
@@ -76,6 +84,8 @@ export const Card: React.FC<ICardProps> = ({
           transform: scale(1.05, 1.05);
         }
     `;
+
+  const showHero = !!hero;
 
   return (
     <div
@@ -118,10 +128,37 @@ export const Card: React.FC<ICardProps> = ({
         </div>
       )}
 
+      {showHero && (
+        <div
+          css={css`
+            /* hero container */
+            position: absolute;
+            top: ${headerHeight}px;
+            left: 0;
+            line-height: 0;
+            width: 100%;
+            ${heroBg}
+          `}
+        >
+          <div
+            css={css`
+              /* hero */
+              height: ${heroHeight}px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            `}
+          >
+            {hero}
+          </div>
+        </div>
+      )}
+
       <div
         css={css`
+          /* children */
           position: absolute;
-          top: ${headerHeight}px;
+          top: ${showHero ? heroHeight + headerHeight : headerHeight}px;
           padding: ${paddingVert}px ${paddingHoriz}px;
         `}
       >
