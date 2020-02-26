@@ -50,16 +50,6 @@ export const SideNav: React.FC<ISideNavProps> = ({
           overflow-x: hidden;
           padding-top: 60px;
           transition: 0.5s;
-          a {
-            padding: 16px 8px 8px 32px;
-            text-decoration: none;
-            font-size: ${menuEntryFontsize};
-            display: block;
-            transition: 0.3s;
-          }
-          a:hover {
-            color: #a4a4a4;
-          }
           @media screen and (max-height: 450px) {
             .sidenav {
               padding-top: 15px;
@@ -74,8 +64,22 @@ export const SideNav: React.FC<ISideNavProps> = ({
           {entries.map((entry, i) => {
             if (typeof entry.item === 'string') {
               return (
-                <div>
-                  <Link onClick={entry.onClick}>{entry.item}</Link>
+                <div
+                  key={i}
+                  css={css`
+                    cursor: pointer;
+                    padding: 16px 8px 8px 32px;
+                    text-decoration: none;
+                    font-size: ${menuEntryFontsize};
+                    display: block;
+                    transition: 0.3s;
+                    :hover {
+                      color: #a4a4a4;
+                    }
+                  `}
+                  onClick={entry.onClick}
+                >
+                  <span>{entry.item}</span>
                 </div>
               );
             }
