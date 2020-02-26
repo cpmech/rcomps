@@ -3,8 +3,8 @@ import React from 'react';
 import { IconVertDots } from '@cpmech/react-icons';
 
 export interface ICardProps {
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
   openMenu?: () => void;
   iconSize?: number;
   iconPadding?: number;
@@ -28,12 +28,16 @@ export interface ICardProps {
   heroBg?: string;
   hero?: any;
 
+  buttonsHeight?: number;
+  buttonsBg?: string;
+  buttons?: any;
+
   noZoom?: boolean;
 }
 
 export const Card: React.FC<ICardProps> = ({
-  width = '280px',
-  height = '435px',
+  width = 280,
+  height = 435,
   openMenu,
   iconSize = 20,
   iconPadding = 25,
@@ -56,6 +60,10 @@ export const Card: React.FC<ICardProps> = ({
   heroHeight = 100,
   heroBg = `background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);`,
   hero,
+
+  buttonsHeight = 60,
+  buttonsBg = '#ffffff',
+  buttons,
 
   noZoom = true,
 
@@ -85,14 +93,27 @@ export const Card: React.FC<ICardProps> = ({
         }
     `;
 
-  const showHero = !!hero;
+  const contentWidth = width - 2 * paddingHoriz;
+  let contentHeight = height - headerHeight - 2 * paddingVert;
+  let contentTop = headerHeight + paddingVert;
+  if (hero) {
+    contentHeight -= heroHeight;
+    contentTop += heroHeight;
+  }
+  if (buttons) {
+    contentHeight -= buttonsHeight;
+  }
 
   return (
     <div
       css={css`
+        * {
+          margin: 0;
+          padding: 0;
+        }
         position: relative;
-        width: ${width};
-        height: ${height};
+        width: ${width}px;
+        height: ${height}px;
         background-color: ${bgColor};
         overflow: hidden;
         border-radius: ${borderRadius}px;
@@ -107,7 +128,7 @@ export const Card: React.FC<ICardProps> = ({
             /* header */
             position: absolute;
             top: 0;
-            left: 0;
+            left: ${paddingHoriz}px;
             width: 100%;
             color: ${headerColor};
             background-color: ${headerBgColor};
@@ -120,7 +141,6 @@ export const Card: React.FC<ICardProps> = ({
               align-items: center;
               justify-content: flex-start;
               height: ${headerHeight}px;
-              padding-left: ${paddingHoriz}px;
             `}
           >
             {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
@@ -128,14 +148,13 @@ export const Card: React.FC<ICardProps> = ({
         </div>
       )}
 
-      {showHero && (
+      {hero && (
         <div
           css={css`
             /* hero container */
             position: absolute;
             top: ${headerHeight}px;
             left: 0;
-            line-height: 0;
             width: 100%;
             ${heroBg}
           `}
@@ -158,12 +177,41 @@ export const Card: React.FC<ICardProps> = ({
         css={css`
           /* children */
           position: absolute;
-          top: ${showHero ? heroHeight + headerHeight : headerHeight}px;
-          padding: ${paddingVert}px ${paddingHoriz}px;
+          top: ${contentTop}px;
+          left: ${paddingHoriz}px;
+          width: ${contentWidth}px;
+          height: ${contentHeight}px;
+          overflow: hidden;
         `}
       >
         {children}
       </div>
+
+      {buttons && (
+        <div
+          css={css`
+            /* buttons container */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            line-height: 0;
+            width: 100%;
+          `}
+        >
+          <div
+            css={css`
+              /* buttons */
+              height: ${buttonsHeight}px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: ${buttonsBg};
+            `}
+          >
+            {buttons}
+          </div>
+        </div>
+      )}
 
       {openMenu && (
         <div
