@@ -19,6 +19,7 @@ export * from './Pair';
 export * from './Picker';
 export * from './PickerTypeA';
 export * from './ProgressLinear';
+export * from './SideNav';
 export * from './SpinAndMsgCircle';
 export * from './SpinAndMsgDots';
 export * from './SpinCircle';
