@@ -7,6 +7,7 @@ import { loremIpsumFew } from './loremIpsum';
 import { Notifier } from '../Notifier';
 import { IconHouseThreeD } from '@cpmech/react-icons';
 import { ButtonLink } from '../ButtonLink';
+import { action } from '@storybook/addon-actions';
 
 const stories = storiesOf('Card', module);
 
@@ -64,9 +65,7 @@ stories.add('default', () => {
 
   return (
     <div css={styles.bg1}>
-      <Card openMenu={() => setShowMenu(true)} title="Good news!">
-        {loremIpsumFew}
-      </Card>
+      <Card title="Good news!">{loremIpsumFew}</Card>
 
       {showMenu && (
         <Notifier
@@ -81,7 +80,7 @@ stories.add('default', () => {
 stories.add('zoom', () => {
   return (
     <div css={styles.bg2}>
-      <Card openMenu={() => console.log('hello')} title="Good news!" noZoom={false}>
+      <Card title="Good news!" noZoom={false}>
         {loremIpsumFew}
       </Card>
     </div>
@@ -115,7 +114,7 @@ const Hero = () => (
 stories.add('hero', () => {
   return (
     <div css={styles.bg3}>
-      <Card openMenu={() => console.log('hello')} title="Good news!" hero={<Hero />}>
+      <Card title="Good news!" hero={<Hero />}>
         {loremIpsumFew}
       </Card>
     </div>
@@ -133,7 +132,7 @@ const Buttons = () => (
 stories.add('buttons', () => {
   return (
     <div css={styles.bg4}>
-      <Card openMenu={() => console.log('hello')} title="Good news!" buttons={<Buttons />}>
+      <Card title="Good news!" buttons={<Buttons />}>
         {loremIpsumFew}
       </Card>
     </div>
@@ -143,11 +142,22 @@ stories.add('buttons', () => {
 stories.add('hero and buttons', () => {
   return (
     <div css={styles.bg5}>
+      <Card title="Good news!" hero={<Hero />} buttons={<Buttons />}>
+        {loremIpsumFew}
+      </Card>
+    </div>
+  );
+});
+
+stories.add('menu', () => {
+  return (
+    <div css={styles.bg5}>
       <Card
-        openMenu={() => console.log('hello')}
         title="Good news!"
-        hero={<Hero />}
-        buttons={<Buttons />}
+        menuEntries={[
+          { message: 'do something', onClick: action('do something') },
+          { message: 'do something else', onClick: action('do something else') },
+        ]}
       >
         {loremIpsumFew}
       </Card>

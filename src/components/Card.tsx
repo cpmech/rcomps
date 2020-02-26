@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
 import { IconVertDots } from '@cpmech/react-icons';
+import { getFloatCss } from './styles';
+import { OutsideClick } from './helpers';
+
+export interface ICardMenuEntry {
+  message: string;
+  onClick: () => void;
+}
 
 export interface ICardProps {
   width?: number;
   height?: number;
-  openMenu?: () => void;
   iconSize?: number;
   iconPadding?: number;
   borderRadius?: number;
   bgColor?: string;
 
+  menuEntries?: ICardMenuEntry[];
+  menuWidthBox?: string; // width of entries box
+  menuHeightBox?: number; // height of entries box
+  menuTextStyle?: SerializedStyles;
+  menuEntryHeight?: number;
+
   headerColor?: string;
   headerBgColor?: string;
   headerHeight?: number;
-  verticalGap?: number;
 
   title?: string;
   titleBgColor?: string;
@@ -38,11 +49,16 @@ export interface ICardProps {
 export const Card: React.FC<ICardProps> = ({
   width = 280,
   height = 435,
-  openMenu,
   iconSize = 20,
   iconPadding = 25,
   borderRadius = 8,
   bgColor = '#ffffff',
+
+  menuEntries,
+  menuWidthBox,
+  menuHeightBox,
+  menuTextStyle,
+  menuEntryHeight = 50,
 
   headerColor = '#484848',
   headerBgColor = '#ffffff',
@@ -51,7 +67,6 @@ export const Card: React.FC<ICardProps> = ({
   title,
   titleStyle = css`
     font-weight: bold;
-    font-size: 1.25em;
   `,
 
   paddingHoriz = 20,
@@ -69,6 +84,8 @@ export const Card: React.FC<ICardProps> = ({
 
   children,
 }) => {
+  const [showMenu, setShowMenu] = useState(false);
+
   const zoomCss = noZoom
     ? ''
     : ` /* grow */
@@ -102,6 +119,27 @@ export const Card: React.FC<ICardProps> = ({
   }
   if (buttons) {
     contentHeight -= buttonsHeight;
+  }
+
+  let floatCss: SerializedStyles | undefined;
+  let menuEntryCss: SerializedStyles | undefined;
+  if (menuEntries) {
+    floatCss = getFloatCss(showMenu, menuHeightBox, menuWidthBox, true);
+    menuEntryCss = css`
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: ${paddingHoriz}px;
+      padding-right: ${paddingHoriz}px;
+      height: ${menuEntryHeight}px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      :hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    `;
   }
 
   return (
@@ -213,31 +251,54 @@ export const Card: React.FC<ICardProps> = ({
         </div>
       )}
 
-      {openMenu && (
-        <div
-          css={css`
-            /* icon container */
-            position: absolute;
-            top: 0;
-            right: 0;
-            cursor: pointer;
-          `}
-          onClick={openMenu}
-        >
+      {menuEntries && (
+        <React.Fragment>
           <div
             css={css`
-              /* menu icon */
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: ${iconSize + iconPadding}px;
-              height: ${headerHeight}px;
-              color: ${headerColor};
+              /* icon container */
+              position: absolute;
+              top: 0;
+              right: 0;
+              cursor: pointer;
             `}
           >
-            <IconVertDots size={iconSize} />
+            <div
+              css={css`
+                /* menu icon */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: ${iconSize + iconPadding}px;
+                height: ${headerHeight}px;
+                color: ${headerColor};
+              `}
+              onClick={() => setShowMenu(true)}
+            >
+              <IconVertDots size={iconSize} />
+            </div>
           </div>
-        </div>
+          <OutsideClick action={() => setShowMenu(false)}>
+            <div css={floatCss}>
+              {menuEntries.map(e => (
+                <div
+                  css={menuEntryCss}
+                  key={e.message}
+                  onClick={() => {
+                    if (e.onClick) {
+                      e.onClick();
+                    }
+                  }}
+                >
+                  {menuTextStyle ? (
+                    <span css={menuTextStyle}>{e.message}</span>
+                  ) : (
+                    <span>{e.message}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </OutsideClick>
+        </React.Fragment>
       )}
     </div>
   );
