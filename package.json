@@ -1,7 +1,7 @@
 {
   "name": "@cpmech/rcomps",
   "version": "3.1.0",
-  "license": "MIT",
+  "private": true,
   "author": {
     "name": "Dorival Pedroso",
     "email": "dorival.pedroso@gmail.com",
@@ -19,8 +19,8 @@
     "lint:fix": "yarn lint --fix",
     "sb": "start-storybook -p 9009 -s public",
     "bsb": "build-storybook -c .storybook -o docs",
-    "build": "rm -rf dist && rollup --config rollup.config.js",
-    "dist": "yarn build && yarn publish --access=public"
+    "build": "rm -rf dist && mkdir dist && rsync -av src/components/* dist --exclude __stories__ --exclude __tests__",
+    "dist": "yarn build && cp package.rlib.json dist/package.json && cd dist/ && yarn publish --access=public || true && cd .. && rm -rf dist/"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -79,8 +79,6 @@
     "react-responsive": "^8.0.3",
     "react-scripts": "3.4.0",
     "require-context.macro": "^1.2.2",
-    "rollup": "^1.31.1",
-    "rollup-plugin-typescript2": "^0.26.0",
     "typescript": "^3.8.2"
   }
 }
