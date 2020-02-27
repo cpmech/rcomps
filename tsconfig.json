@@ -15,5 +15,13 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["src"]
+  "include": ["src/components"],
+  "exclude": [
+    "**/__stories__",
+    "**/__integ__",
+    "**/__tests__",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/*.integ.ts"
+  ]
 }
