@@ -17,10 +17,6 @@
     "postpublish": "yarn fix:ver1 && yarn fix:ver2 && yarn git:all && yarn message"
   },
   "repository": "cpmech/rcomps",
-  "main": "index.ts",
   "description": "My components for React projects",
-  "keywords": [
-    "React",
-    "Components"
-  ]
+  "keywords": ["React", "Components"]
 }
