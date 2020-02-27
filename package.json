@@ -1,7 +1,13 @@
 {
-  "name": "rcomps",
+  "name": "@cpmech/rcomps",
   "version": "2.10.0",
-  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Dorival Pedroso",
+    "email": "dorival.pedroso@gmail.com",
+    "url": "https://github.com/cpmech"
+  },
+  "repository": "cpmech/rcomps",
   "scripts": {
     "start": "react-scripts start",
     "build:app": "react-scripts build",
@@ -11,11 +17,10 @@
     "type-check": "tsc",
     "lint": "eslint --ignore-path .eslintignore . --ext ts --ext tsx",
     "lint:fix": "yarn lint --fix",
-    "eject": "react-scripts eject",
     "sb": "start-storybook -p 9009 -s public",
     "bsb": "build-storybook -c .storybook -o docs",
-    "build": "rm -rf dist && mkdir dist && rsync -av src/components/* dist --exclude __stories__ --exclude __tests__",
-    "dist": "yarn build && cp package.rlib.json dist/package.json && cd dist/ && yarn publish --access=public || true && cd .. && rm -rf dist/"
+    "build": "rm -rf dist && rollup --config rollup.config.js",
+    "dist": "yarn build && yarn publish --access=public"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -36,10 +41,11 @@
     ]
   },
   "peerDependencies": {
+    "react-responsive": "^8.0.3",
     "@emotion/core": "^10.0.27",
     "@reach/router": "^1.3.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "devDependencies": {
     "@cpmech/react-icons": "^2.16.0",
@@ -68,10 +74,9 @@
     "prettier": "^1.19.1",
     "react-scripts": "3.4.0",
     "require-context.macro": "^1.2.2",
-    "typescript": "^3.8.2"
-  },
-  "dependencies": {
-    "@types/react-responsive": "^8.0.2",
-    "react-responsive": "^8.0.3"
+    "rollup": "^1.31.1",
+    "rollup-plugin-typescript2": "^0.26.0",
+    "typescript": "^3.8.2",
+    "@types/react-responsive": "^8.0.2"
   }
 }
