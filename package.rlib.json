@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/rcomps",
-  "version": "3.2.0",
+  "version": "3.1.1",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -18,5 +18,8 @@
   },
   "repository": "cpmech/rcomps",
   "description": "My components for React projects",
-  "keywords": ["React", "Components"]
+  "keywords": [
+    "React",
+    "Components"
+  ]
 }
