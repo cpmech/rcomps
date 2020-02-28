@@ -1,4 +1,3 @@
-import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';

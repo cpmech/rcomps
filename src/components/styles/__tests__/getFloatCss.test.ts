@@ -7,10 +7,12 @@ describe('getFloatCss', () => {
       '\n' +
         '  display: block;\n' +
         '  position: absolute;\n' +
+        '  \n' +
         '  background-color: #f9f9f9;\n' +
         '  min-width: 160px;\n' +
         '  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\n' +
         '  z-index: 1;\n' +
+        '  \n' +
         '  \n' +
         '  a {\n' +
         '    color: black;\n' +
@@ -31,11 +33,13 @@ describe('getFloatCss', () => {
       '\n' +
         '  display: none;\n' +
         '  position: absolute;\n' +
+        '  \n' +
         '  background-color: #f9f9f9;\n' +
         '  min-width: 160px;\n' +
         '  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\n' +
         '  z-index: 1;\n' +
         '  height: 350px; overflow: auto;\n' +
+        '  \n' +
         '  a {\n' +
         '    color: black;\n' +
         '    padding: 12px 16px;\n' +

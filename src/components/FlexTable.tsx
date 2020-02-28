@@ -145,12 +145,12 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
 
   // width of cells, on Wide mode
   if (!proportions) {
-    proportions = allColumns.map((_, j) => 1);
+    proportions = allColumns.map(() => 1);
   } else if (proportions.length !== allColumns.length) {
-    proportions = allColumns.map((_, j) => 1);
+    proportions = allColumns.map(() => 1);
   }
   const total = proportions.reduce((a, c) => a + c, 0);
-  const widths = proportions.map((w, j) => (100 * w) / total);
+  const widths = proportions.map(w => (100 * w) / total);
 
   const valueOrEmpty = (rowIndex: number, colLabel: string) => {
     if (!rows[rowIndex]) {

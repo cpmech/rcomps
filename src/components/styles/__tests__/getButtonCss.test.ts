@@ -13,11 +13,14 @@ describe('getButtonCss', () => {
         '  border-width: 0;\n' +
         '  \n' +
         '  font-weight: normal;\n' +
-        '  cursor: pointer;\n' +
         '  color: #343434;\n' +
-        '  background-color: #ebebeb;\n' +
+        '  cursor: pointer;\n' +
         '  &:hover { background-color: #d7d7d7; }\n' +
-        '  transition: all 0.3s ease;\n',
+        '  \n' +
+        '  background-color: #ebebeb;\n' +
+        '  transition: all 0.3s ease;\n' +
+        '  white-space: nowrap;\n' +
+        '  overflow: hidden;\n',
     );
   });
 
@@ -33,11 +36,14 @@ describe('getButtonCss', () => {
         '  border-width: 0;\n' +
         '  font-size: 20px;\n' +
         '  font-weight: bold;\n' +
-        '  cursor: pointer;\n' +
         '  color: red;\n' +
-        '  background-color: blue;\n' +
+        '  cursor: pointer;\n' +
         '  &:hover { background-color: green; }\n' +
-        '  transition: all 0.3s ease;\n',
+        '  \n' +
+        '  background-color: blue;\n' +
+        '  transition: all 0.3s ease;\n' +
+        '  white-space: nowrap;\n' +
+        '  overflow: hidden;\n',
     );
   });
 });

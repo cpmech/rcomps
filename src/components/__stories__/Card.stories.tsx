@@ -87,7 +87,7 @@ stories.add('zoom', () => {
   );
 });
 
-const Hero = () => (
+const Hero: React.FC = () => (
   <div
     css={css`
       display: flex;
