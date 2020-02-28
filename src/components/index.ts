@@ -18,6 +18,8 @@ export * from './Notifier';
 export * from './Pair';
 export * from './Picker';
 export * from './PickerTypeA';
+export * from './Popup';
+export * from './ProgressBar';
 export * from './ProgressLinear';
 export * from './SideNav';
 export * from './SpinAndMsgCircle';
