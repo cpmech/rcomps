@@ -44,7 +44,14 @@ stories.add('default (smaller)', () => (
   </div>
 ));
 
-stories.add('error', () => <InputTypeA name="email" label="Email" error={true} />);
+stories.add('error', () => (
+  <div>
+    <InputTypeA name="email" label="Email" error="Please, enter a valid email" />
+    <InputTypeA name="email" label="Email" error="" />
+    <InputTypeA name="email" label="Email" error={true} />
+    <InputTypeA name="email" label="Email" error={false} />
+  </div>
+));
 
 stories.add('readonly', () => (
   <InputTypeA name="email" label="Email" value="testing@example.com" readOnly={true} />

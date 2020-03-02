@@ -19,7 +19,7 @@ export interface ITypeAProps {
   borderColor?: string;
   darkMode?: boolean;
   borderWidth?: number;
-  error?: boolean;
+  error?: boolean | string;
   color?: string;
   hlColor?: string;
   colorError?: string;
