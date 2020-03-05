@@ -23,7 +23,7 @@ export const FormErrorField: React.FC<IFormErrorFieldProps> = ({
   marginTop = 7,
   color = '#e62739',
 }) => {
-  if (!error) {
+  if (error === undefined || error === null) {
     return null;
   }
   let message = '';
