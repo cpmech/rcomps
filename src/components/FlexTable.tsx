@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+import { hasProp } from '@cpmech/basic';
 import { useMediaQuery } from 'react-responsive';
 import { IconAngleDown, IconAngleUp, IconPen } from '@cpmech/react-icons';
 import { Button, IButtonProps } from './Button';
-import { hasProp } from './helpers';
 
 export type IFlexTableLabels = { [column: string]: string };
 export type IFlexTableEntry = { [column: string]: any };

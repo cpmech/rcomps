@@ -74,5 +74,9 @@
     "react-scripts": "3.4.0",
     "require-context.macro": "^1.2.2",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@cpmech/basic": "^4.9.0",
+    "@cpmech/util": "^1.11.0"
   }
 }

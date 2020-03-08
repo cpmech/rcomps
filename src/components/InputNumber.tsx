@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { formatNumber } from './helpers';
+import { formatNumber } from '@cpmech/util';
 import { ITypeAProps } from './styles';
 import { InputTypeA } from './InputTypeA';
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { cleanNumber } from '@cpmech/util';
 import { InputNumber } from '../InputNumber';
-import { cleanNumber } from '../helpers';
 
 const stories = storiesOf('InputNumber', module);
 

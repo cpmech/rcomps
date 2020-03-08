@@ -1,6 +1,6 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { hasProp } from '../helpers';
+import { hasProp } from '@cpmech/basic';
 
 interface IFormErrorFieldProps {
   error?: any;
