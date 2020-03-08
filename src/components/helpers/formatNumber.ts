@@ -1,14 +1,15 @@
 // formatLongNumber formats number 1000000 to 1,234,567
-const formatLongNumber = (n: string, comma = ',') => {
+export const formatLongNumber = (n: string, comma = ',') => {
   return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, comma);
 };
 
-// formatCurrency appends $ to value and validates decimal side
+// formatValue appends prefix to value and fixes decimal side
 // ref: https://codepen.io/559wade/pen/LRzEjj
-export const formatCurrency = (
+export const formatNumber = (
   inputVal: string,
-  prefix: string = '$ ',
+  prefix: string = '',
   swapDotByComma: boolean = false,
+  numDigits = 2,
 ) => {
   // don't validate empty input
   if (!inputVal) {
@@ -40,8 +41,8 @@ export const formatCurrency = (
     // add commas to left side of number
     leftSide = formatLongNumber(leftSide, comma);
 
-    // Limit decimal to only 2 digits
-    rightSide = rightSide.substring(0, 2);
+    // Limit decimal to only numDigits digits
+    rightSide = rightSide.substring(0, numDigits);
 
     // join number by .
     inputVal = prefix + leftSide + point + rightSide;
