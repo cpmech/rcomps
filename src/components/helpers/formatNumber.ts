@@ -7,9 +7,9 @@ export const formatLongNumber = (n: string, comma = ',') => {
 // ref: https://codepen.io/559wade/pen/LRzEjj
 export const formatNumber = (
   inputVal: string,
-  prefix: string = '',
   swapDotByComma: boolean = false,
   numDigits = 2,
+  prefix: string = '',
 ) => {
   // don't validate empty input
   if (!inputVal) {
@@ -44,12 +44,48 @@ export const formatNumber = (
     // Limit decimal to only numDigits digits
     rightSide = rightSide.substring(0, numDigits);
 
-    // join number by .
+    // join number by "point"
     inputVal = prefix + leftSide + point + rightSide;
   } else {
     // no decimal entered./ add commas to number and remove all non-digits
     inputVal = formatLongNumber(inputVal, comma);
     inputVal = prefix + inputVal;
+  }
+
+  // results
+  return inputVal;
+};
+
+export const cleanNumber = (
+  formattedValue: string,
+  swapDotByComma: boolean = false,
+  prefix: string = '',
+) => {
+  // constants
+  const point = swapDotByComma ? ',' : '.';
+  const comma = swapDotByComma ? '.' : ',';
+
+  // get inputVal
+  let inputVal = formattedValue.replace(prefix, '').trim();
+
+  // skip empty input
+  if (!inputVal) {
+    return '';
+  }
+
+  // check for decimal
+  if (inputVal.indexOf(point) >= 0) {
+    // get position of last decimal
+    const decimalPos = inputVal.indexOf(point);
+
+    // split number by decimal point
+    const leftSide = inputVal.substring(0, decimalPos).replace(/\D/g, '');
+    const rightSide = inputVal.substring(decimalPos).replace(/\D/g, '');
+
+    // join number by "point"
+    inputVal = leftSide + point + rightSide;
+  } else {
+    inputVal = inputVal.replace(/\D/g, '');
   }
 
   // results

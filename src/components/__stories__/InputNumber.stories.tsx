@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { InputNumber } from '../InputNumber';
+import { cleanNumber } from '../helpers';
 
 const stories = storiesOf('InputNumber', module);
 
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
-  const [cost, setCost] = useState('$ ');
+  const prefix = '$ ';
+  const [cost, setCost] = useState(prefix);
   const [energy, setEnergy] = useState('');
   return (
     <div>
-      <InputNumber label="Cost in USD" value={cost} onChange={v => setCost(v)} prefix="$ " />
+      <InputNumber label="Cost in USD" value={cost} onChange={v => setCost(v)} prefix={prefix} />
       <InputNumber
         label="Energy in kWh"
         value={energy}
@@ -21,17 +23,18 @@ stories.add('default', () => {
         numDigits={4}
       />
       <div>
-        Cost = <b>{cost}</b>
+        Cost = <b>{cleanNumber(cost, false, prefix)}</b>
       </div>
       <div>
-        Energy = <b>{energy}</b>
+        Energy = <b>{cleanNumber(energy)}</b>
       </div>
     </div>
   );
 });
 
 stories.add('Brazil', () => {
-  const [cost, setCost] = useState('R$ ');
+  const prefix = 'R$ ';
+  const [cost, setCost] = useState(prefix);
   const [energy, setEnergy] = useState('');
   return (
     <div>
@@ -39,7 +42,7 @@ stories.add('Brazil', () => {
         label="Preço em Reais"
         value={cost}
         onChange={v => setCost(v)}
-        prefix="R$ "
+        prefix={prefix}
         swapDotByComma={true}
       />
       <InputNumber
@@ -50,6 +53,12 @@ stories.add('Brazil', () => {
         suffix="kWh"
         numDigits={4}
       />
+      <div>
+        Preço = <b>{cleanNumber(cost, true, prefix)}</b>
+      </div>
+      <div>
+        Energia = <b>{cleanNumber(energy, true)}</b>
+      </div>
     </div>
   );
 });

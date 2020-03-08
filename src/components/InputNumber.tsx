@@ -29,14 +29,14 @@ export const InputNumber: React.FC<IInputNumberProps> = ({
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const v = formatNumber(e.target.value, prefix, swapDotByComma, numDigits);
+    const v = formatNumber(e.target.value, swapDotByComma, numDigits, prefix);
     onChange(v);
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (onBlur) {
       e.preventDefault();
-      const v = formatNumber(e.target.value, prefix, swapDotByComma, numDigits);
+      const v = formatNumber(e.target.value, swapDotByComma, numDigits, prefix);
       onBlur(v);
     }
   };
