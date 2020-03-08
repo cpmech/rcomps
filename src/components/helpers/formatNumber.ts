@@ -61,10 +61,6 @@ export const cleanNumber = (
   swapDotByComma: boolean = false,
   prefix: string = '',
 ) => {
-  // constants
-  const point = swapDotByComma ? ',' : '.';
-  const comma = swapDotByComma ? '.' : ',';
-
   // get inputVal
   let inputVal = formattedValue.replace(prefix, '').trim();
 
@@ -72,6 +68,9 @@ export const cleanNumber = (
   if (!inputVal) {
     return '';
   }
+
+  // constants
+  const point = swapDotByComma ? ',' : '.';
 
   // check for decimal
   if (inputVal.indexOf(point) >= 0) {
