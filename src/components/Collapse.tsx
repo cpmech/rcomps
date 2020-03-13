@@ -4,7 +4,6 @@ import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 
 export interface ICollapseProps {
   title: string;
-  initOpen?: boolean;
   fontSize?: number;
   iconSize?: number;
   width?: string;
@@ -22,7 +21,6 @@ export interface ICollapseProps {
 
 export const Collapse: React.FC<ICollapseProps> = ({
   title,
-  initOpen,
   fontSize = 18,
   iconSize = 18,
   width,
@@ -38,7 +36,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
   closeOnClickBody = true,
   children,
 }) => {
-  const [open, setOpen] = useState(initOpen);
+  const [open, setOpen] = useState(false);
 
   return (
     <div
