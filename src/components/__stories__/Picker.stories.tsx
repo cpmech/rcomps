@@ -97,7 +97,7 @@ stories.add('styled', () => (
     />
 
     <Picker
-      selected={entries[1].message}
+      selected={entries[2].message}
       entries={entries}
       width="200px"
       height={40}

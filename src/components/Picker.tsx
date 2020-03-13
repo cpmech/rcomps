@@ -49,9 +49,13 @@ export const Picker: React.FC<IPickerProps> = ({
   hoverColor = '#d7d7d7',
   messageStyle,
 }) => {
-  const [btnText, setBtnText] = useState(selected || '');
+  const [btnText, setBtnText] = useState('');
   const [open, setOpen] = useState(false);
   const refRoot = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setBtnText(selected || '');
+  }, [selected]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
