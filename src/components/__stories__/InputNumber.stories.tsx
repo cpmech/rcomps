@@ -32,8 +32,9 @@ stories.add('default', () => {
   );
 });
 
+const prefix = 'R$ ';
+
 stories.add('Brazil', () => {
-  const prefix = 'R$ ';
   const [cost, setCost] = useState(prefix);
   const [energy, setEnergy] = useState('');
   return (
