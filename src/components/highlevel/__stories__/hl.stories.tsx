@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import {
-  ErrorFormField,
   ErrorModal,
   ErrorPage,
   FormErrorField,
@@ -14,10 +13,6 @@ import {
 const stories = storiesOf('high-level', module);
 
 stories.addDecorator(withKnobs);
-
-stories.add('ErrorFormField', () => (
-  <ErrorFormField canShow={boolean('Show Error Message', true)} message="Email is invalid" />
-));
 
 stories.add('FormErrorField', () => <FormErrorField error={'Email is invalid'} />);
 
