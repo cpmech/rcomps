@@ -11,6 +11,7 @@ export type IFlexTableEntry = { [column: string]: any };
 export interface IFlexTableProps {
   mainColumn: string;
   rows: IFlexTableEntry[];
+
   columns?: string[]; // labels of columns: used to sort and select specific columns
   labels?: IFlexTableLabels; // label-to-text conversion; may have missing entries
   proportions?: number[]; // width proportions of columns. must have the same number of total columns
@@ -20,6 +21,7 @@ export interface IFlexTableProps {
   showMissingLabels?: boolean;
   showControlButtons?: boolean;
   narrowWidth?: number;
+
   colorMainNarrow?: string;
   colorMainWide?: string;
   colorMissing?: string;
@@ -28,11 +30,13 @@ export interface IFlexTableProps {
   colorBorderWide?: string;
   colorBorderMainNarrow?: string;
   colorBorderMainWide?: string;
+
   styleMainNarrow?: SerializedStyles;
   styleMainWide?: SerializedStyles;
   styleLabelsNarrow?: SerializedStyles;
   styleLabelsWide?: SerializedStyles;
   styleText?: SerializedStyles;
+
   missingDataMessage?: string;
   controlHideAllText?: string;
   controlShowAllText?: string;
@@ -51,6 +55,7 @@ type IHiddenRows = { [i: number]: boolean };
 export const FlexTable: React.FC<IFlexTableProps> = ({
   mainColumn,
   rows,
+
   columns,
   labels,
   proportions,
@@ -60,6 +65,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   showMissingLabels = true,
   showControlButtons = true,
   narrowWidth = 600,
+
   colorMainNarrow = 'slategrey',
   colorMainWide = '#ccc',
   colorMissing = '#e62739',
@@ -68,6 +74,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   colorBorderWide = '#ccc',
   colorBorderMainNarrow = 'white',
   colorBorderMainWide = 'white',
+
   styleMainNarrow = css`
     color: white;
     font-weight: bold;
@@ -89,6 +96,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   styleText = css`
     color: #5d5c61;
   `,
+
   missingDataMessage = 'Missing data',
   controlHideAllText = 'Hide all',
   controlShowAllText = 'Show all',
