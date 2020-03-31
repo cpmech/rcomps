@@ -111,7 +111,7 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
           css={css`
             /* children */
             ${contentMaxHeight ? `max-height: ${contentMaxHeight}px;` : ''}
-            ${contentMaxHeight ? `overflow: scroll;` : ''}
+            ${contentMaxHeight ? `overflow-y: scroll;` : ''}
             padding-top: ${paddingVert}px;
             padding-bottom: ${paddingVert}px;
             padding-left: ${paddingHoriz}px;
