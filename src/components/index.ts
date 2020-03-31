@@ -8,6 +8,7 @@ export * from './Collapse';
 export * from './Dimensions';
 export * from './DropDown';
 export * from './FlexTable';
+export * from './InfoCard';
 export * from './InputMaterial';
 export * from './InputNumber';
 export * from './InputTypeA';
