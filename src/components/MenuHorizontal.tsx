@@ -4,6 +4,7 @@ import { IMenuEntry } from './MenuVertical';
 
 export interface IMenuHorizontalProps {
   entries: IMenuEntry[];
+  iniActive?: number; // -1 => no active
 
   bgColor?: string;
   color?: string;
@@ -20,6 +21,7 @@ export interface IMenuHorizontalProps {
 
 export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
   entries,
+  iniActive = -1,
 
   bgColor,
   color = '#484848',
@@ -33,14 +35,13 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
   paddingHoriz = 20,
   gapHorizLabel = 10,
 }) => {
-  const [indexActive, setIndexActive] = useState(0);
+  const [indexActive, setIndexActive] = useState(-1);
 
   useEffect(() => {
-    const idx = entries.findIndex((e) => e.active);
-    if (idx > 0) {
-      setIndexActive(idx);
+    if (iniActive >= 0) {
+      setIndexActive(iniActive);
     }
-  }, [entries]);
+  }, [iniActive]);
 
   const styles = {
     root: css`
@@ -97,9 +98,6 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
               <div
                 css={i === indexActive ? styles.entryActive : styles.entry}
                 onClick={() => {
-                  if (i === indexActive) {
-                    return;
-                  }
                   setIndexActive(i);
                   if (entry.onClick) {
                     entry.onClick();

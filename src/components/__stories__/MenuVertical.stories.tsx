@@ -32,7 +32,6 @@ stories.add('default', () => {
         {
           icon: <IconMoney />,
           label: 'Dinheiro',
-          active: true,
           onClick: action('dinheiro selected'),
         },
       ]}

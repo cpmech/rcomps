@@ -26,7 +26,6 @@ stories.add('default', () => {
           {
             icon: <IconGlobe />,
             label: 'Mundo',
-            active: true,
             onClick: action('mundo selected'),
           },
           {
@@ -35,6 +34,7 @@ stories.add('default', () => {
             onClick: action('dinheiro selected'),
           },
         ]}
+        iniActive={1}
       />
     </div>
   );
@@ -57,10 +57,10 @@ stories.add('entry width', () => {
           },
           {
             label: 'Dinheiro',
-            active: true,
             onClick: action('dinheiro selected'),
           },
         ]}
+        iniActive={1}
       />
       <div
         css={css`

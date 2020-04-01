@@ -4,6 +4,7 @@ import { IMenuEntry } from './MenuVertical';
 
 export interface ITabsProps {
   entries: IMenuEntry[];
+  iniActive: number;
 
   bgColor: string;
   color?: string;
@@ -27,6 +28,7 @@ export interface ITabsProps {
 
 export const Tabs: React.FC<ITabsProps> = ({
   entries,
+  iniActive,
 
   bgColor = 'white',
   color = '#484848',
@@ -50,11 +52,8 @@ export const Tabs: React.FC<ITabsProps> = ({
   const [indexActive, setIndexActive] = useState(0);
 
   useEffect(() => {
-    const idx = entries.findIndex((e) => e.active);
-    if (idx > 0) {
-      setIndexActive(idx);
-    }
-  }, [entries]);
+    setIndexActive(iniActive);
+  }, [iniActive]);
 
   const styles = {
     root: css`

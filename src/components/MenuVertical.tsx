@@ -6,17 +6,16 @@ export interface IMenuEntry {
   icon?: ReactNode;
   label?: string;
   onClick?: () => void;
-  active?: boolean;
 }
 
 interface IMenuVerticalProps {
   entries: IMenuEntry[];
+  iniActive?: number; // -1 => no active
 
   bgColor?: string;
   color?: string;
   colorHover?: string;
   colorActive?: string;
-  colorActiveHover?: string;
 
   minWidth?: number;
   maxWidth?: number;
@@ -29,12 +28,12 @@ interface IMenuVerticalProps {
 
 export const MenuVertical: React.FC<IMenuVerticalProps> = ({
   entries,
+  iniActive = -1,
 
   bgColor,
   color = '#484848',
   colorHover = '#757575',
   colorActive = '#17b580',
-  colorActiveHover = '#33e5a9',
 
   minWidth,
   maxWidth,
@@ -44,14 +43,13 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
   gapVertEntries = 20,
   gapHorizLabel = 10,
 }) => {
-  const [indexActive, setIndexActive] = useState(0);
+  const [indexActive, setIndexActive] = useState(-1);
 
   useEffect(() => {
-    const idx = entries.findIndex((e) => e.active);
-    if (idx > 0) {
-      setIndexActive(idx);
+    if (iniActive >= 0) {
+      setIndexActive(iniActive);
     }
-  }, [entries]);
+  }, [iniActive]);
 
   const styles = {
     root: css`
@@ -80,9 +78,6 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
       display: flex;
       flex-direction: row;
       cursor: pointer;
-      :hover {
-        color: ${colorActiveHover};
-      }
     `,
 
     label: css`
@@ -102,9 +97,6 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
             <div
               css={i === indexActive ? styles.entryActive : styles.entry}
               onClick={() => {
-                if (i === indexActive) {
-                  return;
-                }
                 setIndexActive(i);
                 if (entry.onClick) {
                   entry.onClick();
