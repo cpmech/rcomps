@@ -12,8 +12,10 @@ export interface ITabsProps {
 
   width?: string;
   height?: string;
+  tabMinWidth?: number;
 
-  marginVert?: number;
+  marginTop?: number;
+  marginBottom?: number;
   marginHoriz?: number;
   gapHorizLabel?: number;
   entryPaddingVert?: number;
@@ -33,9 +35,11 @@ export const Tabs: React.FC<ITabsProps> = ({
 
   width = '100%',
   height = '100%',
+  tabMinWidth,
 
-  marginVert = 10,
-  marginHoriz = 20,
+  marginTop = 10,
+  marginBottom = 0,
+  marginHoriz = 0,
   gapHorizLabel = 10,
   entryPaddingVert = 6,
   entryPaddingHoriz = 12,
@@ -46,7 +50,7 @@ export const Tabs: React.FC<ITabsProps> = ({
   const [indexActive, setIndexActive] = useState(0);
 
   useEffect(() => {
-    const idx = entries.findIndex(e => e.active);
+    const idx = entries.findIndex((e) => e.active);
     if (idx > 0) {
       setIndexActive(idx);
     }
@@ -55,10 +59,14 @@ export const Tabs: React.FC<ITabsProps> = ({
   const styles = {
     root: css`
       height: ${height};
-      margin: ${marginVert}px ${marginHoriz}px;
+      margin-top: ${marginTop}px;
+      margin-bottom: ${marginBottom}px;
+      margin-left: ${marginHoriz}px;
+      margin-right: ${marginHoriz}px;
       ${bgColor ? `background-color: ${bgColor};` : ''}
       display:flex;
       justify-content: center;
+      align-items: flex-end;
       border-bottom: ${borderWidth}px solid ${colorActive};
     `,
 
@@ -72,12 +80,14 @@ export const Tabs: React.FC<ITabsProps> = ({
 
     entryContainer: css`
       position: relative;
+      ${tabMinWidth ? `min-width: ${tabMinWidth}px;` : ''}
     `,
 
     entry: css`
       color: ${color};
       display: flex;
       flex-direction: row;
+      justify-content: center;
       align-items: center;
       cursor: pointer;
       :hover {
@@ -90,6 +100,7 @@ export const Tabs: React.FC<ITabsProps> = ({
       color: ${colorActive};
       display: flex;
       flex-direction: row;
+      justify-content: center;
       align-items: center;
       cursor: pointer;
       padding: ${entryPaddingVert}px ${entryPaddingHoriz}px;
@@ -109,7 +120,7 @@ export const Tabs: React.FC<ITabsProps> = ({
       background-color: ${bgColor};
     `,
 
-    label: css`
+    hspace: css`
       margin-left: ${gapHorizLabel}px;
     `,
   };
@@ -139,7 +150,8 @@ export const Tabs: React.FC<ITabsProps> = ({
                 }}
               >
                 {entry.icon}
-                <span css={styles.label}>{entry.label}</span>
+                {entry.icon && <span css={styles.hspace} />}
+                <span>{entry.label}</span>
               </div>
             )}
           </div>

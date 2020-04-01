@@ -5,6 +5,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { IconGlobe, IconHouseThreeD, IconMoney } from '@cpmech/react-icons';
 import { Tabs } from '../Tabs';
+import { loremIpsumFew } from './loremIpsum';
 
 const stories = storiesOf('Tabs', module);
 
@@ -12,7 +13,7 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
   return (
-    <div css={css``}>
+    <div>
       <Tabs
         width="80%"
         bgColor="white"
@@ -35,6 +36,42 @@ stories.add('default', () => {
           },
         ]}
       />
+    </div>
+  );
+});
+
+stories.add('entry width', () => {
+  return (
+    <div>
+      <Tabs
+        bgColor="white"
+        tabMinWidth={150}
+        entries={[
+          {
+            label: 'Home',
+            onClick: action('house selected'),
+          },
+          {
+            label: 'Mundo',
+            onClick: action('mundo selected'),
+          },
+          {
+            label: 'Dinheiro',
+            active: true,
+            onClick: action('dinheiro selected'),
+          },
+        ]}
+      />
+      <div
+        css={css`
+          border-right: 1px solid #17b580;
+          border-left: 1px solid #17b580;
+          border-bottom: 1px solid #17b580;
+          padding: 30px 20px;
+        `}
+      >
+        {loremIpsumFew}
+      </div>
     </div>
   );
 });
