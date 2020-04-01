@@ -59,7 +59,7 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
           `}
         >
           <Button
-            onClick={e => {
+            onClick={(e) => {
               if (rest.onClose) {
                 rest.onClose();
               }

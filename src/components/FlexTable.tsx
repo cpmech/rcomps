@@ -120,12 +120,12 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
 
   // list of columns
   const allColumns = columns || Object.keys(rows[0]);
-  if (allColumns.findIndex(col => col === mainColumn) < 0) {
+  if (allColumns.findIndex((col) => col === mainColumn) < 0) {
     allColumns.unshift(mainColumn);
   }
 
   // list of columns that are not the "mainColumn"
-  const otherColumns = allColumns.filter(col => col !== mainColumn);
+  const otherColumns = allColumns.filter((col) => col !== mainColumn);
 
   // list of all column labels, including the "mainColumn"
   // use empty '' if the entry is missing
@@ -158,7 +158,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     proportions = allColumns.map(() => 1);
   }
   const total = proportions.reduce((a, c) => a + c, 0);
-  const widths = proportions.map(w => (100 * w) / total);
+  const widths = proportions.map((w) => (100 * w) / total);
 
   const valueOrEmpty = (rowIndex: number, colLabel: string) => {
     if (!rows[rowIndex]) {
@@ -336,7 +336,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
             </div>
 
             {/* --- other columns --- */}
-            {otherColumns.map(col => (
+            {otherColumns.map((col) => (
               <div
                 key={col}
                 css={css`

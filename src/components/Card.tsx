@@ -279,7 +279,7 @@ export const Card: React.FC<ICardProps> = ({
           </div>
           <OutsideClick action={() => setShowMenu(false)}>
             <div css={floatCss}>
-              {menuEntries.map(e => (
+              {menuEntries.map((e) => (
                 <div
                   css={menuEntryCss}
                   key={e.message}

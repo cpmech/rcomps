@@ -47,7 +47,7 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
   const [indexActive, setIndexActive] = useState(0);
 
   useEffect(() => {
-    const idx = entries.findIndex(e => e.active);
+    const idx = entries.findIndex((e) => e.active);
     if (idx > 0) {
       setIndexActive(idx);
     }

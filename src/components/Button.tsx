@@ -61,7 +61,7 @@ export const Button: React.FC<IButtonProps> = ({
       css={buttonCss}
       disabled={disabled}
       type={type}
-      onClick={e => {
+      onClick={(e) => {
         e.preventDefault();
         if (href) {
           window.location.href = href;

@@ -100,7 +100,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
         )}
       </div>
       <div css={floatCss}>
-        {entries.map(e => (
+        {entries.map((e) => (
           <Link
             key={e.message}
             href={e.href}

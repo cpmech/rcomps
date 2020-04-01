@@ -309,7 +309,7 @@ stories.add('complex', () => {
     knowledge: 'Knowledge',
   };
   const columns = ['id', 'job', 'ability', 'knowledge'];
-  const rows = dataComplex.map(d => ({
+  const rows = dataComplex.map((d) => ({
     id: renderId(d),
     job: d.job,
     ability: d.ability,

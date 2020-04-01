@@ -130,7 +130,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
         {buttonContent}
       </button>
       <div css={floatCss} onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}>
-        {entries.map(e => (
+        {entries.map((e) => (
           <Link
             key={e.message}
             href={e.href}

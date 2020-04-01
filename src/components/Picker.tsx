@@ -109,7 +109,7 @@ export const Picker: React.FC<IPickerProps> = ({
         {buttonContent}
       </button>
       <div css={floatCss}>
-        {entries.map(e => (
+        {entries.map((e) => (
           <Link
             key={e.message}
             href={e.href}

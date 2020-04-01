@@ -14,11 +14,11 @@ stories.add('default', () => {
   const [energy, setEnergy] = useState('');
   return (
     <div>
-      <InputNumber label="Cost in USD" value={cost} onChange={v => setCost(v)} prefix={prefix} />
+      <InputNumber label="Cost in USD" value={cost} onChange={(v) => setCost(v)} prefix={prefix} />
       <InputNumber
         label="Energy in kWh"
         value={energy}
-        onChange={v => setEnergy(v)}
+        onChange={(v) => setEnergy(v)}
         suffix="kWh"
         numDigits={4}
       />
@@ -42,14 +42,14 @@ stories.add('Brazil', () => {
       <InputNumber
         label="Preço em Reais"
         value={cost}
-        onChange={v => setCost(v)}
+        onChange={(v) => setCost(v)}
         prefix={prefix}
         swapDotByComma={true}
       />
       <InputNumber
         label="Energia em kWh"
         value={energy}
-        onChange={v => setEnergy(v)}
+        onChange={(v) => setEnergy(v)}
         swapDotByComma={true}
         suffix="kWh"
         numDigits={4}
