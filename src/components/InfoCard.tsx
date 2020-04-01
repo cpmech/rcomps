@@ -64,10 +64,6 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
   return (
     <div
       css={css`
-        * {
-          margin: 0;
-          padding: 0;
-        }
         position: relative;
         width: ${width};
         ${minWidth ? `min-width: ${minWidth}px;` : ''}
