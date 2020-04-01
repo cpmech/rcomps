@@ -5,7 +5,6 @@ import { action } from '@storybook/addon-actions';
 import { Button } from '../Button';
 import { MenuHorizontal } from '../MenuHorizontal';
 import { IconGlobe, IconHouseThreeD, IconMoney } from '@cpmech/react-icons';
-import {} from '@cpmech/react-icons';
 
 const stories = storiesOf('MenuHorizontal', module);
 
