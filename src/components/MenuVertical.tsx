@@ -9,7 +9,7 @@ export interface IMenuEntry {
   active?: boolean;
 }
 
-interface IMenuLeftProps {
+interface IMenuVerticalProps {
   entries: IMenuEntry[];
 
   bgColor?: string;
@@ -27,7 +27,7 @@ interface IMenuLeftProps {
   gapHorizLabel?: number;
 }
 
-export const MenuVertical: React.FC<IMenuLeftProps> = ({
+export const MenuVertical: React.FC<IMenuVerticalProps> = ({
   entries,
 
   bgColor,

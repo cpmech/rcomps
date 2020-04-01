@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { IMenuEntry } from './MenuVertical';
 
-export interface IMenuTopProps {
+export interface IMenuHorizontalProps {
   entries: IMenuEntry[];
 
   bgColor?: string;
@@ -18,7 +18,7 @@ export interface IMenuTopProps {
   gapHorizLabel?: number;
 }
 
-export const MenuHorizontal: React.FC<IMenuTopProps> = ({
+export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
   entries,
 
   bgColor,
