@@ -14,6 +14,8 @@ stories.add('default', () => {
   return (
     <div css={css``}>
       <Tabs
+        width="80%"
+        bgColor="white"
         entries={[
           {
             icon: <IconHouseThreeD />,
@@ -23,12 +25,12 @@ stories.add('default', () => {
           {
             icon: <IconGlobe />,
             label: 'Mundo',
+            active: true,
             onClick: action('mundo selected'),
           },
           {
             icon: <IconMoney />,
             label: 'Dinheiro',
-            active: true,
             onClick: action('dinheiro selected'),
           },
         ]}

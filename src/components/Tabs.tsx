@@ -5,7 +5,7 @@ import { IMenuEntry } from './MenuVertical';
 export interface ITabsProps {
   entries: IMenuEntry[];
 
-  bgColor?: string;
+  bgColor: string;
   color?: string;
   colorHover?: string;
   colorActive?: string;
@@ -13,15 +13,20 @@ export interface ITabsProps {
   width?: string;
   height?: string;
 
-  paddingVert?: number;
-  paddingHoriz?: number;
+  marginVert?: number;
+  marginHoriz?: number;
   gapHorizLabel?: number;
+  entryPaddingVert?: number;
+  entryPaddingHoriz?: number;
+
+  borderWidth?: number;
+  borderRadius?: number;
 }
 
 export const Tabs: React.FC<ITabsProps> = ({
   entries,
 
-  bgColor,
+  bgColor = 'white',
   color = '#484848',
   colorHover = '#757575',
   colorActive = '#17b580',
@@ -29,9 +34,14 @@ export const Tabs: React.FC<ITabsProps> = ({
   width = '100%',
   height = '100%',
 
-  paddingVert = 5,
-  paddingHoriz = 20,
+  marginVert = 10,
+  marginHoriz = 20,
   gapHorizLabel = 10,
+  entryPaddingVert = 6,
+  entryPaddingHoriz = 12,
+
+  borderWidth = 1,
+  borderRadius = 8,
 }) => {
   const [indexActive, setIndexActive] = useState(0);
 
@@ -45,11 +55,11 @@ export const Tabs: React.FC<ITabsProps> = ({
   const styles = {
     root: css`
       height: ${height};
-      padding: ${paddingVert}px ${paddingHoriz}px;
+      margin: ${marginVert}px ${marginHoriz}px;
       ${bgColor ? `background-color: ${bgColor};` : ''}
       display:flex;
       justify-content: center;
-      align-items: center;
+      border-bottom: ${borderWidth}px solid ${colorActive};
     `,
 
     container: css`
@@ -58,6 +68,10 @@ export const Tabs: React.FC<ITabsProps> = ({
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+    `,
+
+    entryContainer: css`
+      position: relative;
     `,
 
     entry: css`
@@ -69,6 +83,7 @@ export const Tabs: React.FC<ITabsProps> = ({
       :hover {
         color: ${colorHover};
       }
+      padding: ${entryPaddingVert}px ${entryPaddingHoriz}px;
     `,
 
     entryActive: css`
@@ -77,6 +92,21 @@ export const Tabs: React.FC<ITabsProps> = ({
       flex-direction: row;
       align-items: center;
       cursor: pointer;
+      padding: ${entryPaddingVert}px ${entryPaddingHoriz}px;
+      border-left: ${borderWidth}px solid ${colorActive};
+      border-right: ${borderWidth}px solid ${colorActive};
+      border-top: ${borderWidth}px solid ${colorActive};
+      border-top-left-radius: ${borderRadius}px;
+      border-top-right-radius: ${borderRadius}px;
+    `,
+
+    entryActiveBorder: css`
+      position: absolute;
+      width: calc(100% - ${borderWidth}px - ${borderWidth}px);
+      left: ${borderWidth}px;
+      bottom: -${borderWidth}px;
+      height: ${borderWidth}px;
+      background-color: ${bgColor};
     `,
 
     label: css`
@@ -88,7 +118,9 @@ export const Tabs: React.FC<ITabsProps> = ({
     <div css={styles.root}>
       <div css={styles.container}>
         {entries.map((entry, i) => (
-          <div key={i}>
+          <div key={i} css={styles.entryContainer}>
+            {i === indexActive && <div css={styles.entryActiveBorder} />}
+
             {/* given component */}
             {entry.comp}
 
