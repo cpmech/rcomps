@@ -76,7 +76,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@cpmech/basic": "^4.12.0",
-    "@cpmech/util": "^1.14.0"
+    "@cpmech/basic": "^4.13.0",
+    "@cpmech/util": "^1.15.0"
   }
 }
