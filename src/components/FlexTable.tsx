@@ -14,7 +14,10 @@ export interface IFlexTableProps {
 
   columns?: string[]; // labels of columns: used to sort and select specific columns
   labels?: IFlexTableLabels; // label-to-text conversion; may have missing entries
+  units?: IFlexTableLabels; // label-to-text conversion; may have missing entries
+  aligns?: IFlexTableLabels; // label-to-text conversion; may have missing entries
   proportions?: number[]; // width proportions of columns. must have the same number of total columns
+
   hideMainLabelWide?: boolean; // hide main label on wide view
   showLabelsNarrow?: boolean;
   showLabelsWide?: boolean;
@@ -58,7 +61,10 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
 
   columns,
   labels,
+  units,
+  aligns,
   proportions,
+
   hideMainLabelWide = true,
   showLabelsNarrow = true,
   showLabelsWide = true,
@@ -110,7 +116,11 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   hgapControlButtons = '6px',
   verticalButtonsMainNarrow,
   onEdit,
+
+  //
 }) => {
+  //
+
   const [hiddenRows, setHiddenRows] = useState<IHiddenRows>({});
   const isNarrow = useMediaQuery({ maxWidth: narrowWidth });
 
@@ -202,9 +212,8 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
 
   const styleHeader = css`
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding: 0;
-    line-height: 1.2em;
   `;
 
   const styleColumnsNarrow = `
@@ -215,9 +224,15 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
 
   const styleColumnsWide = `
     display: flex;
-    align-items: center;
+    flex-direction: column;
     box-sizing: border-box;
     padding: ${vpadding} ${hpadding};
+    overflow: hidden;
+  `;
+
+  const styleLabelsWideExtra = css`
+    text-overflow: ellipsis;
+    white-space: nowrap;
     overflow: hidden;
   `;
 
@@ -366,21 +381,39 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     <div>
       {/* ----------------- header ----------------- */}
       {showLabelsWide && (
-        <div css={styleHeader}>
-          {allColumns.map((col, j) => (
-            <div
-              key={col}
-              css={css`
-                width: ${widths[j]}%;
-                ${styleColumnsWide}
-              `}
-            >
-              {j === 0 && hideMainLabelWide ? null : (
-                <span css={styleLabelsWide}>{(allLabels as any)[col]}</span>
-              )}
-            </div>
-          ))}
-        </div>
+        <React.Fragment>
+          <div css={styleHeader}>
+            {allColumns.map((col, j) => (
+              <div
+                key={col}
+                css={css`
+                  width: ${widths[j]}%;
+                  ${aligns && aligns[col] ? `align-items: ${aligns[col]};` : 'align-items: center;'}
+                  ${styleColumnsWide}
+                `}
+              >
+                {j === 0 && hideMainLabelWide ? null : (
+                  <div
+                    css={css`
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                    `}
+                  >
+                    <div css={[styleLabelsWide, styleLabelsWideExtra]}>
+                      {(allLabels as any)[col]}
+                    </div>
+                    {units && (
+                      <div css={[styleLabelsWide, styleLabelsWideExtra]}>
+                        {(units as any)[col] || ''}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </React.Fragment>
       )}
 
       {/* ----------------- content ----------------- */}
@@ -412,6 +445,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                 width: ${widths[J + 1]}%;
                 border-top: ${i === 0 ? 1 : 0}px solid ${colorBorderWide};
                 border-bottom: 1px solid ${colorBorderWide};
+                ${aligns && aligns[col] ? `align-items: ${aligns[col]};` : 'align-items: center;'}
                 ${styleColumnsWide}
               `}
             >
