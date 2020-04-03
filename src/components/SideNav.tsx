@@ -9,8 +9,8 @@ export interface ISideNavEntry {
 }
 
 export interface ISideNavProps {
-  entries: ISideNavEntry[];
   onClose: () => void;
+  entries?: ISideNavEntry[];
   width?: number;
   iconSize?: number;
   iconPadding?: number;
@@ -19,11 +19,12 @@ export interface ISideNavProps {
   zIndex?: number;
 
   menuEntryFontsize?: string;
+  bottomVSpace?: number;
 }
 
 export const SideNav: React.FC<ISideNavProps> = ({
-  entries,
   onClose,
+  entries,
   width = 250,
   iconSize = 20,
   iconPadding = 25,
@@ -32,7 +33,14 @@ export const SideNav: React.FC<ISideNavProps> = ({
   zIndex = 1111,
 
   menuEntryFontsize = '20px',
+  bottomVSpace = 30,
+
+  children,
+
+  //
 }) => {
+  //
+
   return (
     <OutsideClick action={onClose}>
       <div
@@ -60,30 +68,42 @@ export const SideNav: React.FC<ISideNavProps> = ({
         `}
       >
         <div>
-          {entries.map((entry, i) => {
-            if (typeof entry.item === 'string') {
-              return (
-                <div
-                  key={i}
-                  css={css`
-                    cursor: pointer;
-                    padding: 16px 8px 8px 32px;
-                    text-decoration: none;
-                    font-size: ${menuEntryFontsize};
-                    display: block;
-                    transition: 0.3s;
-                    :hover {
-                      color: #a4a4a4;
-                    }
-                  `}
-                  onClick={entry.onClick}
-                >
-                  <span>{entry.item}</span>
-                </div>
-              );
-            }
-            return <div key={i}>{entry.item}</div>;
-          })}
+          {entries &&
+            entries.map((entry, i) => {
+              if (typeof entry.item === 'string') {
+                return (
+                  <div
+                    key={i}
+                    css={css`
+                      cursor: pointer;
+                      padding: 16px 8px 8px 32px;
+                      text-decoration: none;
+                      font-size: ${menuEntryFontsize};
+                      display: block;
+                      transition: 0.3s;
+                      :hover {
+                        color: #a4a4a4;
+                      }
+                    `}
+                    onClick={entry.onClick}
+                  >
+                    <span>{entry.item}</span>
+                  </div>
+                );
+              }
+              return <div key={i}>{entry.item}</div>;
+            })}
+
+          {children && (
+            <React.Fragment>
+              {children}
+              <div
+                css={css`
+                  padding-bottom: ${bottomVSpace}px;
+                `}
+              ></div>
+            </React.Fragment>
+          )}
         </div>
 
         <div

@@ -5,6 +5,8 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { SideNav } from '../SideNav';
 import { Button } from '../Button';
 import { action } from '@storybook/addon-actions';
+import { MenuVertical } from '../MenuVertical';
+import { entries } from './menuEntries';
 
 const stories = storiesOf('SideNav', module);
 
@@ -71,6 +73,20 @@ stories.add('default', () => {
           ]}
           onClose={() => setShowSideNav(false)}
         />
+      )}
+    </div>
+  );
+});
+
+stories.add('with menu', () => {
+  const [showSideNav, setShowSideNav] = useState(true);
+  return (
+    <div css={styles.bg1}>
+      <Button onClick={() => setShowSideNav(true)}>Show SideNav</Button>
+      {showSideNav && (
+        <SideNav onClose={() => setShowSideNav(false)} bottomVSpace={100}>
+          <MenuVertical entries={entries} color="white" colorHover="#cecece" />
+        </SideNav>
       )}
     </div>
   );
