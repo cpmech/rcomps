@@ -108,8 +108,8 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
                   }
                 }}
               >
-                {entry.icon}
-                <span css={styles.label}>{entry.label}</span>
+                <div>{entry.icon}</div>
+                <div css={styles.label}>{entry.label}</div>
               </div>
             )}
           </div>

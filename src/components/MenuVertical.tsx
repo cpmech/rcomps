@@ -67,6 +67,7 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
       color: ${color};
       display: flex;
       flex-direction: row;
+      align-items: center;
       cursor: pointer;
       :hover {
         color: ${colorHover};
@@ -77,6 +78,7 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
       color: ${colorActive};
       display: flex;
       flex-direction: row;
+      align-items: center;
       cursor: pointer;
     `,
 
