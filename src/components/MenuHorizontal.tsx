@@ -59,6 +59,10 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      > * {
+        margin: 1em 0;
+      }
     `,
 
     entry: css`
@@ -104,8 +108,8 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
                   }
                 }}
               >
-                <div>{entry.icon}</div>
-                <div css={styles.label}>{entry.label}</div>
+                {entry.icon}
+                <span css={styles.label}>{entry.label}</span>
               </div>
             )}
           </div>
