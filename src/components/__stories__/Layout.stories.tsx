@@ -29,7 +29,7 @@ stories.add('default', () => {
     <div
       css={css`
         background-color: #dedede;
-        min-height: 400px;
+        min-height: 200px;
         padding-top: 40px;
         padding-left: 20px;
       `}

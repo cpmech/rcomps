@@ -11,6 +11,7 @@ interface IProps {
   headerHeight?: number;
   minHeightToStick?: number;
   sidebarColumnWidth?: string; // e.g.: auto
+  narrowWidth?: number;
 }
 
 export const Layout: React.FC<IProps> = ({
@@ -23,8 +24,10 @@ export const Layout: React.FC<IProps> = ({
   headerHeight = 80,
   minHeightToStick = 350,
   sidebarColumnWidth = '250px', // e.g.: auto
+  narrowWidth = 600,
 }) => {
   const styleRoot = css`
+    height: 100vh;
     display: grid;
     grid-template-areas:
       'header header'
@@ -32,14 +35,22 @@ export const Layout: React.FC<IProps> = ({
       'footer footer';
     grid-template-columns: ${sidebarColumnWidth} auto;
     grid-template-rows: ${headerHeight}px 1fr auto;
-    height: 100vh;
+    @media (max-width: ${narrowWidth + 1}px) {
+      grid-template-areas:
+        'header'
+        'sidebar'
+        'main'
+        'footer';
+      grid-template-columns: auto;
+      grid-template-rows: ${headerHeight}px auto 1fr auto;
+    }
   `;
 
   const styleHeader = stickyHeader
     ? css`
         grid-area: header;
         z-index: 1;
-        @media (min-height: ${minHeightToStick}px) {
+        @media (max-width: ${narrowWidth + 1}px) and (min-height: ${minHeightToStick}px) {
           position: sticky;
           top: 0;
         }
