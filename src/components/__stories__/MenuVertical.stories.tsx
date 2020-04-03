@@ -4,7 +4,13 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Button } from '../Button';
 import { MenuVertical } from '../MenuVertical';
-import { IconGlobe, IconHouseThreeD, IconMoney } from '@cpmech/react-icons';
+import {
+  IconGlobe,
+  IconHouseThreeD,
+  IconMoney,
+  IconAddressBook,
+  IconUser,
+} from '@cpmech/react-icons';
 
 const stories = storiesOf('MenuVertical', module);
 
@@ -33,6 +39,45 @@ stories.add('default', () => {
           icon: <IconMoney />,
           label: 'Dinheiro',
           onClick: action('dinheiro selected'),
+        },
+        {
+          icon: <IconHouseThreeD />,
+          label: 'Casa',
+          entries: [
+            {
+              label: 'First',
+              onClick: action('First clicked'),
+            },
+            {
+              label: 'Second',
+              onClick: action('Second clicked'),
+            },
+            {
+              label: 'Third',
+              onClick: action('Third clicked'),
+            },
+          ],
+        },
+        {
+          icon: <IconAddressBook />,
+          label: 'Address book',
+          entries: [
+            {
+              icon: <IconUser size={16} />,
+              label: 'Bender',
+              onClick: action('Bender clicked'),
+            },
+            {
+              icon: <IconUser size={16} />,
+              label: 'Leela',
+              onClick: action('Leela clicked'),
+            },
+            {
+              icon: <IconUser size={16} />,
+              label: 'Fry',
+              onClick: action('Fry clicked'),
+            },
+          ],
         },
       ]}
     />

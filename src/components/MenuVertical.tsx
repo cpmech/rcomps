@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
 export interface IMenuEntry {
@@ -6,16 +6,19 @@ export interface IMenuEntry {
   icon?: ReactNode;
   label?: string;
   onClick?: () => void;
+  entries?: {
+    icon?: ReactNode;
+    label?: string;
+    onClick?: () => void;
+  }[];
 }
 
 interface IMenuVerticalProps {
   entries: IMenuEntry[];
-  iniActive?: number; // -1 => no active
 
   bgColor?: string;
   color?: string;
   colorHover?: string;
-  colorActive?: string;
 
   minWidth?: number;
   maxWidth?: number;
@@ -23,17 +26,18 @@ interface IMenuVerticalProps {
   paddingVert?: number;
   paddingHoriz?: number;
   gapVertEntries?: number;
+  gapVertSubEntries?: number;
   gapHorizLabel?: number;
+
+  fontSizeSubEntries?: string;
 }
 
 export const MenuVertical: React.FC<IMenuVerticalProps> = ({
   entries,
-  iniActive = -1,
 
   bgColor,
   color = '#484848',
   colorHover = '#757575',
-  colorActive = '#17b580',
 
   minWidth,
   maxWidth,
@@ -41,16 +45,13 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
   paddingVert = 40,
   paddingHoriz = 20,
   gapVertEntries = 20,
+  gapVertSubEntries = 30,
   gapHorizLabel = 10,
+
+  fontSizeSubEntries = '90%',
+  //
 }) => {
-  const [indexActive, setIndexActive] = useState(-1);
-
-  useEffect(() => {
-    if (iniActive >= 0) {
-      setIndexActive(iniActive);
-    }
-  }, [iniActive]);
-
+  //
   const styles = {
     root: css`
       min-width: ${minWidth}px;
@@ -59,54 +60,80 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
       ${bgColor ? `background-color: ${bgColor};` : ''}
     `,
 
-    entryContainer: css`
+    vspaceMain: css`
       padding-top: ${gapVertEntries}px;
+    `,
+
+    vspaceSub: css`
+      padding-top: ${gapVertSubEntries}px;
     `,
 
     entry: css`
       color: ${color};
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-content: flex-start;
       align-items: center;
+    `,
+
+    label: css`
+      margin-left: ${gapHorizLabel}px;
+    `,
+
+    labelHL: css`
       cursor: pointer;
+      margin-left: ${gapHorizLabel}px;
       :hover {
         color: ${colorHover};
       }
     `,
 
-    entryActive: css`
-      color: ${colorActive};
+    labelSub: css`
+      cursor: pointer;
+      margin-left: ${gapHorizLabel}px;
+      font-size: ${fontSizeSubEntries};
+      :hover {
+        color: ${colorHover};
+      }
       display: flex;
       flex-direction: row;
       align-items: center;
-      cursor: pointer;
     `,
 
-    label: css`
-      margin-left: ${gapHorizLabel}px;
+    iconSub: css`
+      margin-right: ${gapHorizLabel}px;
     `,
   };
 
   return (
     <div css={styles.root}>
       {entries.map((entry, i) => (
-        <div key={i} css={styles.entryContainer}>
+        <div key={i} css={styles.vspaceMain}>
           {/* given component */}
           {entry.comp}
 
           {/* icon and label */}
           {(entry.icon || entry.label) && (
-            <div
-              css={i === indexActive ? styles.entryActive : styles.entry}
-              onClick={() => {
-                setIndexActive(i);
-                if (entry.onClick) {
-                  entry.onClick();
-                }
-              }}
-            >
+            <div css={styles.entry}>
               <div>{entry.icon}</div>
-              <div css={styles.label}>{entry.label}</div>
+              <div
+                css={entry.entries ? styles.label : styles.labelHL}
+                onClick={entry.entries || !entry.onClick ? undefined : entry.onClick}
+              >
+                {entry.label}
+              </div>
+
+              {/* sub-entries */}
+              {entry.entries &&
+                entry.entries.map((sub, j) => (
+                  <React.Fragment key={`${i}-${j}`}>
+                    <div css={styles.vspaceSub}></div>
+                    <div css={styles.labelSub} onClick={sub.onClick}>
+                      <div css={styles.iconSub}>{sub.icon}</div>
+                      <div>{sub.label}</div>
+                    </div>
+                  </React.Fragment>
+                ))}
             </div>
           )}
         </div>
