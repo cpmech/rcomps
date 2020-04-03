@@ -117,8 +117,8 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
             <div css={styles.entry}>
               <div>{entry.icon}</div>
               <div
-                css={entry.entries ? styles.label : styles.labelHL}
-                onClick={entry.entries || !entry.onClick ? undefined : entry.onClick}
+                css={entry.entries && !entry.onClick ? styles.label : styles.labelHL}
+                onClick={entry.onClick}
               >
                 {entry.label}
               </div>
@@ -129,7 +129,7 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
                   <React.Fragment key={`${i}-${j}`}>
                     <div css={styles.vspaceSub}></div>
                     <div css={styles.labelSub} onClick={sub.onClick}>
-                      <div css={styles.iconSub}>{sub.icon}</div>
+                      <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
                       <div>{sub.label}</div>
                     </div>
                   </React.Fragment>

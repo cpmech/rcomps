@@ -1,48 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { IMenuEntry } from './MenuVertical';
 
 export interface IMenuHorizontalProps {
   entries: IMenuEntry[];
-  iniActive?: number; // -1 => no active
 
   bgColor?: string;
   color?: string;
   colorHover?: string;
-  colorActive?: string;
 
   width?: string;
   height?: string;
 
   paddingVert?: number;
   paddingHoriz?: number;
+  gapVertSubEntries?: number;
   gapHorizLabel?: number;
+
+  fontSizeSubEntries?: string;
 }
 
 export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
   entries,
-  iniActive = -1,
 
   bgColor,
   color = '#484848',
   colorHover = '#757575',
-  colorActive = '#17b580',
 
   width = '100%',
   height = '100%',
 
   paddingVert = 5,
   paddingHoriz = 20,
+  gapVertSubEntries = 30,
   gapHorizLabel = 10,
+
+  fontSizeSubEntries = '90%',
+  //
 }) => {
-  const [indexActive, setIndexActive] = useState(-1);
-
-  useEffect(() => {
-    if (iniActive >= 0) {
-      setIndexActive(iniActive);
-    }
-  }, [iniActive]);
-
+  //
   const styles = {
     root: css`
       height: ${height};
@@ -65,27 +61,44 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
       }
     `,
 
+    vspaceSub: css`
+      padding-top: ${gapVertSubEntries}px;
+    `,
+
     entry: css`
       color: ${color};
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-content: flex-start;
       align-items: center;
+    `,
+
+    label: css`
+      margin-left: ${gapHorizLabel}px;
+    `,
+
+    labelHL: css`
       cursor: pointer;
+      margin-left: ${gapHorizLabel}px;
       :hover {
         color: ${colorHover};
       }
     `,
 
-    entryActive: css`
-      color: ${colorActive};
+    labelSub: css`
+      cursor: pointer;
+      margin-left: ${gapHorizLabel}px;
+      font-size: ${fontSizeSubEntries};
+      :hover {
+        color: ${colorHover};
+      }
       display: flex;
       flex-direction: row;
       align-items: center;
-      cursor: pointer;
     `,
 
-    label: css`
-      margin-left: ${gapHorizLabel}px;
+    iconSub: css`
+      margin-right: ${gapHorizLabel}px;
     `,
   };
 
@@ -99,17 +112,26 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
 
             {/* icon and label */}
             {(entry.icon || entry.label) && (
-              <div
-                css={i === indexActive ? styles.entryActive : styles.entry}
-                onClick={() => {
-                  setIndexActive(i);
-                  if (entry.onClick) {
-                    entry.onClick();
-                  }
-                }}
-              >
+              <div css={styles.entry}>
                 <div>{entry.icon}</div>
-                <div css={styles.label}>{entry.label}</div>
+                <div
+                  css={entry.entries && !entry.onClick ? styles.label : styles.labelHL}
+                  onClick={entry.onClick}
+                >
+                  {entry.label}
+                </div>
+
+                {/* sub-entries */}
+                {entry.entries &&
+                  entry.entries.map((sub, j) => (
+                    <React.Fragment key={`${i}-${j}`}>
+                      <div css={styles.vspaceSub}></div>
+                      <div css={styles.labelSub} onClick={sub.onClick}>
+                        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
+                        <div>{sub.label}</div>
+                      </div>
+                    </React.Fragment>
+                  ))}
               </div>
             )}
           </div>
