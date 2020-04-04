@@ -112,7 +112,7 @@ export const SideNav: React.FC<ISideNavProps> = ({
             position: absolute;
             top: 0;
             right: 0;
-            color: white;
+            color: ${color};
             cursor: pointer;
           `}
           onClick={onClose}
