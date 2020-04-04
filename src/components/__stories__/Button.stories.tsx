@@ -43,3 +43,37 @@ stories.add('styled', () => (
     HELLO WORLD
   </Button>
 ));
+
+stories.add('flat left', () => (
+  <Button
+    onClick={action('Button')}
+    height={60}
+    paddingHoriz={100}
+    borderRadius={100}
+    fontSize={24}
+    fontWeight="bold"
+    color="white"
+    backgroundColor="#803ced"
+    hoverColor="#9f6cf1"
+    flatLeft={true}
+  >
+    HELLO WORLD
+  </Button>
+));
+
+stories.add('flat right', () => (
+  <Button
+    onClick={action('Button')}
+    height={60}
+    paddingHoriz={100}
+    borderRadius={100}
+    fontSize={24}
+    fontWeight="bold"
+    color="white"
+    backgroundColor="#803ced"
+    hoverColor="#9f6cf1"
+    flatRight={true}
+  >
+    HELLO WORLD
+  </Button>
+));

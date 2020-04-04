@@ -14,12 +14,16 @@ export const getButtonCss = (
   hoverColorOutline = '#efefef',
   disabled = false,
   outline = false,
+  flatLeft = false,
+  flatRight = false,
 ) => css`
   ${width ? `width: ${width};` : ''}
   height: ${height}px;
   padding-left: ${paddingHoriz}px;
   padding-right: ${paddingHoriz}px;
   border-radius: ${borderRadius}px;
+  ${flatLeft ? `border-top-left-radius:0;border-bottom-left-radius:0;` : ''}
+  ${flatRight ? `border-top-right-radius:0;border-bottom-right-radius:0;` : ''}
   border-width: 0;
   ${fontSize ? `font-size: ${fontSize}px;` : ''}
   font-weight: ${fontWeight};
