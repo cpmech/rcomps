@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 
 interface IProps {
   header: ReactNode;
-  sidebar: ReactNode;
+  sidebar?: ReactNode;
   main: ReactNode;
   footer: ReactNode;
   stickyHeader?: boolean;
@@ -26,6 +26,17 @@ export const Layout: React.FC<IProps> = ({
   sidebarColumnWidth = '250px', // e.g.: auto
   narrowWidth = 600,
 }) => {
+  const styleRootNoSidebar = css`
+    height: 100vh;
+    display: grid;
+    grid-template-areas:
+      'header'
+      'main'
+      'footer';
+    grid-template-columns: auto;
+    grid-template-rows: ${headerHeight}px 1fr auto;
+  `;
+
   const styleRoot = css`
     height: 100vh;
     display: grid;
@@ -71,18 +82,20 @@ export const Layout: React.FC<IProps> = ({
 
   return (
     <React.Fragment>
-      <div css={styleRoot}>
+      <div css={sidebar ? styleRoot : styleRootNoSidebar}>
         {/* header */}
         <div css={styleHeader}>{header}</div>
 
         {/* sidebar */}
-        <div
-          css={css`
-            grid-area: sidebar;
-          `}
-        >
-          <div css={styleSidebarContent}>{sidebar}</div>
-        </div>
+        {sidebar && (
+          <div
+            css={css`
+              grid-area: sidebar;
+            `}
+          >
+            <div css={styleSidebarContent}>{sidebar}</div>
+          </div>
+        )}
 
         {/* main */}
         <div
