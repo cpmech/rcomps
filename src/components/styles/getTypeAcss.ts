@@ -13,6 +13,7 @@ export interface ITypeAProps {
   labelFontSize?: number;
   scaleLabel?: number;
   paddingHoriz?: number;
+  paddingRightPicker?: number;
   labelPaddingHoriz?: number;
   mutedColor?: string;
   bgColor?: string;
@@ -41,6 +42,7 @@ export const getTypeAcss = (
     labelFontSize = 18,
     scaleLabel = 0.8,
     paddingHoriz = 20,
+    paddingRightPicker = 40,
     labelPaddingHoriz = 5,
     mutedColor = '#898989',
     bgColor = '#ffffff',
@@ -84,7 +86,7 @@ export const getTypeAcss = (
       height: ${height}px;
       width: 100%;
       padding-left: ${paddingHoriz}px;
-      padding-right: ${paddingHoriz}px;
+      padding-right: ${pickerMode ? paddingRightPicker : paddingHoriz}px;
       border: ${borderWidth}px solid ${borderColor};
       border-radius: ${borderRadius}px;
       ${flatLeft ? `border-top-left-radius:0;border-bottom-left-radius:0;` : ''}
@@ -94,6 +96,13 @@ export const getTypeAcss = (
       resize: none;
       outline: none;
       ${pickerMode && !textMode ? `cursor:pointer;` : ''}
+      ${
+        pickerMode
+          ? `text-overflow: ellipsis;
+             white-space: nowrap;
+             overflow: hidden;`
+          : ''
+      }
     }
     input[required] + label[placeholder] {
       display: block;

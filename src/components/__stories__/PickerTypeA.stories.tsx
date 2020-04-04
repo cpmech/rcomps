@@ -18,7 +18,7 @@ const entries = [
     onClick: action('First entry was clicked'),
   },
   {
-    message: 'Second entry',
+    message: 'Second entry with a very long text',
     onClick: action('Second entry was clicked'),
   },
   {
@@ -98,14 +98,12 @@ stories.add('on row', () => (
     <PickerTypeA
       selected={entries[0].message}
       entries={entries}
-      width="250px"
       label="Please, choose one"
       flatRight={true}
     />
     <PickerTypeA
       selected={entries[1].message}
       entries={entries}
-      width="250px"
       label="Please, choose another"
       flatLeft={true}
       flatRight={true}
@@ -114,7 +112,6 @@ stories.add('on row', () => (
     <PickerTypeA
       selected={entries[2].message}
       entries={entries}
-      width="250px"
       label="More, choose more!"
       flatLeft={true}
     />
