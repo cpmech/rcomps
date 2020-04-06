@@ -9,6 +9,7 @@ export interface IMenuHorizontalProps {
   color?: string;
   colorHover?: string;
 
+  maxWidth?: number;
   width?: string;
   height?: string;
 
@@ -27,6 +28,7 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
   color = '#484848',
   colorHover = '#757575',
 
+  maxWidth,
   width = '100%',
   height = '100%',
 
@@ -41,6 +43,7 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
   //
   const styles = {
     root: css`
+      ${maxWidth ? `max-width: ${maxWidth}px; margin: 0 auto;` : ''}
       height: ${height};
       padding: ${paddingVert}px ${paddingHoriz}px;
       ${bgColor ? `background-color: ${bgColor};` : ''}

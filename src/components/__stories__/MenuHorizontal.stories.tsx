@@ -11,3 +11,7 @@ stories.addDecorator(withKnobs);
 stories.add('default', () => {
   return <MenuHorizontal entries={entries} />;
 });
+
+stories.add('maxWidth', () => {
+  return <MenuHorizontal entries={entries} maxWidth={900} />;
+});
