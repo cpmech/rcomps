@@ -1,20 +1,15 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
+import { ILayoutProps } from './LayoutA';
 
-interface IProps {
-  header: ReactNode;
-  sidebar?: ReactNode;
-  main: ReactNode;
-  footer: ReactNode;
-  stickyHeader?: boolean;
-  stickySidebar?: boolean;
-  headerHeight?: number;
-  minHeightToStick?: number;
+interface ILayoutBProps extends ILayoutProps {
   sidebarColumnWidth?: string; // e.g.: auto
+  stickySidebar?: boolean;
+  minHeightToStick?: number;
   narrowWidth?: number;
 }
 
-export const Layout: React.FC<IProps> = ({
+export const LayoutB: React.FC<ILayoutBProps> = ({
   header,
   sidebar,
   main,
@@ -23,7 +18,7 @@ export const Layout: React.FC<IProps> = ({
   stickySidebar = true,
   headerHeight = 80,
   minHeightToStick = 350,
-  sidebarColumnWidth = '250px', // e.g.: auto
+  sidebarColumnWidth = 'auto', // e.g.: auto
   narrowWidth = 600,
 }) => {
   const styleRootNoSidebar = css`
