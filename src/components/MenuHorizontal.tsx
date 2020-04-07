@@ -17,6 +17,7 @@ export interface IMenuHorizontalProps {
   paddingHoriz?: number;
   gapVertSubEntries?: number;
   gapHorizLabel?: number;
+  gapHorizEntries?: number;
 
   fontSizeSubEntries?: string;
 }
@@ -36,6 +37,7 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
   paddingHoriz = 20,
   gapVertSubEntries = 30,
   gapHorizLabel = 10,
+  gapHorizEntries,
 
   fontSizeSubEntries = '90%',
   //
@@ -103,41 +105,51 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
     iconSub: css`
       margin-right: ${gapHorizLabel}px;
     `,
+
+    gapBetweenEntries: css`
+      margin-left: ${gapHorizEntries}px;
+    `,
   };
 
   return (
     <div css={styles.root}>
       <div css={styles.container}>
         {entries.map((entry, i) => (
-          <div key={i}>
-            {/* given component */}
-            {entry.comp}
+          <React.Fragment key={i}>
+            {/* gap between entries */}
+            {gapHorizEntries && i > 0 && <div css={styles.gapBetweenEntries}></div>}
 
-            {/* icon and label */}
-            {(entry.icon || entry.label) && (
-              <div css={styles.entry}>
-                <div>{entry.icon}</div>
-                <div
-                  css={entry.entries && !entry.onClick ? styles.label : styles.labelHL}
-                  onClick={entry.onClick}
-                >
-                  {entry.label}
+            {/* the entry */}
+            <div>
+              {/* given component */}
+              {entry.comp}
+
+              {/* icon and label */}
+              {(entry.icon || entry.label) && (
+                <div css={styles.entry}>
+                  <div>{entry.icon}</div>
+                  <div
+                    css={entry.entries && !entry.onClick ? styles.label : styles.labelHL}
+                    onClick={entry.onClick}
+                  >
+                    {entry.label}
+                  </div>
+
+                  {/* sub-entries */}
+                  {entry.entries &&
+                    entry.entries.map((sub, j) => (
+                      <React.Fragment key={`${i}-${j}`}>
+                        <div css={styles.vspaceSub}></div>
+                        <div css={styles.labelSub} onClick={sub.onClick}>
+                          <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
+                          <div>{sub.label}</div>
+                        </div>
+                      </React.Fragment>
+                    ))}
                 </div>
-
-                {/* sub-entries */}
-                {entry.entries &&
-                  entry.entries.map((sub, j) => (
-                    <React.Fragment key={`${i}-${j}`}>
-                      <div css={styles.vspaceSub}></div>
-                      <div css={styles.labelSub} onClick={sub.onClick}>
-                        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
-                        <div>{sub.label}</div>
-                      </div>
-                    </React.Fragment>
-                  ))}
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          </React.Fragment>
         ))}
       </div>
     </div>

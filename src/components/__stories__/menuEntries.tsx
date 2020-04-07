@@ -70,3 +70,57 @@ export const entries = [
     ],
   },
 ];
+
+export const entriesLeft = [
+  {
+    icon: <IconHouseThreeD size={80} />,
+    onClick: action('house selected'),
+  },
+  {
+    icon: <IconGlobe />,
+    label: 'Mundo',
+    onClick: action('mundo selected'),
+  },
+];
+
+export const entriesRight = [
+  {
+    icon: <IconHouseThreeD />,
+    label: 'Casa',
+    entries: [
+      {
+        label: 'First',
+        onClick: action('First clicked'),
+      },
+      {
+        label: 'Second',
+        onClick: action('Second clicked'),
+      },
+      {
+        label: 'Third',
+        onClick: action('Third clicked'),
+      },
+    ],
+  },
+  {
+    icon: <IconAddressBook />,
+    label: 'Address book',
+    entries: [
+      {
+        icon: <IconUser size={16} />,
+        label: 'Bender',
+        onClick: action('Bender clicked'),
+      },
+      {
+        icon: <IconUser size={16} />,
+        label: 'Leela',
+        onClick: action('Leela clicked'),
+      },
+      {
+        icon: <IconUser size={16} />,
+        label: 'Fry',
+        onClick: action('Fry clicked'),
+      },
+    ],
+  },
+];
