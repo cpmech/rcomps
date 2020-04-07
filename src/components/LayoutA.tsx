@@ -78,6 +78,7 @@ export const LayoutA: React.FC<ILayoutAProps> = ({
               {/* main content */}
               <div
                 css={css`
+                  width: 100%;
                   margin: 0 auto;
                 `}
               >
