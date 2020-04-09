@@ -1,29 +1,53 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { IDefaultLayoutProps } from './Layout';
 
-interface ILayoutAProps extends IDefaultLayoutProps {
+export interface IDefaultLayoutProps {
+  header: ReactNode;
+  sidebar?: ReactNode;
+  main: ReactNode;
+  footer: ReactNode;
+  stickyHeader?: boolean;
+}
+
+interface ILayoutProps extends IDefaultLayoutProps {
+  warning: ReactNode;
+  stickyWarning?: boolean;
   maxContentWidth?: number;
 }
 
-export const LayoutA: React.FC<ILayoutAProps> = ({
+export const Layout: React.FC<ILayoutProps> = ({
+  warning,
   header,
   sidebar,
   main,
   footer,
-  maxContentWidth = 1124,
+  stickyWarning = true,
   stickyHeader = false,
+  maxContentWidth = 1124,
 }) => {
   const styleRoot = css`
     height: 100vh;
     display: grid;
     grid-template-areas:
+      'warning'
       'header'
       'main'
       'footer';
     grid-template-columns: auto;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto 1fr auto;
   `;
+
+  const styleWarning = stickyWarning
+    ? css`
+        grid-area: warning;
+        z-index: 2;
+        position: sticky;
+        top: 0;
+      `
+    : css`
+        grid-area: warning;
+        z-index: 1;
+      `;
 
   const styleHeader = stickyHeader
     ? css`
@@ -40,6 +64,9 @@ export const LayoutA: React.FC<ILayoutAProps> = ({
   return (
     <React.Fragment>
       <div css={styleRoot}>
+        {/* warning */}
+        <div css={styleWarning}>{warning}</div>
+
         {/* header */}
         <div css={styleHeader}>{header}</div>
 

@@ -12,6 +12,7 @@ export * from './InfoCard';
 export * from './InputMaterial';
 export * from './InputNumber';
 export * from './InputTypeA';
+export * from './Layout';
 export * from './LayoutA';
 export * from './LayoutB';
 export * from './Link';

@@ -1,8 +1,8 @@
 import React from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { ILayoutProps } from './LayoutA';
+import { IDefaultLayoutProps } from './Layout';
 
-interface ILayoutBProps extends ILayoutProps {
+interface ILayoutBProps extends IDefaultLayoutProps {
   sidebarColumnWidth?: string; // e.g.: auto
   stickySidebar?: boolean;
   minHeightToStick?: number;
