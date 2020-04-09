@@ -7,6 +7,7 @@ interface ILayoutBProps extends ILayoutProps {
   stickySidebar?: boolean;
   minHeightToStick?: number;
   narrowWidth?: number;
+  headerHeight?: number;
 }
 
 export const LayoutB: React.FC<ILayoutBProps> = ({

@@ -7,7 +7,6 @@ export interface ILayoutProps {
   main: ReactNode;
   footer: ReactNode;
   stickyHeader?: boolean;
-  headerHeight?: number;
 }
 
 interface ILayoutAProps extends ILayoutProps {
@@ -20,7 +19,6 @@ export const LayoutA: React.FC<ILayoutAProps> = ({
   main,
   footer,
   stickyHeader = false,
-  headerHeight = 80,
   maxContentWidth = 1124,
 }) => {
   const styleRoot = css`
@@ -31,7 +29,7 @@ export const LayoutA: React.FC<ILayoutAProps> = ({
       'main'
       'footer';
     grid-template-columns: auto;
-    grid-template-rows: ${headerHeight}px 1fr auto;
+    grid-template-rows: auto 1fr auto;
   `;
 
   const styleHeader = stickyHeader
