@@ -3,7 +3,8 @@ import { css } from '@emotion/core';
 export const getButtonCss = (
   width?: string,
   height = 40,
-  paddingHoriz = 28,
+  paddingLeft = 28,
+  paddingRight = 28,
   borderRadius = 0,
   fontSize?: number,
   fontWeight = 'normal',
@@ -19,8 +20,8 @@ export const getButtonCss = (
 ) => css`
   ${width ? `width: ${width};` : ''}
   height: ${height}px;
-  padding-left: ${paddingHoriz}px;
-  padding-right: ${paddingHoriz}px;
+  padding-left: ${paddingLeft}px;
+  padding-right: ${paddingRight}px;
   border-radius: ${borderRadius}px;
   ${flatLeft ? `border-top-left-radius:0;border-bottom-left-radius:0;` : ''}
   ${flatRight ? `border-top-right-radius:0;border-bottom-right-radius:0;` : ''}

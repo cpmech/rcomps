@@ -8,7 +8,8 @@ export interface IButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   width?: string;
   height?: number;
-  paddingHoriz?: number;
+  paddingLeft?: number;
+  paddingRight?: number;
   borderRadius?: number;
   fontSize?: number;
   fontWeight?: string;
@@ -29,7 +30,8 @@ export const Button: React.FC<IButtonProps> = ({
   onClick,
   width,
   height = 40,
-  paddingHoriz = 28,
+  paddingLeft = 28,
+  paddingRight = 28,
   borderRadius = 6,
   fontSize = 0, // optional
   fontWeight = 'normal',
@@ -47,7 +49,8 @@ export const Button: React.FC<IButtonProps> = ({
   const buttonCss = getButtonCss(
     width,
     height,
-    paddingHoriz,
+    paddingLeft,
+    paddingRight,
     borderRadius,
     fontSize,
     fontWeight,

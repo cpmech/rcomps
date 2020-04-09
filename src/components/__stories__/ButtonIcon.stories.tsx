@@ -28,3 +28,15 @@ stories.add('default', () => (
     width="200px"
   />
 ));
+
+stories.add('go next', () => (
+  <ButtonIcon
+    onClick={action('Icon button clicked')}
+    icon={<IconAngleRight size={80} />}
+    width="100px"
+    height={100}
+    paddingLeft={4}
+    paddingRight={0}
+    borderRadius={300}
+  />
+));

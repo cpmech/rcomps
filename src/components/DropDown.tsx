@@ -21,7 +21,8 @@ export interface IDropDownProps {
   widthBox?: string; // width of entries box
   heightBox?: number;
   boxToRight?: boolean;
-  paddingHoriz?: number;
+  paddingLeft?: number;
+  paddingRight?: number;
   borderRadius?: number;
   fontSize?: number;
   fontWeight?: string;
@@ -41,7 +42,8 @@ export const DropDown: React.FC<IDropDownProps> = ({
   widthBox,
   heightBox,
   boxToRight,
-  paddingHoriz = 28,
+  paddingLeft = 28,
+  paddingRight = 28,
   borderRadius = 0,
   fontSize = 14,
   fontWeight = 'normal',
@@ -101,7 +103,8 @@ export const DropDown: React.FC<IDropDownProps> = ({
   const buttonCss = getButtonCss(
     width,
     height,
-    paddingHoriz,
+    paddingLeft,
+    paddingRight,
     borderRadius,
     fontSize,
     fontWeight,

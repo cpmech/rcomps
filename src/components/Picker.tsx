@@ -21,7 +21,8 @@ export interface IPickerProps {
   widthBox?: string; // width of entries box
   heightBox?: number; // height of entries box
   boxToRight?: boolean;
-  paddingHoriz?: number; // button style
+  paddingLeft?: number;
+  paddingRight?: number;
   borderRadius?: number; // button style
   fontSize?: number; // button style
   fontWeight?: string; // button style
@@ -40,7 +41,8 @@ export const Picker: React.FC<IPickerProps> = ({
   widthBox,
   heightBox,
   boxToRight,
-  paddingHoriz = 28,
+  paddingLeft = 28,
+  paddingRight = 28,
   borderRadius = 0,
   fontSize = 14,
   fontWeight = 'normal',
@@ -85,7 +87,8 @@ export const Picker: React.FC<IPickerProps> = ({
   const buttonCss = getButtonCss(
     width,
     height,
-    paddingHoriz,
+    paddingLeft,
+    paddingRight,
     borderRadius,
     fontSize,
     fontWeight,
