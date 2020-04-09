@@ -15,6 +15,7 @@ export interface IMenuHorizontalProps {
 
   paddingVert?: number;
   paddingHoriz?: number;
+  gapVert?: number;
   gapVertSubEntries?: number;
   gapHorizLabel?: number;
   gapHorizEntries?: number;
@@ -35,6 +36,7 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
 
   paddingVert = 5,
   paddingHoriz = 20,
+  gapVert = 5,
   gapVertSubEntries = 30,
   gapHorizLabel = 10,
   gapHorizEntries,
@@ -61,8 +63,9 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      margin-top: -${gapVert}px;
       > * {
-        margin: 1em 0;
+        margin-top: ${gapVert}px;
       }
     `,
 
