@@ -14,6 +14,7 @@ export interface IMenuHorizontalProps {
   width?: string;
   height?: string;
 
+  marginTop?: number;
   paddingVert?: number;
   paddingHoriz?: number;
   gapVert?: number;
@@ -36,6 +37,7 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
   width = '100%',
   height = '100%',
 
+  marginTop = 10,
   paddingVert = 5,
   paddingHoriz = 20,
   gapVert = 5,
@@ -49,10 +51,11 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
   //
   const styles = {
     root: css`
-     ${minHeight ? `min-height: ${minHeight}px;` : ''}
+      ${minHeight ? `min-height: ${minHeight}px;` : ''}
       ${maxWidth ? `max-width: ${maxWidth}px; margin: 0 auto;` : ''}
       height: ${height};
       padding: ${paddingVert}px ${paddingHoriz}px;
+      margin-top: ${marginTop}px;
       ${bgColor ? `background-color: ${bgColor};` : ''}
       display:flex;
       justify-content: center;
