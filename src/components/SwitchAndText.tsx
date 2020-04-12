@@ -2,13 +2,6 @@ import React from 'react';
 /** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
 import { Switch } from './Switch';
 
-const styleRoot = css`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
 interface IProps {
   text: string;
   on: boolean;
@@ -17,6 +10,7 @@ interface IProps {
   textStyle?: SerializedStyles;
   hgap?: number;
   switchHeight?: number;
+  spaceInBetween?: boolean;
 }
 
 export const SwitchAndText: React.FC<IProps> = ({
@@ -27,9 +21,17 @@ export const SwitchAndText: React.FC<IProps> = ({
   textStyle,
   hgap = 10,
   switchHeight = 24,
+  spaceInBetween = false,
 }) => {
+  const styleRoot = css`
+    display: flex;
+    flex-direction: row;
+    ${spaceInBetween ? `justify-content: space-between;` : ''}
+    align-items: center;
+  `;
+
   const styleAtLeft = css`
-    margin-left: ${hgap}px;
+    margin-right: ${hgap}px;
   `;
 
   const styleAtRight = css`

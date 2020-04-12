@@ -101,6 +101,7 @@ export const Switch: React.FC<ISwitchProps> = ({
           display: inline-block;
           width: ${width}px;
           height: ${height}px;
+          line-height: ${height}px;
 
           input:checked + span:before {
             -webkit-transform: translateX(${diam}px);
