@@ -94,41 +94,42 @@ export const Switch: React.FC<ISwitchProps> = ({
   const width = 2 * diam + 2 * gap + 2 * knobBorderWidth + 2 * borderWidth;
 
   return (
-    <label
-      css={css`
-        position: relative;
-        display: inline-block;
-        width: ${width}px;
-        height: ${height}px;
-
-        input:checked + span:before {
-          -webkit-transform: translateX(${diam}px);
-          -ms-transform: translateX(${diam}px);
-          transform: translateX(${diam}px);
-          ${knobColor ? `background-color: ${knobColor};` : ''}
-        }
-
-        input:checked + span {
-          ${backgroundColor ? `background-color: ${backgroundColor};` : ''}
-        }
-
-        input:focus + span {
-          box-shadow: 0 0 1px #2196f3;
-        }
-      `}
-    >
-      <input
-        type="checkbox"
-        defaultChecked={on}
-        onClick={onClick}
+    <div>
+      <label
         css={css`
-          opacity: 0;
-          width: 0;
-          height: 0;
+          position: relative;
+          display: inline-block;
+          width: ${width}px;
+          height: ${height}px;
+
+          input:checked + span:before {
+            -webkit-transform: translateX(${diam}px);
+            -ms-transform: translateX(${diam}px);
+            transform: translateX(${diam}px);
+            ${knobColor ? `background-color: ${knobColor};` : ''}
+          }
+
+          input:checked + span {
+            ${backgroundColor ? `background-color: ${backgroundColor};` : ''}
+          }
+
+          input:focus + span {
+            box-shadow: 0 0 1px #2196f3;
+          }
         `}
-      />
-      <span
-        css={css`
+      >
+        <input
+          type="checkbox"
+          defaultChecked={on}
+          onClick={onClick}
+          css={css`
+            opacity: 0;
+            width: 0;
+            height: 0;
+          `}
+        />
+        <span
+          css={css`
           position: absolute;
           cursor: pointer;
           top: 0;
@@ -158,7 +159,8 @@ export const Switch: React.FC<ISwitchProps> = ({
             border-radius: 50%;
           }
         `}
-      ></span>
-    </label>
+        ></span>
+      </label>
+    </div>
   );
 };
