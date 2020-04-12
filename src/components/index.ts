@@ -33,6 +33,7 @@ export * from './SpinAndMsgDots';
 export * from './SpinCircle';
 export * from './SpinDots';
 export * from './Switch';
+export * from './SwitchAndText';
 export * from './Tabs';
 export * from './TextTypeA';
 export * from './TopMenu';
