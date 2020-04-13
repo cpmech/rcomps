@@ -16,7 +16,14 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => <DateTypeA />);
 
-stories.add('touched', () => <DateTypeA touched={true} />);
+stories.add('monthFirst', () => <DateTypeA monthFirst={true} />);
+
+stories.add('touched', () => (
+  <div>
+    <DateTypeA unix={1586742810000} touched={true} />
+    <DateTypeA touched={true} />
+  </div>
+));
 
 stories.add('input unix', () => (
   <div

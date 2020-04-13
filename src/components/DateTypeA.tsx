@@ -3,6 +3,48 @@ import React, { useState, useEffect } from 'react';
 import { InputTypeA } from './InputTypeA';
 import { FormErrorField } from './highlevel';
 
+export interface IDateTypeATranslation {
+  year: string;
+  month: string;
+  day: string;
+  errorYear: string;
+  errorMonth: string;
+  errorDay: string;
+  errorDate: string;
+}
+
+export const translationEn: IDateTypeATranslation = {
+  year: 'Year',
+  month: 'Month',
+  day: 'Day',
+  errorYear: 'Please enter year (4 digits)',
+  errorMonth: 'Please enter month',
+  errorDay: 'Please enter day',
+  errorDate: 'Date {{date}} is invalid',
+};
+
+export const translationPt: IDateTypeATranslation = {
+  year: 'Ano',
+  month: 'Mês',
+  day: 'Dia',
+  errorYear: 'Please enter year (4 digits)',
+  errorMonth: 'Please enter month',
+  errorDay: 'Please enter day',
+  errorDate: 'Date {{date}} is invalid',
+};
+
+let translation = translationEn;
+
+export const setDateTypeAtranslation = (t: IDateTypeATranslation) => (translation = t);
+
+export const setDateTypeAlanguage = (locale = 'pt-br') => {
+  if (locale === 'pt-br') {
+    translation = translationPt;
+  } else {
+    translation = translationEn;
+  }
+};
+
 const styles = {
   onRow: css`
     display: flex;
@@ -24,6 +66,10 @@ interface IVerrors {
   date: string;
 }
 
+const newZeroValues = (): IValues => ({ year: '', month: '', day: '' });
+
+const newZeroVerrors = (): IVerrors => ({ year: '', month: '', day: '', date: '' });
+
 const date2values = (date?: Date): IValues => {
   if (!date) {
     return { year: '', month: '', day: '' };
@@ -41,19 +87,11 @@ const values2dateString = (values: IValues): string => {
   return `${values.year}-${month}-${day}`;
 };
 
-const values2errors = (
-  values: IValues,
-  translation = {
-    year: 'Please enter year (4 digits)',
-    month: 'Please enter month',
-    day: 'Please enter day',
-    date: 'Date {{date}} is invalid',
-  },
-): { errors: IVerrors; dateString: string } => {
+const values2errors = (values: IValues): { errors: IVerrors; dateString: string } => {
   const errors: IVerrors = {
-    year: values.year && values.year.length === 4 ? '' : translation.year,
-    month: values.month && values.month !== '0' ? '' : translation.month,
-    day: values.day && values.day !== '0' ? '' : translation.day,
+    year: values.year && values.year.length === 4 ? '' : translation.errorYear,
+    month: values.month && values.month !== '0' ? '' : translation.errorMonth,
+    day: values.day && values.day !== '0' ? '' : translation.errorDay,
     date: '',
   };
   const hasError = !!errors.year || !!errors.month || !!errors.day;
@@ -67,8 +105,7 @@ const values2errors = (
     (date.getMonth() + 1).toString() === values.month &&
     date.getDate().toString() === values.day;
   if (!isValid) {
-    console.log(date.getFullYear());
-    errors.date = translation.date.replace('{{date}}', dateString);
+    errors.date = translation.errorDate.replace('{{date}}', dateString);
     return { errors, dateString: '' };
   }
   return { errors, dateString };
@@ -79,11 +116,18 @@ export interface IDateTypeAProps {
   date?: Date; // ...the date
   touched?: boolean;
   onChange?: (dateString: string) => Promise<void>; // returns only valid dates, or empty
+  monthFirst?: boolean;
 }
 
-export const DateTypeA: React.FC<IDateTypeAProps> = ({ unix, date, touched, onChange }) => {
-  const [values, setValues] = useState<IValues>({ year: '', month: '', day: '' });
-  const [vErrors, setVerrors] = useState<IVerrors>({ year: '', month: '', day: '', date: '' });
+export const DateTypeA: React.FC<IDateTypeAProps> = ({
+  unix,
+  date,
+  touched,
+  onChange,
+  monthFirst,
+}) => {
+  const [values, setValues] = useState<IValues>(newZeroValues());
+  const [vErrors, setVerrors] = useState<IVerrors>(newZeroVerrors());
 
   useEffect(() => {
     if (unix) {
@@ -92,13 +136,14 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({ unix, date, touched, onCh
       if (touched) {
         setVerrors(values2errors(v).errors);
       }
-    }
-    if (date) {
+    } else if (date) {
       const v = date2values(date);
       setValues(v);
       if (touched) {
         setVerrors(values2errors(v).errors);
       }
+    } else if (touched) {
+      setVerrors(values2errors(values).errors);
     }
   }, [date, touched]);
 
@@ -147,24 +192,56 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({ unix, date, touched, onCh
     }
   };
 
+  if (monthFirst) {
+    return (
+      <React.Fragment>
+        <div css={styles.onRow}>
+          <InputTypeA
+            label={translation.month}
+            value={values.month}
+            onChange={(e) => setMonth(e.target.value)}
+            flatRight={true}
+          />
+          <InputTypeA
+            label={translation.day}
+            value={values.day}
+            onChange={(e) => setDay(e.target.value)}
+            flatLeft={true}
+            flatRight={true}
+          />
+          <InputTypeA
+            label={translation.year}
+            value={values.year}
+            onChange={(e) => setYear(e.target.value)}
+            flatLeft={true}
+          />
+        </div>
+        <FormErrorField error={vErrors.day} />
+        <FormErrorField error={vErrors.month} />
+        <FormErrorField error={vErrors.year} />
+        <FormErrorField error={vErrors.date} />
+      </React.Fragment>
+    );
+  }
+
   return (
     <React.Fragment>
       <div css={styles.onRow}>
         <InputTypeA
-          label="Dia"
+          label={translation.day}
           value={values.day}
           onChange={(e) => setDay(e.target.value)}
           flatRight={true}
         />
         <InputTypeA
-          label="Mês"
+          label={translation.month}
           value={values.month}
           onChange={(e) => setMonth(e.target.value)}
           flatLeft={true}
           flatRight={true}
         />
         <InputTypeA
-          label="Ano"
+          label={translation.year}
           value={values.year}
           onChange={(e) => setYear(e.target.value)}
           flatLeft={true}
