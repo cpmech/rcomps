@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { getYear, getMonth, getDate } from 'date-fns';
+import { getYear, getMonth, getDate, isValid } from 'date-fns';
 import { InputTypeA } from './InputTypeA';
+import { FormErrorField } from './highlevel';
 
 const styles = {
   onRow: css`
@@ -17,17 +18,16 @@ interface IValues {
   day: string;
 }
 
-type IVerrors = IValues;
-
-const newZeroValues = (): IValues => {
-  return { year: '', month: '1', day: '' };
-};
-
-const newZeroVerrors = (): IVerrors => ({ year: '', month: '', day: '' });
+interface IVerrors {
+  year: string;
+  month: string;
+  day: string;
+  date: string;
+}
 
 const date2values = (date?: Date): IValues => {
   if (!date) {
-    return newZeroValues();
+    return { year: '', month: '', day: '' };
   }
   return {
     year: getYear(date).toString(),
@@ -36,35 +36,48 @@ const date2values = (date?: Date): IValues => {
   };
 };
 
-const values2errors = (values: IValues): { errors: IVerrors; hasError: boolean } => {
+const values2dateString = (values: IValues): string => {
+  const month = values.month.padStart(2, '0');
+  const day = values.day.padStart(2, '0');
+  return `${values.year}-${month}-${day}`;
+};
+
+const values2errors = (
+  values: IValues,
+  translation = {
+    year: 'Please enter year (4 digits)',
+    month: 'Please enter month',
+    day: 'Please enter day',
+    date: 'Date {{date}} is invalid',
+  },
+): { errors: IVerrors; hasError: boolean; dateString: string } => {
   const errors: IVerrors = {
-    year: values.year ? '' : 'Please enter year',
-    month: values.month ? '' : 'Please enter month',
-    day: values.day ? '' : 'Please enter day',
+    year: values.year && values.year.length === 4 ? '' : translation.year,
+    month: values.month && values.month !== '0' ? '' : translation.month,
+    day: values.day && values.day !== '0' ? '' : translation.day,
+    date: '',
   };
   const hasError = !!errors.year || !!errors.month || !!errors.day;
-  return { errors, hasError };
+  if (hasError) {
+    return { errors, hasError, dateString: '' };
+  }
+  const dateString = values2dateString(values);
+  if (!isValid(new Date(dateString))) {
+    errors.date = translation.date.replace('{{date}}', dateString);
+    return { errors, hasError: true, dateString: '' };
+  }
+  return { errors, hasError, dateString };
 };
 
 export interface IDateTypeAProps {
-  unix?: number; // unix date in milliseconds (aka standard JS)
   date?: Date;
-  onSubmit?: (unix: number) => Promise<void>;
+  touched?: boolean;
+  onValidChange?: (dateString: string) => Promise<void>;
 }
 
-export const DateTypeA: React.FC<IDateTypeAProps> = ({ unix, date, onSubmit }) => {
-  const [touchedButtons, setTouchedButtons] = useState(false);
-  const [values, setValues] = useState<IValues>(newZeroValues());
-  const [vErrors, setVerrors] = useState<IVerrors>(newZeroVerrors());
-
-  useEffect(() => {
-    if (unix) {
-      setValues(date2values(new Date(unix)));
-    }
-    if (date) {
-      setValues(date2values(date));
-    }
-  }, [unix, date]);
+export const DateTypeA: React.FC<IDateTypeAProps> = ({ date, touched, onValidChange }) => {
+  const [values, setValues] = useState<IValues>({ year: '', month: '', day: '' });
+  const [vErrors, setVerrors] = useState<IVerrors>({ year: '', month: '', day: '', date: '' });
 
   const validate = (): boolean => {
     const { errors, hasError } = values2errors(values);
@@ -72,28 +85,37 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({ unix, date, onSubmit }) =
     return !hasError;
   };
 
-  const submit = async () => {
-    setTouchedButtons(true);
-    if (validate()) {
-      if (onSubmit) {
-        await onSubmit(Date.parse(`${values.year}-${values.month}-${values.day}`));
-      }
+  useEffect(() => {
+    if (date) {
+      setValues(date2values(date));
     }
-  };
+    if (touched) {
+      validate();
+    }
+  }, [date, touched]);
 
   const setVal = <K extends keyof IValues>(key: K, valOk: string) => {
     const newValues = { ...values, [key]: valOk };
     setValues(newValues);
-    if (touchedButtons) {
-      const { errors } = values2errors(newValues);
+    const { errors, hasError, dateString } = values2errors(newValues);
+    if (touched) {
       setVerrors(errors);
+    }
+    if (onValidChange && !hasError) {
+      onValidChange(dateString);
     }
   };
 
   const setDay = (value: string) => {
     const v = value.trimLeft().replace(/\D/g, '');
     if (/^[0-3]{0,1}[0-9]{0,1}$/.test(v)) {
-      setVal('day', v);
+      if (v.length === 2) {
+        if (/^(0?[1-9]|[12][0-9]|3[01])$/.test(v)) {
+          setVal('day', v);
+        }
+      } else {
+        setVal('day', v);
+      }
     }
   };
 
@@ -118,26 +140,32 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({ unix, date, onSubmit }) =
   };
 
   return (
-    <div css={styles.onRow}>
-      <InputTypeA
-        label="Dia"
-        value={values.day}
-        onChange={(e) => setDay(e.target.value)}
-        flatRight={true}
-      />
-      <InputTypeA
-        label="Mês"
-        value={values.month}
-        onChange={(e) => setMonth(e.target.value)}
-        flatLeft={true}
-        flatRight={true}
-      />
-      <InputTypeA
-        label="Ano"
-        value={values.year}
-        onChange={(e) => setYear(e.target.value)}
-        flatLeft={true}
-      />
-    </div>
+    <React.Fragment>
+      <div css={styles.onRow}>
+        <InputTypeA
+          label="Dia"
+          value={values.day}
+          onChange={(e) => setDay(e.target.value)}
+          flatRight={true}
+        />
+        <InputTypeA
+          label="Mês"
+          value={values.month}
+          onChange={(e) => setMonth(e.target.value)}
+          flatLeft={true}
+          flatRight={true}
+        />
+        <InputTypeA
+          label="Ano"
+          value={values.year}
+          onChange={(e) => setYear(e.target.value)}
+          flatLeft={true}
+        />
+      </div>
+      <FormErrorField error={vErrors.day} />
+      <FormErrorField error={vErrors.month} />
+      <FormErrorField error={vErrors.year} />
+      <FormErrorField error={vErrors.date} />
+    </React.Fragment>
   );
 };

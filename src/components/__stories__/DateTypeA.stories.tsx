@@ -9,3 +9,5 @@ const stories = storiesOf('DateTypeA', module);
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => <DateTypeA />);
+
+stories.add('touched', () => <DateTypeA touched={true} />);
