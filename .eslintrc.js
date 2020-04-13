@@ -18,7 +18,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  plugins: ['@typescript-eslint', 'react', 'jest'],
+  plugins: ['@typescript-eslint', 'react', 'jest', 'react-hooks'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -33,6 +33,8 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-empty-interface': 0,
     '@typescript-eslint/no-inferrable-types': 0,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
   overrides: [
     // Override some TypeScript rules just for .js files

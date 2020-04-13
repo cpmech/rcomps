@@ -138,7 +138,7 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
     } else if (touched) {
       setVerrors(values2errors(values, translation).errors);
     }
-  }, [date, touched, translation]);
+  }, [unix, date, touched, translation, values]);
 
   const setVal = <K extends keyof IValues>(key: K, valOk: string) => {
     const newValues = { ...values, [key]: valOk };

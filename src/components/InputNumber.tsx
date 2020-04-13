@@ -12,7 +12,6 @@ interface IInputNumberProps extends ITypeAProps {
   suffix?: ReactNode;
   swapDotByComma?: boolean; // use ',' instead of '.' for decimals
   numDigits?: number; // number of decimal digits 2 = default
-  currency?: boolean; // default = true
   suffixPaddingRight?: number;
 }
 
@@ -25,7 +24,6 @@ export const InputNumber: React.FC<IInputNumberProps> = ({
   suffix,
   swapDotByComma = false,
   numDigits = 2,
-  currency = true,
   suffixPaddingRight,
   ...rest
 }) => {

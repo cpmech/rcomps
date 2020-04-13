@@ -79,3 +79,5 @@ yarn-error.log
 public
 serviceWorker.ts
 docs
+
+dist/
