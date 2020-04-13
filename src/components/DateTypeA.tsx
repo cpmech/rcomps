@@ -50,7 +50,7 @@ const values2errors = (
     day: 'Please enter day',
     date: 'Date {{date}} is invalid',
   },
-): { errors: IVerrors; hasError: boolean; dateString: string } => {
+): { errors: IVerrors; dateString: string } => {
   const errors: IVerrors = {
     year: values.year && values.year.length === 4 ? '' : translation.year,
     month: values.month && values.month !== '0' ? '' : translation.month,
@@ -59,50 +59,45 @@ const values2errors = (
   };
   const hasError = !!errors.year || !!errors.month || !!errors.day;
   if (hasError) {
-    return { errors, hasError, dateString: '' };
+    return { errors, dateString: '' };
   }
   const dateString = values2dateString(values);
   if (!isValid(new Date(dateString))) {
     errors.date = translation.date.replace('{{date}}', dateString);
-    return { errors, hasError: true, dateString: '' };
+    return { errors, dateString: '' };
   }
-  return { errors, hasError, dateString };
+  return { errors, dateString };
 };
 
 export interface IDateTypeAProps {
   date?: Date;
   touched?: boolean;
-  onValidChange?: (dateString: string) => Promise<void>;
+  onChange?: (dateString: string) => Promise<void>;
 }
 
-export const DateTypeA: React.FC<IDateTypeAProps> = ({ date, touched, onValidChange }) => {
+export const DateTypeA: React.FC<IDateTypeAProps> = ({ date, touched, onChange }) => {
   const [values, setValues] = useState<IValues>({ year: '', month: '', day: '' });
   const [vErrors, setVerrors] = useState<IVerrors>({ year: '', month: '', day: '', date: '' });
-
-  const validate = (): boolean => {
-    const { errors, hasError } = values2errors(values);
-    setVerrors(errors);
-    return !hasError;
-  };
 
   useEffect(() => {
     if (date) {
       setValues(date2values(date));
     }
     if (touched) {
-      validate();
+      const { errors } = values2errors(values);
+      setVerrors(errors);
     }
   }, [date, touched]);
 
   const setVal = <K extends keyof IValues>(key: K, valOk: string) => {
     const newValues = { ...values, [key]: valOk };
     setValues(newValues);
-    const { errors, hasError, dateString } = values2errors(newValues);
+    const { errors, dateString } = values2errors(newValues);
     if (touched) {
       setVerrors(errors);
     }
-    if (onValidChange && !hasError) {
-      onValidChange(dateString);
+    if (onChange) {
+      onChange(dateString);
     }
   };
 
