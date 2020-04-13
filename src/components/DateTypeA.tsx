@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { getYear, getMonth, getDate, isValid } from 'date-fns';
 import { InputTypeA } from './InputTypeA';
 import { FormErrorField } from './highlevel';
 
@@ -30,9 +29,9 @@ const date2values = (date?: Date): IValues => {
     return { year: '', month: '', day: '' };
   }
   return {
-    year: getYear(date).toString(),
-    month: getMonth(date).toString(),
-    day: getDate(date).toString(),
+    year: date.getFullYear().toString(),
+    month: (date.getMonth() + 1).toString(),
+    day: date.getDate().toString(),
   };
 };
 
@@ -62,7 +61,13 @@ const values2errors = (
     return { errors, dateString: '' };
   }
   const dateString = values2dateString(values);
-  if (!isValid(new Date(dateString))) {
+  const date = new Date(dateString);
+  const isValid =
+    date.getFullYear().toString() === values.year &&
+    (date.getMonth() + 1).toString() === values.month &&
+    date.getDate().toString() === values.day;
+  if (!isValid) {
+    console.log(date.getFullYear());
     errors.date = translation.date.replace('{{date}}', dateString);
     return { errors, dateString: '' };
   }
@@ -82,14 +87,18 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({ unix, date, touched, onCh
 
   useEffect(() => {
     if (unix) {
-      setValues(date2values(new Date(unix)));
+      const v = date2values(new Date(unix));
+      setValues(v);
+      if (touched) {
+        setVerrors(values2errors(v).errors);
+      }
     }
     if (date) {
-      setValues(date2values(date));
-    }
-    if (touched) {
-      const { errors } = values2errors(values);
-      setVerrors(errors);
+      const v = date2values(date);
+      setValues(v);
+      if (touched) {
+        setVerrors(values2errors(v).errors);
+      }
     }
   }, [date, touched]);
 

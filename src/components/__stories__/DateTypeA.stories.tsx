@@ -18,6 +18,20 @@ stories.add('default', () => <DateTypeA />);
 
 stories.add('touched', () => <DateTypeA touched={true} />);
 
+stories.add('input unix', () => (
+  <div
+    css={css`
+      display: flex;
+      flex-direction: column;
+    `}
+  >
+    <DateTypeA unix={1586742810000} touched={true} />
+    <DateTypeA unix={-1937606400000} touched={true} />
+  </div>
+));
+
+stories.add('input date', () => <DateTypeA date={new Date()} touched={true} />);
+
 stories.add('controlled', () => {
   const [touched, setTouched] = useState(false);
   const [dateString, setDateString] = useState('');
