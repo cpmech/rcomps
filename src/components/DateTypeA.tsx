@@ -1,37 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
+import {
+  IDateValues,
+  IDateVerrors,
+  IDateTranslation,
+  date2values,
+  values2errors,
+  dateTranslationEn,
+} from './helpers';
 import { InputTypeA } from './InputTypeA';
 import { FormErrorField } from './highlevel';
-
-export interface IDateTypeATranslation {
-  year: string;
-  month: string;
-  day: string;
-  errorYear: string;
-  errorMonth: string;
-  errorDay: string;
-  errorDate: string;
-}
-
-export const dateTypeAtranslationEn: IDateTypeATranslation = {
-  year: 'Year',
-  month: 'Month',
-  day: 'Day',
-  errorYear: 'Please enter year (4 digits)',
-  errorMonth: 'Please enter month',
-  errorDay: 'Please enter day',
-  errorDate: 'Date {{date}} is invalid',
-};
-
-export const dateTypeAtranslationPt: IDateTypeATranslation = {
-  year: 'Ano',
-  month: 'Mês',
-  day: 'Dia',
-  errorYear: 'Please enter year (4 digits)',
-  errorMonth: 'Please enter month',
-  errorDay: 'Please enter day',
-  errorDate: 'Date {{date}} is invalid',
-};
 
 const styles = {
   onRow: css`
@@ -41,114 +19,50 @@ const styles = {
   `,
 };
 
-interface IValues {
-  year: string;
-  month: string;
-  day: string;
-}
-
-interface IVerrors {
-  year: string;
-  month: string;
-  day: string;
-  date: string;
-}
-
-const newZeroValues = (): IValues => ({ year: '', month: '', day: '' });
-
-const newZeroVerrors = (): IVerrors => ({ year: '', month: '', day: '', date: '' });
-
-const date2values = (date?: Date): IValues => {
-  if (!date) {
-    return { year: '', month: '', day: '' };
-  }
-  return {
-    year: date.getFullYear().toString(),
-    month: (date.getMonth() + 1).toString(),
-    day: date.getDate().toString(),
-  };
+const initialValues = (date?: string): IDateValues => {
+  return date2values(date || '');
 };
 
-const values2dateString = (values: IValues): string => {
-  const month = values.month.padStart(2, '0');
-  const day = values.day.padStart(2, '0');
-  return `${values.year}-${month}-${day}`;
-};
-
-const values2errors = (
-  values: IValues,
-  translation: IDateTypeATranslation,
-): { errors: IVerrors; dateString: string } => {
-  const errors: IVerrors = {
-    year: values.year && values.year.length === 4 ? '' : translation.errorYear,
-    month: values.month && values.month !== '0' ? '' : translation.errorMonth,
-    day: values.day && values.day !== '0' ? '' : translation.errorDay,
-    date: '',
-  };
-  const hasError = !!errors.year || !!errors.month || !!errors.day;
-  if (hasError) {
-    return { errors, dateString: '' };
+const initialVerrors = (
+  date?: string,
+  touched?: boolean,
+  translation?: IDateTranslation,
+): IDateVerrors => {
+  if (touched) {
+    const values = date2values(date || '');
+    return values2errors(values, translation).errors;
   }
-  const dateString = values2dateString(values);
-  const date = new Date(dateString);
-  const isValid =
-    date.getFullYear().toString() === values.year &&
-    (date.getMonth() + 1).toString() === values.month &&
-    date.getDate().toString() === values.day;
-  if (!isValid) {
-    errors.date = translation.errorDate.replace('{{date}}', dateString);
-    return { errors, dateString: '' };
-  }
-  return { errors, dateString };
+  return { year: '', month: '', day: '', date: '' };
 };
 
 export interface IDateTypeAProps {
-  unix?: number; // JS unix timestamp in milliseconds... or
-  date?: Date; // ...the date
-  touched?: boolean;
-  onChange?: (dateString: string) => Promise<void>; // returns only valid dates, or empty
+  date?: string; // initial date: ISO date string
+  touched?: boolean; // to display errors
+  onChange?: (date: string) => void; // returns empty string of not ok
+  onBlur?: (date: string) => void; // returns empty string of not ok
   monthFirst?: boolean;
-  translation?: IDateTypeATranslation;
+  translation?: IDateTranslation;
 }
 
 export const DateTypeA: React.FC<IDateTypeAProps> = ({
-  unix,
   date,
   touched,
   onChange,
   monthFirst,
-  translation = dateTypeAtranslationEn,
+  translation = dateTranslationEn,
 }) => {
-  const [values, setValues] = useState<IValues>(newZeroValues());
-  const [vErrors, setVerrors] = useState<IVerrors>(newZeroVerrors());
+  const [values, setValues] = useState<IDateValues>(initialValues(date));
+  const [vErrors, setVerrors] = useState<IDateVerrors>(initialVerrors(date, touched, translation));
 
-  useEffect(() => {
-    if (unix) {
-      const v = date2values(new Date(unix));
-      setValues(v);
-      if (touched) {
-        setVerrors(values2errors(v, translation).errors);
-      }
-    } else if (date) {
-      const v = date2values(date);
-      setValues(v);
-      if (touched) {
-        setVerrors(values2errors(v, translation).errors);
-      }
-    } else if (touched) {
-      setVerrors(values2errors(values, translation).errors);
-    }
-  }, [unix, date, touched, translation, values]);
-
-  const setVal = <K extends keyof IValues>(key: K, valOk: string) => {
+  const setVal = <K extends keyof IDateValues>(key: K, valOk: string) => {
     const newValues = { ...values, [key]: valOk };
     setValues(newValues);
-    const { errors, dateString } = values2errors(newValues, translation);
+    const { errors, date } = values2errors(newValues, translation);
     if (touched) {
       setVerrors(errors);
     }
     if (onChange) {
-      onChange(dateString);
+      onChange(date);
     }
   };
 

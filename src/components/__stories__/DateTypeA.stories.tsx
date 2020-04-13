@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { DateTypeA, dateTypeAtranslationPt } from '../DateTypeA';
+import { dateTranslationPt } from '../helpers';
+import { DateTypeA } from '../DateTypeA';
 import { Button } from '../Button';
 
 const VSpace: React.FC = () => {
@@ -18,37 +19,36 @@ stories.add('default', () => <DateTypeA />);
 
 stories.add('monthFirst', () => <DateTypeA monthFirst={true} />);
 
-stories.add('pt-br', () => <DateTypeA translation={dateTypeAtranslationPt} />);
+stories.add('pt-br', () => <DateTypeA translation={dateTranslationPt} />);
 
 stories.add('touched', () => (
   <div>
-    <DateTypeA unix={1586742810000} touched={true} />
-    <DateTypeA touched={true} />
+    <DateTypeA date="1995-03-03T00:00:00.000Z" touched={true} />
+    <DateTypeA date="" touched={true} />
   </div>
 ));
 
-stories.add('input unix', () => (
+stories.add('initial date', () => (
   <div
     css={css`
       display: flex;
       flex-direction: column;
     `}
   >
-    <DateTypeA unix={1586742810000} touched={true} />
-    <DateTypeA unix={-1937606400000} touched={true} />
+    <DateTypeA date="2020-04-13T01:53:30.000Z" touched={true} />
+    <DateTypeA date="1908-08-08T00:00:00.000Z" touched={true} />
+    <DateTypeA date={new Date().toISOString()} touched={true} />
   </div>
 ));
 
-stories.add('input date', () => <DateTypeA date={new Date()} touched={true} />);
-
 stories.add('controlled', () => {
   const [touched, setTouched] = useState(false);
-  const [dateString, setDateString] = useState('');
+  const [date, setDate] = useState('');
   const [error, setError] = useState('');
 
-  const onChange = async (dateString: string) => {
-    setDateString(dateString);
-    if (!dateString) {
+  const onChange = (date: string) => {
+    setDate(date);
+    if (!date) {
       setError('INVALID');
     } else {
       setError('');
@@ -65,7 +65,7 @@ stories.add('controlled', () => {
       `}
     >
       <div>
-        <DateTypeA touched={touched} onChange={onChange} />
+        <DateTypeA date={date} touched={touched} onChange={onChange} />
       </div>
       <VSpace />
 
@@ -75,7 +75,7 @@ stories.add('controlled', () => {
           font-size: 1.2em;
         `}
       >
-        {dateString}
+        {date}
       </div>
       <VSpace />
 
@@ -89,8 +89,8 @@ stories.add('controlled', () => {
       <Button
         onClick={() => {
           setTouched(true);
-          if (dateString) {
-            alert(`sending ${dateString} to someone`);
+          if (date) {
+            alert(`sending ${date} to someone`);
           }
         }}
       >
