@@ -39,7 +39,6 @@ export interface IDateTypeAProps {
   date?: string; // initial date: ISO date string
   touched?: boolean; // to display errors
   onChange?: (date: string) => void; // returns empty string of not ok
-  onBlur?: (date: string) => void; // returns empty string of not ok
   monthFirst?: boolean;
   translation?: IDateTranslation;
 }
