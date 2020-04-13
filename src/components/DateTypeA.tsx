@@ -23,16 +23,9 @@ const initialValues = (date?: string): IDateValues => {
   return date2values(date || '');
 };
 
-const initialVerrors = (
-  date?: string,
-  touched?: boolean,
-  translation?: IDateTranslation,
-): IDateVerrors => {
-  if (touched) {
-    const values = date2values(date || '');
-    return values2errors(values, translation).errors;
-  }
-  return { year: '', month: '', day: '', date: '' };
+const initialVerrors = (date?: string, translation?: IDateTranslation): IDateVerrors => {
+  const values = date2values(date || '');
+  return values2errors(values, translation).errors;
 };
 
 export interface IDateTypeAProps {
@@ -51,15 +44,13 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
   translation = dateTranslationEn,
 }) => {
   const [values, setValues] = useState<IDateValues>(initialValues(date));
-  const [vErrors, setVerrors] = useState<IDateVerrors>(initialVerrors(date, touched, translation));
+  const [vErrors, setVerrors] = useState<IDateVerrors>(initialVerrors(date, translation));
 
   const setVal = <K extends keyof IDateValues>(key: K, valOk: string) => {
     const newValues = { ...values, [key]: valOk };
     setValues(newValues);
     const { errors, date } = values2errors(newValues, translation);
-    if (touched) {
-      setVerrors(errors);
-    }
+    setVerrors(errors);
     if (onChange) {
       onChange(date);
     }
@@ -122,10 +113,14 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
             flatLeft={true}
           />
         </div>
-        <FormErrorField error={vErrors.day} />
-        <FormErrorField error={vErrors.month} />
-        <FormErrorField error={vErrors.year} />
-        <FormErrorField error={vErrors.date} />
+        {touched && (
+          <React.Fragment>
+            <FormErrorField error={vErrors.day} />
+            <FormErrorField error={vErrors.month} />
+            <FormErrorField error={vErrors.year} />
+            <FormErrorField error={vErrors.date} />
+          </React.Fragment>
+        )}
       </React.Fragment>
     );
   }
@@ -153,10 +148,14 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
           flatLeft={true}
         />
       </div>
-      <FormErrorField error={vErrors.day} />
-      <FormErrorField error={vErrors.month} />
-      <FormErrorField error={vErrors.year} />
-      <FormErrorField error={vErrors.date} />
+      {touched && (
+        <React.Fragment>
+          <FormErrorField error={vErrors.day} />
+          <FormErrorField error={vErrors.month} />
+          <FormErrorField error={vErrors.year} />
+          <FormErrorField error={vErrors.date} />
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 };
