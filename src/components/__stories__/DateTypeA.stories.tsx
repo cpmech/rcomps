@@ -21,6 +21,16 @@ stories.add('touched', () => <DateTypeA touched={true} />);
 stories.add('controlled', () => {
   const [touched, setTouched] = useState(false);
   const [dateString, setDateString] = useState('');
+  const [error, setError] = useState('');
+
+  const onChange = async (dateString: string) => {
+    setDateString(dateString);
+    if (!dateString) {
+      setError('INVALID');
+    } else {
+      setError('');
+    }
+  };
 
   return (
     <div
@@ -32,7 +42,7 @@ stories.add('controlled', () => {
       `}
     >
       <div>
-        <DateTypeA touched={touched} onChange={async (v) => setDateString(v)} />
+        <DateTypeA touched={touched} onChange={onChange} />
       </div>
       <VSpace />
 
@@ -45,6 +55,13 @@ stories.add('controlled', () => {
         {dateString}
       </div>
       <VSpace />
+
+      {error && (
+        <div>
+          <div>{error}</div>
+          <VSpace />
+        </div>
+      )}
 
       <Button
         onClick={() => {

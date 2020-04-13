@@ -70,16 +70,20 @@ const values2errors = (
 };
 
 export interface IDateTypeAProps {
-  date?: Date;
+  unix?: number; // JS unix timestamp in milliseconds... or
+  date?: Date; // ...the date
   touched?: boolean;
-  onChange?: (dateString: string) => Promise<void>;
+  onChange?: (dateString: string) => Promise<void>; // returns only valid dates, or empty
 }
 
-export const DateTypeA: React.FC<IDateTypeAProps> = ({ date, touched, onChange }) => {
+export const DateTypeA: React.FC<IDateTypeAProps> = ({ unix, date, touched, onChange }) => {
   const [values, setValues] = useState<IValues>({ year: '', month: '', day: '' });
   const [vErrors, setVerrors] = useState<IVerrors>({ year: '', month: '', day: '', date: '' });
 
   useEffect(() => {
+    if (unix) {
+      setValues(date2values(new Date(unix)));
+    }
     if (date) {
       setValues(date2values(date));
     }
