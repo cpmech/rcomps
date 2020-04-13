@@ -27,10 +27,10 @@ export const dateTranslationPt: IDateTranslation = {
   month: 'Mês',
   day: 'Dia',
   date: 'Data',
-  errorYear: 'Please enter year (4 digits)',
-  errorMonth: 'Please enter month',
-  errorDay: 'Please enter day',
-  errorDate: 'Date {{date}} is invalid',
+  errorYear: 'Por favor entrar o ano (4 dígitos)',
+  errorMonth: 'Por favor entrar o mês',
+  errorDay: 'Por favor entrar o dia',
+  errorDate: 'A data {{date}} é inválida',
 };
 
 export interface IDateValues {
