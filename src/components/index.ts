@@ -5,6 +5,7 @@ export * from './ButtonSpin';
 export * from './Card';
 export * from './ChartRing';
 export * from './Collapse';
+export * from './DateTypeA';
 export * from './Dimensions';
 export * from './DropDown';
 export * from './FlexTable';
