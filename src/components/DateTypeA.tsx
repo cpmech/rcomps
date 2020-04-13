@@ -13,7 +13,7 @@ export interface IDateTypeATranslation {
   errorDate: string;
 }
 
-export const translationEn: IDateTypeATranslation = {
+export const dateTypeAtranslationEn: IDateTypeATranslation = {
   year: 'Year',
   month: 'Month',
   day: 'Day',
@@ -23,7 +23,7 @@ export const translationEn: IDateTypeATranslation = {
   errorDate: 'Date {{date}} is invalid',
 };
 
-export const translationPt: IDateTypeATranslation = {
+export const dateTypeAtranslationPt: IDateTypeATranslation = {
   year: 'Ano',
   month: 'Mês',
   day: 'Dia',
@@ -31,18 +31,6 @@ export const translationPt: IDateTypeATranslation = {
   errorMonth: 'Please enter month',
   errorDay: 'Please enter day',
   errorDate: 'Date {{date}} is invalid',
-};
-
-let translation = translationEn;
-
-export const setDateTypeAtranslation = (t: IDateTypeATranslation) => (translation = t);
-
-export const setDateTypeAlanguage = (locale = 'pt-br') => {
-  if (locale === 'pt-br') {
-    translation = translationPt;
-  } else {
-    translation = translationEn;
-  }
 };
 
 const styles = {
@@ -87,7 +75,10 @@ const values2dateString = (values: IValues): string => {
   return `${values.year}-${month}-${day}`;
 };
 
-const values2errors = (values: IValues): { errors: IVerrors; dateString: string } => {
+const values2errors = (
+  values: IValues,
+  translation: IDateTypeATranslation,
+): { errors: IVerrors; dateString: string } => {
   const errors: IVerrors = {
     year: values.year && values.year.length === 4 ? '' : translation.errorYear,
     month: values.month && values.month !== '0' ? '' : translation.errorMonth,
@@ -117,6 +108,7 @@ export interface IDateTypeAProps {
   touched?: boolean;
   onChange?: (dateString: string) => Promise<void>; // returns only valid dates, or empty
   monthFirst?: boolean;
+  translation?: IDateTypeATranslation;
 }
 
 export const DateTypeA: React.FC<IDateTypeAProps> = ({
@@ -125,6 +117,7 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
   touched,
   onChange,
   monthFirst,
+  translation = dateTypeAtranslationEn,
 }) => {
   const [values, setValues] = useState<IValues>(newZeroValues());
   const [vErrors, setVerrors] = useState<IVerrors>(newZeroVerrors());
@@ -134,23 +127,23 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
       const v = date2values(new Date(unix));
       setValues(v);
       if (touched) {
-        setVerrors(values2errors(v).errors);
+        setVerrors(values2errors(v, translation).errors);
       }
     } else if (date) {
       const v = date2values(date);
       setValues(v);
       if (touched) {
-        setVerrors(values2errors(v).errors);
+        setVerrors(values2errors(v, translation).errors);
       }
     } else if (touched) {
-      setVerrors(values2errors(values).errors);
+      setVerrors(values2errors(values, translation).errors);
     }
-  }, [date, touched]);
+  }, [date, touched, translation]);
 
   const setVal = <K extends keyof IValues>(key: K, valOk: string) => {
     const newValues = { ...values, [key]: valOk };
     setValues(newValues);
-    const { errors, dateString } = values2errors(newValues);
+    const { errors, dateString } = values2errors(newValues, translation);
     if (touched) {
       setVerrors(errors);
     }

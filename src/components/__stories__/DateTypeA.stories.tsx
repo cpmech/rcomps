@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { DateTypeA } from '../DateTypeA';
+import { DateTypeA, dateTypeAtranslationPt } from '../DateTypeA';
 import { Button } from '../Button';
 
 const VSpace: React.FC = () => {
@@ -17,6 +17,8 @@ stories.addDecorator(withKnobs);
 stories.add('default', () => <DateTypeA />);
 
 stories.add('monthFirst', () => <DateTypeA monthFirst={true} />);
+
+stories.add('pt-br', () => <DateTypeA translation={dateTypeAtranslationPt} />);
 
 stories.add('touched', () => (
   <div>
