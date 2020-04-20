@@ -15,6 +15,7 @@ const rowsDefault = [
     ability: 'Robbery',
     knowledge: <strong>Bending girders</strong>,
     id: 10101,
+    itemId: 'bender-rodriguez',
   },
   {
     name: 'Turanga Leela',
@@ -22,6 +23,7 @@ const rowsDefault = [
     ability: 'Kung fu',
     knowledge: <strong>Pilot ship</strong>,
     id: 22222,
+    itemId: 'turanga-leela',
   },
   {
     name: 'Philip J Fry',
@@ -29,6 +31,7 @@ const rowsDefault = [
     ability: 'Useless',
     knowledge: <strong>Nada</strong>,
     id: 0,
+    itemId: 'philip-j-fry',
   },
   {
     // name: 'Hermes Conrad', // << missing
@@ -36,6 +39,7 @@ const rowsDefault = [
     ability: 'Stamping',
     knowledge: <strong>Paperwork</strong>,
     id: 23,
+    itemId: 'hermers-conrad',
   },
 ];
 
@@ -46,6 +50,7 @@ const rowsComplete = [
     ability: 'Robbery',
     knowledge: 'Bending girders',
     id: 10101,
+    itemId: 'bender-rodriguez',
   },
   {
     name: 'Turanga Leela',
@@ -53,6 +58,7 @@ const rowsComplete = [
     ability: 'Kung fu',
     knowledge: 'Pilot ship',
     id: 22222,
+    itemId: 'turanga-leela',
   },
   {
     name: 'Philip J Fry',
@@ -60,6 +66,7 @@ const rowsComplete = [
     ability: 'Useless',
     knowledge: 'Nada',
     id: 0,
+    itemId: 'philip-j-fry',
   },
   {
     name: 'Hermes Conrad',
@@ -67,6 +74,7 @@ const rowsComplete = [
     ability: 'Stamping',
     knowledge: 'Paperwork',
     id: 23,
+    itemId: 'hermers-conrad',
   },
 ];
 
@@ -202,6 +210,29 @@ stories.add('onEdit', () => {
       labels={labels}
       onEdit={(i: number) =>
         action(`row ${i} clicked: id = ${rowsComplete[i].id}. name = ${rowsComplete[i].name}`)()
+      }
+    />
+  );
+});
+
+stories.add('onEdit with itemId', () => {
+  const labels = {
+    job: 'Job description',
+    ability: 'Ability',
+    knowledge: 'Knowledge',
+    id: 'Id',
+  };
+  const columns = ['name', 'id', 'job', 'ability', 'knowledge'];
+  return (
+    <FlexTable
+      mainColumn="name"
+      rows={rowsComplete}
+      columns={columns}
+      labels={labels}
+      onEdit={(i: number, itemId?: string) =>
+        action(
+          `row ${i} clicked: id=${rowsComplete[i].id}. name=${rowsComplete[i].name}. itemId=${itemId}`,
+        )()
       }
     />
   );

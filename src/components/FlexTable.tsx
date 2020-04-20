@@ -50,7 +50,7 @@ export interface IFlexTableProps {
   vpadding?: string;
   hgapControlButtons?: string;
   verticalButtonsMainNarrow?: boolean;
-  onEdit?: (i: number) => void;
+  onEdit?: (i: number, itemId?: string) => void;
 }
 
 type IHiddenRows = { [i: number]: boolean };
@@ -325,7 +325,16 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
               <div css={styleActionIcons}>
                 {onEdit && (
                   <React.Fragment>
-                    <div css={styleActionIcon} onClick={() => onEdit(i)}>
+                    <div
+                      css={styleActionIcon}
+                      onClick={() => {
+                        if (hasProp(rows[i], 'itemId')) {
+                          onEdit(i, rows[i].itemId);
+                        } else {
+                          onEdit(i);
+                        }
+                      }}
+                    >
                       <IconPen size={showHideIconSize} />
                     </div>
                     {verticalButtonsMainNarrow && (
@@ -423,7 +432,11 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
           css={styleRowWide}
           onClick={() => {
             if (onEdit) {
-              onEdit(i);
+              if (hasProp(rows[i], 'itemId')) {
+                onEdit(i, rows[i].itemId);
+              } else {
+                onEdit(i);
+              }
             }
           }}
         >
