@@ -4,6 +4,7 @@ import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 
 export interface IInfoCardProps {
   initShow?: boolean;
+  withShowHide?: boolean;
 
   width?: string;
   minWidth?: number;
@@ -29,6 +30,7 @@ export interface IInfoCardProps {
 
 export const InfoCard: React.FC<IInfoCardProps> = ({
   initShow = true,
+  withShowHide = true,
 
   width = '100%',
   minWidth,
@@ -84,9 +86,13 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
             width: 100%;
             color: ${headerColor};
             background-color: ${headerBgColor};
-            cursor: pointer;
+            ${withShowHide ? `cursor: pointer;` : ''}
           `}
-          onClick={() => setShow(!show)}
+          onClick={() => {
+            if (withShowHide) {
+              setShow(!show);
+            }
+          }}
         >
           <div
             css={css`
@@ -118,30 +124,32 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
         </div>
       )}
 
-      <div
-        css={css`
-          /* icon container */
-          position: absolute;
-          top: 0;
-          right: 0;
-          cursor: pointer;
-        `}
-      >
+      {withShowHide && (
         <div
           css={css`
-            /* menu icon */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: ${iconSize + iconPadding}px;
-            height: ${headerHeight}px;
-            color: ${headerColor};
+            /* icon container */
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
           `}
-          onClick={() => setShow(!show)}
         >
-          {show ? <IconAngleUp size={iconSize} /> : <IconAngleDown size={iconSize} />}
+          <div
+            css={css`
+              /* menu icon */
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: ${iconSize + iconPadding}px;
+              height: ${headerHeight}px;
+              color: ${headerColor};
+            `}
+            onClick={() => setShow(!show)}
+          >
+            {show ? <IconAngleUp size={iconSize} /> : <IconAngleDown size={iconSize} />}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

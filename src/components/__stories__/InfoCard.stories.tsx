@@ -11,3 +11,9 @@ const stories = storiesOf('InfoCard', module);
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => <InfoCard title="Good news!">{loremIpsumFew}</InfoCard>);
+
+stories.add('no show/hide', () => (
+  <InfoCard title="Good news!" withShowHide={false}>
+    {loremIpsumFew}
+  </InfoCard>
+));
