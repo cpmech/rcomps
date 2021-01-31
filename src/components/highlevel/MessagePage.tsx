@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export interface IShowMessageProps {
+export interface IMessagePageProps {
   title?: string;
   message?: string;
   colorTitle?: string;
@@ -9,7 +9,7 @@ export interface IShowMessageProps {
   heightMenu?: number;
 }
 
-export const MessagePage: React.FC<IShowMessageProps> = ({
+export const MessagePage: React.FC<IMessagePageProps> = ({
   title = 'Notificação',
   message = 'Estamos trabalhando nesta parte.',
   colorTitle = '#484848',

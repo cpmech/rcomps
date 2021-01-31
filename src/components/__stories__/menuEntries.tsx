@@ -1,5 +1,3 @@
-import React from 'react';
-import { action } from '@storybook/addon-actions';
 import {
   IconGlobe,
   IconHouseThreeD,
@@ -11,24 +9,24 @@ import { Button } from '../Button';
 
 export const entries = [
   {
-    comp: <Button onClick={action('first clicked')}>First</Button>,
+    comp: <Button onClick={() => window.alert('first clicked')}>First</Button>,
   },
   {
-    comp: <Button onClick={action('second clicked')}>Second</Button>,
+    comp: <Button onClick={() => window.alert('second clicked')}>Second</Button>,
   },
   {
     icon: <IconHouseThreeD size={80} />,
-    onClick: action('house selected'),
+    onClick: () => window.alert('house selected'),
   },
   {
     icon: <IconGlobe />,
     label: 'Mundo',
-    onClick: action('mundo selected'),
+    onClick: () => window.alert('mundo selected'),
   },
   {
     icon: <IconMoney />,
     label: 'Dinheiro',
-    onClick: action('dinheiro selected'),
+    onClick: () => window.alert('dinheiro selected'),
   },
   {
     icon: <IconHouseThreeD />,
@@ -36,15 +34,15 @@ export const entries = [
     entries: [
       {
         label: 'First',
-        onClick: action('First clicked'),
+        onClick: () => window.alert('First clicked'),
       },
       {
         label: 'Second',
-        onClick: action('Second clicked'),
+        onClick: () => window.alert('Second clicked'),
       },
       {
         label: 'Third',
-        onClick: action('Third clicked'),
+        onClick: () => window.alert('Third clicked'),
       },
     ],
   },
@@ -55,17 +53,17 @@ export const entries = [
       {
         icon: <IconUser size={16} />,
         label: 'Bender',
-        onClick: action('Bender clicked'),
+        onClick: () => window.alert('Bender clicked'),
       },
       {
         icon: <IconUser size={16} />,
         label: 'Leela',
-        onClick: action('Leela clicked'),
+        onClick: () => window.alert('Leela clicked'),
       },
       {
         icon: <IconUser size={16} />,
         label: 'Fry',
-        onClick: action('Fry clicked'),
+        onClick: () => window.alert('Fry clicked'),
       },
     ],
   },
@@ -74,12 +72,12 @@ export const entries = [
 export const entriesLeft = [
   {
     icon: <IconHouseThreeD size={80} />,
-    onClick: action('house selected'),
+    onClick: () => window.alert('house selected'),
   },
   {
     icon: <IconGlobe />,
     label: 'Mundo',
-    onClick: action('mundo selected'),
+    onClick: () => window.alert('mundo selected'),
   },
 ];
 
@@ -90,15 +88,15 @@ export const entriesRight = [
     entries: [
       {
         label: 'First',
-        onClick: action('First clicked'),
+        onClick: () => window.alert('First clicked'),
       },
       {
         label: 'Second',
-        onClick: action('Second clicked'),
+        onClick: () => window.alert('Second clicked'),
       },
       {
         label: 'Third',
-        onClick: action('Third clicked'),
+        onClick: () => window.alert('Third clicked'),
       },
     ],
   },
@@ -109,17 +107,17 @@ export const entriesRight = [
       {
         icon: <IconUser size={16} />,
         label: 'Bender',
-        onClick: action('Bender clicked'),
+        onClick: () => window.alert('Bender clicked'),
       },
       {
         icon: <IconUser size={16} />,
         label: 'Leela',
-        onClick: action('Leela clicked'),
+        onClick: () => window.alert('Leela clicked'),
       },
       {
         icon: <IconUser size={16} />,
         label: 'Fry',
-        onClick: action('Fry clicked'),
+        onClick: () => window.alert('Fry clicked'),
       },
     ],
   },

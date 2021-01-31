@@ -1,79 +1,66 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
-import { Button } from '../Button';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Button, IButtonProps } from '../Button';
 
-const stories = storiesOf('Button', module);
+export default {
+  title: 'Components/Button',
+  component: Button,
+  argTypes: {
+    type: {
+      control: {
+        type: 'inline-radio',
+        options: ['button', 'submit', 'reset'],
+      },
+    },
+    onClick: { action: 'button-clicked' },
+    backgroundColor: { control: 'color' },
+    color: { control: 'color' },
+    colorDisabled: { control: 'color' },
+    hoverColor: { control: 'color' },
+    hoverColorOutline: { control: 'color' },
+    height: { control: 'range', min: 0, max: 100, step: 1 },
+    paddingLeft: { control: 'range', min: 0, max: 100, step: 1 },
+    paddingRight: { control: 'range', min: 0, max: 100, step: 1 },
+    borderRadius: { control: 'range', min: 0, max: 100, step: 1 },
+    fontSize: { control: 'range', min: 0, max: 100, step: 1 },
+    disabled: { control: 'boolean' },
+    outline: { control: 'boolean' },
+    flatLeft: { control: 'boolean' },
+    flatRight: { control: 'boolean' },
+  },
+  parameters: {
+    backgrounds: {
+      values: [
+        { name: 'white', value: '#fff' },
+        { name: 'light', value: '#cecece' },
+        { name: 'dark', value: '#484848' },
+      ],
+    },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IButtonProps> = (args) => <Button {...args}>CLICK ME</Button>;
 
-stories.add('default', () => <Button onClick={action('Button clicked')}>Hello World</Button>);
+export const Default = Template.bind({});
 
-stories.add('100%', () => (
-  <Button onClick={action('Button clicked')} width="100%">
-    Hello World
-  </Button>
-));
+export const FullWidth = Template.bind({});
+FullWidth.args = { ...Template.args, width: '100%' };
 
-stories.add('disabled', () => (
-  <Button onClick={action('Disabled button clicked')} disabled={true}>
-    Hello World
-  </Button>
-));
+export const Disabled = Template.bind({});
+Disabled.args = { ...Template.args, disabled: true };
 
-stories.add('outline', () => (
-  <Button onClick={action('Outline button clicked')} outline={true}>
-    Hello World
-  </Button>
-));
+export const Outline = Template.bind({});
+Outline.args = { ...Template.args, outline: true };
 
-stories.add('styled', () => (
-  <Button
-    onClick={action('Button')}
-    height={60}
-    paddingHoriz={100}
-    borderRadius={100}
-    fontSize={24}
-    fontWeight="bold"
-    color="white"
-    backgroundColor="#803ced"
-    hoverColor="#9f6cf1"
-  >
-    HELLO WORLD
-  </Button>
-));
-
-stories.add('flat left', () => (
-  <Button
-    onClick={action('Button')}
-    height={60}
-    paddingHoriz={100}
-    borderRadius={100}
-    fontSize={24}
-    fontWeight="bold"
-    color="white"
-    backgroundColor="#803ced"
-    hoverColor="#9f6cf1"
-    flatLeft={true}
-  >
-    HELLO WORLD
-  </Button>
-));
-
-stories.add('flat right', () => (
-  <Button
-    onClick={action('Button')}
-    height={60}
-    paddingHoriz={100}
-    borderRadius={100}
-    fontSize={24}
-    fontWeight="bold"
-    color="white"
-    backgroundColor="#803ced"
-    hoverColor="#9f6cf1"
-    flatRight={true}
-  >
-    HELLO WORLD
-  </Button>
-));
+export const Styled = Template.bind({});
+Styled.args = {
+  ...Template.args,
+  height: 60,
+  paddingLeft: 100,
+  paddingRight: 100,
+  borderRadius: 100,
+  fontSize: 24,
+  fontWeight: 'bold',
+  color: 'white',
+  backgroundColor: '#803ced',
+  hoverColor: '#9f6cf1',
+};
