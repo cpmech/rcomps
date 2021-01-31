@@ -1,5 +1,5 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 
 export interface ISwitchProps {
   on?: boolean;
@@ -131,35 +131,35 @@ export const Switch: React.FC<ISwitchProps> = ({
         />
         <span
           css={css`
-          position: absolute;
-          cursor: pointer;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          ${backgroundColorMuted ? `background-color: ${backgroundColorMuted};` : ''}
-          -webkit-transition: ${transitionTime};
-          transition: ${transitionTime};
-          border-radius: ${height * 2}px;
-          border: ${borderWidth}px solid ${borderColor};
-
-          :before {
             position: absolute;
-            content: '';
-            height: ${diam}px;
-            width: ${diam}px;
-            left: ${gap}px;
-            bottom: ${gap}px;
-            ${knobColorMuted ? `background-color: ${knobColorMuted};` : ''}
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            ${backgroundColorMuted ? `background-color: ${backgroundColorMuted};` : ''}
             -webkit-transition: ${transitionTime};
             transition: ${transitionTime};
-            border: ${knobBorderWidth}px solid ${knobBorderColor};
-          }
+            border-radius: ${height * 2}px;
+            border: ${borderWidth}px solid ${borderColor};
 
-          :before {
-            border-radius: 50%;
-          }
-        `}
+            :before {
+              position: absolute;
+              content: '';
+              height: ${diam}px;
+              width: ${diam}px;
+              left: ${gap}px;
+              bottom: ${gap}px;
+              ${knobColorMuted ? `background-color: ${knobColorMuted};` : ''}
+              -webkit-transition: ${transitionTime};
+              transition: ${transitionTime};
+              border: ${knobBorderWidth}px solid ${knobBorderColor};
+            }
+
+            :before {
+              border-radius: 50%;
+            }
+          `}
         ></span>
       </label>
     </div>

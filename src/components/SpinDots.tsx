@@ -1,6 +1,5 @@
-import React from 'react';
-// tslint:disable-next-line: align
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { hex2rgb } from './helpers';
 
 export interface ISpinDotsProps {

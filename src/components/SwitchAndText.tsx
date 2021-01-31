@@ -1,5 +1,5 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css, SerializedStyles } from '@emotion/react';
 import { Switch } from './Switch';
 
 interface IProps {

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-/** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css, SerializedStyles } from '@emotion/react';
+import { Fragment, useState } from 'react';
 import { hasProp } from '@cpmech/basic';
 import { useMediaQuery } from 'react-responsive';
 import { IconAngleDown, IconAngleUp, IconPen } from '@cpmech/react-icons';
@@ -318,13 +319,13 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
 
         {/* ----------------- content ----------------- */}
         {rows.map((_, i) => (
-          <React.Fragment key={i}>
+          <Fragment key={i}>
             {/* --- first column --- */}
             <div css={styleFirstColumnNarrow}>
               <div css={styleContainerNarrow}>{valueOrEmpty(i, mainColumn)}</div>
               <div css={styleActionIcons}>
                 {onEdit && (
-                  <React.Fragment>
+                  <Fragment>
                     <div
                       css={styleActionIcon}
                       onClick={() => {
@@ -344,7 +345,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                         `}
                       ></div>
                     )}
-                  </React.Fragment>
+                  </Fragment>
                 )}
                 <div
                   css={styleActionIcon}
@@ -378,7 +379,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                 {valueOrEmpty(i, col)}
               </div>
             ))}
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
     );
@@ -390,7 +391,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
     <div>
       {/* ----------------- header ----------------- */}
       {showLabelsWide && (
-        <React.Fragment>
+        <Fragment>
           <div css={styleHeader}>
             {allColumns.map((col, j) => (
               <div
@@ -422,7 +423,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
               </div>
             ))}
           </div>
-        </React.Fragment>
+        </Fragment>
       )}
 
       {/* ----------------- content ----------------- */}

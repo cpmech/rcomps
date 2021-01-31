@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { ReactNode } from 'react';
 
 export type ITopMenuEntry = ReactNode; // e.g. gatsby's Link or rcomps.Link components or button
 

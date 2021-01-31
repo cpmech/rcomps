@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+/** @jsxImportSource @emotion/react */
+import { ReactNode } from 'react';
 
 interface IPairProps {
   left: ReactNode;

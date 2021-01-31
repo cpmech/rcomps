@@ -1,5 +1,5 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { SpinDots, ISpinDotsProps } from './SpinDots';
 
 export interface ISpinAndMsgDotsProps extends ISpinDotsProps {

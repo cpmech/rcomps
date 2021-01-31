@@ -1,5 +1,6 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { Fragment } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 import { OutsideClick } from './helpers';
 
@@ -95,14 +96,14 @@ export const SideNav: React.FC<ISideNavProps> = ({
             })}
 
           {children && (
-            <React.Fragment>
+            <Fragment>
               {children}
               <div
                 css={css`
                   padding-bottom: ${bottomVSpace}px;
                 `}
               ></div>
-            </React.Fragment>
+            </Fragment>
           )}
         </div>
 

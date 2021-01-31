@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
-/** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css, SerializedStyles } from '@emotion/react';
+import { useRef, useEffect } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 import { useLockBodyScroll } from './helpers';
 

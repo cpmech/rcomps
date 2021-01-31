@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { useState, useEffect } from 'react';
 import { IMenuEntry } from './MenuVertical';
 
 export interface ITabsProps {

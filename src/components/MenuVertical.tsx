@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { Fragment, ReactNode } from 'react';
 
 export interface IMenuEntry {
   comp?: ReactNode;
@@ -126,13 +127,13 @@ export const MenuVertical: React.FC<IMenuVerticalProps> = ({
               {/* sub-entries */}
               {entry.entries &&
                 entry.entries.map((sub, j) => (
-                  <React.Fragment key={`${i}-${j}`}>
+                  <Fragment key={`${i}-${j}`}>
                     <div css={styles.vspaceSub}></div>
                     <div css={styles.labelSub} onClick={sub.onClick}>
                       <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
                       <div>{sub.label}</div>
                     </div>
-                  </React.Fragment>
+                  </Fragment>
                 ))}
             </div>
           )}

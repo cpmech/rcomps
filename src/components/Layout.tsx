@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { Fragment, ReactNode } from 'react';
 
 export interface IDefaultLayoutProps {
   header: ReactNode;
@@ -62,7 +63,7 @@ export const Layout: React.FC<ILayoutProps> = ({
       `;
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div css={styleRoot}>
         {/* warning */}
         <div css={styleWarning}>{warning}</div>
@@ -115,6 +116,6 @@ export const Layout: React.FC<ILayoutProps> = ({
           {footer}
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };

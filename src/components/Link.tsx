@@ -1,4 +1,4 @@
-import React from 'react';
+/** @jsxImportSource @emotion/react */
 
 export interface ILinkProps {
   href?: string;

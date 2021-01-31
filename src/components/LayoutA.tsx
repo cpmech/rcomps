@@ -1,5 +1,6 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { Fragment } from 'react';
 import { IDefaultLayoutProps } from './Layout';
 
 interface ILayoutAProps extends IDefaultLayoutProps {
@@ -38,7 +39,7 @@ export const LayoutA: React.FC<ILayoutAProps> = ({
       `;
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div css={styleRoot}>
         {/* header */}
         <div css={styleHeader}>{header}</div>
@@ -88,6 +89,6 @@ export const LayoutA: React.FC<ILayoutAProps> = ({
           {footer}
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };

@@ -1,5 +1,6 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css, SerializedStyles } from '@emotion/react';
+import { Fragment } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 
 interface INotifierProps {
@@ -81,17 +82,17 @@ export const Notifier: React.FC<INotifierProps> = ({
       {title && (
         <div
           css={css`
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          font-size: ${titleFontSize}px;
-          box-sizing: border-box;
-          ${titleBgColor ? `background-color:${titleBgColor};` : ''}
-          ${titleBorderColor ? `border-bottom: 1px solid ${titleBorderColor};` : ''}
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: ${titleFontSize}px;
+            box-sizing: border-box;
+            ${titleBgColor ? `background-color:${titleBgColor};` : ''}
+            ${titleBorderColor ? `border-bottom: 1px solid ${titleBorderColor};` : ''}
           margin-top: ${marginVert}px;
-          padding-left: ${paddingHoriz}px;
-          padding-right: ${paddingHoriz}px;
-        `}
+            padding-left: ${paddingHoriz}px;
+            padding-right: ${paddingHoriz}px;
+          `}
         >
           {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
         </div>
@@ -106,10 +107,10 @@ export const Notifier: React.FC<INotifierProps> = ({
             width: 85%;
           `}
         >
-          <React.Fragment>
+          <Fragment>
             {caption && <span css={captionStyle}>{caption}</span>}
             {messageStyle ? <span css={messageStyle}>{message}</span> : <span>{message}</span>}
-          </React.Fragment>
+          </Fragment>
         </div>
       )}
       <div

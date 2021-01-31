@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+/** @jsxImportSource @emotion/react */
+import { ReactNode } from 'react';
 import { formatNumber } from '@cpmech/util';
 import { ITypeAProps } from './styles';
 import { InputTypeA } from './InputTypeA';

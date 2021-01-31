@@ -1,5 +1,6 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { Fragment } from 'react';
 import { IMenuEntry } from './MenuVertical';
 
 export interface IMenuHorizontalProps {
@@ -124,7 +125,7 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
     <div css={styles.root}>
       <div css={styles.container}>
         {entries.map((entry, i) => (
-          <React.Fragment key={i}>
+          <Fragment key={i}>
             {/* gap between entries */}
             {gapHorizEntries && i > 0 && <div css={styles.gapBetweenEntries}></div>}
 
@@ -147,18 +148,18 @@ export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
                   {/* sub-entries */}
                   {entry.entries &&
                     entry.entries.map((sub, j) => (
-                      <React.Fragment key={`${i}-${j}`}>
+                      <Fragment key={`${i}-${j}`}>
                         <div css={styles.vspaceSub}></div>
                         <div css={styles.labelSub} onClick={sub.onClick}>
                           <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
                           <div>{sub.label}</div>
                         </div>
-                      </React.Fragment>
+                      </Fragment>
                     ))}
                 </div>
               )}
             </div>
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
     </div>

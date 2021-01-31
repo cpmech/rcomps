@@ -1,5 +1,5 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 
 export interface IInputMaterialProps {
   name: string;

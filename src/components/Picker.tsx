@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-/** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css, SerializedStyles } from '@emotion/react';
+import { useState, useEffect, useRef } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Link } from './Link';
 import { Pair } from './Pair';
