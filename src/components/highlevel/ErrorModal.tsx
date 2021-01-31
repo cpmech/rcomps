@@ -2,14 +2,14 @@
 import { css } from '@emotion/react';
 import { Modal, IModalProps } from '../Modal';
 
-export interface IErrorModelProps extends IModalProps {
+export interface IErrorModalProps extends IModalProps {
   title?: string;
   onClose: () => void;
   message?: string;
   colorTitle?: string;
 }
 
-export const ErrorModal: React.FC<IErrorModelProps> = ({
+export const ErrorModal: React.FC<IErrorModalProps> = ({
   title = 'Error',
   onClose,
   message,
