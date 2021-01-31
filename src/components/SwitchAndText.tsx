@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { Switch } from './Switch';
 
 export interface ISwitchAndTextProps {
@@ -7,10 +7,10 @@ export interface ISwitchAndTextProps {
   on: boolean;
   onClick: () => void;
   textAtRight?: boolean;
-  textStyle?: SerializedStyles;
   hgap?: number;
   switchHeight?: number;
   spaceInBetween?: boolean;
+  cssText?: string;
 }
 
 export const SwitchAndText: React.FC<ISwitchAndTextProps> = ({
@@ -18,10 +18,10 @@ export const SwitchAndText: React.FC<ISwitchAndTextProps> = ({
   on,
   onClick,
   textAtRight,
-  textStyle,
   hgap = 10,
   switchHeight = 24,
   spaceInBetween = false,
+  cssText,
 }) => {
   const styleRoot = css`
     display: flex;
@@ -43,7 +43,7 @@ export const SwitchAndText: React.FC<ISwitchAndTextProps> = ({
       <div css={styleRoot}>
         <Switch on={on} height={switchHeight} onClick={onClick} />
         <div css={styleAtRight}>
-          <div css={textStyle}>{text}</div>
+          {cssText ? <div css={css(cssText)}>{text}</div> : <div>{text}</div>}
         </div>
       </div>
     );
@@ -52,7 +52,7 @@ export const SwitchAndText: React.FC<ISwitchAndTextProps> = ({
   return (
     <div css={styleRoot}>
       <div css={styleAtLeft}>
-        <div css={textStyle}>{text}</div>
+        {cssText ? <div css={css(cssText)}>{text}</div> : <div>{text}</div>}
       </div>
       <Switch on={on} height={switchHeight} onClick={onClick} />
     </div>

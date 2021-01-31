@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { useRef, useEffect } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 import { useLockBodyScroll } from './helpers';
@@ -18,7 +18,6 @@ export interface IModalProps {
   bgOpacity?: number;
   titleBgColor?: string;
   titleBorderColor?: string;
-  titleStyle?: SerializedStyles;
   width?: string;
   height?: string;
   minWidth?: string;
@@ -30,6 +29,7 @@ export interface IModalProps {
   allowClickOutsideToClose?: boolean;
   noCloseButton?: boolean;
   noHightlightCloseButton?: boolean;
+  cssTitle?: string;
 }
 
 export const Modal: React.FC<IModalProps> = ({
@@ -46,10 +46,6 @@ export const Modal: React.FC<IModalProps> = ({
   bgOpacity = 0.4,
   titleBgColor,
   titleBorderColor,
-  titleStyle = css`
-    font-weight: bold;
-    font-size: 1.2em;
-  `,
   width,
   height,
   minWidth,
@@ -61,6 +57,7 @@ export const Modal: React.FC<IModalProps> = ({
   allowClickOutsideToClose = true,
   noCloseButton,
   noHightlightCloseButton = true,
+  cssTitle = `font-weight: bold; font-size: 1.2em;`,
   children,
 }) => {
   const refRoot = useRef<HTMLDivElement>(null);
@@ -134,7 +131,7 @@ export const Modal: React.FC<IModalProps> = ({
               padding-right: ${paddingHoriz}px;
             `}
           >
-            {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
+            {cssTitle ? <span css={css(cssTitle)}>{title}</span> : <span>{title}</span>}
           </div>
         )}
 

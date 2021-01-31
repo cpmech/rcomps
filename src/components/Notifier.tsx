@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { Fragment } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 
@@ -20,13 +20,13 @@ export interface INotifierProps {
   borderColor?: string;
   titleBgColor?: string;
   titleBorderColor?: string;
-  titleStyle?: SerializedStyles;
-  captionStyle?: SerializedStyles;
-  messageStyle?: SerializedStyles;
   heightPhone?: number;
   heightTablet?: number;
   heightDesktop?: number;
   noHightlightCloseButton?: boolean;
+  cssTitle?: string;
+  cssCaption?: string;
+  cssMessage?: string;
 }
 
 export const Notifier: React.FC<INotifierProps> = ({
@@ -46,17 +46,13 @@ export const Notifier: React.FC<INotifierProps> = ({
   borderColor = '#cccccc',
   titleBgColor,
   titleBorderColor,
-  titleStyle,
-  captionStyle = css`
-    font-size: 14;
-    font-weight: bold;
-    color: #e62739;
-  `,
-  messageStyle,
   heightPhone = 60,
   heightTablet = 100,
   heightDesktop = 150,
   noHightlightCloseButton = true,
+  cssTitle,
+  cssCaption = `font-size: 14; font-weight: bold; color: #e62739;`,
+  cssMessage,
 }) => {
   return (
     <div
@@ -94,7 +90,7 @@ export const Notifier: React.FC<INotifierProps> = ({
             padding-right: ${paddingHoriz}px;
           `}
         >
-          {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
+          {cssTitle ? <span css={css(cssTitle)}>{title}</span> : <span>{title}</span>}
         </div>
       )}
       {message && (
@@ -108,8 +104,8 @@ export const Notifier: React.FC<INotifierProps> = ({
           `}
         >
           <Fragment>
-            {caption && <span css={captionStyle}>{caption}</span>}
-            {messageStyle ? <span css={messageStyle}>{message}</span> : <span>{message}</span>}
+            {caption && <span css={css(cssCaption)}>{caption}</span>}
+            {cssMessage ? <span css={css(cssMessage)}>{message}</span> : <span>{message}</span>}
           </Fragment>
         </div>
       )}

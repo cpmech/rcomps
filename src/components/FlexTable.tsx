@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { Fragment, useState } from 'react';
 import { hasProp } from '@cpmech/basic';
 import { useMediaQuery } from 'react-responsive';
@@ -35,11 +35,11 @@ export interface IFlexTableProps {
   colorBorderMainNarrow?: string;
   colorBorderMainWide?: string;
 
-  styleMainNarrow?: SerializedStyles;
-  styleMainWide?: SerializedStyles;
-  styleLabelsNarrow?: SerializedStyles;
-  styleLabelsWide?: SerializedStyles;
-  styleText?: SerializedStyles;
+  cssMainNarrow?: string;
+  cssMainWide?: string;
+  cssLabelsNarrow?: string;
+  cssLabelsWide?: string;
+  cssText?: string;
 
   missingDataMessage?: string;
   controlHideAllText?: string;
@@ -82,27 +82,11 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
   colorBorderMainNarrow = 'white',
   colorBorderMainWide = 'white',
 
-  styleMainNarrow = css`
-    color: white;
-    font-weight: bold;
-  `,
-  styleMainWide = css`
-    color: #484848;
-    font-weight: bold;
-  `,
-  styleLabelsNarrow = css`
-    color: #5d5c61;
-    font-weight: bold;
-    font-size: 0.8em;
-  `,
-  styleLabelsWide = css`
-    color: #5d5c61;
-    font-weight: bold;
-    font-size: 1.2em;
-  `,
-  styleText = css`
-    color: #5d5c61;
-  `,
+  cssMainNarrow = `color: white; font-weight: bold;`,
+  cssMainWide = `color: #484848; font-weight: bold;`,
+  cssLabelsNarrow = `color: #5d5c61; font-weight: bold; font-size: 0.8em;`,
+  cssLabelsWide = `color: #5d5c61; font-weight: bold; font-size: 1.2em;`,
+  cssText = `color: #5d5c61;`,
 
   missingDataMessage = 'Missing data',
   controlHideAllText = 'Hide all',
@@ -179,9 +163,13 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
       const value = (rows[rowIndex] as any)[colLabel];
       if (typeof value === 'string' || typeof value === 'number') {
         if (isNarrow) {
-          return <span css={colLabel === mainColumn ? styleMainNarrow : styleText}>{value}</span>;
+          return (
+            <span css={colLabel === mainColumn ? css(cssMainNarrow) : css(cssText)}>{value}</span>
+          );
         } else {
-          return <span css={colLabel === mainColumn ? styleMainWide : styleText}>{value}</span>;
+          return (
+            <span css={colLabel === mainColumn ? css(cssMainWide) : css(cssText)}>{value}</span>
+          );
         }
       } else {
         return value;
@@ -373,7 +361,7 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
               >
                 {showLabelsNarrow && (
                   <div>
-                    <span css={styleLabelsNarrow}>{(allLabels as any)[col]}</span>
+                    <span css={css(cssLabelsNarrow)}>{(allLabels as any)[col]}</span>
                   </div>
                 )}
                 {valueOrEmpty(i, col)}
@@ -410,11 +398,11 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
                       align-items: center;
                     `}
                   >
-                    <div css={[styleLabelsWide, styleLabelsWideExtra]}>
+                    <div css={[css(cssLabelsWide), styleLabelsWideExtra]}>
                       {(allLabels as any)[col]}
                     </div>
                     {units && (
-                      <div css={[styleLabelsWide, styleLabelsWideExtra]}>
+                      <div css={[css(cssLabelsWide), styleLabelsWideExtra]}>
                         {(units as any)[col] || ''}
                       </div>
                     )}

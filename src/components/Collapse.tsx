@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
-import { useState } from 'react';
+import { css } from '@emotion/react';
+import { useState, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 
 export interface ICollapseProps {
@@ -16,8 +16,9 @@ export interface ICollapseProps {
   borderColor?: string;
   titleBgColor?: string;
   titleBorderColor?: string;
-  titleStyle?: SerializedStyles;
   closeOnClickBody?: boolean;
+  initShow?: boolean;
+  cssTitle?: string;
 }
 
 export const Collapse: React.FC<ICollapseProps> = ({
@@ -33,11 +34,16 @@ export const Collapse: React.FC<ICollapseProps> = ({
   borderColor = '#cccccc',
   titleBgColor,
   titleBorderColor,
-  titleStyle,
   closeOnClickBody = true,
+  initShow = false,
+  cssTitle,
   children,
 }) => {
-  const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setShow(!!initShow);
+  }, [initShow]);
 
   return (
     <div
@@ -52,7 +58,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
           color: ${color};
           background-color: ${bgColor};
         `}
-        onClick={() => closeOnClickBody && setOpen(!open)}
+        onClick={() => closeOnClickBody && setShow(!show)}
       >
         <div
           css={css`
@@ -67,13 +73,13 @@ export const Collapse: React.FC<ICollapseProps> = ({
             padding-left: ${paddingHoriz}px;
             padding-right: ${paddingHoriz}px;
           `}
-          onClick={() => setOpen(!open)}
+          onClick={() => setShow(!show)}
         >
-          {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
+          {cssTitle ? <span css={css(cssTitle)}>{title}</span> : <span>{title}</span>}
         </div>
         <div
           css={css`
-            display: ${open ? 'inline-block' : 'none'};
+            display: ${show ? 'inline-block' : 'none'};
             padding-left: ${paddingHoriz}px;
             padding-right: ${paddingHoriz}px;
           `}
@@ -95,9 +101,9 @@ export const Collapse: React.FC<ICollapseProps> = ({
             right: ${iconPaddingRight}px;
             color: ${color};
           `}
-          onClick={() => setOpen(!open)}
+          onClick={() => setShow(!show)}
         >
-          {open ? <IconAngleUp size={iconSize} /> : <IconAngleDown size={iconSize} />}
+          {show ? <IconAngleUp size={iconSize} /> : <IconAngleDown size={iconSize} />}
         </div>
       </div>
     </div>

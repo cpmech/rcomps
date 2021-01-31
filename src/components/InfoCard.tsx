@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 
@@ -23,10 +23,11 @@ export interface IInfoCardProps {
   title?: string;
   titleBgColor?: string;
   titleBorderColor?: string;
-  titleStyle?: SerializedStyles;
 
   paddingVert?: number;
   paddingHoriz?: number;
+
+  cssTitle?: string;
 }
 
 export const InfoCard: React.FC<IInfoCardProps> = ({
@@ -47,12 +48,11 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
   headerPaddingHoriz = 20,
 
   title,
-  titleStyle = css`
-    font-weight: bold;
-  `,
 
   paddingVert = 5,
   paddingHoriz = 10,
+
+  cssTitle = `font-weight: bold;`,
 
   children,
 }) => {
@@ -104,7 +104,7 @@ export const InfoCard: React.FC<IInfoCardProps> = ({
               height: ${headerHeight}px;
             `}
           >
-            {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
+            {cssTitle ? <span css={css(cssTitle)}>{title}</span> : <span>{title}</span>}
           </div>
         </div>
       )}

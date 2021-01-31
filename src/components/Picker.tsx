@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { useState, useEffect, useRef } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Link } from './Link';
@@ -30,7 +30,7 @@ export interface IPickerProps {
   color?: string; // button style
   backgroundColor?: string; // button style
   hoverColor?: string; // button style
-  messageStyle?: SerializedStyles;
+  cssMessage?: string;
 }
 
 export const Picker: React.FC<IPickerProps> = ({
@@ -50,7 +50,7 @@ export const Picker: React.FC<IPickerProps> = ({
   color = '#343434',
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
-  messageStyle,
+  cssMessage,
 }) => {
   const [btnText, setBtnText] = useState('');
   const [open, setOpen] = useState(false);
@@ -127,7 +127,7 @@ export const Picker: React.FC<IPickerProps> = ({
               }
             }}
           >
-            {messageStyle ? <span css={messageStyle}>{e.message}</span> : <span>{e.message}</span>}
+            {cssMessage ? <span css={css(cssMessage)}>{e.message}</span> : <span>{e.message}</span>}
           </Link>
         ))}
       </div>

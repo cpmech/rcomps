@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { useState, useRef, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Link } from './Link';
@@ -15,9 +15,9 @@ export interface IPickerTypeAProps extends ITypeAProps {
   widthBox?: string; // width of entries box
   heightBox?: number; // height of entries box
   boxToRight?: boolean;
-  messageStyle?: SerializedStyles;
   iconPaddingRight?: number;
   readOnly?: boolean;
+  cssMessage?: string;
 }
 
 export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
@@ -29,9 +29,9 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
   widthBox,
   heightBox,
   boxToRight,
-  messageStyle,
   iconPaddingRight = 15,
   readOnly = false,
+  cssMessage,
   ...rest
 }) => {
   const [btnText, setBtnText] = useState('');
@@ -115,7 +115,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
               }
             }}
           >
-            {messageStyle ? <span css={messageStyle}>{e.message}</span> : <span>{e.message}</span>}
+            {cssMessage ? <span css={css(cssMessage)}>{e.message}</span> : <span>{e.message}</span>}
           </Link>
         ))}
       </div>

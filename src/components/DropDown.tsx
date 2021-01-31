@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { useState, useEffect, useRef } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { Link } from './Link';
@@ -30,7 +30,7 @@ export interface IDropDownProps {
   color?: string;
   backgroundColor?: string;
   hoverColor?: string;
-  messageStyle?: SerializedStyles;
+  cssMessage?: string;
 }
 
 export const DropDown: React.FC<IDropDownProps> = ({
@@ -51,7 +51,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
   color = '#343434',
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
-  messageStyle,
+  cssMessage,
 }) => {
   const [open, setOpen] = useState(false);
   const refRoot = useRef<HTMLDivElement>(null);
@@ -145,7 +145,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
               }
             }}
           >
-            {messageStyle ? <span css={messageStyle}>{e.message}</span> : <span>{e.message}</span>}
+            {cssMessage ? <span css={css(cssMessage)}>{e.message}</span> : <span>{e.message}</span>}
           </Link>
         ))}
       </div>

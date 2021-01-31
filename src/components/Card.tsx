@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { Fragment, useState } from 'react';
 import { IconVertDots } from '@cpmech/react-icons';
 import { getFloatCss } from './styles';
@@ -21,7 +21,6 @@ export interface ICardProps {
   menuEntries?: ICardMenuEntry[];
   menuWidthBox?: string; // width of entries box
   menuHeightBox?: number; // height of entries box
-  menuTextStyle?: SerializedStyles;
   menuEntryHeight?: number;
 
   headerColor?: string;
@@ -31,7 +30,6 @@ export interface ICardProps {
   title?: string;
   titleBgColor?: string;
   titleBorderColor?: string;
-  titleStyle?: SerializedStyles;
 
   paddingHoriz?: number;
   paddingVert?: number;
@@ -45,6 +43,9 @@ export interface ICardProps {
   buttons?: any;
 
   noZoom?: boolean;
+
+  cssTitle?: string;
+  cssMenuText?: string;
 }
 
 export const Card: React.FC<ICardProps> = ({
@@ -58,7 +59,6 @@ export const Card: React.FC<ICardProps> = ({
   menuEntries,
   menuWidthBox,
   menuHeightBox,
-  menuTextStyle,
   menuEntryHeight = 50,
 
   headerColor = '#484848',
@@ -66,9 +66,6 @@ export const Card: React.FC<ICardProps> = ({
   headerHeight = 52,
 
   title,
-  titleStyle = css`
-    font-weight: bold;
-  `,
 
   paddingHoriz = 20,
   paddingVert = 10,
@@ -82,6 +79,9 @@ export const Card: React.FC<ICardProps> = ({
   buttons,
 
   noZoom = true,
+
+  cssMenuText,
+  cssTitle = `font-weight: bold;`,
 
   children,
 }) => {
@@ -122,26 +122,27 @@ export const Card: React.FC<ICardProps> = ({
     contentHeight -= buttonsHeight;
   }
 
-  let floatCss: SerializedStyles | undefined;
-  let menuEntryCss: SerializedStyles | undefined;
-  if (menuEntries) {
-    floatCss = getFloatCss(showMenu, menuHeightBox, menuWidthBox, true);
-    menuEntryCss = css`
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: ${paddingHoriz}px;
-      padding-right: ${paddingHoriz}px;
-      height: ${menuEntryHeight}px;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      overflow: hidden;
-      :hover {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-    `;
-  }
+  const floatCss = menuEntries
+    ? getFloatCss(showMenu, menuHeightBox, menuWidthBox, true)
+    : undefined;
+
+  const menuEntryCss = menuEntries
+    ? css`
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: ${paddingHoriz}px;
+        padding-right: ${paddingHoriz}px;
+        height: ${menuEntryHeight}px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        :hover {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+      `
+    : undefined;
 
   return (
     <div
@@ -182,7 +183,7 @@ export const Card: React.FC<ICardProps> = ({
               height: ${headerHeight}px;
             `}
           >
-            {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}
+            {cssTitle ? <span css={css(cssTitle)}>{title}</span> : <span>{title}</span>}
           </div>
         </div>
       )}
@@ -290,8 +291,8 @@ export const Card: React.FC<ICardProps> = ({
                     }
                   }}
                 >
-                  {menuTextStyle ? (
-                    <span css={menuTextStyle}>{e.message}</span>
+                  {cssMenuText ? (
+                    <span css={css(cssMenuText)}>{e.message}</span>
                   ) : (
                     <span>{e.message}</span>
                   )}
