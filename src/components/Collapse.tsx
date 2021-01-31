@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-/** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css, SerializedStyles } from '@emotion/react';
+import { useState } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 
 export interface ICollapseProps {
@@ -65,7 +66,7 @@ export const Collapse: React.FC<ICollapseProps> = ({
             ${titleBorderColor ? `border-bottom: 1px solid ${titleBorderColor};` : ''}
             padding-left: ${paddingHoriz}px;
             padding-right: ${paddingHoriz}px;
-        `}
+          `}
           onClick={() => setOpen(!open)}
         >
           {titleStyle ? <span css={titleStyle}>{title}</span> : <span>{title}</span>}

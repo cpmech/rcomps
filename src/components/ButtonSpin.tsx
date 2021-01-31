@@ -1,5 +1,5 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { IButtonProps, Button } from './Button';
 import { SpinDots } from './SpinDots';
 

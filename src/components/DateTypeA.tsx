@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { Fragment, useState } from 'react';
 import {
   IDateValues,
   IDateVerrors,
@@ -91,7 +92,7 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
 
   if (monthFirst) {
     return (
-      <React.Fragment>
+      <Fragment>
         <div css={styles.onRow}>
           <InputTypeA
             label={translation.month}
@@ -114,19 +115,19 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
           />
         </div>
         {touched && (
-          <React.Fragment>
+          <Fragment>
             <FormErrorField error={vErrors.day} />
             <FormErrorField error={vErrors.month} />
             <FormErrorField error={vErrors.year} />
             <FormErrorField error={vErrors.date} />
-          </React.Fragment>
+          </Fragment>
         )}
-      </React.Fragment>
+      </Fragment>
     );
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div css={styles.onRow}>
         <InputTypeA
           label={translation.day}
@@ -149,13 +150,13 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
         />
       </div>
       {touched && (
-        <React.Fragment>
+        <Fragment>
           <FormErrorField error={vErrors.day} />
           <FormErrorField error={vErrors.month} />
           <FormErrorField error={vErrors.year} />
           <FormErrorField error={vErrors.date} />
-        </React.Fragment>
+        </Fragment>
       )}
-    </React.Fragment>
+    </Fragment>
   );
 };

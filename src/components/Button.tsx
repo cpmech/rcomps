@@ -1,5 +1,4 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
 import { getButtonCss } from './styles';
 
 export interface IButtonProps {

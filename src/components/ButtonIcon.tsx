@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { ReactNode } from 'react';
+import { css } from '@emotion/react';
 import { IButtonProps, Button } from './Button';
 
 interface IButtonIconProps extends IButtonProps {

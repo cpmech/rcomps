@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-/** @jsx jsx */ import { jsx, css, SerializedStyles } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css, SerializedStyles } from '@emotion/react';
+import { Fragment, useState } from 'react';
 import { IconVertDots } from '@cpmech/react-icons';
 import { getFloatCss } from './styles';
 import { OutsideClick } from './helpers';
@@ -252,7 +253,7 @@ export const Card: React.FC<ICardProps> = ({
       )}
 
       {menuEntries && (
-        <React.Fragment>
+        <Fragment>
           <div
             css={css`
               /* icon container */
@@ -298,7 +299,7 @@ export const Card: React.FC<ICardProps> = ({
               ))}
             </div>
           </OutsideClick>
-        </React.Fragment>
+        </Fragment>
       )}
     </div>
   );
