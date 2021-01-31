@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { Fragment } from 'react';
 import { IDefaultLayoutProps } from './Layout';
 
-interface ILayoutAProps extends IDefaultLayoutProps {
+export interface ILayoutAProps extends IDefaultLayoutProps {
   maxContentWidth?: number;
 }
 

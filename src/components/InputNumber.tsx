@@ -4,7 +4,7 @@ import { formatNumber } from '@cpmech/util';
 import { ITypeAProps } from './styles';
 import { InputTypeA } from './InputTypeA';
 
-interface IInputNumberProps extends ITypeAProps {
+export interface IInputNumberProps extends ITypeAProps {
   value: string;
   onChange: (formattedValue: string) => void;
   onBlur?: (formattedValue: string) => void;

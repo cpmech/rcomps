@@ -2,7 +2,7 @@
 import { css, SerializedStyles } from '@emotion/react';
 import { Switch } from './Switch';
 
-interface IProps {
+export interface ISwitchAndTextProps {
   text: string;
   on: boolean;
   onClick: () => void;
@@ -13,7 +13,7 @@ interface IProps {
   spaceInBetween?: boolean;
 }
 
-export const SwitchAndText: React.FC<IProps> = ({
+export const SwitchAndText: React.FC<ISwitchAndTextProps> = ({
   text,
   on,
   onClick,

@@ -1,7 +1,7 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 
-interface IShowMessageProps {
+export interface IShowMessageProps {
   title?: string;
   message?: string;
   colorTitle?: string;

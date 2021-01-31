@@ -1,8 +1,8 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { hasProp } from '@cpmech/basic';
 
-interface IFormErrorFieldProps {
+export interface IFormErrorFieldProps {
   error?: any;
   fixedHeight?: boolean;
   height?: number;

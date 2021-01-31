@@ -14,7 +14,7 @@ export interface IMenuEntry {
   }[];
 }
 
-interface IMenuVerticalProps {
+export interface IMenuVerticalProps {
   entries: IMenuEntry[];
 
   bgColor?: string;

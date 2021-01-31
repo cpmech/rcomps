@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { ReactNode } from 'react';
 
-interface IPairProps {
+export interface IPairProps {
   left: ReactNode;
   right: ReactNode;
   spacing?: number;

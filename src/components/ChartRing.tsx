@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-interface IChartRingProps {
+export interface IChartRingProps {
   pct: number;
   prefix?: string;
   message?: string;

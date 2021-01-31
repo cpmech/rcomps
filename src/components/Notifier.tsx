@@ -3,7 +3,7 @@ import { css, SerializedStyles } from '@emotion/react';
 import { Fragment } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 
-interface INotifierProps {
+export interface INotifierProps {
   onClose: () => void;
   title?: string;
   caption?: string;

@@ -1,8 +1,8 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { IProgressLinearProps, ProgressLinear } from '../ProgressLinear';
 
-interface IProgressPageProps extends IProgressLinearProps {
+export interface IProgressPageProps extends IProgressLinearProps {
   heightMenu?: number;
   maxWidth?: string;
 }

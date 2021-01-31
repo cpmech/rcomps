@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { IButtonProps, Button } from './Button';
 import { SpinDots } from './SpinDots';
 
-interface IButtonSpinProps extends IButtonProps {
+export interface IButtonSpinProps extends IButtonProps {
   spin?: boolean;
   colorSpinner?: string;
 }

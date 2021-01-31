@@ -10,7 +10,7 @@ export interface IDefaultLayoutProps {
   stickyHeader?: boolean;
 }
 
-interface ILayoutProps extends IDefaultLayoutProps {
+export interface ILayoutProps extends IDefaultLayoutProps {
   warning: ReactNode;
   stickyWarning?: boolean;
   maxContentWidth?: number;

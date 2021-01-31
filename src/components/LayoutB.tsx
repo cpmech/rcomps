@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { Fragment } from 'react';
 import { IDefaultLayoutProps } from './Layout';
 
-interface ILayoutBProps extends IDefaultLayoutProps {
+export interface ILayoutBProps extends IDefaultLayoutProps {
   sidebarColumnWidth?: string; // e.g.: auto
   stickySidebar?: boolean;
   minHeightToStick?: number;

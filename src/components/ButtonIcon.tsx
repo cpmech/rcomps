@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { IButtonProps, Button } from './Button';
 
-interface IButtonIconProps extends IButtonProps {
+export interface IButtonIconProps extends IButtonProps {
   icon: ReactNode;
 }
 

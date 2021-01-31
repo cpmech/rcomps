@@ -1,8 +1,8 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { SpinCircle } from '../SpinCircle';
 
-interface ISpinnerPageProps {
+export interface ISpinnerPageProps {
   color?: string;
   heightMenu?: number;
 }

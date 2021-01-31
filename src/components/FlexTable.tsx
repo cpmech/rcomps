@@ -54,7 +54,7 @@ export interface IFlexTableProps {
   onEdit?: (i: number, itemId?: string) => void;
 }
 
-type IHiddenRows = { [i: number]: boolean };
+export type IHiddenRows = { [i: number]: boolean };
 
 export const FlexTable: React.FC<IFlexTableProps> = ({
   mainColumn,

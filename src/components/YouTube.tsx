@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-interface IYouTubeProps {
+export interface IYouTubeProps {
   youtubeId: string;
   autoplay?: string;
   rel?: string;

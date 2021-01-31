@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { Button, IButtonProps } from './Button';
 import { Modal, IModalProps } from './Modal';
 
-interface IModalYesNoProps extends IModalProps {
+export interface IModalYesNoProps extends IModalProps {
   onYes: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   txtYes?: string;
   txtNo?: string;
