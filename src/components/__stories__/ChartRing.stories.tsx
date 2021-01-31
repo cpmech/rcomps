@@ -1,18 +1,34 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { ChartRing } from '../ChartRing';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { ChartRing, IChartRingProps } from '../ChartRing';
 
-const stories = storiesOf('ChartRing', module);
+export default {
+  title: 'Components/ChartRing',
+  component: ChartRing,
+  argTypes: {
+    pct: { control: 'range', min: 0, max: 100, step: 1 },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IChartRingProps> = (args) => <ChartRing {...args} />;
 
-stories.add('default', () => <ChartRing pct={100} />);
+export const Default = Template.bind({});
 
-stories.add('80%', () => <ChartRing pct={80} />);
+export const Eighty = Template.bind({});
+Eighty.args = {
+  ...Template.args,
+  pct: 80,
+};
 
-stories.add('with message', () => <ChartRing pct={80} message="hello" />);
+export const WithMessage = Template.bind({});
+WithMessage.args = {
+  ...Template.args,
+  message: 'hello',
+};
 
-stories.add('with prefix and sufix', () => (
-  <ChartRing pct={100} prefix=":-)" message="hello" sufix="world" />
-));
+export const PrefixAndSufix = Template.bind({});
+PrefixAndSufix.args = {
+  ...Template.args,
+  message: 'hello',
+  prefix: ':-)',
+  sufix: 'world',
+};

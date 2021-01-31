@@ -1,27 +1,19 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
-import { Picker } from '../Picker';
-
-const stories = storiesOf('Picker', module);
-
-stories.addDecorator(withKnobs);
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Picker, IPickerProps } from '../Picker';
+import { useState } from 'react';
 
 const entries = [
   {
     message: 'First entry',
-    onClick: action('First entry was clicked'),
+    onClick: () => window.alert('First entry was clicked'),
   },
   {
     message: 'Second entry',
-    onClick: action('Second entry was clicked'),
+    onClick: () => window.alert('Second entry was clicked'),
   },
   {
     message: 'Third entry',
-    onClick: action('Third entry was clicked'),
+    onClick: () => window.alert('Third entry was clicked'),
   },
 ];
 
@@ -29,63 +21,74 @@ const entriesT = [
   {
     title: '1st',
     message: 'First entry',
-    onClick: action('First entry was clicked'),
+    onClick: () => window.alert('First entry was clicked'),
   },
   {
     title: '2nd',
     message: 'Second entry',
-    onClick: action('Second entry was clicked'),
+    onClick: () => window.alert('Second entry was clicked'),
   },
   {
     title: '3rd',
     message: 'Third entry',
-    onClick: action('Third entry was clicked'),
+    onClick: () => window.alert('Third entry was clicked'),
   },
 ];
 
-stories.add('default', () => <Picker selected={entries[1].message} entries={entries} />);
+const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(
+  (i) => ({
+    message: `Number ${i}`,
+    onClick: () => window.alert(`${i} clicked`),
+  }),
+);
 
-stories.add('100%', () => (
-  <Picker selected={entries[1].message} entries={entries} width="100%" widthBox="100%" />
-));
+export default {
+  title: 'Components/Picker',
+  component: Picker,
+} as Meta;
 
-stories.add('box to right', () => (
-  <Picker selected={entries[1].message} entries={entries} width="100%" boxToRight={true} />
-));
+const Template: Story<IPickerProps> = (args) => (
+  <Picker {...args} entries={entries} selected={entries[1].message} />
+);
 
-stories.add('messageStyle', () => (
-  <Picker
-    selected={entries[1].message}
-    entries={entries}
-    width="250px"
-    messageStyle={css`
-      color: red;
-    `}
-  />
-));
+export const Default = Template.bind({});
 
-stories.add('use title', () => (
-  <Picker selected={entriesT[1].title} entries={entriesT} width="250px" />
-));
+export const UseTitle: Story<IPickerProps> = (args) => (
+  <Picker {...args} entries={entriesT} selected={entriesT[1].title} />
+);
 
-stories.add('styled', () => (
-  <div
-    style={{
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    }}
-  >
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  ...Template.args,
+  width: '100%',
+  widthBox: '100%',
+};
+
+export const BoxToRight = Template.bind({});
+BoxToRight.args = {
+  ...Template.args,
+  width: '100%',
+  boxToRight: true,
+};
+
+export const CssMessage = Template.bind({});
+CssMessage.args = {
+  ...Template.args,
+  cssMessage: `color: red;`,
+};
+
+export const OnRow: Story<IPickerProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
     <Picker
-      selected={entries[0].message}
+      {...args}
       entries={entries}
+      selected={entries[1].message}
       width="200px"
       height={80}
       color="white"
       backgroundColor="#803ced"
       hoverColor="#9f6cf1"
     />
-
     <Picker
       selected={entries[1].message}
       entries={entries}
@@ -95,7 +98,6 @@ stories.add('styled', () => (
       backgroundColor="#236cd2"
       hoverColor="#548fe2"
     />
-
     <Picker
       selected={entries[2].message}
       entries={entries}
@@ -106,44 +108,38 @@ stories.add('styled', () => (
       hoverColor="#33e5a9"
     />
   </div>
-));
-
-const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(
-  (i) => ({
-    message: `Number ${i}`,
-    onClick: action(`${i} clicked`),
-  }),
 );
 
-stories.add('with scrollbar', () => (
-  <Picker selected="Number 5" entries={manyEntries} width="200px" heightBox={300} />
-));
+export const WithScrollbar: Story<IPickerProps> = (args) => (
+  <Picker {...args} entries={manyEntries} selected={manyEntries[1].message} heightBox={300} />
+);
 
-const Controlled = () => {
+export const Controlled: Story<IPickerProps> = (args) => {
   const [title, setTitle] = useState(entries[1].message);
   return (
     <Picker
+      {...args}
       value={title}
       entries={[
         {
           message: 'First entry',
           onClick: () => {
             setTitle('First');
-            action('First entry was clicked');
+            window.alert('First entry was clicked');
           },
         },
         {
           message: 'Second entry',
           onClick: () => {
             setTitle('Second');
-            action('Second entry was clicked');
+            window.alert('Second entry was clicked');
           },
         },
         {
           message: 'Third entry',
           onClick: () => {
             setTitle('Third');
-            action('Third entry was clicked');
+            window.alert('Third entry was clicked');
           },
         },
       ]}
@@ -151,5 +147,3 @@ const Controlled = () => {
     />
   );
 };
-
-stories.add('controlled', () => <Controlled />);

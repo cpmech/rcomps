@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { storiesOf } from '@storybook/react';
+import { Meta } from '@storybook/react/types-6-0';
 import {
   Phone,
   NotPhone,
@@ -14,8 +13,7 @@ import {
   Narrow,
   Wide,
 } from '../Dimensions';
-
-const stories = storiesOf('Dimensions', module);
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 interface IProps {
   bgColor: string;
@@ -94,8 +92,12 @@ const H: React.FC<IProps> = ({ bgColor, children }) => {
   );
 };
 
-stories.add('default', () => (
-  <React.Fragment>
+export default {
+  title: 'Components/Dimensions',
+} as Meta;
+
+export const Default = () => (
+  <Fragment>
     <Phone>
       <H bgColor="#cecece">PHONE</H>
     </Phone>
@@ -123,5 +125,5 @@ stories.add('default', () => (
     <NotDesktop>
       <div style={{ position: 'absolute', bottom: 0, right: 0, zIndex: 1 }}>NOT DESKTOP</div>
     </NotDesktop>
-  </React.Fragment>
-));
+  </Fragment>
+);

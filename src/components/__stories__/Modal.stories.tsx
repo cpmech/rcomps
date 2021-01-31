@@ -1,56 +1,31 @@
-import React, { useState } from 'react';
-import { css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { Modal } from '../Modal';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Modal, IModalProps } from '../Modal';
+import { useState } from 'react';
 import { loremIpsum } from './loremIpsum';
-import { Button } from '../Button';
 
-const stories = storiesOf('Modal', module);
+export default {
+  title: 'Components/Modal',
+  component: Modal,
+  argTypes: {
+    allowClickOutsideToClose: { control: 'boolean' },
+    noCloseButton: { control: 'boolean' },
+    noHightlightCloseButton: { control: 'boolean' },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IModalProps> = (args) => {
+  const [show, setShow] = useState(true);
 
-stories.add('default', () => {
-  const [open, setOpen] = useState(true);
   return (
     <div>
-      <Button
-        onClick={() => setOpen(true)}
-        fontWeight="bold"
-        color="white"
-        backgroundColor="#803ced"
-        borderRadius={300}
-      >
-        Show Modal
-      </Button>
+      <button onClick={() => setShow(true)}>SHOW MODAL</button>
       <div>{loremIpsum}</div>
-      <Button
-        onClick={() => setOpen(true)}
-        fontWeight="bold"
-        color="white"
-        backgroundColor="#803ced"
-        borderRadius={300}
-      >
-        Show Modal
-      </Button>
-      <div>{loremIpsum}</div>
-      <Button
-        onClick={() => setOpen(true)}
-        fontWeight="bold"
-        color="white"
-        backgroundColor="#803ced"
-        borderRadius={300}
-      >
-        Show Modal
-      </Button>
-      {open && (
+      {show && (
         <Modal
-          onClose={() => setOpen(false)}
+          {...args}
+          onClose={() => setShow(false)}
           title="Notifications"
-          titleStyle={css`
-            font-weight: bold;
-            color: #e62739;
-          `}
+          cssTitle="font-weight: bold; color: #e62739;"
           height="70vh"
           width="90%"
         >
@@ -59,85 +34,43 @@ stories.add('default', () => {
       )}
     </div>
   );
-});
+};
 
-stories.add('no click outside', () => {
-  const [open, setOpen] = useState(true);
+export const Default = Template.bind({});
+
+export const NoClickOutside = Template.bind({});
+NoClickOutside.args = {
+  ...Template.args,
+  allowClickOutsideToClose: false,
+};
+
+export const NoCloseButton = Template.bind({});
+NoCloseButton.args = {
+  ...Template.args,
+  noCloseButton: true,
+};
+
+export const NoCloseAction = (args) => {
   return (
-    <div>
-      <button onClick={() => setOpen(true)}>Show Modal</button>
-      {open && (
-        <Modal
-          onClose={() => setOpen(false)}
-          title="Notifications"
-          titleStyle={css`
-            font-weight: bold;
-            color: #e62739;
-          `}
-          height="70vh"
-          width="90%"
-          allowClickOutsideToClose={false}
-          noHightlightCloseButton={false}
-        >
-          {loremIpsum}
-        </Modal>
-      )}
-    </div>
+    <Modal {...args} title="Fixed">
+      <div style={{ padding: 20 }}>CANNOT CLOSE THIS!</div>
+    </Modal>
   );
-});
+};
 
-stories.add('no close button', () => {
-  const [open, setOpen] = useState(true);
+export const WithUploadButton = (args) => {
+  const [show, setShow] = useState(true);
+
   return (
     <div>
-      <button onClick={() => setOpen(true)}>Show Modal</button>
-      {open && (
-        <Modal
-          onClose={() => setOpen(false)}
-          title="Notifications"
-          titleStyle={css`
-            font-weight: bold;
-            color: #e62739;
-          `}
-          height="70vh"
-          width="90%"
-          noCloseButton={true}
-        >
-          {loremIpsum}
-        </Modal>
-      )}
-    </div>
-  );
-});
-
-stories.add('with buttons', () => {
-  const [open, setOpen] = useState(true);
-  return (
-    <div>
-      <button onClick={() => setOpen(true)}>Show Modal</button>
-      {open && (
-        <Modal
-          onClose={() => setOpen(false)}
-          title="Notifications"
-          titleStyle={css`
-            font-weight: bold;
-            color: #e62739;
-          `}
-          height="70vh"
-          width="90%"
-        >
-          <div>
-            <h3>Upload file</h3>
+      <button onClick={() => setShow(true)}>SHOW MODAL</button>
+      {show && (
+        <Modal {...args} onClose={() => setShow(false)} title="Upload file">
+          <div style={{ padding: 20 }}>
             <input type="file" />
           </div>
         </Modal>
       )}
     </div>
   );
-});
-
-stories.add('without onClose callback', () => (
-  <Modal title="Notifications">
-    <p>We cannot close this!!!</p>
-  </Modal>
-));
+};

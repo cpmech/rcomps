@@ -1,32 +1,34 @@
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { SwitchAndText, ISwitchAndTextProps } from '../SwitchAndText';
 import { useState } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { SwitchAndText } from '../SwitchAndText';
 
-const stories = storiesOf('SwitchAndText', module);
+export default {
+  title: 'Components/SwitchAndText',
+  component: SwitchAndText,
+  argTypes: {
+    on: { controle: 'boolean' },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
-
-stories.add('default', () => {
+const Template: Story<ISwitchAndTextProps> = (args) => {
   const [onA, setOnA] = useState(false);
   const [onB, setOnB] = useState(false);
 
   return (
     <div
-      css={css`
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        max-width: 300px;
-      `}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
       <SwitchAndText
+        {...args}
         text="This is a very long text used to decide if this switch should be turned on or not"
         on={onA}
         onClick={() => setOnA(!onA)}
       />
       <SwitchAndText
+        {...args}
         text="This is a very long text used to decide if this switch should be turned on or not"
         on={onB}
         onClick={() => setOnB(!onB)}
@@ -34,4 +36,6 @@ stories.add('default', () => {
       />
     </div>
   );
-});
+};
+
+export const Default = Template.bind({});

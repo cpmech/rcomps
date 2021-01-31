@@ -1,12 +1,5 @@
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { FlexTable } from '../FlexTable';
-
-const stories = storiesOf('FlexTable', module);
-
-stories.addDecorator(withKnobs);
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { FlexTable, IFlexTableProps } from '../FlexTable';
 
 const rowsDefault = [
   {
@@ -78,224 +71,7 @@ const rowsComplete = [
   },
 ];
 
-stories.add('default', () => (
-  <FlexTable
-    mainColumn="name"
-    rows={rowsDefault}
-    hideMainLabelWide={boolean('hideMainLabelWide', true)}
-    showLabelsWide={boolean('showLabelsWide', true)}
-    showLabelsNarrow={boolean('showLabelsNarrow', true)}
-    showMissingLabels={boolean('showMissingLabels', true)}
-  />
-));
-
-stories.add('labels', () => {
-  const labels = {
-    // name: 'Character name', // << missing
-    job: 'Job description',
-    // ability: 'Ability', // << missing
-    knowledge: 'Knowledge',
-    id: 'Id',
-  };
-  return (
-    <FlexTable
-      mainColumn="name"
-      rows={rowsComplete}
-      labels={labels}
-      hideMainLabelWide={boolean('hideMainLabelWide', true)}
-      showLabelsWide={boolean('showLabelsWide', true)}
-      showLabelsNarrow={boolean('showLabelsNarrow', true)}
-      showMissingLabels={boolean('showMissingLabels', true)}
-    />
-  );
-});
-
-stories.add('selected and sorted columns', () => {
-  const labels = {
-    name: 'Character name', // << missing
-    job: 'Job description',
-    ability: 'Ability',
-    knowledge: 'Knowledge',
-    id: 'Id',
-  };
-  const columns = ['job', 'knowledge']; // ability is missing
-  return (
-    <FlexTable
-      mainColumn="name"
-      rows={rowsComplete}
-      columns={columns}
-      labels={labels}
-      showMissingLabels={boolean('showMissingLabels', true)}
-    />
-  );
-});
-
-stories.add('styled', () => {
-  const labels = {
-    job: 'Job description',
-    ability: 'Ability',
-    knowledge: 'Knowledge',
-    id: 'Id',
-  };
-  const columns = ['id', 'job', 'ability', 'knowledge'];
-  return (
-    <FlexTable
-      mainColumn="name"
-      rows={rowsComplete}
-      columns={columns}
-      labels={labels}
-      styleLabelsNarrow={css`
-        color: #09868b;
-        font-size: 0.9em;
-        font-weight: 500;
-      `}
-      styleLabelsWide={css`
-        color: #09868b;
-        font-size: 1.1em;
-        font-weight: 500;
-      `}
-      styleMainNarrow={css`
-        color: white;
-        font-weight: bold;
-      `}
-      colorBorderNarrow="#dedede"
-      colorBorderWide="red"
-      colorMainNarrow="#bccbde"
-      controlButtonsProps={{
-        color: '#316678',
-        backgroundColor: '#c2dde6',
-        hoverColor: '#a3ccd9',
-        borderRadius: 300,
-        height: 28,
-      }}
-      controlHideAllText="Esconder todos"
-      controlShowAllText="Mostrar todos"
-    />
-  );
-});
-
-stories.add('proportions', () => {
-  const labels = {
-    job: 'Job description',
-    ability: 'Ability',
-    knowledge: 'Knowledge',
-    id: 'Id',
-  };
-  const columns = ['name', 'id', 'job', 'ability', 'knowledge'];
-  const proportions = [2, 0.7, 1, 1, 2.3];
-  return (
-    <FlexTable
-      mainColumn="name"
-      rows={rowsComplete}
-      columns={columns}
-      labels={labels}
-      proportions={proportions}
-    />
-  );
-});
-
-stories.add('onEdit', () => {
-  const labels = {
-    job: 'Job description',
-    ability: 'Ability',
-    knowledge: 'Knowledge',
-    id: 'Id',
-  };
-  const columns = ['name', 'id', 'job', 'ability', 'knowledge'];
-  return (
-    <FlexTable
-      mainColumn="name"
-      rows={rowsComplete}
-      columns={columns}
-      labels={labels}
-      onEdit={(i: number) =>
-        action(`row ${i} clicked: id = ${rowsComplete[i].id}. name = ${rowsComplete[i].name}`)()
-      }
-    />
-  );
-});
-
-stories.add('onEdit with itemId', () => {
-  const labels = {
-    job: 'Job description',
-    ability: 'Ability',
-    knowledge: 'Knowledge',
-    id: 'Id',
-  };
-  const columns = ['name', 'id', 'job', 'ability', 'knowledge'];
-  return (
-    <FlexTable
-      mainColumn="name"
-      rows={rowsComplete}
-      columns={columns}
-      labels={labels}
-      onEdit={(i: number, itemId?: string) =>
-        action(
-          `row ${i} clicked: id=${rowsComplete[i].id}. name=${rowsComplete[i].name}. itemId=${itemId}`,
-        )()
-      }
-    />
-  );
-});
-
-const renderId = (d: any) => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      word-break: break-all;
-      color: white;
-    `}
-  >
-    {/* name */}
-    <div
-      css={css`
-        font-weight: bold;
-        font-size: 2em;
-      `}
-    >
-      {d.name}
-    </div>
-
-    {/* info */}
-    <div
-      css={css`
-        font-size: 0.9em;
-        color: #4d50c6;
-        margin-bottom: 3px;
-      `}
-    >{`(info: ${d.info})`}</div>
-
-    {/* email */}
-    <div
-      css={css`
-        font-size: 1.5em;
-      `}
-    >
-      {d.email}
-    </div>
-
-    {/* phone */}
-    <div
-      css={css`
-        color: #484848;
-      `}
-    >
-      {d.phone}
-    </div>
-
-    {/* userId */}
-    <div
-      css={css`
-        font-style: italic;
-      `}
-    >
-      {d.userId}
-    </div>
-  </div>
-);
-
-const dataComplex = [
+const rowsLong = [
   {
     name: 'Bender Rodriguez',
     email: 'bender.rodriguez@futurama.xyz',
@@ -332,31 +108,199 @@ const dataComplex = [
   },
 ];
 
-stories.add('complex', () => {
-  const labels = {
-    id: 'Character',
-    job: 'Job description',
+const renderId = (d: any) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      wordBreak: 'break-all',
+      color: 'white',
+    }}
+  >
+    {/* name */}
+    <div
+      style={{
+        fontWeight: 'bold',
+        fontSize: '2em',
+      }}
+    >
+      {d.name}
+    </div>
+
+    {/* info */}
+    <div
+      style={{
+        fontSize: '0.9em',
+        color: '#4d50c6',
+        marginBottom: 3,
+      }}
+    >{`(info: ${d.info})`}</div>
+
+    {/* email */}
+    <div
+      style={{
+        fontSize: '1.5em',
+      }}
+    >
+      {d.email}
+    </div>
+
+    {/* phone */}
+    <div
+      style={{
+        color: '#484848',
+      }}
+    >
+      {d.phone}
+    </div>
+
+    {/* userId */}
+    <div
+      style={{
+        fontStyle: 'italic',
+      }}
+    >
+      {d.userId}
+    </div>
+  </div>
+);
+
+export default {
+  title: 'Components/FlexTable',
+  component: FlexTable,
+  argTypes: {
+    hideMainLabelWide: { control: 'boolean' },
+    showLabelsNarrow: { control: 'boolean' },
+    showLabelsWide: { control: 'boolean' },
+    showMissingLabels: { control: 'boolean' },
+    showControlButtons: { control: 'boolean' },
+    colorMainNarrow: { control: 'color' },
+    colorMainWide: { control: 'color' },
+    colorMissing: { control: 'color' },
+    colorIconMainColumn: { control: 'color' },
+    colorBorderNarrow: { control: 'color' },
+    colorBorderWide: { control: 'color' },
+    colorBorderMainNarrow: { control: 'color' },
+    colorBorderMainWide: { control: 'color' },
+  },
+} as Meta;
+
+const Template: Story<IFlexTableProps> = (args) => <FlexTable {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+  ...Template.args,
+  mainColumn: 'name',
+  rows: rowsDefault,
+};
+
+export const AllLabels = Template.bind({});
+AllLabels.args = {
+  ...Template.args,
+  mainColumn: 'name',
+  rows: rowsDefault,
+  labels: {
+    name: 'Character',
+    job: 'Job',
     ability: 'Ability',
     knowledge: 'Knowledge',
-  };
-  const columns = ['id', 'job', 'ability', 'knowledge'];
-  const rows = dataComplex.map((d) => ({
+    id: 'Id',
+  },
+};
+
+export const SomeLabels = Template.bind({});
+SomeLabels.args = {
+  ...Template.args,
+  mainColumn: 'name',
+  rows: rowsDefault,
+  labels: {
+    job: 'Job',
+    knowledge: 'Knowledge',
+    id: 'Id',
+  },
+};
+
+export const Selection = Template.bind({});
+Selection.args = {
+  ...Template.args,
+  mainColumn: 'name',
+  rows: rowsDefault,
+  columns: ['job', 'knowledge'],
+};
+
+export const Styled = Template.bind({});
+Styled.args = {
+  ...Template.args,
+  mainColumn: 'name',
+  rows: rowsDefault,
+  labels: {
+    job: 'Job',
+    ability: 'Ability',
+    knowledge: 'Knowledge',
+    id: 'Id',
+  },
+  columns: ['id', 'job', 'ability', 'knowledge'],
+  cssLabelsNarrow: `color: #8b7309; font-size: 0.9em; font-weight: 500;`,
+  cssLabelsWide: `color: #c2b010; font-size: 1.1em; font-weight: 500;`,
+  cssMainNarrow: `color: #86afa1; font-weight: bold;`,
+  colorBorderNarrow: '#44085c',
+  colorBorderWide: 'red',
+  colorMainNarrow: '#456083',
+  controlButtonsProps: {
+    color: '#316678',
+    backgroundColor: '#35913d',
+    hoverColor: '#a07b44',
+    borderRadius: 300,
+    height: 28,
+  },
+  controlHideAllText: 'Esconder todos',
+  controlShowAllText: 'Mostrar todos',
+};
+
+export const Proportions = Template.bind({});
+Proportions.args = {
+  ...Template.args,
+  mainColumn: 'name',
+  rows: rowsDefault,
+  labels: {
+    job: 'Job',
+    ability: 'Ability',
+    knowledge: 'Knowledge',
+    id: 'Id',
+  },
+  columns: ['name', 'id', 'job', 'ability', 'knowledge'],
+  proportions: [2, 0.7, 1, 1, 2.3],
+};
+
+export const OnEdit = Template.bind({});
+OnEdit.args = {
+  ...Template.args,
+  mainColumn: 'name',
+  rows: rowsComplete,
+  onEdit: (i: number) =>
+    window.alert(`row ${i} clicked: id = ${rowsComplete[i].id}. name = ${rowsComplete[i].name}`),
+};
+
+export const OnEditWithItemId = Template.bind({});
+OnEditWithItemId.args = {
+  ...Template.args,
+  mainColumn: 'name',
+  rows: rowsComplete,
+  onEdit: (i: number, itemId?: string) =>
+    window.alert(
+      `row ${i} clicked: id = ${rowsComplete[i].id}. name = ${rowsComplete[i].name}. itemId=${itemId}`,
+    ),
+};
+
+export const RenderId = Template.bind({});
+RenderId.args = {
+  ...Template.args,
+  mainColumn: 'id',
+  rows: rowsLong.map((d) => ({
     id: renderId(d),
     job: d.job,
     ability: d.ability,
     knowledge: d.knowledge,
-  }));
-  return (
-    <FlexTable
-      narrowWidth={800}
-      mainColumn="id"
-      rows={rows}
-      columns={columns}
-      labels={labels}
-      verticalButtonsMainNarrow={true}
-      onEdit={(i: number) =>
-        action(`row ${i} clicked: id = ${rowsComplete[i].id}. name = ${rowsComplete[i].name}`)()
-      }
-    />
-  );
-});
+  })),
+  onEdit: (i: number) => window.alert(`row ${i} clicked: name = ${rowsLong[i].name}`),
+};

@@ -1,47 +1,50 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { dateTranslationPt } from '../helpers';
-import { DateTypeA } from '../DateTypeA';
-import { Button } from '../Button';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { DateTypeA, IDateTypeAProps } from '../DateTypeA';
+import { dateTranslationPt } from '@cpmech/util';
+import { useState } from 'react';
 
-const VSpace: React.FC = () => {
-  return <div style={{ height: 20 }} />;
+export default {
+  title: 'Components/DateTypeA',
+  component: DateTypeA,
+} as Meta;
+
+const Template: Story<IDateTypeAProps> = (args) => <DateTypeA {...args} />;
+
+export const Default = Template.bind({});
+
+export const MonthFirst = Template.bind({});
+MonthFirst.args = {
+  ...Template.args,
+  monthFirst: true,
 };
 
-const stories = storiesOf('DateTypeA', module);
+export const PtBr = Template.bind({});
+PtBr.args = {
+  ...Template.args,
+  translation: dateTranslationPt,
+};
 
-stories.addDecorator(withKnobs);
-
-stories.add('default', () => <DateTypeA />);
-
-stories.add('monthFirst', () => <DateTypeA monthFirst={true} />);
-
-stories.add('pt-br', () => <DateTypeA translation={dateTranslationPt} />);
-
-stories.add('touched', () => (
+export const Touched: Story<IDateTypeAProps> = (args) => (
   <div>
-    <DateTypeA date="1995-03-03T00:00:00.000Z" touched={true} />
-    <DateTypeA date="" touched={true} />
+    <DateTypeA {...args} date="1995-03-03T00:00:00.000Z" touched={true} />
+    <DateTypeA {...args} date="" touched={true} />
   </div>
-));
+);
 
-stories.add('initial date', () => (
+export const InitialDate: Story<IDateTypeAProps> = (args) => (
   <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-    `}
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+    }}
   >
     <DateTypeA date="2020-04-13T01:53:30.000Z" touched={true} />
     <DateTypeA date="1908-08-08T00:00:00.000Z" touched={true} />
     <DateTypeA date={new Date().toISOString()} touched={true} />
   </div>
-));
+);
 
-stories.add('controlled', () => {
+export const Controlled: Story<IDateTypeAProps> = (args) => {
   const [touched, setTouched] = useState(false);
   const [date, setDate] = useState('');
   const [error, setError] = useState('');
@@ -57,36 +60,33 @@ stories.add('controlled', () => {
 
   return (
     <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 300px;
-      `}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        maxWidth: 300,
+      }}
     >
       <div>
         <DateTypeA date={date} touched={touched} onChange={onChange} />
       </div>
-      <VSpace />
 
       <div
-        css={css`
-          font-weight: bold;
-          font-size: 1.2em;
-        `}
+        style={{
+          fontWeight: 'bold',
+          fontSize: '1.2em',
+        }}
       >
         {date}
       </div>
-      <VSpace />
 
       {error && (
         <div>
           <div>{error}</div>
-          <VSpace />
         </div>
       )}
 
-      <Button
+      <button
         onClick={() => {
           setTouched(true);
           if (date) {
@@ -95,7 +95,7 @@ stories.add('controlled', () => {
         }}
       >
         SUBMIT
-      </Button>
+      </button>
     </div>
   );
-});
+};

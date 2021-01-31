@@ -1,48 +1,49 @@
-import React, { useState } from 'react';
-import { css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { Notifier } from '../Notifier';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Notifier, INotifierProps } from '../Notifier';
+import { useState } from 'react';
 import { loremIpsum } from './loremIpsum';
 
-const stories = storiesOf('Notifier', module);
+export default {
+  title: 'Components/Notifier',
+  component: Notifier,
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<INotifierProps> = (args) => {
+  const [show, setShow] = useState(true);
 
-stories.add('default', () => {
-  const [open, setOpen] = useState(true);
   return (
     <div>
-      <button onClick={() => setOpen(true)}>Show Notifier</button>
-      {loremIpsum}
-      {open && (
-        <Notifier
-          onClose={() => setOpen(false)}
-          title="Notifications"
-          message="Hello World!"
-          titleStyle={css`
-            font-weight: bold;
-            color: #e62739;
-          `}
-        />
-      )}
+      <button onClick={() => setShow(true)}>SHOW</button>
+      {show && <Notifier {...args} onClose={() => setShow(false)} />}
     </div>
   );
-});
+};
 
-stories.add('with caption', () => {
-  const [open, setOpen] = useState(true);
-  return (
-    <div>
-      <button onClick={() => setOpen(true)}>Show Notifier</button>
-      {loremIpsum}
-      {open && (
-        <Notifier
-          onClose={() => setOpen(false)}
-          caption="Warning. "
-          message="Hello World! This is a very long message used to check text wrapping."
-        />
-      )}
-    </div>
-  );
-});
+export const Default = Template.bind({});
+Default.args = {
+  message: 'Hello World!',
+};
+
+export const WithTitle = Template.bind({});
+WithTitle.args = {
+  ...Template.args,
+  title: 'Notifications',
+  message: 'Hello World!',
+  cssTitle: 'font-weight: bold; color: #e62739;',
+};
+
+export const WithCaption = Template.bind({});
+WithCaption.args = {
+  ...Template.args,
+  message: 'Hello World!',
+  caption: 'Warning. ',
+  cssTitle: 'font-weight: bold; color: #e62739;',
+};
+
+export const LongMessage = Template.bind({});
+LongMessage.args = {
+  ...Template.args,
+  title: 'Long Message',
+  message: loremIpsum,
+  cssTitle: 'font-weight: bold; color: #e62739;',
+};

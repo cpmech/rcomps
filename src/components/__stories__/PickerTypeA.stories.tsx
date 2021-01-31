@@ -1,294 +1,121 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { PickerTypeA } from '../PickerTypeA';
-import { InputTypeA } from '../InputTypeA';
-import { TextTypeA } from '../TextTypeA';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { PickerTypeA, IPickerTypeAProps } from '../PickerTypeA';
 
-const stories = storiesOf('PickerTypeA', module);
-
-stories.addDecorator(withKnobs);
+import { useState } from 'react';
 
 const entries = [
   {
     message: 'First entry',
-    onClick: action('First entry was clicked'),
+    onClick: () => window.alert('First entry was clicked'),
   },
   {
-    message: 'Second entry with a very long text',
-    onClick: action('Second entry was clicked'),
+    message: 'Second entry',
+    onClick: () => window.alert('Second entry was clicked'),
   },
   {
     message: 'Third entry',
-    onClick: action('Third entry was clicked'),
+    onClick: () => window.alert('Third entry was clicked'),
   },
 ];
 
-stories.add('default', () => (
-  <PickerTypeA
-    name="sel1"
-    selected={entries[1].message}
-    entries={entries}
-    label="Please, choose one"
-  />
-));
+const entriesT = [
+  {
+    title: '1st',
+    message: 'First entry',
+    onClick: () => window.alert('First entry was clicked'),
+  },
+  {
+    title: '2nd',
+    message: 'Second entry',
+    onClick: () => window.alert('Second entry was clicked'),
+  },
+  {
+    title: '3rd',
+    message: 'Third entry',
+    onClick: () => window.alert('Third entry was clicked'),
+  },
+];
 
-stories.add('readonly', () => (
-  <PickerTypeA
-    name="sel1"
-    selected={entries[1].message}
-    entries={entries}
-    label="Please, choose one"
-    readOnly={boolean('readOnly', true)}
-  />
-));
+const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(
+  (i) => ({
+    message: `Number ${i}`,
+    onClick: () => window.alert(`${i} clicked`),
+  }),
+);
 
-stories.add('box to right', () => (
-  <PickerTypeA
-    name="sel1"
-    selected={entries[1].message}
-    entries={entries}
-    label="Please, choose one"
-    width="100%"
-    boxToRight={true}
-  />
-));
+export default {
+  title: 'Components/PickerTypeA',
+  component: PickerTypeA,
+} as Meta;
 
-stories.add('stacked', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    `}
-  >
-    <PickerTypeA
-      selected={entries[0].message}
-      entries={entries}
-      width="250px"
-      label="Please, choose one"
-    />
-    <PickerTypeA
-      selected={entries[1].message}
-      entries={entries}
-      width="250px"
-      label="Please, choose another"
-    />
-    <PickerTypeA
-      selected={entries[2].message}
-      entries={entries}
-      width="250px"
-      label="More, choose more!"
-    />
+const Template: Story<IPickerTypeAProps> = (args) => (
+  <PickerTypeA {...args} entries={entries} selected={entries[1].message} />
+);
+
+export const Default = Template.bind({});
+
+export const UseTitle: Story<IPickerTypeAProps> = (args) => (
+  <PickerTypeA {...args} entries={entriesT} selected={entriesT[1].title} />
+);
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  ...Template.args,
+  width: '100%',
+  widthBox: '100%',
+};
+
+export const BoxToRight = Template.bind({});
+BoxToRight.args = {
+  ...Template.args,
+  width: '100%',
+  boxToRight: true,
+};
+
+export const CssMessage = Template.bind({});
+CssMessage.args = {
+  ...Template.args,
+  cssMessage: `color: red;`,
+};
+
+export const OnRow: Story<IPickerTypeAProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <PickerTypeA {...args} entries={entries} selected={entries[0].message} flatRight={true} />
+    <PickerTypeA selected={entries[1].message} entries={entries} flatLeft={true} flatRight={true} />
+    <PickerTypeA selected={entries[2].message} entries={entries} flatLeft={true} />
   </div>
-));
+);
 
-stories.add('on row', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: row;
-    `}
-  >
-    <PickerTypeA
-      selected={entries[0].message}
-      entries={entries}
-      label="Please, choose one"
-      flatRight={true}
-    />
-    <PickerTypeA
-      selected={entries[1].message}
-      entries={entries}
-      label="Please, choose another"
-      flatLeft={true}
-      flatRight={true}
-      widthBox="250px"
-    />
-    <PickerTypeA
-      selected={entries[2].message}
-      entries={entries}
-      label="More, choose more!"
-      flatLeft={true}
-    />
-  </div>
-));
+export const WithScrollbar: Story<IPickerTypeAProps> = (args) => (
+  <PickerTypeA {...args} entries={manyEntries} selected={manyEntries[1].message} heightBox={300} />
+);
 
-const bgColor = '#2ecc71';
-
-stories.add('light and dark bg', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    `}
-  >
-    <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        background-color: ${bgColor};
-        height: 50vh;
-        width: 100%;
-      `}
-    >
-      <PickerTypeA
-        selected={entries[0].message}
-        entries={entries}
-        width="250px"
-        label="Please, choose one"
-        bgColor={bgColor}
-        darkMode={true}
-      />
-      <PickerTypeA
-        selected={entries[1].message}
-        entries={entries}
-        width="250px"
-        label="Please, choose another"
-        bgColor={bgColor}
-        darkMode={true}
-      />
-      <PickerTypeA
-        selected={entries[2].message}
-        entries={entries}
-        width="250px"
-        label="More, choose more!"
-        bgColor={bgColor}
-        darkMode={true}
-      />
-    </div>
-    <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 50vh;
-        width: 100%;
-      `}
-    >
-      <PickerTypeA
-        selected={entries[0].message}
-        entries={entries}
-        width="250px"
-        label="Please, choose one"
-      />
-      <PickerTypeA
-        selected={entries[1].message}
-        entries={entries}
-        width="250px"
-        label="Please, choose another"
-      />
-      <PickerTypeA
-        selected={entries[2].message}
-        entries={entries}
-        width="250px"
-        label="More, choose more!"
-      />
-    </div>
-  </div>
-));
-
-stories.add('with others', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    `}
-  >
-    <TextTypeA name="name" label="E" value="Hello World!" width="250px" />
-    <TextTypeA name="name" label="EEEEEE" value="Hello World!" width="250px" />
-    <TextTypeA name="name" label="EEEEEEEEEEEEE" value="Hello World!" width="250px" />
-    <InputTypeA name="email" label="E" width="250px" value="First entry" />
-    <InputTypeA name="email" label="EEEEEE" width="250px" value="First entry" />
-    <InputTypeA name="email" label="EEEEEEEEEEEEE" width="250px" value="First entry" />
-    <PickerTypeA
-      selected={entries[0].message}
-      entries={entries}
-      width="250px"
-      widthBox="250px"
-      label="E"
-    />
-    <PickerTypeA
-      selected={entries[0].message}
-      entries={entries}
-      width="250px"
-      widthBox="250px"
-      label="EEEEEE"
-    />
-    <PickerTypeA
-      selected={entries[0].message}
-      entries={entries}
-      width="250px"
-      widthBox="250px"
-      label="EEEEEEEEEEEEE"
-    />
-  </div>
-));
-
-stories.add('with others on row', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: row;
-    `}
-  >
-    <TextTypeA name="name" label="Hello" value="Hello World!" width="250px" flatRight={true} />
-    <InputTypeA
-      name="email"
-      label="Results"
-      width="250px"
-      value="First entry"
-      flatLeft={true}
-      flatRight={true}
-    />
-    <PickerTypeA
-      label="Choose one"
-      selected={entries[0].message}
-      entries={entries}
-      width="250px"
-      widthBox="250px"
-      flatLeft={true}
-    />
-  </div>
-));
-
-const Controlled = () => {
+export const Controlled: Story<IPickerTypeAProps> = (args) => {
   const [title, setTitle] = useState(entries[1].message);
   return (
     <PickerTypeA
+      {...args}
       value={title}
       entries={[
         {
           message: 'First entry',
           onClick: () => {
             setTitle('First');
-            action('First entry was clicked');
+            window.alert('First entry was clicked');
           },
         },
         {
           message: 'Second entry',
           onClick: () => {
             setTitle('Second');
-            action('Second entry was clicked');
+            window.alert('Second entry was clicked');
           },
         },
         {
           message: 'Third entry',
           onClick: () => {
             setTitle('Third');
-            action('Third entry was clicked');
+            window.alert('Third entry was clicked');
           },
         },
       ]}
@@ -297,4 +124,96 @@ const Controlled = () => {
   );
 };
 
-stories.add('controlled', () => <Controlled />);
+export const Stacked: Story<IPickerTypeAProps> = (args) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <PickerTypeA {...args} entries={entries} selected={entries[0].message} />
+    <PickerTypeA selected={entries[1].message} entries={entries} />
+    <PickerTypeA selected={entries[2].message} entries={entries} />
+  </div>
+);
+
+const bgColor = '#2ecc71';
+
+export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: bgColor,
+        height: '50vh',
+        width: '100%',
+      }}
+    >
+      <PickerTypeA
+        selected={entries[0].message}
+        entries={entries}
+        width="250px"
+        label="Please, choose one"
+        bgColor={bgColor}
+        darkMode={true}
+      />
+      <PickerTypeA
+        selected={entries[1].message}
+        entries={entries}
+        width="250px"
+        label="Please, choose another"
+        bgColor={bgColor}
+        darkMode={true}
+      />
+      <PickerTypeA
+        selected={entries[2].message}
+        entries={entries}
+        width="250px"
+        label="More, choose more!"
+        bgColor={bgColor}
+        darkMode={true}
+      />
+    </div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
+        width: '100%',
+      }}
+    >
+      <PickerTypeA
+        selected={entries[0].message}
+        entries={entries}
+        width="250px"
+        label="Please, choose one"
+      />
+      <PickerTypeA
+        selected={entries[1].message}
+        entries={entries}
+        width="250px"
+        label="Please, choose another"
+      />
+      <PickerTypeA
+        selected={entries[2].message}
+        entries={entries}
+        width="250px"
+        label="More, choose more!"
+      />
+    </div>
+  </div>
+);

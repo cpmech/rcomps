@@ -1,11 +1,13 @@
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { Collapse } from '../Collapse';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Collapse, ICollapseProps } from '../Collapse';
 
-const stories = storiesOf('Collapse', module);
-
-stories.addDecorator(withKnobs);
+export default {
+  title: 'Components/Collapse',
+  component: Collapse,
+  argTypes: {
+    initShow: { control: 'boolean' },
+  },
+} as Meta;
 
 const content = (
   <div>
@@ -31,51 +33,40 @@ const something = (
   </div>
 );
 
-stories.add('default', () => (
-  <Collapse title="Here you go more information" initOpen={true}>
+const Template: Story<ICollapseProps> = (args) => (
+  <Collapse {...args} title="Here you go more information">
     {content}
   </Collapse>
-));
+);
 
-stories.add('styled', () => (
-  <Collapse
-    title="Here you go more information"
-    initOpen={true}
-    titleBgColor="#cccccc"
-    titleBorderColor="red"
-  >
-    {content}
-  </Collapse>
-));
+export const Default = Template.bind({});
 
-stories.add('side-by-side', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: row;
-    `}
-  >
+export const InitShow = Template.bind({});
+InitShow.args = {
+  ...Template.args,
+  initShow: true,
+};
+
+export const Styled = Template.bind({});
+Styled.args = {
+  ...Template.args,
+  titleBgColor: '#cccccc',
+  titleBorderColor: 'red',
+};
+
+export const SideBySide = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row' }}>
     <Collapse
       title="Here you go more information"
-      initOpen={true}
       color="white"
       bgColor="#2ecc71"
       width="50%"
-      titleStyle={css`
-        font-weight: bold;
-      `}
+      cssTitle="font-weight: bold;"
     >
       {content}
     </Collapse>
-    <Collapse
-      title="And here you'll have something else"
-      initOpen={true}
-      width="50%"
-      titleStyle={css`
-        font-weight: bold;
-      `}
-    >
+    <Collapse title="And here you'll have something else" width="50%" cssTitle="font-weight: bold;">
       {something}
     </Collapse>
   </div>
-));
+);

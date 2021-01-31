@@ -1,19 +1,19 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import React from 'react';
-/** @jsx jsx */ import { jsx } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { InfoCard } from '../InfoCard';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { InfoCard, IInfoCardProps } from '../InfoCard';
 import { loremIpsumFew } from './loremIpsum';
 
-const stories = storiesOf('InfoCard', module);
+export default {
+  title: 'Components/InfoCard',
+  component: InfoCard,
+  argTypes: {
+    initShow: { control: 'boolean' },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
-
-stories.add('default', () => <InfoCard title="Good news!">{loremIpsumFew}</InfoCard>);
-
-stories.add('no show/hide', () => (
-  <InfoCard title="Good news!" withShowHide={false}>
+const Template: Story<IInfoCardProps> = (args) => (
+  <InfoCard {...args} title="Good News!">
     {loremIpsumFew}
   </InfoCard>
-));
+);
+
+export const Default = Template.bind({});
