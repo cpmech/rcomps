@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 
-export interface IRcCollapseProps {
+export interface RcCollapseProps {
   title: string;
   fontSize?: number;
   iconSize?: number;
@@ -21,7 +21,7 @@ export interface IRcCollapseProps {
   cssTitle?: string;
 }
 
-export const RcCollapse: React.FC<IRcCollapseProps> = ({
+export const RcCollapse: React.FC<RcCollapseProps> = ({
   title,
   fontSize = 18,
   iconSize = 18,

@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { RcCollapse, IRcCollapseProps } from '../RcCollapse';
+import { RcCollapse, RcCollapseProps } from '../RcCollapse';
 
 export default {
   title: 'Foundation/RcCollapse',
@@ -33,7 +33,7 @@ const something = (
   </div>
 );
 
-const Template: Story<IRcCollapseProps> = (args) => (
+const Template: Story<RcCollapseProps> = (args) => (
   <RcCollapse {...args} title="Here you go more information">
     {content}
   </RcCollapse>
@@ -54,9 +54,10 @@ Styled.args = {
   titleBorderColor: 'red',
 };
 
-export const SideBySide = (args) => (
+export const SideBySide: Story<RcCollapseProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row' }}>
     <RcCollapse
+      {...args}
       title="Here you go more information"
       color="white"
       bgColor="#2ecc71"
@@ -66,6 +67,7 @@ export const SideBySide = (args) => (
       {content}
     </RcCollapse>
     <RcCollapse
+      {...args}
       title="And here you'll have something else"
       width="50%"
       cssTitle="font-weight: bold;"
