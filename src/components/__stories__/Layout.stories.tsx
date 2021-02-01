@@ -1,130 +1,138 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { Layout } from '../Layout';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Layout, ILayoutProps } from '../Layout';
 import { loremIpsum } from './loremIpsum';
+import { useState } from 'react';
 
-const stories = storiesOf('Layout', module);
+export default {
+  title: 'Components/Layout',
+  component: Layout,
+  argTypes: {
+    showLeftMenu: { control: 'boolean' },
+    showSideBar: { control: 'boolean' },
+    stickyHeader: { control: 'boolean' },
+    stickyWarning: { control: 'boolean' },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+export const Default: Story<ILayoutProps> = (args) => {
+  const [showLeftMenu, setShowLeftMenu] = useState(false);
 
-const warning = (
-  <div
-    css={css`
-      background-color: #c01626;
-      min-height: 100px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `}
-  >
-    WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING
-  </div>
-);
+  const warning = (
+    <div
+      style={{
+        backgroundColor: '#c01626',
+        minHeight: 100,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING
+    </div>
+  );
 
-const header = (
-  <div
-    css={css`
-      background-color: #4a76ff;
-      height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `}
-  >
-    HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER
-  </div>
-);
+  const header = (
+    <div
+      style={{
+        backgroundColor: '#4a76ff',
+        height: 200,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <button onClick={() => setShowLeftMenu(true)}>SHOW LEFT MENU</button>
+      <p>HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER</p>
+    </div>
+  );
 
-const sidebar = (
-  <div
-    css={css`
-      background-color: #dedede;
-      min-height: 200px;
-      padding-top: 40px;
-      padding-left: 20px;
-    `}
-  >
-    SIDEBAR
-  </div>
-);
+  const sidebar = (
+    <div
+      style={{
+        backgroundColor: '#dedede',
+        minHeight: 200,
+        paddingTop: 40,
+        paddingLeft: 20,
+      }}
+    >
+      <p>SIDEBAR</p>
+      <p>SIDEBAR</p>
+      <p>SIDEBAR</p>
+      <p>SIDEBAR</p>
+      <p>SIDEBAR</p>
+    </div>
+  );
 
-const main = <div css={css``}>{loremIpsum}</div>;
+  const main = <div>{loremIpsum}</div>;
 
-const footer = (
-  <div
-    css={css`
-      background-color: #343434;
-      height: 100px;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `}
-  >
-    FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER
-  </div>
-);
+  const footer = (
+    <div
+      style={{
+        backgroundColor: '#343434',
+        height: 100,
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER
+    </div>
+  );
 
-stories.add('default', () => {
-  return <Layout warning={warning} header={header} sidebar={sidebar} main={main} footer={footer} />;
-});
+  const leftMenu = (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        minWidth: 120,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 2,
+      }}
+    >
+      <button onClick={() => setShowLeftMenu(false)}>CLOSE</button>
+      <div
+        style={{
+          backgroundColor: '#f5d2b5',
+          height: '100vh',
+          paddingTop: 20,
+          paddingLeft: 10,
+        }}
+      >
+        <p>LEFT MENU</p>
+        <p>LEFT MENU</p>
+        <p>LEFT MENU</p>
+        <p>LEFT MENU</p>
+        <p>LEFT MENU</p>
+      </div>
+    </div>
+  );
 
-stories.add('sticky H', () => {
   return (
     <Layout
+      {...args}
       warning={warning}
       header={header}
       sidebar={sidebar}
       main={main}
       footer={footer}
-      stickyHeader={true}
+      leftMenu={leftMenu}
+      showLeftMenu={showLeftMenu}
+      showSideBar={!showLeftMenu}
     />
   );
-});
+};
 
-stories.add('no sticky W', () => {
-  return (
-    <Layout
-      warning={warning}
-      header={header}
-      sidebar={sidebar}
-      main={main}
-      footer={footer}
-      stickyWarning={false}
-    />
-  );
-});
-
-stories.add('no sticky W / sticky H', () => {
-  return (
-    <Layout
-      warning={warning}
-      header={header}
-      sidebar={sidebar}
-      main={main}
-      footer={footer}
-      stickyWarning={false}
-      stickyHeader={true}
-    />
-  );
-});
-
-stories.add('no warning', () => {
-  return <Layout warning={null} header={header} sidebar={sidebar} main={main} footer={footer} />;
-});
-
-stories.add('no warning / sticky H', () => {
-  return (
-    <Layout
-      warning={null}
-      header={header}
-      sidebar={sidebar}
-      main={main}
-      footer={footer}
-      stickyHeader={true}
-    />
-  );
-});
+export const WithNullAreas: Story<ILayoutProps> = (args) => (
+  <Layout
+    {...args}
+    warning={null}
+    header={<div>HEADER</div>}
+    sidebar={null}
+    main={<div>MAIN</div>}
+    footer={null}
+  />
+);

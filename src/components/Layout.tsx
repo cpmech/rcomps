@@ -2,16 +2,16 @@
 import { css } from '@emotion/react';
 import { Fragment, ReactNode } from 'react';
 
-export interface IDefaultLayoutProps {
+export interface ILayoutProps {
+  warning: ReactNode;
   header: ReactNode;
-  sidebar?: ReactNode;
+  sidebar: ReactNode;
   main: ReactNode;
   footer: ReactNode;
+  leftMenu?: ReactNode;
+  showLeftMenu?: boolean;
+  showSideBar?: boolean;
   stickyHeader?: boolean;
-}
-
-export interface ILayoutProps extends IDefaultLayoutProps {
-  warning: ReactNode;
   stickyWarning?: boolean;
   maxContentWidth?: number;
 }
@@ -22,6 +22,9 @@ export const Layout: React.FC<ILayoutProps> = ({
   sidebar,
   main,
   footer,
+  leftMenu,
+  showLeftMenu = false,
+  showSideBar = true,
   stickyWarning = true,
   stickyHeader = false,
   maxContentWidth = 1124,
@@ -92,7 +95,7 @@ export const Layout: React.FC<ILayoutProps> = ({
               `}
             >
               {/* sidebar */}
-              <div>{sidebar}</div>
+              {showSideBar && <div>{sidebar}</div>}
 
               {/* main content */}
               <div
@@ -116,6 +119,7 @@ export const Layout: React.FC<ILayoutProps> = ({
           {footer}
         </div>
       </div>
+      {showLeftMenu && leftMenu}
     </Fragment>
   );
 };
