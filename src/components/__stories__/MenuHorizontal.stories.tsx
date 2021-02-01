@@ -1,53 +1,28 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { MenuHorizontal } from '../MenuHorizontal';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { MenuHorizontal, IMenuHorizontalProps } from '../MenuHorizontal';
 import { entries } from './menuEntries';
 
-const stories = storiesOf('MenuHorizontal', module);
+export default {
+  title: 'Components/MenuHorizontal',
+  component: MenuHorizontal,
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IMenuHorizontalProps> = (args) => (
+  <MenuHorizontal {...args} entries={entries} />
+);
 
-stories.add('default', () => {
-  return (
-    <div
-      css={css`
-        background-color: #a4baff;
-      `}
-    >
-      <MenuHorizontal entries={entries} />
-    </div>
-  );
-});
+export const Default = Template.bind({});
 
-stories.add('maxWidth', () => {
-  return (
-    <div
-      css={css`
-        background-color: #a4baff;
-      `}
-    >
-      <MenuHorizontal entries={entries} maxWidth={900} />
-    </div>
-  );
-});
+export const NoPadding = Template.bind({});
+NoPadding.args = {
+  ...Template.args,
+  gapVert: 0,
+  gapVertSubEntries: 0,
+  paddingVert: 0,
+};
 
-stories.add('no padding', () => {
-  return (
-    <div
-      css={css`
-        background-color: #a4baff;
-      `}
-    >
-      <MenuHorizontal
-        entries={entries}
-        maxWidth={900}
-        gapVert={0}
-        gapVertSubEntries={0}
-        paddingVert={0}
-      />
-    </div>
-  );
-});
+export const MaxWidth = Template.bind({});
+MaxWidth.args = {
+  ...Template.args,
+  maxWidth: 900,
+};

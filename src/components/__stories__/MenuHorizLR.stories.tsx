@@ -1,18 +1,18 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { MenuHorizLR } from '../MenuHorizLR';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { MenuHorizLR, IMenuHorizLRProps } from '../MenuHorizLR';
 import { entriesLeft, entriesRight } from './menuEntries';
 
-const stories = storiesOf('MenuHorizLR', module);
+export default {
+  title: 'Components/MenuHorizLR',
+  component: MenuHorizLR,
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IMenuHorizLRProps> = (args) => (
+  <MenuHorizLR
+    {...args}
+    left={{ entries: entriesLeft, gapHorizEntries: 20 }}
+    right={{ entries: entriesRight, gapHorizEntries: 50 }}
+  />
+);
 
-stories.add('default', () => {
-  return (
-    <MenuHorizLR
-      left={{ entries: entriesLeft, gapHorizEntries: 20 }}
-      right={{ entries: entriesRight, gapHorizEntries: 50 }}
-    />
-  );
-});
+export const Default = Template.bind({});

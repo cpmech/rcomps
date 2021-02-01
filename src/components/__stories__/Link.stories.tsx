@@ -1,11 +1,14 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, text } from '@storybook/addon-knobs';
-import { Link } from '../Link';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Link, ILinkProps } from '../Link';
 
-const stories = storiesOf('Link', module);
+export default {
+  title: 'Components/Link',
+  component: Link,
+  argTypes: {
+    onClick: { action: 'link-clicked' },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<ILinkProps> = (args) => <Link {...args}>click me</Link>;
 
-stories.add('default', () => <Link onClick={action('Link')}>{text('Link', 'Hello World')}</Link>);
+export const Default = Template.bind({});

@@ -1,13 +1,12 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { MenuVertical } from '../MenuVertical';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { MenuVertical, IMenuVerticalProps } from '../MenuVertical';
 import { entries } from './menuEntries';
 
-const stories = storiesOf('MenuVertical', module);
+export default {
+  title: 'Components/MenuVertical',
+  component: MenuVertical,
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IMenuVerticalProps> = (args) => <MenuVertical {...args} entries={entries} />;
 
-stories.add('default', () => {
-  return <MenuVertical entries={entries} />;
-});
+export const Default = Template.bind({});
