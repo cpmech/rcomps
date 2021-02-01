@@ -5,7 +5,7 @@ export * from './RcCollapse';
 export * from './RcError';
 export * from './RcCard';
 export * from './RcInput';
-export * from './LinkOrDiv';
+export * from './RcLinkOrDiv';
 export * from './Notifier';
 export * from './Pair';
 export * from './PickerTypeA';
