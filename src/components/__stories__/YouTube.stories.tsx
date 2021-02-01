@@ -1,10 +1,11 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { YouTube } from '../YouTube';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { YouTube, IYouTubeProps } from '../YouTube';
 
-const stories = storiesOf('YouTube', module);
+export default {
+  title: 'Components/YouTube',
+  component: YouTube,
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IYouTubeProps> = (args) => <YouTube {...args} youtubeId="UxoX2faIgDQ" />;
 
-stories.add('default', () => <YouTube youtubeId="UxoX2faIgDQ" />);
+export const Default = Template.bind({});
