@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { RcCard, IRcCardProps } from '../RcCard';
+import { RcCard, RcCardProps } from '../RcCard';
 import { LoremIpsumSmall } from '../../helpers';
 
 export default {
@@ -10,7 +10,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IRcCardProps> = (args) => (
+const Template: Story<RcCardProps> = (args) => (
   <RcCard {...args} title="Good News!">
     {LoremIpsumSmall}
   </RcCard>
