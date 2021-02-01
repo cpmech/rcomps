@@ -5,7 +5,7 @@ import { IMenuEntry } from './MenuVertical';
 
 export interface ITabsProps {
   entries: IMenuEntry[];
-  iniActive: number;
+  iniActive?: number;
 
   bgColor: string;
   color?: string;
@@ -53,7 +53,9 @@ export const Tabs: React.FC<ITabsProps> = ({
   const [indexActive, setIndexActive] = useState(0);
 
   useEffect(() => {
-    setIndexActive(iniActive);
+    if (iniActive) {
+      setIndexActive(iniActive);
+    }
   }, [iniActive]);
 
   const styles = {

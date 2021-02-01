@@ -1,78 +1,61 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import { IconGlobe, IconHouseThreeD, IconMoney } from '@cpmech/react-icons';
-import { Tabs } from '../Tabs';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Tabs, ITabsProps } from '../Tabs';
 import { loremIpsumFew } from './loremIpsum';
 
-const stories = storiesOf('Tabs', module);
+const entries = [
+  {
+    icon: <IconHouseThreeD />,
+    label: 'Home',
+  },
+  {
+    icon: <IconGlobe />,
+    label: 'Mundo',
+  },
+  {
+    icon: <IconMoney />,
+    label: 'Dinheiro',
+  },
+];
 
-stories.addDecorator(withKnobs);
+export default {
+  title: 'Components/Tabs',
+  component: Tabs,
+} as Meta;
 
-stories.add('default', () => {
-  return (
-    <div>
-      <Tabs
-        width="80%"
-        bgColor="white"
-        entries={[
-          {
-            icon: <IconHouseThreeD />,
-            label: 'Home',
-            onClick: action('house selected'),
-          },
-          {
-            icon: <IconGlobe />,
-            label: 'Mundo',
-            onClick: action('mundo selected'),
-          },
-          {
-            icon: <IconMoney />,
-            label: 'Dinheiro',
-            onClick: action('dinheiro selected'),
-          },
-        ]}
-        iniActive={1}
-      />
+const Template: Story<ITabsProps> = (args) => <Tabs {...args} entries={entries} />;
+
+export const Default = Template.bind({});
+
+export const IniActive = Template.bind({});
+IniActive.args = {
+  ...Template.args,
+  iniActive: 1,
+};
+
+export const MinWidth = Template.bind({});
+MinWidth.args = {
+  ...Template.args,
+  bgColor: '#cecece',
+  tabMinWidth: 200,
+};
+
+export const Children: Story<ITabsProps> = (args) => (
+  <div>
+    <Tabs bgColor="white" tabMinWidth={150} entries={entries} iniActive={1} />
+    <div
+      style={{
+        borderColor: '#17b580',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        paddingLeft: 30,
+        paddingRight: 30,
+        paddingTop: 20,
+        paddingBottom: 20,
+        borderTopWidth: 0,
+      }}
+    >
+      {loremIpsumFew}
     </div>
-  );
-});
-
-stories.add('entry width', () => {
-  return (
-    <div>
-      <Tabs
-        bgColor="white"
-        tabMinWidth={150}
-        entries={[
-          {
-            label: 'Home',
-            onClick: action('house selected'),
-          },
-          {
-            label: 'Mundo',
-            onClick: action('mundo selected'),
-          },
-          {
-            label: 'Dinheiro',
-            onClick: action('dinheiro selected'),
-          },
-        ]}
-        iniActive={1}
-      />
-      <div
-        css={css`
-          border-right: 1px solid #17b580;
-          border-left: 1px solid #17b580;
-          border-bottom: 1px solid #17b580;
-          padding: 30px 20px;
-        `}
-      >
-        {loremIpsumFew}
-      </div>
-    </div>
-  );
-});
+  </div>
+);
