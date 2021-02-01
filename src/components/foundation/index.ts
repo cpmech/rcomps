@@ -3,7 +3,7 @@ export * from './RcGameCard';
 export * from './RcChartRing';
 export * from './RcCollapse';
 export * from './RcError';
-export * from './InfoCard';
+export * from './RcCard';
 export * from './InputTypeA';
 export * from './LinkOrDiv';
 export * from './Notifier';

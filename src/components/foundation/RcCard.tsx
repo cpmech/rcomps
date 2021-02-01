@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 
-export interface IInfoCardProps {
+export interface IRcCardProps {
   initShow?: boolean;
   withShowHide?: boolean;
 
@@ -30,7 +30,7 @@ export interface IInfoCardProps {
   cssTitle?: string;
 }
 
-export const InfoCard: React.FC<IInfoCardProps> = ({
+export const RcCard: React.FC<IRcCardProps> = ({
   initShow = true,
   withShowHide = true,
 

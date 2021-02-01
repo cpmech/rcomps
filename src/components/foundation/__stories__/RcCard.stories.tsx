@@ -1,19 +1,19 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { InfoCard, IInfoCardProps } from '../InfoCard';
+import { RcCard, IRcCardProps } from '../RcCard';
 import { LoremIpsumSmall } from '../../helpers';
 
 export default {
-  title: 'Foundation/InfoCard',
-  component: InfoCard,
+  title: 'Foundation/RcCard',
+  component: RcCard,
   argTypes: {
     initShow: { control: 'boolean' },
   },
 } as Meta;
 
-const Template: Story<IInfoCardProps> = (args) => (
-  <InfoCard {...args} title="Good News!">
+const Template: Story<IRcCardProps> = (args) => (
+  <RcCard {...args} title="Good News!">
     {LoremIpsumSmall}
-  </InfoCard>
+  </RcCard>
 );
 
 export const Default = Template.bind({});
