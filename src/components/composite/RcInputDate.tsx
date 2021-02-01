@@ -11,14 +11,6 @@ import {
 } from '@cpmech/util';
 import { RcInput, RcError } from '../foundation';
 
-const styles = {
-  onRow: css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  `,
-};
-
 const initialValues = (date?: string): IDateValues => {
   return date2values(date || '');
 };
@@ -28,7 +20,7 @@ const initialVerrors = (date?: string, translation?: IDateTranslation): IDateVer
   return values2errors(values, translation).errors;
 };
 
-export interface IDateTypeAProps {
+export interface RcInputDateProps {
   date?: string; // initial date: ISO date string
   touched?: boolean; // to display errors
   onChange?: (date: string) => void; // returns empty string of not ok
@@ -36,7 +28,7 @@ export interface IDateTypeAProps {
   translation?: IDateTranslation;
 }
 
-export const DateTypeA: React.FC<IDateTypeAProps> = ({
+export const RcInputDate: React.FC<RcInputDateProps> = ({
   date,
   touched,
   onChange,
@@ -92,7 +84,13 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
   if (monthFirst) {
     return (
       <Fragment>
-        <div css={styles.onRow}>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+          `}
+        >
           <RcInput
             label={translation.month}
             value={values.month}
@@ -127,7 +125,13 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
 
   return (
     <Fragment>
-      <div css={styles.onRow}>
+      <div
+        css={css`
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        `}
+      >
         <RcInput
           label={translation.day}
           value={values.day}

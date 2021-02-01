@@ -1,14 +1,14 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { DateTypeA, IDateTypeAProps } from '../DateTypeA';
+import { RcInputDate, RcInputDateProps } from '../RcInputDate';
 import { dateTranslationPt } from '@cpmech/util';
 import { useState } from 'react';
 
 export default {
-  title: 'Composite/DateTypeA',
-  component: DateTypeA,
+  title: 'Composite/RcInputDate',
+  component: RcInputDate,
 } as Meta;
 
-const Template: Story<IDateTypeAProps> = (args) => <DateTypeA {...args} />;
+const Template: Story<RcInputDateProps> = (args) => <RcInputDate {...args} />;
 
 export const Default = Template.bind({});
 
@@ -24,27 +24,27 @@ PtBr.args = {
   translation: dateTranslationPt,
 };
 
-export const Touched: Story<IDateTypeAProps> = (args) => (
+export const Touched: Story<RcInputDateProps> = (args) => (
   <div>
-    <DateTypeA {...args} date="1995-03-03T00:00:00.000Z" touched={true} />
-    <DateTypeA {...args} date="" touched={true} />
+    <RcInputDate {...args} date="1995-03-03T00:00:00.000Z" touched={true} />
+    <RcInputDate {...args} date="" touched={true} />
   </div>
 );
 
-export const InitialDate: Story<IDateTypeAProps> = (args) => (
+export const InitialDate: Story<RcInputDateProps> = (args) => (
   <div
     style={{
       display: 'flex',
       flexDirection: 'column',
     }}
   >
-    <DateTypeA date="2020-04-13T01:53:30.000Z" touched={true} />
-    <DateTypeA date="1908-08-08T00:00:00.000Z" touched={true} />
-    <DateTypeA date={new Date().toISOString()} touched={true} />
+    <RcInputDate date="2020-04-13T01:53:30.000Z" touched={true} />
+    <RcInputDate date="1908-08-08T00:00:00.000Z" touched={true} />
+    <RcInputDate date={new Date().toISOString()} touched={true} />
   </div>
 );
 
-export const Controlled: Story<IDateTypeAProps> = (args) => {
+export const Controlled: Story<RcInputDateProps> = (args) => {
   const [touched, setTouched] = useState(false);
   const [date, setDate] = useState('');
   const [error, setError] = useState('');
@@ -68,7 +68,7 @@ export const Controlled: Story<IDateTypeAProps> = (args) => {
       }}
     >
       <div>
-        <DateTypeA date={date} touched={touched} onChange={onChange} />
+        <RcInputDate date={date} touched={touched} onChange={onChange} />
       </div>
 
       <div

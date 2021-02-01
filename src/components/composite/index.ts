@@ -1,4 +1,4 @@
-export * from './DateTypeA';
+export * from './RcInputDate';
 export * from './FlexTable';
 export * from './InputNumber';
 export * from './MenuHorizLR';
