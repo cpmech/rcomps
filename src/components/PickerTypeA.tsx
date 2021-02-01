@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { useState, useRef, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
-import { getFloatCss, ITypeAProps, getTypeAcss } from './styles';
+import { getFloatCss, ITypeAProps, getTypeAcss } from './helpers';
 
 export interface IPickerEntry {
   message: string;
