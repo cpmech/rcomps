@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export interface IChartRingProps {
+export interface IRcChartRingProps {
   pct: number;
   prefix?: string;
   message?: string;
@@ -16,7 +16,7 @@ export interface IChartRingProps {
   height?: number;
 }
 
-export const ChartRing: React.FC<IChartRingProps> = ({
+export const RcChartRing: React.FC<IRcChartRingProps> = ({
   pct,
   prefix,
   message,

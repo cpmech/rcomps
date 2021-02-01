@@ -1,15 +1,15 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { ChartRing, IChartRingProps } from '../ChartRing';
+import { RcChartRing, IRcChartRingProps } from '../RcChartRing';
 
 export default {
-  title: 'Foundation/ChartRing',
-  component: ChartRing,
+  title: 'Foundation/RcChartRing',
+  component: RcChartRing,
   argTypes: {
     pct: { control: { type: 'range', min: 0, max: 100, step: 1 } },
   },
 } as Meta;
 
-const Template: Story<IChartRingProps> = (args) => <ChartRing {...args} />;
+const Template: Story<IRcChartRingProps> = (args) => <RcChartRing {...args} />;
 
 export const Default = Template.bind({});
 

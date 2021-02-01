@@ -1,6 +1,6 @@
 export * from './RcButton';
 export * from './RcGameCard';
-export * from './ChartRing';
+export * from './RcChartRing';
 export * from './Collapse';
 export * from './FormErrorField';
 export * from './InfoCard';
