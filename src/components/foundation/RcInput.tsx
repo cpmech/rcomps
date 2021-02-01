@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { ReactNode } from 'react';
 import { ITypeAProps, getTypeAcss } from '../helpers';
 
-export interface IInputTypeAProps extends ITypeAProps {
+export interface RcInputProps extends ITypeAProps {
   inputRef?: (e: HTMLInputElement) => void;
   name?: string;
   label?: string;
@@ -17,7 +17,7 @@ export interface IInputTypeAProps extends ITypeAProps {
   readOnly?: boolean;
 }
 
-export const InputTypeA: React.FC<IInputTypeAProps> = ({
+export const RcInput: React.FC<RcInputProps> = ({
   inputRef,
   name,
   label,

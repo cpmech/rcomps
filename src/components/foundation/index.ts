@@ -4,7 +4,7 @@ export * from './RcChartRing';
 export * from './RcCollapse';
 export * from './RcError';
 export * from './RcCard';
-export * from './InputTypeA';
+export * from './RcInput';
 export * from './LinkOrDiv';
 export * from './Notifier';
 export * from './Pair';

@@ -2,7 +2,7 @@
 import { ReactNode } from 'react';
 import { formatNumber } from '@cpmech/util';
 import { ITypeAProps } from '../helpers';
-import { InputTypeA } from '../foundation';
+import { RcInput } from '../foundation';
 
 export interface IInputNumberProps extends ITypeAProps {
   value: string;
@@ -43,7 +43,7 @@ export const InputNumber: React.FC<IInputNumberProps> = ({
   };
 
   return (
-    <InputTypeA
+    <RcInput
       label={label}
       value={value}
       onChange={handleChange}

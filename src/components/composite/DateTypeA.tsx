@@ -9,7 +9,7 @@ import {
   values2errors,
   dateTranslationEn,
 } from '@cpmech/util';
-import { InputTypeA, RcError } from '../foundation';
+import { RcInput, RcError } from '../foundation';
 
 const styles = {
   onRow: css`
@@ -93,20 +93,20 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
     return (
       <Fragment>
         <div css={styles.onRow}>
-          <InputTypeA
+          <RcInput
             label={translation.month}
             value={values.month}
             onChange={(e) => setMonth(e.target.value)}
             flatRight={true}
           />
-          <InputTypeA
+          <RcInput
             label={translation.day}
             value={values.day}
             onChange={(e) => setDay(e.target.value)}
             flatLeft={true}
             flatRight={true}
           />
-          <InputTypeA
+          <RcInput
             label={translation.year}
             value={values.year}
             onChange={(e) => setYear(e.target.value)}
@@ -128,20 +128,20 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
   return (
     <Fragment>
       <div css={styles.onRow}>
-        <InputTypeA
+        <RcInput
           label={translation.day}
           value={values.day}
           onChange={(e) => setDay(e.target.value)}
           flatRight={true}
         />
-        <InputTypeA
+        <RcInput
           label={translation.month}
           value={values.month}
           onChange={(e) => setMonth(e.target.value)}
           flatLeft={true}
           flatRight={true}
         />
-        <InputTypeA
+        <RcInput
           label={translation.year}
           value={values.year}
           onChange={(e) => setYear(e.target.value)}
