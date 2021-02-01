@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { hasProp } from '@cpmech/basic';
 
-export interface IRcErrorProps {
+export interface RcErrorProps {
   error?: any;
   fixedHeight?: boolean;
   height?: number;
@@ -13,7 +13,7 @@ export interface IRcErrorProps {
   color?: string;
 }
 
-export const RcError: React.FC<IRcErrorProps> = ({
+export const RcError: React.FC<RcErrorProps> = ({
   error,
   fixedHeight = false,
   height = 18,
