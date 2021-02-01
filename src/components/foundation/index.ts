@@ -1,4 +1,4 @@
-export * from './Button';
+export * from './RcButton';
 export * from './Card';
 export * from './ChartRing';
 export * from './Collapse';

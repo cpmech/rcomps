@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Button, IButtonProps } from '../foundation';
+import { RcButton, IRcButtonProps } from '../foundation';
 import { Modal, IModalProps } from '../layout';
 
 export interface IModalYesNoProps extends IModalProps {
@@ -13,8 +13,8 @@ export interface IModalYesNoProps extends IModalProps {
   noAtLeft?: boolean;
   msgBtnGap?: number;
   btnWidth?: string;
-  leftButtonStyle?: IButtonProps;
-  rightButtonStyle?: IButtonProps;
+  leftButtonStyle?: IRcButtonProps;
+  rightButtonStyle?: IRcButtonProps;
 }
 
 export const ModalYesNo: React.FC<IModalYesNoProps> = ({
@@ -60,7 +60,7 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
             ${noAtLeft ? `flex-flow: row-reverse;` : ''}
           `}
         >
-          <Button
+          <RcButton
             onClick={(e) => {
               if (rest.onClose) {
                 rest.onClose();
@@ -75,8 +75,8 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
             {...leftButtonStyle}
           >
             {txtYes}
-          </Button>
-          <Button
+          </RcButton>
+          <RcButton
             onClick={(e) => {
               if (rest.onClose) {
                 rest.onClose();
@@ -90,7 +90,7 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
             {...rightButtonStyle}
           >
             {txtNo}
-          </Button>
+          </RcButton>
         </div>
       </div>
     </Modal>

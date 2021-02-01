@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Button, IButtonProps } from '../Button';
+import { RcButton, IRcButtonProps } from '../RcButton';
 import {
   IconAngleLeft,
   IconAngleRight,
@@ -9,8 +9,8 @@ import {
 } from '@cpmech/react-icons';
 
 export default {
-  title: 'Foundation/Button',
-  component: Button,
+  title: 'Foundation/RcButton',
+  component: RcButton,
   argTypes: {
     type: {
       control: {
@@ -18,7 +18,7 @@ export default {
         options: ['button', 'submit', 'reset'],
       },
     },
-    onClick: { action: 'button-clicked' },
+    onClick: { action: 'rc-button-clicked' },
     backgroundColor: { control: 'color' },
     color: { control: 'color' },
     colorDisabled: { control: 'color' },
@@ -46,7 +46,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IButtonProps> = (args) => <Button {...args}>CLICK ME</Button>;
+const Template: Story<IRcButtonProps> = (args) => <RcButton {...args}>CLICK ME</RcButton>;
 
 export const Default = Template.bind({});
 

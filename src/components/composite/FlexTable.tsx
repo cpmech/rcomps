@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import { hasProp } from '@cpmech/basic';
 import { useMediaQuery } from 'react-responsive';
 import { IconAngleDown, IconAngleUp, IconPen } from '@cpmech/react-icons';
-import { Button, IButtonProps } from '../foundation';
+import { RcButton, IRcButtonProps } from '../foundation';
 
 export type IFlexTableLabels = { [column: string]: string };
 export type IFlexTableEntry = { [column: string]: any };
@@ -45,7 +45,7 @@ export interface IFlexTableProps {
   controlHideAllText?: string;
   controlShowAllText?: string;
   controlHeight?: number;
-  controlButtonsProps?: IButtonProps;
+  controlButtonsProps?: IRcButtonProps;
   showHideIconSize?: number;
   hpadding?: string;
   vpadding?: string;
@@ -291,17 +291,17 @@ export const FlexTable: React.FC<IFlexTableProps> = ({
         {/* ----------------- control ----------------- */}
         <div css={styleControl}>
           <div css={styleControlButtons}>
-            <Button
+            <RcButton
               onClick={() => {
                 setHiddenRows(rows.reduce((a, _, i) => ({ ...a, [i]: true }), {} as IHiddenRows));
               }}
               {...controlButtonsProps}
             >
               {controlHideAllText}
-            </Button>{' '}
-            <Button onClick={() => setHiddenRows({})} {...controlButtonsProps}>
+            </RcButton>{' '}
+            <RcButton onClick={() => setHiddenRows({})} {...controlButtonsProps}>
               {controlShowAllText}
-            </Button>
+            </RcButton>
           </div>
         </div>
 
