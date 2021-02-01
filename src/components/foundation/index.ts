@@ -9,7 +9,7 @@ export * from './LinkOrDiv';
 export * from './Notifier';
 export * from './Pair';
 export * from './PickerTypeA';
-export * from './ProgressLinear';
+export * from './Progress';
 export * from './SpinCircle';
 export * from './SpinDots';
 export * from './Switch';
