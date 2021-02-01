@@ -5,4 +5,6 @@ export * from './MessagePage';
 export * from './Popup';
 export * from './ProgressBar';
 export * from './ProgressPage';
+export * from './SpinAndMsgCircle';
+export * from './SpinAndMsgDots';
 export * from './SpinnerPage';

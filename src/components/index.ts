@@ -25,8 +25,6 @@ export * from './Picker';
 export * from './PickerTypeA';
 export * from './ProgressLinear';
 export * from './SideNav';
-export * from './SpinAndMsgCircle';
-export * from './SpinAndMsgDots';
 export * from './SpinCircle';
 export * from './SpinDots';
 export * from './Switch';

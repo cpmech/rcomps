@@ -1,19 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { SpinDots, ISpinDotsProps } from './SpinDots';
+import { SpinCircle, ISpinCircleProps } from '../SpinCircle';
 
-export interface ISpinAndMsgDotsProps extends ISpinDotsProps {
+export interface ISpinAndMsgCircleProps extends ISpinCircleProps {
   message: string;
   color?: string;
   fontSize?: number;
   gap?: number;
 }
 
-export const SpinAndMsgDots: React.FC<ISpinAndMsgDotsProps> = ({
+export const SpinAndMsgCircle: React.FC<ISpinAndMsgCircleProps> = ({
   message,
-  color = '#ffffff',
+  color = '#236cd2',
   fontSize = 14,
-  gap = 20,
+  gap = 10,
   ...rest
 }) => {
   return (
@@ -25,17 +25,17 @@ export const SpinAndMsgDots: React.FC<ISpinAndMsgDotsProps> = ({
         align-items: center;
       `}
     >
-      <div
-        css={css`
-          margin-bottom: ${gap}px;
-        `}
-      >
-        <SpinDots color={color} {...rest} />
-      </div>
+      <SpinCircle {...rest} color={color} />
       <div
         css={css`
           color: ${color};
           font-size: ${fontSize}px;
+          line-height: ${fontSize}px;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          margin-top: ${gap}px;
+          text-align: center;
         `}
       >
         {message}

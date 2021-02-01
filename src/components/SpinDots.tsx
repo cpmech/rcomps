@@ -11,7 +11,7 @@ export interface ISpinDotsProps {
 
 export const SpinDots: React.FC<ISpinDotsProps> = ({
   size = 64,
-  color = '#ffffff',
+  color = '#236cd2',
   thickness,
   time = '0.6s',
 }) => {

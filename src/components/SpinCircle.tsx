@@ -11,7 +11,7 @@ export interface ISpinCircleProps {
 
 export const SpinCircle: React.FC<ISpinCircleProps> = ({
   size = 64,
-  color = '#ffffff',
+  color = '#236cd2',
   thickness = 6,
   time = '0.6s',
 }) => {
