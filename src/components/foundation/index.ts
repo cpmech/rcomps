@@ -11,6 +11,6 @@ export * from './RcPair';
 export * from './RcPicker';
 export * from './RcProgress';
 export * from './RcSpinCircle';
-export * from './SpinDots';
+export * from './RcSpinDots';
 export * from './Switch';
 export * from './TextTypeA';

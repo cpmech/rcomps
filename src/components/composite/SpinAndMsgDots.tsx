@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { SpinDots, ISpinDotsProps } from '../foundation';
+import { RcSpinDots, RcSpinDotsProps } from '../foundation';
 
-export interface ISpinAndMsgDotsProps extends ISpinDotsProps {
+export interface ISpinAndMsgDotsProps extends RcSpinDotsProps {
   message: string;
   color?: string;
   fontSize?: number;
@@ -30,7 +30,7 @@ export const SpinAndMsgDots: React.FC<ISpinAndMsgDotsProps> = ({
           margin-bottom: ${gap}px;
         `}
       >
-        <SpinDots {...rest} color={color} />
+        <RcSpinDots {...rest} color={color} />
       </div>
       <div
         css={css`

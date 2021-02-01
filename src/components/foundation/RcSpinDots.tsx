@@ -2,14 +2,14 @@
 import { css } from '@emotion/react';
 import { hex2rgb } from '../helpers';
 
-export interface ISpinDotsProps {
+export interface RcSpinDotsProps {
   size?: number;
   color?: string;
   thickness?: number;
   time?: string;
 }
 
-export const SpinDots: React.FC<ISpinDotsProps> = ({
+export const RcSpinDots: React.FC<RcSpinDotsProps> = ({
   size = 64,
   color = '#236cd2',
   thickness,

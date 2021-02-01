@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
-import { SpinDots } from './SpinDots';
+import { RcSpinDots } from './RcSpinDots';
 
 export interface RcButtonProps {
   href?: string;
@@ -96,7 +96,7 @@ export const RcButton: React.FC<RcButtonProps> = ({
           `}
         >
           {spinning ? (
-            <SpinDots size={height && height > 25 ? height - 15 : 25} color={color} />
+            <RcSpinDots size={height && height > 25 ? height - 15 : 25} color={color} />
           ) : (
             icon
           )}

@@ -1,16 +1,16 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { SpinDots, ISpinDotsProps } from '../SpinDots';
+import { RcSpinDots, RcSpinDotsProps } from '../RcSpinDots';
 
 export default {
-  title: 'Foundation/SpinDots',
-  component: SpinDots,
+  title: 'Foundation/RcSpinDots',
+  component: RcSpinDots,
   argTypes: {
     size: { control: { type: 'range', min: 0, max: 300, step: 1 } },
     thickness: { control: { type: 'range', min: 0, max: 300, step: 1 } },
   },
 } as Meta;
 
-const Template: Story<ISpinDotsProps> = (args) => <SpinDots {...args} />;
+const Template: Story<RcSpinDotsProps> = (args) => <RcSpinDots {...args} />;
 
 export const Default = Template.bind({});
 
