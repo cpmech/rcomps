@@ -13,7 +13,6 @@
     "**/npm-debug.log*": true,
     "**/yarn-debug.log*": true,
     "**/yarn-error.log*": true,
-    "**/.vscode": true,
     "**/dist": true,
     "**/.eslintcache": true
   }
