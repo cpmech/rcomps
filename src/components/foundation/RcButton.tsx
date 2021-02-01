@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { ReactNode } from 'react';
 import { SpinDots } from './SpinDots';
 
-export interface IRcButtonProps {
+export interface RcButtonProps {
   href?: string;
   type?: 'button' | 'submit' | 'reset' | undefined;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -27,7 +27,7 @@ export interface IRcButtonProps {
   icon?: ReactNode;
 }
 
-export const RcButton: React.FC<IRcButtonProps> = ({
+export const RcButton: React.FC<RcButtonProps> = ({
   href,
   type = 'button',
   onClick,

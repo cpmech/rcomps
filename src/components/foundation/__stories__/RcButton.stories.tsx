@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { RcButton, IRcButtonProps } from '../RcButton';
+import { RcButton, RcButtonProps } from '../RcButton';
 import {
   IconAngleLeft,
   IconAngleRight,
@@ -46,7 +46,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IRcButtonProps> = (args) => <RcButton {...args}>CLICK ME</RcButton>;
+const Template: Story<RcButtonProps> = (args) => <RcButton {...args}>CLICK ME</RcButton>;
 
 export const Default = Template.bind({});
 

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { RcButton, IRcButtonProps } from '../foundation';
+import { RcButton, RcButtonProps } from '../foundation';
 import { Modal, IModalProps } from '../layout';
 
 export interface IModalYesNoProps extends IModalProps {
@@ -13,8 +13,8 @@ export interface IModalYesNoProps extends IModalProps {
   noAtLeft?: boolean;
   msgBtnGap?: number;
   btnWidth?: string;
-  leftButtonStyle?: IRcButtonProps;
-  rightButtonStyle?: IRcButtonProps;
+  leftButtonStyle?: RcButtonProps;
+  rightButtonStyle?: RcButtonProps;
 }
 
 export const ModalYesNo: React.FC<IModalYesNoProps> = ({

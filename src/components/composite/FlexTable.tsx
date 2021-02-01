@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import { hasProp } from '@cpmech/basic';
 import { useMediaQuery } from 'react-responsive';
 import { IconAngleDown, IconAngleUp, IconPen } from '@cpmech/react-icons';
-import { RcButton, IRcButtonProps } from '../foundation';
+import { RcButton, RcButtonProps } from '../foundation';
 
 export type IFlexTableLabels = { [column: string]: string };
 export type IFlexTableEntry = { [column: string]: any };
@@ -45,7 +45,7 @@ export interface IFlexTableProps {
   controlHideAllText?: string;
   controlShowAllText?: string;
   controlHeight?: number;
-  controlButtonsProps?: IRcButtonProps;
+  controlButtonsProps?: RcButtonProps;
   showHideIconSize?: number;
   hpadding?: string;
   vpadding?: string;
