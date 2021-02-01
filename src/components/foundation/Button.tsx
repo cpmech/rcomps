@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
+import { SpinDots } from './SpinDots';
 
 export interface IButtonProps {
   href?: string;
@@ -18,6 +19,7 @@ export interface IButtonProps {
   backgroundColor?: string;
   hoverColor?: string;
   hoverColorOutline?: string;
+  spinning?: boolean;
   disabled?: boolean;
   outline?: boolean;
   flatLeft?: boolean;
@@ -41,6 +43,7 @@ export const Button: React.FC<IButtonProps> = ({
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
   hoverColorOutline = '#efefef',
+  spinning,
   disabled,
   outline,
   flatLeft,
@@ -84,7 +87,7 @@ export const Button: React.FC<IButtonProps> = ({
         return false;
       }}
     >
-      {icon ? (
+      {icon || spinning ? (
         <div
           css={css`
             display: flex;
@@ -92,7 +95,11 @@ export const Button: React.FC<IButtonProps> = ({
             align-items: center;
           `}
         >
-          {icon}
+          {spinning ? (
+            <SpinDots size={height && height > 25 ? height - 15 : 25} color={color} />
+          ) : (
+            icon
+          )}
         </div>
       ) : (
         children

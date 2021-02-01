@@ -29,6 +29,7 @@ export default {
     paddingRight: { control: { type: 'range', min: 0, max: 100, step: 1 } },
     borderRadius: { control: { type: 'range', min: 0, max: 100, step: 1 } },
     fontSize: { control: { type: 'range', min: 0, max: 100, step: 1 } },
+    spinning: { control: 'boolean' },
     disabled: { control: 'boolean' },
     outline: { control: 'boolean' },
     flatLeft: { control: 'boolean' },
@@ -93,4 +94,10 @@ MoreIcons.args = {
       <IconAngleRight />
     </div>
   ),
+};
+
+export const Spinning = Template.bind({});
+Spinning.args = {
+  ...Template.args,
+  spinning: true,
 };

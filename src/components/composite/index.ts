@@ -1,4 +1,3 @@
-export * from './ButtonSpin';
 export * from './DateTypeA';
 export * from './FlexTable';
 export * from './InputNumber';
