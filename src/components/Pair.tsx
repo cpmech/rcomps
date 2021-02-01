@@ -1,23 +1,26 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { ReactNode } from 'react';
 
 export interface IPairProps {
   left: ReactNode;
   right: ReactNode;
   spacing?: number;
-  styleLeft?: React.CSSProperties;
-  styleRight?: React.CSSProperties;
   spaceBetween?: boolean;
+  cssLeft?: string;
+  cssRight?: string;
 }
 
 export const Pair: React.FC<IPairProps> = ({
   left,
   right,
   spacing = 10,
-  styleLeft,
-  styleRight,
   spaceBetween,
+  cssLeft = '',
+  cssRight,
 }) => {
+  cssLeft += `; padding-right: ${spacing}px;`;
+
   return (
     <div
       style={{
@@ -28,8 +31,8 @@ export const Pair: React.FC<IPairProps> = ({
         lineHeight: 0,
       }}
     >
-      <span style={{ paddingRight: spacing, ...styleLeft }}>{left}</span>
-      <span style={styleRight}>{right}</span>
+      {cssLeft ? <span css={css(cssLeft)}>{left}</span> : <span>{left}</span>}
+      {cssRight ? <span css={css(cssRight)}>{right}</span> : <span>{right}</span>}
     </div>
   );
 };

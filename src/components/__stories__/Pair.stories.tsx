@@ -1,28 +1,31 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { Pair } from '../Pair';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Pair, IPairProps } from '../Pair';
 import { ReactComponent as HouseIcon } from '../../assets/house.svg';
 
-const stories = storiesOf('Pair', module);
+export default {
+  title: 'Components/Pair',
+  component: Pair,
+  argTypes: {
+    spacing: { control: 'range', min: 0, max: 100, step: 1 },
+    spaceBetween: { control: 'boolean' },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IPairProps> = (args) => (
+  <Pair {...args} left={<HouseIcon width={32} />} right="Hello World" />
+);
 
-stories.add('default', () => (
-  <Pair
-    left={<HouseIcon width={64} />}
-    right="Hello World"
-    spacing={20}
-    styleRight={{ fontSize: 40 }}
-  />
-));
+export const Default = Template.bind({});
 
-stories.add('space between', () => (
-  <Pair
-    left={<HouseIcon width={64} />}
-    right="Hello World"
-    spacing={20}
-    styleRight={{ fontSize: 40 }}
-    spaceBetween={true}
-  />
-));
+export const Styled = Template.bind({});
+Styled.args = {
+  ...Template.args,
+  spacing: 20,
+  cssRight: 'font-size: 40px;',
+};
+
+export const SpaceBetween = Template.bind({});
+SpaceBetween.args = {
+  ...Template.args,
+  spaceBetween: true,
+};
