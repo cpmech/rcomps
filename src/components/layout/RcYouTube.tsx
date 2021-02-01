@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export interface IYouTubeProps {
+export interface RcYouTubeProps {
   youtubeId: string;
   autoplay?: string;
   rel?: string;
   modest?: string;
 }
 
-export const YouTube: React.FC<IYouTubeProps> = ({
+export const RcYouTube: React.FC<RcYouTubeProps> = ({
   youtubeId,
   autoplay = '0',
   rel = '0',

@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { IMenuHorizontalProps, MenuHorizontal } from '../layout';
+import { RcMenuHorizProps, RcMenuHoriz } from '../layout';
 
 export interface IMenuHorizLRProps {
-  left: IMenuHorizontalProps;
-  right: IMenuHorizontalProps;
+  left: RcMenuHorizProps;
+  right: RcMenuHorizProps;
 }
 
 export const MenuHorizLR: React.FC<IMenuHorizLRProps> = ({
@@ -21,8 +21,8 @@ export const MenuHorizLR: React.FC<IMenuHorizLRProps> = ({
         justify-content: space-between;
       `}
     >
-      <MenuHorizontal {...left} />
-      <MenuHorizontal {...right} />
+      <RcMenuHoriz {...left} />
+      <RcMenuHoriz {...right} />
     </div>
   );
 };

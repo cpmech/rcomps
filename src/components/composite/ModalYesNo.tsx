@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { RcButton, RcButtonProps } from '../foundation';
-import { Modal, IModalProps } from '../layout';
+import { RcModal, RcModalProps } from '../layout';
 
-export interface IModalYesNoProps extends IModalProps {
+export interface IModalYesNoProps extends RcModalProps {
   onYes?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onNo?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   txtYes?: string;
@@ -34,7 +34,7 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
   ...rest
 }) => {
   return (
-    <Modal title={title} {...rest}>
+    <RcModal title={title} {...rest}>
       <div
         css={css`
           margin-top: 20px;
@@ -93,6 +93,6 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
           </RcButton>
         </div>
       </div>
-    </Modal>
+    </RcModal>
   );
 };

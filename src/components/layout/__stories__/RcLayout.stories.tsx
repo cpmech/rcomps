@@ -1,12 +1,12 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Layout, ILayoutProps } from '../Layout';
+import { RcLayout, RcLayoutProps } from '../RcLayout';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { LoremIpsum } from '../../helpers';
 
 export default {
-  title: 'Layout/Layout',
-  component: Layout,
+  title: 'Layout/RcLayout',
+  component: RcLayout,
   argTypes: {
     showLeftMenu: { control: 'boolean' },
     showSideBar: { control: 'boolean' },
@@ -15,7 +15,7 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<ILayoutProps> = (args) => {
+export const Default: Story<RcLayoutProps> = (args) => {
   const [showLeftMenu, setShowLeftMenu] = useState(false);
   const isNarrow = useMediaQuery({ maxWidth: 600 });
 
@@ -114,7 +114,7 @@ export const Default: Story<ILayoutProps> = (args) => {
   );
 
   return (
-    <Layout
+    <RcLayout
       {...args}
       warning={warning}
       header={header}
@@ -128,8 +128,8 @@ export const Default: Story<ILayoutProps> = (args) => {
   );
 };
 
-export const WithNullAreas: Story<ILayoutProps> = (args) => (
-  <Layout
+export const WithNullAreas: Story<RcLayoutProps> = (args) => (
+  <RcLayout
     {...args}
     warning={null}
     header={<div>HEADER</div>}

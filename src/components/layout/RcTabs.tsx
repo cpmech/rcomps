@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
-import { IMenuEntry } from './IMenuEntry';
+import { RcMenuEntry } from './RcMenuHoriz';
 
-export interface ITabsProps {
-  entries: IMenuEntry[];
+export interface RcTabsProps {
+  entries: RcMenuEntry[];
   iniActive?: number;
 
   bgColor: string;
@@ -27,7 +27,7 @@ export interface ITabsProps {
   borderRadius?: number;
 }
 
-export const Tabs: React.FC<ITabsProps> = ({
+export const RcTabs: React.FC<RcTabsProps> = ({
   entries,
   iniActive,
 

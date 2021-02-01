@@ -5,8 +5,9 @@ import {
   IconAddressBook,
   IconUser,
 } from '@cpmech/react-icons';
+import { RcMenuEntry } from '../RcMenuHoriz';
 
-export const entries = [
+export const entries: RcMenuEntry[] = [
   {
     comp: <button onClick={() => window.alert('first clicked')}>First</button>,
   },

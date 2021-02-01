@@ -1,9 +1,10 @@
 import { IconGlobe, IconHouseThreeD, IconMoney } from '@cpmech/react-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Tabs, ITabsProps } from '../Tabs';
+import { RcTabs, RcTabsProps } from '../RcTabs';
 import { LoremIpsumSmall } from '../../helpers';
+import { RcMenuEntry } from '../RcMenuHoriz';
 
-const entries = [
+const entries: RcMenuEntry[] = [
   {
     icon: <IconHouseThreeD />,
     label: 'Home',
@@ -19,11 +20,11 @@ const entries = [
 ];
 
 export default {
-  title: 'Layout/Tabs',
-  component: Tabs,
+  title: 'Layout/RcTabs',
+  component: RcTabs,
 } as Meta;
 
-const Template: Story<ITabsProps> = (args) => <Tabs {...args} entries={entries} />;
+const Template: Story<RcTabsProps> = (args) => <RcTabs {...args} entries={entries} />;
 
 export const Default = Template.bind({});
 
@@ -40,9 +41,9 @@ MinWidth.args = {
   tabMinWidth: 200,
 };
 
-export const Children: Story<ITabsProps> = (args) => (
+export const Children: Story<RcTabsProps> = (args) => (
   <div>
-    <Tabs bgColor="white" tabMinWidth={150} entries={entries} iniActive={1} />
+    <RcTabs bgColor="white" tabMinWidth={150} entries={entries} iniActive={1} />
     <div
       style={{
         borderColor: '#17b580',

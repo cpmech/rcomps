@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { SideNav, ISideNavProps } from '../SideNav';
+import { RcSideNav, RcSideNavProps } from '../RcSideNav';
 import { useState } from 'react';
 import {
   IconBell,
@@ -11,18 +11,19 @@ import {
 } from '@cpmech/react-icons';
 
 export default {
-  title: 'Layout/SideNav',
-  component: SideNav,
+  title: 'Layout/RcSideNav',
+  component: RcSideNav,
 } as Meta;
 
-export const Default: Story<ISideNavProps> = (args) => {
+export const Default: Story<RcSideNavProps> = (args) => {
   const [show, setShow] = useState(true);
 
   return (
     <div>
       <button onClick={() => setShow(true)}>Show SideNav</button>
       {show && (
-        <SideNav
+        <RcSideNav
+          {...args}
           entries={[
             { item: 'First', onClick: () => window.alert('First clicked') },
             { item: 'Second', onClick: () => window.alert('Second clicked') },
@@ -35,14 +36,15 @@ export const Default: Story<ISideNavProps> = (args) => {
   );
 };
 
-export const CustomEntries: Story<ISideNavProps> = (args) => {
+export const CustomEntries: Story<RcSideNavProps> = (args) => {
   const [show, setShow] = useState(true);
 
   return (
     <div>
       <button onClick={() => setShow(true)}>Show SideNav</button>
       {show && (
-        <SideNav
+        <RcSideNav
+          {...args}
           entries={[
             { item: <IconBell /> },
             { item: <IconChartBar /> },

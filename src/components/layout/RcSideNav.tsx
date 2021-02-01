@@ -4,14 +4,14 @@ import { Fragment } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 import { OutsideClick } from '../helpers';
 
-export interface ISideNavEntry {
+export interface RcSideNavEntry {
   item: any;
   onClick?: () => void;
 }
 
-export interface ISideNavProps {
+export interface RcSideNavProps {
   onClose: () => void;
-  entries?: ISideNavEntry[];
+  entries?: RcSideNavEntry[];
   width?: number;
   iconSize?: number;
   iconPadding?: number;
@@ -23,7 +23,7 @@ export interface ISideNavProps {
   bottomVSpace?: number;
 }
 
-export const SideNav: React.FC<ISideNavProps> = ({
+export const RcSideNav: React.FC<RcSideNavProps> = ({
   onClose,
   entries,
   width = 250,

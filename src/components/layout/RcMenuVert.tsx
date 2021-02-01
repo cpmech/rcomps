@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Fragment } from 'react';
-import { IMenuEntry } from './IMenuEntry';
+import { RcMenuEntry } from './RcMenuHoriz';
 
-export interface IMenuVerticalProps {
-  entries: IMenuEntry[];
+export interface RcMenuVertProps {
+  entries: RcMenuEntry[];
 
   bgColor?: string;
   color?: string;
@@ -22,7 +22,7 @@ export interface IMenuVerticalProps {
   fontSizeSubEntries?: string;
 }
 
-export const MenuVertical: React.FC<IMenuVerticalProps> = ({
+export const RcMenuVert: React.FC<RcMenuVertProps> = ({
   entries,
 
   bgColor,

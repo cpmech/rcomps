@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Modal } from '../layout';
+import { RcModal } from '../layout';
 import { RcSpinCircle } from '../foundation';
 import { ProgressBar } from './ProgressBar';
 
@@ -89,8 +89,8 @@ export const Popup: React.FC<IPopupProps> = ({
   );
 
   return (
-    <Modal onClose={onClose} minWidth={minWidth} maxWidth={maxWidth} maxHeight={maxHeight}>
+    <RcModal onClose={onClose} minWidth={minWidth} maxWidth={maxWidth} maxHeight={maxHeight}>
       {renderContent()}
-    </Modal>
+    </RcModal>
   );
 };

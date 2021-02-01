@@ -4,7 +4,7 @@ import { useRef, useEffect } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 import { useLockBodyScroll } from '../helpers';
 
-export interface IModalProps {
+export interface RcModalProps {
   onClose?: () => void;
   title?: string;
   titleFontSize?: number;
@@ -32,7 +32,7 @@ export interface IModalProps {
   cssTitle?: string;
 }
 
-export const Modal: React.FC<IModalProps> = ({
+export const RcModal: React.FC<RcModalProps> = ({
   onClose,
   title,
   titleFontSize = 16,

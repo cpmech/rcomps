@@ -1,11 +1,11 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Modal, IModalProps } from '../Modal';
+import { RcModal, RcModalProps } from '../RcModal';
 import { useState } from 'react';
 import { LoremIpsum } from '../../helpers';
 
 export default {
-  title: 'Layout/Modal',
-  component: Modal,
+  title: 'Layout/RcModal',
+  component: RcModal,
   argTypes: {
     allowClickOutsideToClose: { control: 'boolean' },
     noCloseButton: { control: 'boolean' },
@@ -13,7 +13,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IModalProps> = (args) => {
+const Template: Story<RcModalProps> = (args) => {
   const [show, setShow] = useState(true);
 
   return (
@@ -21,7 +21,7 @@ const Template: Story<IModalProps> = (args) => {
       <button onClick={() => setShow(true)}>SHOW MODAL</button>
       <div>{LoremIpsum}</div>
       {show && (
-        <Modal
+        <RcModal
           {...args}
           onClose={() => setShow(false)}
           title="Notifications"
@@ -30,7 +30,7 @@ const Template: Story<IModalProps> = (args) => {
           width="90%"
         >
           {LoremIpsum}
-        </Modal>
+        </RcModal>
       )}
     </div>
   );
@@ -50,26 +50,26 @@ NoCloseButton.args = {
   noCloseButton: true,
 };
 
-export const NoCloseAction: Story<IModalProps> = (args) => {
+export const NoCloseAction: Story<RcModalProps> = (args) => {
   return (
-    <Modal {...args} title="Fixed">
+    <RcModal {...args} title="Fixed">
       <div style={{ padding: 20 }}>CANNOT CLOSE THIS!</div>
-    </Modal>
+    </RcModal>
   );
 };
 
-export const WithUploadButton: Story<IModalProps> = (args) => {
+export const WithUploadButton: Story<RcModalProps> = (args) => {
   const [show, setShow] = useState(true);
 
   return (
     <div>
       <button onClick={() => setShow(true)}>SHOW MODAL</button>
       {show && (
-        <Modal {...args} onClose={() => setShow(false)} title="Upload file">
+        <RcModal {...args} onClose={() => setShow(false)} title="Upload file">
           <div style={{ padding: 20 }}>
             <input type="file" />
           </div>
-        </Modal>
+        </RcModal>
       )}
     </div>
   );

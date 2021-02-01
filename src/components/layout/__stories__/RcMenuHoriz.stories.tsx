@@ -1,15 +1,13 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { MenuHorizontal, IMenuHorizontalProps } from '../MenuHorizontal';
+import { RcMenuHoriz, RcMenuHorizProps } from '../RcMenuHoriz';
 import { entries } from './menuEntries';
 
 export default {
-  title: 'Layout/MenuHorizontal',
-  component: MenuHorizontal,
+  title: 'Layout/RcMenuHoriz',
+  component: RcMenuHoriz,
 } as Meta;
 
-const Template: Story<IMenuHorizontalProps> = (args) => (
-  <MenuHorizontal {...args} entries={entries} />
-);
+const Template: Story<RcMenuHorizProps> = (args) => <RcMenuHoriz {...args} entries={entries} />;
 
 export const Default = Template.bind({});
 

@@ -1,10 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Fragment } from 'react';
-import { IMenuEntry } from './IMenuEntry';
+import { Fragment, ReactNode } from 'react';
 
-export interface IMenuHorizontalProps {
-  entries: IMenuEntry[];
+export interface RcMenuEntry {
+  comp?: ReactNode;
+  icon?: ReactNode;
+  label?: string;
+  onClick?: () => void;
+  entries?: {
+    icon?: ReactNode;
+    label?: string;
+    onClick?: () => void;
+  }[];
+}
+
+export interface RcMenuHorizProps {
+  entries: RcMenuEntry[];
 
   bgColor?: string;
   color?: string;
@@ -26,7 +37,7 @@ export interface IMenuHorizontalProps {
   fontSizeSubEntries?: string;
 }
 
-export const MenuHorizontal: React.FC<IMenuHorizontalProps> = ({
+export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
   entries,
 
   bgColor,

@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { Fragment, ReactNode } from 'react';
 
-export interface ILayoutProps {
+export interface RcLayoutProps {
   warning: ReactNode;
   header: ReactNode;
   sidebar: ReactNode;
@@ -16,7 +16,7 @@ export interface ILayoutProps {
   maxContentWidth?: number;
 }
 
-export const Layout: React.FC<ILayoutProps> = ({
+export const RcLayout: React.FC<RcLayoutProps> = ({
   warning,
   header,
   sidebar,
