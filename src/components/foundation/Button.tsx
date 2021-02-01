@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { getButtonCss } from '../helpers';
+import { css } from '@emotion/react';
+import { ReactNode } from 'react';
 
 export interface IButtonProps {
   href?: string;
@@ -21,6 +22,7 @@ export interface IButtonProps {
   outline?: boolean;
   flatLeft?: boolean;
   flatRight?: boolean;
+  icon?: ReactNode;
 }
 
 export const Button: React.FC<IButtonProps> = ({
@@ -43,30 +45,33 @@ export const Button: React.FC<IButtonProps> = ({
   outline,
   flatLeft,
   flatRight,
+  icon,
   children,
 }) => {
-  const buttonCss = getButtonCss(
-    width,
-    height,
-    paddingLeft,
-    paddingRight,
-    borderRadius,
-    fontSize,
-    fontWeight,
-    color,
-    colorDisabled,
-    backgroundColor,
-    hoverColor,
-    hoverColorOutline,
-    disabled,
-    outline,
-    flatLeft,
-    flatRight,
-  );
+  const style = css`
+    ${width ? `width: ${width};` : ''}
+    height: ${height}px;
+    padding-left: ${paddingLeft}px;
+    padding-right: ${paddingRight}px;
+    border-radius: ${borderRadius}px;
+    ${flatLeft ? `border-top-left-radius:0;border-bottom-left-radius:0;` : ''}
+    ${flatRight ? `border-top-right-radius:0;border-bottom-right-radius:0;` : ''}
+    border-width: 0;
+    ${fontSize ? `font-size: ${fontSize}px;` : ''}
+    font-weight: ${fontWeight};
+    color: ${disabled ? colorDisabled : color};
+    ${!disabled ? `cursor: pointer` : ''};
+    ${!disabled ? `&:hover { background-color: ${outline ? hoverColorOutline : hoverColor}; }` : ''}
+    ${outline ? `border: 1px solid ${color};` : ''}
+    ${outline ? `background-color: rgba(0,0,0,0);` : `background-color: ${backgroundColor};`}
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+  `;
 
   return (
     <button
-      css={buttonCss}
+      css={style}
       disabled={disabled}
       type={type}
       onClick={(e) => {
@@ -79,7 +84,19 @@ export const Button: React.FC<IButtonProps> = ({
         return false;
       }}
     >
-      {children}
+      {icon ? (
+        <div
+          css={css`
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          `}
+        >
+          {icon}
+        </div>
+      ) : (
+        children
+      )}
     </button>
   );
 };

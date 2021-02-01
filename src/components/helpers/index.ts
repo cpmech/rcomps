@@ -1,4 +1,3 @@
-export * from './getButtonCss';
 export * from './getFloatCss';
 export * from './getTypeAcss';
 export * from './hex2rgb';

@@ -1,5 +1,12 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Button, IButtonProps } from '../Button';
+import {
+  IconAngleLeft,
+  IconAngleRight,
+  IconArrowLeft,
+  IconGlobe,
+  IconHouseThreeD,
+} from '@cpmech/react-icons';
 
 export default {
   title: 'Foundation/Button',
@@ -63,4 +70,27 @@ Styled.args = {
   color: 'white',
   backgroundColor: '#803ced',
   hoverColor: '#9f6cf1',
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  ...Template.args,
+  icon: <IconAngleRight size={80} />,
+  width: '100px',
+  height: 100,
+  paddingLeft: 4,
+  paddingRight: 0,
+  borderRadius: 300,
+};
+
+export const MoreIcons = Template.bind({});
+MoreIcons.args = {
+  ...Template.args,
+  icon: (
+    <div>
+      <IconAngleLeft />
+      <IconHouseThreeD /> <IconArrowLeft /> <IconGlobe />
+      <IconAngleRight />
+    </div>
+  ),
 };

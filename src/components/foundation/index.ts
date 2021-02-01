@@ -5,7 +5,7 @@ export * from './Collapse';
 export * from './FormErrorField';
 export * from './InfoCard';
 export * from './InputTypeA';
-export * from './Link';
+export * from './LinkOrDiv';
 export * from './Notifier';
 export * from './Pair';
 export * from './PickerTypeA';

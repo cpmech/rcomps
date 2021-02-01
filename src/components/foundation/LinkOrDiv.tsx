@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export interface IButtonLinkProps {
+export interface ILinkOrDivProps {
   href?: string;
   onClick?: () => void;
   color?: string;
   hoverColor?: string;
 }
 
-export const ButtonLink: React.FC<IButtonLinkProps> = ({
+export const LinkOrDiv: React.FC<ILinkOrDivProps> = ({
   href,
   onClick,
   color = '#343434',

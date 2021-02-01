@@ -1,5 +1,3 @@
-export * from './ButtonIcon';
-export * from './ButtonLink';
 export * from './ButtonSpin';
 export * from './DateTypeA';
 export * from './FlexTable';
