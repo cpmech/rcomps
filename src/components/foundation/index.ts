@@ -10,7 +10,7 @@ export * from './Notifier';
 export * from './Pair';
 export * from './PickerTypeA';
 export * from './Progress';
-export * from './SpinCircle';
+export * from './RcSpinCircle';
 export * from './SpinDots';
 export * from './Switch';
 export * from './TextTypeA';

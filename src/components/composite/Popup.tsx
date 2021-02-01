@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Modal } from '../layout';
-import { SpinCircle } from '../foundation';
+import { RcSpinCircle } from '../foundation';
 import { ProgressBar } from './ProgressBar';
 
 export interface IPopupProps {
@@ -82,7 +82,7 @@ export const Popup: React.FC<IPopupProps> = ({
             align-items: center;
           `}
         >
-          <SpinCircle color={colorSpinner} />
+          <RcSpinCircle color={colorSpinner} />
         </div>
       )}
     </div>

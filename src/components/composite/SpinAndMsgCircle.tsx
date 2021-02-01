@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { SpinCircle, ISpinCircleProps } from '../foundation';
+import { RcSpinCircle, RcSpinCircleProps } from '../foundation';
 
-export interface ISpinAndMsgCircleProps extends ISpinCircleProps {
+export interface ISpinAndMsgCircleProps extends RcSpinCircleProps {
   message: string;
   color?: string;
   fontSize?: number;
@@ -25,7 +25,7 @@ export const SpinAndMsgCircle: React.FC<ISpinAndMsgCircleProps> = ({
         align-items: center;
       `}
     >
-      <SpinCircle {...rest} color={color} />
+      <RcSpinCircle {...rest} color={color} />
       <div
         css={css`
           color: ${color};

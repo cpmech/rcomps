@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { SpinCircle } from '../foundation';
+import { RcSpinCircle } from '../foundation';
 
 export interface ISpinnerPageProps {
   color?: string;
@@ -25,7 +25,7 @@ export const SpinnerPage: React.FC<ISpinnerPageProps> = ({
         padding-right: 20px;
       `}
     >
-      <SpinCircle color={color} />
+      <RcSpinCircle color={color} />
     </div>
   );
 };

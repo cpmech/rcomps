@@ -2,14 +2,14 @@
 import { css } from '@emotion/react';
 import { hex2rgb } from '../helpers';
 
-export interface ISpinCircleProps {
+export interface RcSpinCircleProps {
   size?: number;
   color?: string;
   thickness?: number;
   time?: string;
 }
 
-export const SpinCircle: React.FC<ISpinCircleProps> = ({
+export const RcSpinCircle: React.FC<RcSpinCircleProps> = ({
   size = 64,
   color = '#236cd2',
   thickness = 6,
