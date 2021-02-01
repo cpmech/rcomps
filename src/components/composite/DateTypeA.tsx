@@ -9,7 +9,7 @@ import {
   values2errors,
   dateTranslationEn,
 } from '@cpmech/util';
-import { InputTypeA, FormErrorField } from '../foundation';
+import { InputTypeA, RcError } from '../foundation';
 
 const styles = {
   onRow: css`
@@ -115,10 +115,10 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
         </div>
         {touched && (
           <Fragment>
-            <FormErrorField error={vErrors.day} />
-            <FormErrorField error={vErrors.month} />
-            <FormErrorField error={vErrors.year} />
-            <FormErrorField error={vErrors.date} />
+            <RcError error={vErrors.day} />
+            <RcError error={vErrors.month} />
+            <RcError error={vErrors.year} />
+            <RcError error={vErrors.date} />
           </Fragment>
         )}
       </Fragment>
@@ -150,10 +150,10 @@ export const DateTypeA: React.FC<IDateTypeAProps> = ({
       </div>
       {touched && (
         <Fragment>
-          <FormErrorField error={vErrors.day} />
-          <FormErrorField error={vErrors.month} />
-          <FormErrorField error={vErrors.year} />
-          <FormErrorField error={vErrors.date} />
+          <RcError error={vErrors.day} />
+          <RcError error={vErrors.month} />
+          <RcError error={vErrors.year} />
+          <RcError error={vErrors.date} />
         </Fragment>
       )}
     </Fragment>

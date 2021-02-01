@@ -2,7 +2,7 @@ export * from './RcButton';
 export * from './RcGameCard';
 export * from './RcChartRing';
 export * from './RcCollapse';
-export * from './FormErrorField';
+export * from './RcError';
 export * from './InfoCard';
 export * from './InputTypeA';
 export * from './LinkOrDiv';

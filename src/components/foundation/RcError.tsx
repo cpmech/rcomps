@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { hasProp } from '@cpmech/basic';
 
-export interface IFormErrorFieldProps {
+export interface IRcErrorProps {
   error?: any;
   fixedHeight?: boolean;
   height?: number;
@@ -13,7 +13,7 @@ export interface IFormErrorFieldProps {
   color?: string;
 }
 
-export const FormErrorField: React.FC<IFormErrorFieldProps> = ({
+export const RcError: React.FC<IRcErrorProps> = ({
   error,
   fixedHeight = false,
   height = 18,
