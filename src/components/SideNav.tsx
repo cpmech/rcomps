@@ -6,7 +6,7 @@ import { OutsideClick } from './helpers';
 
 export interface ISideNavEntry {
   item: any;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export interface ISideNavProps {
