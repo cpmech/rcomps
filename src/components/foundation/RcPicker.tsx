@@ -4,14 +4,14 @@ import { useState, useRef, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { getFloatCss, ITypeAProps, getTypeAcss } from '../helpers';
 
-export interface IPickerEntry {
+export interface RcPickerEntry {
   message: string;
   onClick?: () => void;
   title?: string; // set title with this instead of message
 }
 
-export interface IPickerTypeAProps extends ITypeAProps {
-  entries: IPickerEntry[];
+export interface RcPickerProps extends ITypeAProps {
+  entries: RcPickerEntry[];
   selected?: string; // title [use on uncontrolled component]
   value?: string; // title [use on controlled component]
   name?: string;
@@ -24,7 +24,7 @@ export interface IPickerTypeAProps extends ITypeAProps {
   cssMessage?: string;
 }
 
-export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
+export const RcPicker: React.FC<RcPickerProps> = ({
   entries,
   selected,
   value,

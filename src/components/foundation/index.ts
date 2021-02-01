@@ -8,7 +8,7 @@ export * from './RcInput';
 export * from './RcLinkOrDiv';
 export * from './RcNotifier';
 export * from './RcPair';
-export * from './PickerTypeA';
+export * from './RcPicker';
 export * from './Progress';
 export * from './RcSpinCircle';
 export * from './SpinDots';

@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { PickerTypeA, IPickerTypeAProps } from '../PickerTypeA';
+import { RcPicker, RcPickerProps } from '../RcPicker';
 import { argTypesTypeA } from './argTypes';
 import { useState } from 'react';
 
@@ -44,21 +44,21 @@ const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
 );
 
 export default {
-  title: 'Foundation/PickerTypeA',
-  component: PickerTypeA,
+  title: 'Foundation/RcPicker',
+  component: RcPicker,
   argTypes: {
     ...argTypesTypeA,
   },
 } as Meta;
 
-const Template: Story<IPickerTypeAProps> = (args) => (
-  <PickerTypeA {...args} entries={entries} selected={entries[1].message} />
+const Template: Story<RcPickerProps> = (args) => (
+  <RcPicker {...args} entries={entries} selected={entries[1].message} />
 );
 
 export const Default = Template.bind({});
 
-export const UseTitle: Story<IPickerTypeAProps> = (args) => (
-  <PickerTypeA {...args} entries={entriesT} selected={entriesT[1].title} />
+export const UseTitle: Story<RcPickerProps> = (args) => (
+  <RcPicker {...args} entries={entriesT} selected={entriesT[1].title} />
 );
 
 export const FullWidth = Template.bind({});
@@ -81,21 +81,21 @@ CssMessage.args = {
   cssMessage: `color: red;`,
 };
 
-export const OnRow: Story<IPickerTypeAProps> = (args) => (
+export const OnRow: Story<RcPickerProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row' }}>
-    <PickerTypeA {...args} entries={entries} selected={entries[0].message} flatRight={true} />
-    <PickerTypeA
+    <RcPicker {...args} entries={entries} selected={entries[0].message} flatRight={true} />
+    <RcPicker
       {...args}
       selected={entries[1].message}
       entries={entries}
       flatLeft={true}
       flatRight={true}
     />
-    <PickerTypeA {...args} selected={entries[2].message} entries={entries} flatLeft={true} />
+    <RcPicker {...args} selected={entries[2].message} entries={entries} flatLeft={true} />
   </div>
 );
 
-export const Stacked: Story<IPickerTypeAProps> = (args) => (
+export const Stacked: Story<RcPickerProps> = (args) => (
   <div
     style={{
       display: 'flex',
@@ -104,21 +104,21 @@ export const Stacked: Story<IPickerTypeAProps> = (args) => (
       alignItems: 'center',
     }}
   >
-    <PickerTypeA {...args} entries={entries} selected={entries[0].message} />
-    <PickerTypeA {...args} selected={entries[1].message} entries={entries} />
-    <PickerTypeA {...args} selected={entries[2].message} entries={entries} />
+    <RcPicker {...args} entries={entries} selected={entries[0].message} />
+    <RcPicker {...args} selected={entries[1].message} entries={entries} />
+    <RcPicker {...args} selected={entries[2].message} entries={entries} />
   </div>
 );
 
-export const WithScrollbar: Story<IPickerTypeAProps> = (args) => (
-  <PickerTypeA {...args} entries={manyEntries} selected={manyEntries[1].message} heightBox={300} />
+export const WithScrollbar: Story<RcPickerProps> = (args) => (
+  <RcPicker {...args} entries={manyEntries} selected={manyEntries[1].message} heightBox={300} />
 );
 
-export const Controlled: Story<IPickerTypeAProps> = (args) => {
+export const Controlled: Story<RcPickerProps> = (args) => {
   const [title, setTitle] = useState(entries[1].message);
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <PickerTypeA
+      <RcPicker
         {...args}
         value={title}
         entries={[
@@ -153,7 +153,7 @@ export const Controlled: Story<IPickerTypeAProps> = (args) => {
 
 const bgColor = '#2ecc71';
 
-export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
+export const LightAndDarkBg: Story<RcPickerProps> = (args) => (
   <div
     style={{
       display: 'flex',
@@ -173,7 +173,7 @@ export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
         width: '100%',
       }}
     >
-      <PickerTypeA
+      <RcPicker
         {...args}
         selected={entries[0].message}
         entries={entries}
@@ -182,7 +182,7 @@ export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
         bgColor={bgColor}
         darkMode={true}
       />
-      <PickerTypeA
+      <RcPicker
         {...args}
         selected={entries[1].message}
         entries={entries}
@@ -191,7 +191,7 @@ export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
         bgColor={bgColor}
         darkMode={true}
       />
-      <PickerTypeA
+      <RcPicker
         {...args}
         selected={entries[2].message}
         entries={entries}
@@ -211,21 +211,21 @@ export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
         width: '100%',
       }}
     >
-      <PickerTypeA
+      <RcPicker
         {...args}
         selected={entries[0].message}
         entries={entries}
         width="250px"
         label="Please, choose one"
       />
-      <PickerTypeA
+      <RcPicker
         {...args}
         selected={entries[1].message}
         entries={entries}
         width="250px"
         label="Please, choose another"
       />
-      <PickerTypeA
+      <RcPicker
         {...args}
         selected={entries[2].message}
         entries={entries}
