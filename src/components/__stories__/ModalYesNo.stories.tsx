@@ -1,46 +1,29 @@
-import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import { ModalYesNo } from '../ModalYesNo';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { ModalYesNo, IModalYesNoProps } from '../ModalYesNo';
+import { useState } from 'react';
 
-const stories = storiesOf('ModalYesNo', module);
+export default {
+  title: 'Components/ModalYesNo',
+  component: ModalYesNo,
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IModalYesNoProps> = (args) => {
+  const [show, setShow] = useState(true);
 
-stories.add('default', () => {
-  const [open, setOpen] = useState(true);
   return (
     <div>
-      <button onClick={() => setOpen(true)}>Show Modal</button>
-      {open && (
+      <button onClick={() => setShow(true)}>SHOW MODAL</button>
+      {show && (
         <ModalYesNo
-          onClose={() => setOpen(false)}
-          onYes={action('yes clicked')}
-          message="Are you sure you want to have fun with React?"
+          {...args}
+          onClose={() => setShow(false)}
+          onYes={() => window.alert('YES')}
+          onNo={() => window.alert('NO')}
+          message="Are you having fun with React?"
         />
       )}
     </div>
   );
-});
+};
 
-stories.add('styled', () => {
-  const [open, setOpen] = useState(true);
-  return (
-    <div>
-      <button onClick={() => setOpen(true)}>Show Modal</button>
-      {open && (
-        <ModalYesNo
-          onClose={() => setOpen(false)}
-          onYes={action('yes clicked')}
-          message="Are you sure you want to have fun with React?"
-          noAtLeft={true}
-          txtYes="Of course"
-          txtNo="Maybe"
-          colorNo="green"
-          btnWidth="150px"
-        />
-      )}
-    </div>
-  );
-});
+export const Default = Template.bind({});

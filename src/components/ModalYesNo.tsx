@@ -4,7 +4,8 @@ import { Button, IButtonProps } from './Button';
 import { Modal, IModalProps } from './Modal';
 
 export interface IModalYesNoProps extends IModalProps {
-  onYes: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onYes?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onNo?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   txtYes?: string;
   txtNo?: string;
   message?: string;
@@ -18,9 +19,10 @@ export interface IModalYesNoProps extends IModalProps {
 
 export const ModalYesNo: React.FC<IModalYesNoProps> = ({
   onYes,
+  onNo,
   title = 'Confirmation',
-  txtYes = 'Yes',
-  txtNo = 'No',
+  txtYes = 'YES',
+  txtNo = 'NO',
   message,
   colorNo = '#e62739',
   noAtLeft,
@@ -63,7 +65,9 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
               if (rest.onClose) {
                 rest.onClose();
               }
-              onYes(e);
+              if (onYes) {
+                onYes(e);
+              }
             }}
             outline={true}
             color={colorNo}
@@ -72,7 +76,19 @@ export const ModalYesNo: React.FC<IModalYesNoProps> = ({
           >
             {txtYes}
           </Button>
-          <Button onClick={rest.onClose} outline={true} width={btnWidth} {...rightButtonStyle}>
+          <Button
+            onClick={(e) => {
+              if (rest.onClose) {
+                rest.onClose();
+              }
+              if (onNo) {
+                onNo(e);
+              }
+            }}
+            outline={true}
+            width={btnWidth}
+            {...rightButtonStyle}
+          >
             {txtNo}
           </Button>
         </div>
