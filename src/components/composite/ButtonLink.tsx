@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Link } from '../foundation';
 
 export interface IButtonLinkProps {
   href?: string;
@@ -16,21 +15,28 @@ export const ButtonLink: React.FC<IButtonLinkProps> = ({
   hoverColor = '#c7c7c7',
   children,
 }) => {
+  const style = css`
+    color: ${color};
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      color: ${hoverColor};
+      background-image: none;
+    }
+  `;
+
+  if (href) {
+    return (
+      <a href={href} css={style}>
+        {' '}
+        {children}{' '}
+      </a>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      onClick={onClick}
-      css={css`
-        color: ${color};
-        cursor: pointer;
-        transition: all 0.3s ease;
-        &:hover {
-          color: ${hoverColor};
-          background-image: none;
-        }
-      `}
-    >
+    <div onClick={onClick} css={style}>
       {children}
-    </Link>
+    </div>
   );
 };
