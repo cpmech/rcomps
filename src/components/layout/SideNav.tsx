@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { Fragment } from 'react';
 import { IconClose } from '@cpmech/react-icons';
-import { OutsideClick } from './helpers';
+import { OutsideClick } from '../helpers';
 
 export interface ISideNavEntry {
   item: any;

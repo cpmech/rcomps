@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Button, IButtonProps } from '../foundation/Button';
-import { Modal, IModalProps } from '../Modal';
+import { Modal, IModalProps } from '../layout/Modal';
 
 export interface IModalYesNoProps extends IModalProps {
   onYes?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;

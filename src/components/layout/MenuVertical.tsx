@@ -1,18 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Fragment, ReactNode } from 'react';
-
-export interface IMenuEntry {
-  comp?: ReactNode;
-  icon?: ReactNode;
-  label?: string;
-  onClick?: () => void;
-  entries?: {
-    icon?: ReactNode;
-    label?: string;
-    onClick?: () => void;
-  }[];
-}
+import { Fragment } from 'react';
+import { IMenuEntry } from './IMenuEntry';
 
 export interface IMenuVerticalProps {
   entries: IMenuEntry[];

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Modal } from '../Modal';
+import { Modal } from '../layout/Modal';
 import { SpinCircle } from '../foundation/SpinCircle';
 import { ProgressBar } from './ProgressBar';
 

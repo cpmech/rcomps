@@ -4,7 +4,7 @@ import { dateTranslationPt } from '@cpmech/util';
 import { useState } from 'react';
 
 export default {
-  title: 'Components/DateTypeA',
+  title: 'Composite/DateTypeA',
   component: DateTypeA,
 } as Meta;
 

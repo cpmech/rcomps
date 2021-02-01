@@ -9,8 +9,7 @@ import {
   values2errors,
   dateTranslationEn,
 } from '@cpmech/util';
-import { InputTypeA } from './InputTypeA';
-import { FormErrorField } from './composite';
+import { InputTypeA, FormErrorField } from '../foundation';
 
 const styles = {
   onRow: css`

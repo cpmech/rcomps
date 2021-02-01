@@ -1,10 +1,10 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Modal, IModalProps } from '../Modal';
 import { useState } from 'react';
-import { LoremIpsum } from '../helpers';
+import { LoremIpsum } from '../../helpers';
 
 export default {
-  title: 'Components/Modal',
+  title: 'Layout/Modal',
   component: Modal,
   argTypes: {
     allowClickOutsideToClose: { control: 'boolean' },
@@ -50,7 +50,7 @@ NoCloseButton.args = {
   noCloseButton: true,
 };
 
-export const NoCloseAction = (args) => {
+export const NoCloseAction: Story<IModalProps> = (args) => {
   return (
     <Modal {...args} title="Fixed">
       <div style={{ padding: 20 }}>CANNOT CLOSE THIS!</div>
@@ -58,7 +58,7 @@ export const NoCloseAction = (args) => {
   );
 };
 
-export const WithUploadButton = (args) => {
+export const WithUploadButton: Story<IModalProps> = (args) => {
   const [show, setShow] = useState(true);
 
   return (

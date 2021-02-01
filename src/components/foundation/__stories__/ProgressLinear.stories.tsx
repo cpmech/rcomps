@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { ProgressLinear, IProgressLinearProps } from '../ProgressLinear';
 
 export default {
-  title: 'Components/ProgressLinear',
+  title: 'Foundation/ProgressLinear',
   component: ProgressLinear,
   argTypes: {
     progress: { control: { type: 'range', min: 0, max: 100, step: 1 } },

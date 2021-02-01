@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Fragment } from 'react';
-import { IMenuEntry } from './MenuVertical';
+import { IMenuEntry } from './IMenuEntry';
 
 export interface IMenuHorizontalProps {
   entries: IMenuEntry[];

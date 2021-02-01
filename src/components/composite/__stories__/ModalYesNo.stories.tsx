@@ -3,7 +3,7 @@ import { ModalYesNo, IModalYesNoProps } from '../ModalYesNo';
 import { useState } from 'react';
 
 export default {
-  title: 'Components/ModalYesNo',
+  title: 'Composite/ModalYesNo',
   component: ModalYesNo,
 } as Meta;
 

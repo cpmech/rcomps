@@ -11,7 +11,7 @@ import {
 } from '@cpmech/react-icons';
 
 export default {
-  title: 'Components/SideNav',
+  title: 'Layout/SideNav',
   component: SideNav,
 } as Meta;
 

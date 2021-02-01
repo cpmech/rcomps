@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
-import { ITypeAProps, getTypeAcss } from './helpers';
+import { ITypeAProps, getTypeAcss } from '../helpers';
 
 export interface IInputTypeAProps extends ITypeAProps {
   inputRef?: (e: HTMLInputElement) => void;

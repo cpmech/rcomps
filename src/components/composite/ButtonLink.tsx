@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Link } from '../foundation/Link';
+import { Link } from '../foundation';
 
 export interface IButtonLinkProps {
   href?: string;

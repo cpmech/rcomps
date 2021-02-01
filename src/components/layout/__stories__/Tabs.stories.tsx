@@ -1,7 +1,7 @@
 import { IconGlobe, IconHouseThreeD, IconMoney } from '@cpmech/react-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Tabs, ITabsProps } from '../Tabs';
-import { LoremIpsumSmall } from '../helpers';
+import { LoremIpsumSmall } from '../../helpers';
 
 const entries = [
   {
@@ -19,7 +19,7 @@ const entries = [
 ];
 
 export default {
-  title: 'Components/Tabs',
+  title: 'Layout/Tabs',
   component: Tabs,
 } as Meta;
 

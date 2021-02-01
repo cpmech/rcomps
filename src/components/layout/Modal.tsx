@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { useRef, useEffect } from 'react';
 import { IconClose } from '@cpmech/react-icons';
-import { useLockBodyScroll } from './helpers';
+import { useLockBodyScroll } from '../helpers';
 
 export interface IModalProps {
   onClose?: () => void;

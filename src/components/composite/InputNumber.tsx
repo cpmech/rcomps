@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { ReactNode } from 'react';
 import { formatNumber } from '@cpmech/util';
-import { ITypeAProps } from './styles';
-import { InputTypeA } from './InputTypeA';
+import { ITypeAProps } from '../helpers';
+import { InputTypeA } from '../foundation';
 
 export interface IInputNumberProps extends ITypeAProps {
   value: string;

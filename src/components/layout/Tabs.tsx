@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
-import { IMenuEntry } from './MenuVertical';
+import { IMenuEntry } from './IMenuEntry';
 
 export interface ITabsProps {
   entries: IMenuEntry[];

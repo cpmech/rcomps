@@ -4,7 +4,7 @@ import { argTypesTypeA } from './argTypes';
 import { IconExclamation } from '@cpmech/react-icons';
 
 export default {
-  title: 'Components/TextTypeA',
+  title: 'Foundation/TextTypeA',
   component: TextTypeA,
   argTypes: {
     ...argTypesTypeA,

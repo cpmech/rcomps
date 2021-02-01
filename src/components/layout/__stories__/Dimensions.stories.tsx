@@ -93,7 +93,7 @@ const H: React.FC<IProps> = ({ bgColor, children }) => {
 };
 
 export default {
-  title: 'Components/Dimensions',
+  title: 'Layout/Dimensions',
 } as Meta;
 
 export const Default = () => (

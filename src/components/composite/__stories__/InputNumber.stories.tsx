@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { cleanNumber } from '@cpmech/util';
 
 export default {
-  title: 'Components/InputNumber',
+  title: 'Composite/InputNumber',
   component: InputNumber,
 } as Meta;
 

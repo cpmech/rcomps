@@ -166,7 +166,7 @@ const renderId = (d: any) => (
 );
 
 export default {
-  title: 'Components/FlexTable',
+  title: 'Composite/FlexTable',
   component: FlexTable,
   argTypes: {
     hideMainLabelWide: { control: 'boolean' },

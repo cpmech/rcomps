@@ -1,10 +1,10 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Notifier, INotifierProps } from '../Notifier';
 import { useState } from 'react';
-import { LoremIpsum } from '../helpers';
+import { LoremIpsum } from '../../helpers';
 
 export default {
-  title: 'Components/Notifier',
+  title: 'Foundation/Notifier',
   component: Notifier,
 } as Meta;
 

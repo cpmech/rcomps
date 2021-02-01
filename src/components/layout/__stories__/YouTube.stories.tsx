@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { YouTube, IYouTubeProps } from '../YouTube';
 
 export default {
-  title: 'Components/YouTube',
+  title: 'Layout/YouTube',
   component: YouTube,
 } as Meta;
 

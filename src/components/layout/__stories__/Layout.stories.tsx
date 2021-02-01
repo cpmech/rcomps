@@ -2,10 +2,10 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { Layout, ILayoutProps } from '../Layout';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { LoremIpsum } from '../helpers';
+import { LoremIpsum } from '../../helpers';
 
 export default {
-  title: 'Components/Layout',
+  title: 'Layout/Layout',
   component: Layout,
   argTypes: {
     showLeftMenu: { control: 'boolean' },

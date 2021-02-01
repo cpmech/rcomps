@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { ProgressLinear } from '../ProgressLinear';
+import { ProgressLinear } from '../foundation/ProgressLinear';
 
 export interface IProgressBarProps {
   progress: number;

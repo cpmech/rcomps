@@ -3,7 +3,7 @@ import { MenuVertical, IMenuVerticalProps } from '../MenuVertical';
 import { entries } from './menuEntries';
 
 export default {
-  title: 'Components/MenuVertical',
+  title: 'Layout/MenuVertical',
   component: MenuVertical,
 } as Meta;
 

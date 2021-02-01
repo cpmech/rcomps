@@ -1,11 +1,11 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { InputTypeA, IInputTypeAProps } from '../InputTypeA';
-import { argTypesTypeA } from './argTypes';
 import { IconExclamation, IconEye, IconEyeNo } from '@cpmech/react-icons';
 import { useState } from 'react';
+import { argTypesTypeA } from './argTypes';
 
 export default {
-  title: 'Components/InputTypeA',
+  title: 'Foundation/InputTypeA',
   component: InputTypeA,
   argTypes: {
     ...argTypesTypeA,

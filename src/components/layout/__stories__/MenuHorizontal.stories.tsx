@@ -3,7 +3,7 @@ import { MenuHorizontal, IMenuHorizontalProps } from '../MenuHorizontal';
 import { entries } from './menuEntries';
 
 export default {
-  title: 'Components/MenuHorizontal',
+  title: 'Layout/MenuHorizontal',
   component: MenuHorizontal,
 } as Meta;
 
