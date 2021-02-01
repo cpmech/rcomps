@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Collapse, ICollapseProps } from '../Collapse';
+import { RcCollapse, IRcCollapseProps } from '../RcCollapse';
 
 export default {
-  title: 'Foundation/Collapse',
-  component: Collapse,
+  title: 'Foundation/RcCollapse',
+  component: RcCollapse,
   argTypes: {
     initShow: { control: 'boolean' },
   },
@@ -33,10 +33,10 @@ const something = (
   </div>
 );
 
-const Template: Story<ICollapseProps> = (args) => (
-  <Collapse {...args} title="Here you go more information">
+const Template: Story<IRcCollapseProps> = (args) => (
+  <RcCollapse {...args} title="Here you go more information">
     {content}
-  </Collapse>
+  </RcCollapse>
 );
 
 export const Default = Template.bind({});
@@ -56,7 +56,7 @@ Styled.args = {
 
 export const SideBySide = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row' }}>
-    <Collapse
+    <RcCollapse
       title="Here you go more information"
       color="white"
       bgColor="#2ecc71"
@@ -64,9 +64,13 @@ export const SideBySide = (args) => (
       cssTitle="font-weight: bold;"
     >
       {content}
-    </Collapse>
-    <Collapse title="And here you'll have something else" width="50%" cssTitle="font-weight: bold;">
+    </RcCollapse>
+    <RcCollapse
+      title="And here you'll have something else"
+      width="50%"
+      cssTitle="font-weight: bold;"
+    >
       {something}
-    </Collapse>
+    </RcCollapse>
   </div>
 );
