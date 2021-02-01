@@ -1,17 +1,17 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { TextTypeA, ITextTypeAProps } from '../TextTypeA';
+import { RcText, RcTextProps } from '../RcText';
 import { argTypesTypeA } from './argTypes';
 import { IconExclamation } from '@cpmech/react-icons';
 
 export default {
-  title: 'Foundation/TextTypeA',
-  component: TextTypeA,
+  title: 'Foundation/RcText',
+  component: RcText,
   argTypes: {
     ...argTypesTypeA,
   },
 } as Meta;
 
-const Template: Story<ITextTypeAProps> = (args) => <TextTypeA {...args} name="name" label="Name" />;
+const Template: Story<RcTextProps> = (args) => <RcText {...args} name="name" label="Name" />;
 
 export const Default = Template.bind({});
 
@@ -24,14 +24,14 @@ Small.args = {
   value: 'Smaller',
 };
 
-export const OnRow: Story<ITextTypeAProps> = (args) => (
+export const OnRow: Story<RcTextProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row' }}>
-    <TextTypeA {...args} name="name" label="Name" value="Hello World!" flatRight={true} />
-    <TextTypeA {...args} name="email" label="Email" flatLeft={true} flatRight={true} />
+    <RcText {...args} name="name" label="Name" value="Hello World!" flatRight={true} />
+    <RcText {...args} name="email" label="Email" flatLeft={true} flatRight={true} />
   </div>
 );
 
-export const Stacked: Story<ITextTypeAProps> = (args) => (
+export const Stacked: Story<RcTextProps> = (args) => (
   <div
     style={{
       display: 'flex',
@@ -40,12 +40,12 @@ export const Stacked: Story<ITextTypeAProps> = (args) => (
       alignItems: 'center',
     }}
   >
-    <TextTypeA {...args} name="name" label="Name" value="Hello World!" />
-    <TextTypeA {...args} name="email" label="Email" />
+    <RcText {...args} name="name" label="Name" value="Hello World!" />
+    <RcText {...args} name="email" label="Email" />
   </div>
 );
 
-export const WithSuffix: Story<ITextTypeAProps> = (args) => (
+export const WithSuffix: Story<RcTextProps> = (args) => (
   <div
     style={{
       display: 'flex',
@@ -53,14 +53,14 @@ export const WithSuffix: Story<ITextTypeAProps> = (args) => (
       width: 250,
     }}
   >
-    <TextTypeA label="Energy" value="123.456" suffix="kWh" />
-    <TextTypeA label="Energy" value="123.456" suffix={<IconExclamation size={18} />} />
+    <RcText {...args} label="Energy" value="123.456" suffix="kWh" />
+    <RcText {...args} label="Energy" value="123.456" suffix={<IconExclamation size={18} />} />
   </div>
 );
 
 const bgColor = '#2ecc71';
 
-export const LightAndDarkBg: Story<ITextTypeAProps> = (args) => (
+export const LightAndDarkBg: Story<RcTextProps> = (args) => (
   <div
     style={{
       display: 'flex',
@@ -80,15 +80,8 @@ export const LightAndDarkBg: Story<ITextTypeAProps> = (args) => (
         width: '100%',
       }}
     >
-      <TextTypeA
-        {...args}
-        width="250px"
-        name="name"
-        label="Name"
-        bgColor={bgColor}
-        darkMode={true}
-      />
-      <TextTypeA
+      <RcText {...args} width="250px" name="name" label="Name" bgColor={bgColor} darkMode={true} />
+      <RcText
         {...args}
         width="250px"
         name="email"
@@ -96,7 +89,7 @@ export const LightAndDarkBg: Story<ITextTypeAProps> = (args) => (
         bgColor={bgColor}
         darkMode={true}
       />
-      <TextTypeA
+      <RcText
         {...args}
         width="250px"
         name="password"
@@ -115,8 +108,8 @@ export const LightAndDarkBg: Story<ITextTypeAProps> = (args) => (
         width: '100%',
       }}
     >
-      <TextTypeA {...args} width="250px" name="name" label="Name" />
-      <TextTypeA {...args} width="250px" name="email" label="Email" />
+      <RcText {...args} width="250px" name="name" label="Name" />
+      <RcText {...args} width="250px" name="email" label="Email" />
     </div>
   </div>
 );

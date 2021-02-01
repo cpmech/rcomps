@@ -1,9 +1,9 @@
 export * from './RcButton';
-export * from './RcGameCard';
+export * from './RcCard';
 export * from './RcChartRing';
 export * from './RcCollapse';
 export * from './RcError';
-export * from './RcCard';
+export * from './RcGameCard';
 export * from './RcInput';
 export * from './RcLinkOrDiv';
 export * from './RcNotifier';
@@ -13,4 +13,4 @@ export * from './RcProgress';
 export * from './RcSpinCircle';
 export * from './RcSpinDots';
 export * from './RcSwitch';
-export * from './TextTypeA';
+export * from './RcText';

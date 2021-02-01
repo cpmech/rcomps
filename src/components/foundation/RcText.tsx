@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { ReactNode } from 'react';
 import { ITypeAProps, getTypeAcss } from '../helpers';
 
-export interface ITextTypeAProps extends ITypeAProps {
+export interface RcTextProps extends ITypeAProps {
   name?: string;
   label?: string;
   value?: string;
@@ -11,7 +11,7 @@ export interface ITextTypeAProps extends ITypeAProps {
   suffixPaddingRight?: number;
 }
 
-export const TextTypeA: React.FC<ITextTypeAProps> = ({
+export const RcText: React.FC<RcTextProps> = ({
   name,
   label,
   value,
