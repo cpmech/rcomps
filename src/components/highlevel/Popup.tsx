@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { Modal } from '../Modal';
 import { SpinCircle } from '../SpinCircle';
-import { ProgressBar } from '../ProgressBar';
+import { ProgressBar } from './ProgressBar';
 
 export interface IPopupProps {
   title?: string;
