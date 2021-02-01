@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { RcSpinCircle, RcSpinCircleProps } from '../RcSpinCircle';
 
 export default {
-  title: 'Foundation/SpinCircle',
+  title: 'Foundation/RcSpinCircle',
   component: RcSpinCircle,
   argTypes: {
     size: { control: { type: 'range', min: 0, max: 300, step: 1 } },
