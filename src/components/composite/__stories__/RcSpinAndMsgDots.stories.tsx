@@ -1,16 +1,16 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { SpinAndMsgDots, ISpinAndMsgDotsProps } from '../SpinAndMsgDots';
+import { RcSpinAndMsgDots, RcSpinAndMsgDotsProps } from '../RcSpinAndMsgDots';
 
 export default {
-  title: 'Composite/SpinAndMsgDots',
-  component: SpinAndMsgDots,
+  title: 'Composite/RcSpinAndMsgDots',
+  component: RcSpinAndMsgDots,
   argTypes: {
     color: { control: 'color' },
   },
 } as Meta;
 
-const Template: Story<ISpinAndMsgDotsProps> = (args) => (
-  <SpinAndMsgDots {...args} message="-^-" fontSize={34} />
+const Template: Story<RcSpinAndMsgDotsProps> = (args) => (
+  <RcSpinAndMsgDots {...args} message="-^-" fontSize={34} />
 );
 
 export const Default = Template.bind({});

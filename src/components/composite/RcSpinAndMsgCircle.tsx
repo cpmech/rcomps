@@ -2,14 +2,14 @@
 import { css } from '@emotion/react';
 import { RcSpinCircle, RcSpinCircleProps } from '../foundation';
 
-export interface ISpinAndMsgCircleProps extends RcSpinCircleProps {
+export interface RcSpinAndMsgCircleProps extends RcSpinCircleProps {
   message: string;
   color?: string;
   fontSize?: number;
   gap?: number;
 }
 
-export const SpinAndMsgCircle: React.FC<ISpinAndMsgCircleProps> = ({
+export const RcSpinAndMsgCircle: React.FC<RcSpinAndMsgCircleProps> = ({
   message,
   color = '#236cd2',
   fontSize = 14,

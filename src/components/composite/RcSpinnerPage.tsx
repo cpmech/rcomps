@@ -2,12 +2,12 @@
 import { css } from '@emotion/react';
 import { RcSpinCircle } from '../foundation';
 
-export interface ISpinnerPageProps {
+export interface RcSpinnerPageProps {
   color?: string;
   heightMenu?: number;
 }
 
-export const SpinnerPage: React.FC<ISpinnerPageProps> = ({
+export const RcSpinnerPage: React.FC<RcSpinnerPageProps> = ({
   color = '#5d5c61',
   heightMenu = 120,
 }) => {

@@ -1,27 +1,27 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { InputNumber, IInputNumberProps } from '../InputNumber';
+import { RcInputNumber, RcInputNumberProps } from '../RcInputNumber';
 import { useState } from 'react';
 import { cleanNumber } from '@cpmech/util';
 
 export default {
-  title: 'Composite/InputNumber',
-  component: InputNumber,
+  title: 'Composite/RcInputNumber',
+  component: RcInputNumber,
 } as Meta;
 
-export const Default: Story<IInputNumberProps> = (args) => {
+export const Default: Story<RcInputNumberProps> = (args) => {
   const prefix = '$ ';
   const [cost, setCost] = useState(prefix);
   const [energy, setEnergy] = useState('');
   return (
     <div>
-      <InputNumber
+      <RcInputNumber
         {...args}
         label="Cost in USD"
         value={cost}
         onChange={(v) => setCost(v)}
         prefix={prefix}
       />
-      <InputNumber
+      <RcInputNumber
         {...args}
         label="Energy in kWh"
         value={energy}
@@ -41,12 +41,12 @@ export const Default: Story<IInputNumberProps> = (args) => {
 
 const prefix = 'R$ ';
 
-export const Brazil: Story<IInputNumberProps> = (args) => {
+export const Brazil: Story<RcInputNumberProps> = (args) => {
   const [cost, setCost] = useState(prefix);
   const [energy, setEnergy] = useState('');
   return (
     <div>
-      <InputNumber
+      <RcInputNumber
         {...args}
         label="Preço em Reais"
         value={cost}
@@ -54,7 +54,7 @@ export const Brazil: Story<IInputNumberProps> = (args) => {
         prefix={prefix}
         swapDotByComma={true}
       />
-      <InputNumber
+      <RcInputNumber
         {...args}
         label="Energia em kWh"
         value={energy}

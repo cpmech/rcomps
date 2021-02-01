@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { RcSwitch } from '../foundation';
 
-export interface ISwitchAndTextProps {
+export interface RcSwitchAndTextProps {
   text: string;
   on: boolean;
   onClick: () => void;
@@ -13,7 +13,7 @@ export interface ISwitchAndTextProps {
   cssText?: string;
 }
 
-export const SwitchAndText: React.FC<ISwitchAndTextProps> = ({
+export const RcSwitchAndText: React.FC<RcSwitchAndTextProps> = ({
   text,
   on,
   onClick,

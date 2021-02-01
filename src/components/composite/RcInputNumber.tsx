@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { ReactNode } from 'react';
 import { formatNumber } from '@cpmech/util';
-import { InputCssOptions, RcInput } from '../foundation';
+import { InputElementCssOptions, RcInput } from '../foundation';
 
-export interface IInputNumberProps extends InputCssOptions {
+export interface RcInputNumberProps extends InputElementCssOptions {
   value: string;
   onChange: (formattedValue: string) => void;
   onBlur?: (formattedValue: string) => void;
@@ -15,7 +15,7 @@ export interface IInputNumberProps extends InputCssOptions {
   suffixPaddingRight?: number;
 }
 
-export const InputNumber: React.FC<IInputNumberProps> = ({
+export const RcInputNumber: React.FC<RcInputNumberProps> = ({
   value,
   onChange,
   onBlur,

@@ -1,15 +1,15 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { ProgressBar, IProgressBarProps } from '../ProgressBar';
+import { RcProgressBar, RcProgressBarProps } from '../RcProgressBar';
 
 export default {
-  title: 'Composite/ProgressBar',
-  component: ProgressBar,
+  title: 'Composite/RcProgressBar',
+  component: RcProgressBar,
   argTypes: {
     progress: { control: { type: 'range', min: 0, max: 100, step: 1 } },
   },
 } as Meta;
 
-const Template: Story<IProgressBarProps> = (args) => <ProgressBar {...args} />;
+const Template: Story<RcProgressBarProps> = (args) => <RcProgressBar {...args} />;
 
 export const Default = Template.bind({});
 

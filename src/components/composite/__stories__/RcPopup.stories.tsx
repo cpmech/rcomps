@@ -1,40 +1,40 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Popup, IPopupProps } from '../Popup';
+import { RcPopup, RcPopupProps } from '../RcPopup';
 import { useState } from 'react';
 
 export default {
-  title: 'Composite/Popup',
-  component: Popup,
+  title: 'Composite/RcPopup',
+  component: RcPopup,
 } as Meta;
 
-const Template: Story<IPopupProps> = (args) => <Popup {...args} />;
+const Template: Story<RcPopupProps> = (args) => <RcPopup {...args} />;
 
 export const Default = Template.bind({});
 
-export const Controlled: Story<IPopupProps> = (args) => {
+export const Controlled: Story<RcPopupProps> = (args) => {
   const [show, setShow] = useState(true);
   return (
     <div>
       <button onClick={() => setShow(true)}>Show Popup</button>
       {show && (
-        <Popup {...args} title="Controlled" onClose={() => setShow(false)}>
+        <RcPopup {...args} title="Controlled" onClose={() => setShow(false)}>
           This is supposed to be a very, very, indeed very short message just to notify that
           something is happening.
-        </Popup>
+        </RcPopup>
       )}
     </div>
   );
 };
 
-export const Error: Story<IPopupProps> = (args) => {
+export const Error: Story<RcPopupProps> = (args) => {
   const [show, setShow] = useState(true);
   return (
     <div>
       <button onClick={() => setShow(true)}>Show Popup</button>
       {show && (
-        <Popup {...args} title="Error" onClose={() => setShow(false)} isError={true}>
+        <RcPopup {...args} title="Error" onClose={() => setShow(false)} isError={true}>
           Some error happened
-        </Popup>
+        </RcPopup>
       )}
     </div>
   );

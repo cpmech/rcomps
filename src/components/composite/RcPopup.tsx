@@ -2,9 +2,9 @@
 import { css } from '@emotion/react';
 import { RcModal } from '../layout';
 import { RcSpinCircle } from '../foundation';
-import { ProgressBar } from './ProgressBar';
+import { RcProgressBar } from './RcProgressBar';
 
-export interface IPopupProps {
+export interface RcPopupProps {
   title?: string;
   message?: string;
   isError?: boolean;
@@ -27,7 +27,7 @@ export interface IPopupProps {
   colorSpinner?: string;
 }
 
-export const Popup: React.FC<IPopupProps> = ({
+export const RcPopup: React.FC<RcPopupProps> = ({
   title,
   message,
   isError,
@@ -73,7 +73,7 @@ export const Popup: React.FC<IPopupProps> = ({
       )}
       {message}
       {children}
-      {progress && <ProgressBar progress={progress} />}
+      {progress && <RcProgressBar progress={progress} />}
       {isLoading && (
         <div
           css={css`

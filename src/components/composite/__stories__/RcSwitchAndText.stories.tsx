@@ -1,16 +1,16 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { SwitchAndText, ISwitchAndTextProps } from '../SwitchAndText';
+import { RcSwitchAndText, RcSwitchAndTextProps } from '../RcSwitchAndText';
 import { useState } from 'react';
 
 export default {
-  title: 'Composite/SwitchAndText',
-  component: SwitchAndText,
+  title: 'Composite/RcSwitchAndText',
+  component: RcSwitchAndText,
   argTypes: {
     on: { controle: 'boolean' },
   },
 } as Meta;
 
-const Template: Story<ISwitchAndTextProps> = (args) => {
+const Template: Story<RcSwitchAndTextProps> = (args) => {
   const [onA, setOnA] = useState(false);
   const [onB, setOnB] = useState(false);
 
@@ -21,13 +21,13 @@ const Template: Story<ISwitchAndTextProps> = (args) => {
         flexDirection: 'column',
       }}
     >
-      <SwitchAndText
+      <RcSwitchAndText
         {...args}
         text="This is a very long text used to decide if this switch should be turned on or not"
         on={onA}
         onClick={() => setOnA(!onA)}
       />
-      <SwitchAndText
+      <RcSwitchAndText
         {...args}
         text="This is a very long text used to decide if this switch should be turned on or not"
         on={onB}

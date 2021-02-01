@@ -1,17 +1,17 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { SpinAndMsgCircle, ISpinAndMsgCircleProps } from '../SpinAndMsgCircle';
+import { RcSpinAndMsgCircle, RcSpinAndMsgCircleProps } from '../RcSpinAndMsgCircle';
 
 export default {
-  title: 'Composite/SpinAndMsgCircle',
-  component: SpinAndMsgCircle,
+  title: 'Composite/RcSpinAndMsgCircle',
+  component: RcSpinAndMsgCircle,
   argTypes: {
     color: { control: 'color' },
     size: { control: { type: 'range', min: 0, max: 300, step: 1 } },
   },
 } as Meta;
 
-const Template: Story<ISpinAndMsgCircleProps> = (args) => (
-  <SpinAndMsgCircle {...args} message="-^-" fontSize={34} />
+const Template: Story<RcSpinAndMsgCircleProps> = (args) => (
+  <RcSpinAndMsgCircle {...args} message="-^-" fontSize={34} />
 );
 
 export const Default = Template.bind({});

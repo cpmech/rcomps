@@ -2,11 +2,11 @@
 import { css } from '@emotion/react';
 import { RcProgress } from '../foundation';
 
-export interface IProgressBarProps {
+export interface RcProgressBarProps {
   progress: number;
 }
 
-export const ProgressBar: React.FC<IProgressBarProps> = ({ progress }) => {
+export const RcProgressBar: React.FC<RcProgressBarProps> = ({ progress }) => {
   return (
     <div
       css={css`

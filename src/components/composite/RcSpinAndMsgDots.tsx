@@ -2,14 +2,14 @@
 import { css } from '@emotion/react';
 import { RcSpinDots, RcSpinDotsProps } from '../foundation';
 
-export interface ISpinAndMsgDotsProps extends RcSpinDotsProps {
+export interface RcSpinAndMsgDotsProps extends RcSpinDotsProps {
   message: string;
   color?: string;
   fontSize?: number;
   gap?: number;
 }
 
-export const SpinAndMsgDots: React.FC<ISpinAndMsgDotsProps> = ({
+export const RcSpinAndMsgDots: React.FC<RcSpinAndMsgDotsProps> = ({
   message,
   color = '#236cd2',
   fontSize = 14,
