@@ -1,3 +1,4 @@
+export * from './floatBoxCss';
 export * from './inputElementCss';
 export * from './RcButton';
 export * from './RcCard';

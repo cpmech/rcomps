@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { useState, useRef, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
-import { getFloatCss, getMenuEntryCss } from '../helpers';
+import { floatBoxCss, floatBoxItemCss } from './floatBoxCss';
 import { inputElementCss, InputElementCssOptions } from './inputElementCss';
 
 export interface RcPickerEntry {
@@ -79,8 +79,8 @@ export const RcPicker: React.FC<RcPickerProps> = ({
   };
 
   const root = inputElementCss(readOnly, true, rest);
-  const floatCss = getFloatCss(open, heightBox, widthBox, boxToRight);
-  const menuEntryCss = getMenuEntryCss(menuPaddingHoriz, menuEntryHeight);
+  const floatCss = floatBoxCss(open, heightBox, widthBox, boxToRight);
+  const menuEntryCss = floatBoxItemCss(menuPaddingHoriz, menuEntryHeight);
   const { fontSize = 18, height = 50, color = '#484848' } = rest;
 
   return (

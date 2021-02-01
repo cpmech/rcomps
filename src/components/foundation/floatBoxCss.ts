@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const getFloatCss = (
+export const floatBoxCss = (
   show: boolean,
   height?: number,
   width?: string,
@@ -17,14 +17,14 @@ export const getFloatCss = (
   ${width ? `width: ${width};` : ''}
 `;
 
-export const getMenuEntryCss = (paddingHoriz = 20, menuEntryHeight = 50) => css`
+export const floatBoxItemCss = (paddingHoriz = 20, itemHeight = 50) => css`
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: ${paddingHoriz}px;
   padding-right: ${paddingHoriz}px;
-  height: ${menuEntryHeight}px;
+  height: ${itemHeight}px;
   transition: all 0.3s ease;
   white-space: nowrap;
   overflow: hidden;
