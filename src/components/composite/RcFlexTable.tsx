@@ -6,17 +6,18 @@ import { useMediaQuery } from 'react-responsive';
 import { IconAngleDown, IconAngleUp, IconPen } from '@cpmech/react-icons';
 import { RcButton, RcButtonProps } from '../foundation';
 
-export type IFlexTableLabels = { [column: string]: string };
-export type IFlexTableEntry = { [column: string]: any };
+export type RcFlexTableLabels = { [column: string]: string };
 
-export interface IFlexTableProps {
+export type RcFlexTableEntry = { [column: string]: any };
+
+export interface RcFlexTableProps {
   mainColumn: string;
-  rows: IFlexTableEntry[];
+  rows: RcFlexTableEntry[];
 
   columns?: string[]; // labels of columns: used to sort and select specific columns
-  labels?: IFlexTableLabels; // label-to-text conversion; may have missing entries
-  units?: IFlexTableLabels; // label-to-text conversion; may have missing entries
-  aligns?: IFlexTableLabels; // label-to-text conversion; may have missing entries
+  labels?: RcFlexTableLabels; // label-to-text conversion; may have missing entries
+  units?: RcFlexTableLabels; // label-to-text conversion; may have missing entries
+  aligns?: RcFlexTableLabels; // label-to-text conversion; may have missing entries
   proportions?: number[]; // width proportions of columns. must have the same number of total columns
 
   hideMainLabelWide?: boolean; // hide main label on wide view
@@ -56,7 +57,7 @@ export interface IFlexTableProps {
 
 export type IHiddenRows = { [i: number]: boolean };
 
-export const FlexTable: React.FC<IFlexTableProps> = ({
+export const RcFlexTable: React.FC<RcFlexTableProps> = ({
   mainColumn,
   rows,
 

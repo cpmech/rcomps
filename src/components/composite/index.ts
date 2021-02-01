@@ -1,5 +1,5 @@
 export * from './RcInputDate';
-export * from './FlexTable';
+export * from './RcFlexTable';
 export * from './InputNumber';
 export * from './MenuHorizLR';
 export * from './ModalYesNo';

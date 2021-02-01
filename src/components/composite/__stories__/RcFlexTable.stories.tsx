@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { FlexTable, IFlexTableProps } from '../FlexTable';
+import { RcFlexTable, RcFlexTableProps } from '../RcFlexTable';
 
 const rowsDefault = [
   {
@@ -166,8 +166,8 @@ const renderId = (d: any) => (
 );
 
 export default {
-  title: 'Composite/FlexTable',
-  component: FlexTable,
+  title: 'Composite/RcFlexTable',
+  component: RcFlexTable,
   argTypes: {
     hideMainLabelWide: { control: 'boolean' },
     showLabelsNarrow: { control: 'boolean' },
@@ -185,7 +185,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IFlexTableProps> = (args) => <FlexTable {...args} />;
+const Template: Story<RcFlexTableProps> = (args) => <RcFlexTable {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
