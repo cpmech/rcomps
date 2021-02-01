@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useState, useRef, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { InputCssOptions, getInputCss } from './InputCssOptions';
-import { getFloatCss } from '../helpers';
+import { getFloatCss, getMenuEntryCss } from '../helpers';
 
 export interface RcPickerEntry {
   message: string;
@@ -22,6 +22,8 @@ export interface RcPickerProps extends InputCssOptions {
   boxToRight?: boolean;
   iconPaddingRight?: number;
   readOnly?: boolean;
+  menuPaddingHoriz?: number;
+  menuEntryHeight?: number;
   cssMessage?: string;
 }
 
@@ -36,6 +38,8 @@ export const RcPicker: React.FC<RcPickerProps> = ({
   boxToRight,
   iconPaddingRight = 15,
   readOnly = false,
+  menuPaddingHoriz = 20,
+  menuEntryHeight = 50,
   cssMessage,
   ...rest
 }) => {
@@ -76,6 +80,7 @@ export const RcPicker: React.FC<RcPickerProps> = ({
 
   const root = getInputCss(readOnly, true, rest);
   const floatCss = getFloatCss(open, heightBox, widthBox, boxToRight);
+  const menuEntryCss = getMenuEntryCss(menuPaddingHoriz, menuEntryHeight);
   const { fontSize = 18, height = 50, color = '#484848' } = rest;
 
   return (
@@ -108,7 +113,7 @@ export const RcPicker: React.FC<RcPickerProps> = ({
       <div css={floatCss}>
         {entries.map((e) => (
           <div
-            style={{ cursor: 'pointer' }}
+            css={menuEntryCss}
             key={e.message}
             onClick={() => {
               setOpen(false);

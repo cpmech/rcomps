@@ -15,14 +15,20 @@ export const getFloatCss = (
   z-index: 1;
   ${height ? `height: ${height}px; overflow: auto;` : ''}
   ${width ? `width: ${width};` : ''}
-  a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
-  }
-  a:hover {
-    background-color: #f1f1f1;
+`;
+
+export const getMenuEntryCss = (paddingHoriz = 20, menuEntryHeight = 50) => css`
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: ${paddingHoriz}px;
+  padding-right: ${paddingHoriz}px;
+  height: ${menuEntryHeight}px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  :hover {
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `;

@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { Fragment, useState } from 'react';
 import { IconVertDots } from '@cpmech/react-icons';
-import { getFloatCss, OutsideClick } from '../helpers';
+import { getFloatCss, getMenuEntryCss, OutsideClick } from '../helpers';
 
 export interface RcGameCardMenuEntry {
   message: string;
@@ -125,23 +125,7 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
     ? getFloatCss(showMenu, menuHeightBox, menuWidthBox, true)
     : undefined;
 
-  const menuEntryCss = menuEntries
-    ? css`
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-left: ${paddingHoriz}px;
-        padding-right: ${paddingHoriz}px;
-        height: ${menuEntryHeight}px;
-        transition: all 0.3s ease;
-        white-space: nowrap;
-        overflow: hidden;
-        :hover {
-          background-color: rgba(0, 0, 0, 0.1);
-        }
-      `
-    : undefined;
+  const menuEntryCss = menuEntries ? getMenuEntryCss(paddingHoriz, menuEntryHeight) : undefined;
 
   return (
     <div
