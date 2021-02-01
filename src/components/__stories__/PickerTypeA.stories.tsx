@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { PickerTypeA, IPickerTypeAProps } from '../PickerTypeA';
-
+import { argTypesTypeA } from './argTypes';
 import { useState } from 'react';
 
 const entries = [
@@ -46,6 +46,9 @@ const manyEntries = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
 export default {
   title: 'Components/PickerTypeA',
   component: PickerTypeA,
+  argTypes: {
+    ...argTypesTypeA,
+  },
 } as Meta;
 
 const Template: Story<IPickerTypeAProps> = (args) => (
@@ -81,48 +84,16 @@ CssMessage.args = {
 export const OnRow: Story<IPickerTypeAProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row' }}>
     <PickerTypeA {...args} entries={entries} selected={entries[0].message} flatRight={true} />
-    <PickerTypeA selected={entries[1].message} entries={entries} flatLeft={true} flatRight={true} />
-    <PickerTypeA selected={entries[2].message} entries={entries} flatLeft={true} />
-  </div>
-);
-
-export const WithScrollbar: Story<IPickerTypeAProps> = (args) => (
-  <PickerTypeA {...args} entries={manyEntries} selected={manyEntries[1].message} heightBox={300} />
-);
-
-export const Controlled: Story<IPickerTypeAProps> = (args) => {
-  const [title, setTitle] = useState(entries[1].message);
-  return (
     <PickerTypeA
       {...args}
-      value={title}
-      entries={[
-        {
-          message: 'First entry',
-          onClick: () => {
-            setTitle('First');
-            window.alert('First entry was clicked');
-          },
-        },
-        {
-          message: 'Second entry',
-          onClick: () => {
-            setTitle('Second');
-            window.alert('Second entry was clicked');
-          },
-        },
-        {
-          message: 'Third entry',
-          onClick: () => {
-            setTitle('Third');
-            window.alert('Third entry was clicked');
-          },
-        },
-      ]}
-      width="250px"
+      selected={entries[1].message}
+      entries={entries}
+      flatLeft={true}
+      flatRight={true}
     />
-  );
-};
+    <PickerTypeA {...args} selected={entries[2].message} entries={entries} flatLeft={true} />
+  </div>
+);
 
 export const Stacked: Story<IPickerTypeAProps> = (args) => (
   <div
@@ -134,10 +105,51 @@ export const Stacked: Story<IPickerTypeAProps> = (args) => (
     }}
   >
     <PickerTypeA {...args} entries={entries} selected={entries[0].message} />
-    <PickerTypeA selected={entries[1].message} entries={entries} />
-    <PickerTypeA selected={entries[2].message} entries={entries} />
+    <PickerTypeA {...args} selected={entries[1].message} entries={entries} />
+    <PickerTypeA {...args} selected={entries[2].message} entries={entries} />
   </div>
 );
+
+export const WithScrollbar: Story<IPickerTypeAProps> = (args) => (
+  <PickerTypeA {...args} entries={manyEntries} selected={manyEntries[1].message} heightBox={300} />
+);
+
+export const Controlled: Story<IPickerTypeAProps> = (args) => {
+  const [title, setTitle] = useState(entries[1].message);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <PickerTypeA
+        {...args}
+        value={title}
+        entries={[
+          {
+            message: 'First entry',
+            onClick: () => {
+              setTitle('First');
+              window.alert('First entry was clicked');
+            },
+          },
+          {
+            message: 'Second entry',
+            onClick: () => {
+              setTitle('Second');
+              window.alert('Second entry was clicked');
+            },
+          },
+          {
+            message: 'Third entry',
+            onClick: () => {
+              setTitle('Third');
+              window.alert('Third entry was clicked');
+            },
+          },
+        ]}
+        width="250px"
+      />
+      <div>Selection = {title}</div>
+    </div>
+  );
+};
 
 const bgColor = '#2ecc71';
 
@@ -162,6 +174,7 @@ export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
       }}
     >
       <PickerTypeA
+        {...args}
         selected={entries[0].message}
         entries={entries}
         width="250px"
@@ -170,6 +183,7 @@ export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
         darkMode={true}
       />
       <PickerTypeA
+        {...args}
         selected={entries[1].message}
         entries={entries}
         width="250px"
@@ -178,6 +192,7 @@ export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
         darkMode={true}
       />
       <PickerTypeA
+        {...args}
         selected={entries[2].message}
         entries={entries}
         width="250px"
@@ -197,18 +212,21 @@ export const LightAndDarkBg: Story<IPickerTypeAProps> = (args) => (
       }}
     >
       <PickerTypeA
+        {...args}
         selected={entries[0].message}
         entries={entries}
         width="250px"
         label="Please, choose one"
       />
       <PickerTypeA
+        {...args}
         selected={entries[1].message}
         entries={entries}
         width="250px"
         label="Please, choose another"
       />
       <PickerTypeA
+        {...args}
         selected={entries[2].message}
         entries={entries}
         width="250px"
