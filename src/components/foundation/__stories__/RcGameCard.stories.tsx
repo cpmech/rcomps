@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Card, ICardProps } from '../Card';
+import { RcGameCard, IRcGameCardProps } from '../RcGameCard';
 import { IconHouseThreeD } from '@cpmech/react-icons';
 import { LoremIpsumSmall } from '../../helpers';
 
@@ -40,14 +40,14 @@ const Buttons: React.FC = () => (
 );
 
 export default {
-  title: 'Foundation/Card',
-  component: Card,
+  title: 'Foundation/RcGameCard',
+  component: RcGameCard,
 } as Meta;
 
-const Template: Story<ICardProps> = (args) => (
-  <Card {...args} title="Good News!">
+const Template: Story<IRcGameCardProps> = (args) => (
+  <RcGameCard {...args} title="Good News!">
     {LoremIpsumSmall}
-  </Card>
+  </RcGameCard>
 );
 
 export const Default = Template.bind({});
