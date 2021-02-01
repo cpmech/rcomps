@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Modal } from './Modal';
-import { SpinCircle } from './SpinCircle';
-import { ProgressBar } from './ProgressBar';
+import { Modal } from '../Modal';
+import { SpinCircle } from '../SpinCircle';
+import { ProgressBar } from '../ProgressBar';
 
 export interface IPopupProps {
-  title: string;
+  title?: string;
   message?: string;
   isError?: boolean;
   isLoading?: boolean;
@@ -59,16 +59,18 @@ export const Popup: React.FC<IPopupProps> = ({
         margin-bottom: ${vspaceBottom}px;
       `}
     >
-      <div
-        css={css`
-          color: ${isError ? colorTitleError : isLoading ? colorTitleLoading : colorTitle};
-          font-size: ${fontSizeTitle};
-          font-weight: ${fontWeightTitle};
-          margin-bottom: ${vspaceMiddle}px;
-        `}
-      >
-        {title}
-      </div>
+      {title && (
+        <div
+          css={css`
+            color: ${isError ? colorTitleError : isLoading ? colorTitleLoading : colorTitle};
+            font-size: ${fontSizeTitle};
+            font-weight: ${fontWeightTitle};
+            margin-bottom: ${vspaceMiddle}px;
+          `}
+        >
+          {title}
+        </div>
+      )}
       {message}
       {children}
       {progress && <ProgressBar progress={progress} />}
@@ -86,16 +88,8 @@ export const Popup: React.FC<IPopupProps> = ({
     </div>
   );
 
-  if (onClose) {
-    return (
-      <Modal onClose={onClose} minWidth={minWidth} maxWidth={maxWidth} maxHeight={maxHeight}>
-        {renderContent()}
-      </Modal>
-    );
-  }
-
   return (
-    <Modal minWidth={minWidth} maxWidth={maxWidth} maxHeight={maxHeight}>
+    <Modal onClose={onClose} minWidth={minWidth} maxWidth={maxWidth} maxHeight={maxHeight}>
       {renderContent()}
     </Modal>
   );
