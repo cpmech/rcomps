@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export interface InputCssOptions {
+export interface InputElementCssOptions {
   height?: number;
   borderRadius?: number;
   flatLeft?: boolean;
@@ -26,7 +26,7 @@ export interface InputCssOptions {
   extraDeltaLabel?: number; // to account for weird fonts, because all the computations here are precise
 }
 
-export const getInputCss = (
+export const inputElementCss = (
   textMode: boolean,
   pickerMode: boolean,
   {
@@ -53,7 +53,7 @@ export const getInputCss = (
     transTime = '300ms',
     extraDeltaLabel = 0,
     marginVert,
-  }: InputCssOptions,
+  }: InputElementCssOptions,
 ) => {
   const deltaLabel = height / 2 + labelFontSize / 2 + extraDeltaLabel;
   const deltaLine = height / 2;

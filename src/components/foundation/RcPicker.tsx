@@ -2,8 +2,8 @@
 import { css } from '@emotion/react';
 import { useState, useRef, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
-import { InputCssOptions, getInputCss } from './InputCssOptions';
 import { getFloatCss, getMenuEntryCss } from '../helpers';
+import { inputElementCss, InputElementCssOptions } from './inputElementCss';
 
 export interface RcPickerEntry {
   message: string;
@@ -11,7 +11,7 @@ export interface RcPickerEntry {
   title?: string; // set title with this instead of message
 }
 
-export interface RcPickerProps extends InputCssOptions {
+export interface RcPickerProps extends InputElementCssOptions {
   entries: RcPickerEntry[];
   selected?: string; // title [use on uncontrolled component]
   value?: string; // title [use on controlled component]
@@ -78,7 +78,7 @@ export const RcPicker: React.FC<RcPickerProps> = ({
     setOpen(!open);
   };
 
-  const root = getInputCss(readOnly, true, rest);
+  const root = inputElementCss(readOnly, true, rest);
   const floatCss = getFloatCss(open, heightBox, widthBox, boxToRight);
   const menuEntryCss = getMenuEntryCss(menuPaddingHoriz, menuEntryHeight);
   const { fontSize = 18, height = 50, color = '#484848' } = rest;

@@ -69,7 +69,14 @@ export const Controlled: Story<RcInputProps> = (args) => {
   const [name, setName] = useState('My Name Goes Here');
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <RcInput {...args} width="250px" value={name} onChange={(e) => setName(e.target.value)} />
+      <RcInput
+        {...args}
+        width="250px"
+        value={name}
+        name="name"
+        label="Name"
+        onChange={(e) => setName(e.target.value)}
+      />
       <div>Name = {name}</div>
     </div>
   );

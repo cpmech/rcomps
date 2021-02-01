@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
-import { InputCssOptions, getInputCss } from './InputCssOptions';
+import { inputElementCss, InputElementCssOptions } from './inputElementCss';
 
-export interface RcTextProps extends InputCssOptions {
+export interface RcTextProps extends InputElementCssOptions {
   name?: string;
   label?: string;
   value?: string;
@@ -19,7 +19,7 @@ export const RcText: React.FC<RcTextProps> = ({
   suffixPaddingRight = 20,
   ...rest
 }) => {
-  const root = getInputCss(true, false, rest);
+  const root = inputElementCss(true, false, rest);
   const { fontSize = 18, height = 50, mutedColor = '#898989' } = rest;
   return (
     <div css={root}>
