@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { RcChartRing, IRcChartRingProps } from '../RcChartRing';
+import { RcChartRing, RcChartRingProps } from '../RcChartRing';
 
 export default {
   title: 'Foundation/RcChartRing',
@@ -9,7 +9,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IRcChartRingProps> = (args) => <RcChartRing {...args} />;
+const Template: Story<RcChartRingProps> = (args) => <RcChartRing {...args} />;
 
 export const Default = Template.bind({});
 
