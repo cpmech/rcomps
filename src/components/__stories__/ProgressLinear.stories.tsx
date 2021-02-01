@@ -1,16 +1,31 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs, number } from '@storybook/addon-knobs';
-import { ProgressLinear } from '../ProgressLinear';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { ProgressLinear, IProgressLinearProps } from '../ProgressLinear';
 
-const stories = storiesOf('ProgressLinear', module);
+export default {
+  title: 'Components/ProgressLinear',
+  component: ProgressLinear,
+  argTypes: {
+    progress: { control: 'range', min: 0, max: 100, step: 1 },
+    color: { control: 'color' },
+    backgroundColor: { control: 'color' },
+    borderColor: { control: 'color' },
+    barColor: { control: 'color' },
+    borderRadius: { control: 'range', min: 0, max: 300, step: 1 },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IProgressLinearProps> = (args) => <ProgressLinear {...args} />;
 
-stories.add('default', () => {
-  return (
-    <div>
-      <ProgressLinear progress={number('Progress', 30)} />
-    </div>
-  );
-});
+export const Default = Template.bind({});
+
+export const Fifty = Template.bind({});
+Fifty.args = {
+  ...Template.args,
+  progress: 50,
+};
+
+export const NinetyNine = Template.bind({});
+NinetyNine.args = {
+  ...Template.args,
+  progress: 99,
+};
