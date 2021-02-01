@@ -1,9 +1,6 @@
 import { css } from '@emotion/react';
 
-// hlColor = '#00bafa', // lighter blue
-// hlColor = '#2196F3', // darker blue
-
-export interface ITypeAProps {
+export interface InputCssOptions {
   height?: number;
   borderRadius?: number;
   flatLeft?: boolean;
@@ -29,7 +26,7 @@ export interface ITypeAProps {
   extraDeltaLabel?: number; // to account for weird fonts, because all the computations here are precise
 }
 
-export const getTypeAcss = (
+export const getInputCss = (
   textMode: boolean,
   pickerMode: boolean,
   {
@@ -56,7 +53,7 @@ export const getTypeAcss = (
     transTime = '300ms',
     extraDeltaLabel = 0,
     marginVert,
-  }: ITypeAProps,
+  }: InputCssOptions,
 ) => {
   const deltaLabel = height / 2 + labelFontSize / 2 + extraDeltaLabel;
   const deltaLine = height / 2;

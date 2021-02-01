@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
-import { ITypeAProps, getTypeAcss } from '../helpers';
+import { InputCssOptions, getInputCss } from './InputCssOptions';
 
-export interface RcInputProps extends ITypeAProps {
+export interface RcInputProps extends InputCssOptions {
   inputRef?: (e: HTMLInputElement) => void;
   name?: string;
   label?: string;
@@ -31,7 +31,7 @@ export const RcInput: React.FC<RcInputProps> = ({
   readOnly = false,
   ...rest
 }) => {
-  const root = getTypeAcss(readOnly, false, rest);
+  const root = getInputCss(readOnly, false, rest);
   const { fontSize = 18, height = 50, mutedColor = '#898989' } = rest;
   return (
     <div css={root}>
