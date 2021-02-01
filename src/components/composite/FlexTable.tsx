@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import { hasProp } from '@cpmech/basic';
 import { useMediaQuery } from 'react-responsive';
 import { IconAngleDown, IconAngleUp, IconPen } from '@cpmech/react-icons';
-import { Button, IButtonProps } from '../foundation/Button';
+import { Button, IButtonProps } from '../foundation';
 
 export type IFlexTableLabels = { [column: string]: string };
 export type IFlexTableEntry = { [column: string]: any };

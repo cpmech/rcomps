@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Switch } from '../foundation/Switch';
+import { Switch } from '../foundation';
 
 export interface ISwitchAndTextProps {
   text: string;

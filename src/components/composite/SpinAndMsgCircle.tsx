@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { SpinCircle, ISpinCircleProps } from '../foundation/SpinCircle';
+import { SpinCircle, ISpinCircleProps } from '../foundation';
 
 export interface ISpinAndMsgCircleProps extends ISpinCircleProps {
   message: string;

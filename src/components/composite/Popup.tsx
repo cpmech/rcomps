@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Modal } from '../layout/Modal';
-import { SpinCircle } from '../foundation/SpinCircle';
+import { Modal } from '../layout';
+import { SpinCircle } from '../foundation';
 import { ProgressBar } from './ProgressBar';
 
 export interface IPopupProps {

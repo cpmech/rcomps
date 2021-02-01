@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { IMenuHorizontalProps, MenuHorizontal } from '../layout/MenuHorizontal';
+import { IMenuHorizontalProps, MenuHorizontal } from '../layout';
 
 export interface IMenuHorizLRProps {
   left: IMenuHorizontalProps;
