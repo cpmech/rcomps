@@ -2,12 +2,12 @@
 import { css } from '@emotion/react';
 import { RcMenuHorizProps, RcMenuHoriz } from '../layout';
 
-export interface IMenuHorizLRProps {
+export interface RcDualMenuHorizProps {
   left: RcMenuHorizProps;
   right: RcMenuHorizProps;
 }
 
-export const MenuHorizLR: React.FC<IMenuHorizLRProps> = ({
+export const RcDualMenuHoriz: React.FC<RcDualMenuHorizProps> = ({
   left,
   right,
   //

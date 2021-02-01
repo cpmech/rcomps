@@ -1,8 +1,9 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { MenuHorizLR, IMenuHorizLRProps } from '../MenuHorizLR';
+import { RcDualMenuHoriz, RcDualMenuHorizProps } from '../RcDualMenuHoriz';
 import { IconAddressBook, IconGlobe, IconHouseThreeD, IconUser } from '@cpmech/react-icons';
+import { RcMenuEntry } from '../../layout';
 
-const entriesLeft = [
+const entriesLeft: RcMenuEntry[] = [
   {
     icon: <IconHouseThreeD size={80} />,
     onClick: () => window.alert('house selected'),
@@ -14,7 +15,7 @@ const entriesLeft = [
   },
 ];
 
-const entriesRight = [
+const entriesRight: RcMenuEntry[] = [
   {
     icon: <IconHouseThreeD />,
     label: 'Casa',
@@ -57,12 +58,12 @@ const entriesRight = [
 ];
 
 export default {
-  title: 'Composite/MenuHorizLR',
-  component: MenuHorizLR,
+  title: 'Composite/RcDualMenuHoriz',
+  component: RcDualMenuHoriz,
 } as Meta;
 
-const Template: Story<IMenuHorizLRProps> = (args) => (
-  <MenuHorizLR
+const Template: Story<RcDualMenuHorizProps> = (args) => (
+  <RcDualMenuHoriz
     {...args}
     left={{ entries: entriesLeft, gapHorizEntries: 20 }}
     right={{ entries: entriesRight, gapHorizEntries: 50 }}

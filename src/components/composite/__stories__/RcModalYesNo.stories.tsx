@@ -1,20 +1,20 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { ModalYesNo, IModalYesNoProps } from '../ModalYesNo';
+import { RcModalYesNo, RcModalYesNoProps } from '../RcModalYesNo';
 import { useState } from 'react';
 
 export default {
-  title: 'Composite/ModalYesNo',
-  component: ModalYesNo,
+  title: 'Composite/RcModalYesNo',
+  component: RcModalYesNo,
 } as Meta;
 
-const Template: Story<IModalYesNoProps> = (args) => {
+const Template: Story<RcModalYesNoProps> = (args) => {
   const [show, setShow] = useState(true);
 
   return (
     <div>
       <button onClick={() => setShow(true)}>SHOW MODAL</button>
       {show && (
-        <ModalYesNo
+        <RcModalYesNo
           {...args}
           onClose={() => setShow(false)}
           onYes={() => window.alert('YES')}

@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { RcButton, RcButtonProps } from '../foundation';
 import { RcModal, RcModalProps } from '../layout';
 
-export interface IModalYesNoProps extends RcModalProps {
+export interface RcModalYesNoProps extends RcModalProps {
   onYes?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onNo?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   txtYes?: string;
@@ -17,7 +17,7 @@ export interface IModalYesNoProps extends RcModalProps {
   rightButtonStyle?: RcButtonProps;
 }
 
-export const ModalYesNo: React.FC<IModalYesNoProps> = ({
+export const RcModalYesNo: React.FC<RcModalYesNoProps> = ({
   onYes,
   onNo,
   title = 'Confirmation',
