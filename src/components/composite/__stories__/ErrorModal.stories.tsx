@@ -3,7 +3,7 @@ import { ErrorModal, IErrorModalProps } from '../ErrorModal';
 import { useState } from 'react';
 
 export default {
-  title: 'HighLevel/ErrorModal',
+  title: 'Composite/ErrorModal',
   component: ErrorModal,
 } as Meta;
 

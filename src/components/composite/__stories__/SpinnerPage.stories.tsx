@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { SpinnerPage, ISpinnerPageProps } from '../SpinnerPage';
 
 export default {
-  title: 'HighLevel/SpinnerPage',
+  title: 'Composite/SpinnerPage',
   component: SpinnerPage,
   argTypes: {
     color: { control: 'color' },

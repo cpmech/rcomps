@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { SpinAndMsgDots, ISpinAndMsgDotsProps } from '../SpinAndMsgDots';
 
 export default {
-  title: 'HighLevel/SpinAndMsgDots',
+  title: 'Composite/SpinAndMsgDots',
   component: SpinAndMsgDots,
   argTypes: {
     color: { control: 'color' },

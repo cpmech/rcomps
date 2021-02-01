@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { ErrorPage, IErrorPageProps } from '../ErrorPage';
 
 export default {
-  title: 'HighLevel/ErrorPage',
+  title: 'Composite/ErrorPage',
   component: ErrorPage,
 } as Meta;
 

@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { ProgressPage, IProgressPageProps } from '../ProgressPage';
 
 export default {
-  title: 'HighLevel/ProgressPage',
+  title: 'Composite/ProgressPage',
   component: ProgressPage,
   argTypes: {
     progress: { control: { type: 'range', min: 0, max: 100, step: 1 } },

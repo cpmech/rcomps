@@ -3,7 +3,7 @@ import { Popup, IPopupProps } from '../Popup';
 import { useState } from 'react';
 
 export default {
-  title: 'HighLevel/Popup',
+  title: 'Composite/Popup',
   component: Popup,
 } as Meta;
 

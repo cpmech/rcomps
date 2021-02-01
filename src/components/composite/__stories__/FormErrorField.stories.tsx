@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { FormErrorField, IFormErrorFieldProps } from '../FormErrorField';
 
 export default {
-  title: 'HighLevel/FormErrorField',
+  title: 'Composite/FormErrorField',
   component: FormErrorField,
 } as Meta;
 

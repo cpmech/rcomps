@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { SpinAndMsgCircle, ISpinAndMsgCircleProps } from '../SpinAndMsgCircle';
 
 export default {
-  title: 'HighLevel/SpinAndMsgCircle',
+  title: 'Composite/SpinAndMsgCircle',
   component: SpinAndMsgCircle,
   argTypes: {
     color: { control: 'color' },

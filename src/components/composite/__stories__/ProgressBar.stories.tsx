@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { ProgressBar, IProgressBarProps } from '../ProgressBar';
 
 export default {
-  title: 'HighLevel/ProgressBar',
+  title: 'Composite/ProgressBar',
   component: ProgressBar,
   argTypes: {
     progress: { control: { type: 'range', min: 0, max: 100, step: 1 } },

@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { MessagePage, IMessagePageProps } from '../MessagePage';
 
 export default {
-  title: 'HighLevel/MessagePage',
+  title: 'Composite/MessagePage',
   component: MessagePage,
 } as Meta;
 
