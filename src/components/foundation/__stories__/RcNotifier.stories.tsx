@@ -1,20 +1,20 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Notifier, INotifierProps } from '../Notifier';
+import { RcNotifier, RcNotifierProps } from '../RcNotifier';
 import { useState } from 'react';
 import { LoremIpsum } from '../../helpers';
 
 export default {
-  title: 'Foundation/Notifier',
-  component: Notifier,
+  title: 'Foundation/RcNotifier',
+  component: RcNotifier,
 } as Meta;
 
-const Template: Story<INotifierProps> = (args) => {
+const Template: Story<RcNotifierProps> = (args) => {
   const [show, setShow] = useState(true);
 
   return (
     <div>
       <button onClick={() => setShow(true)}>SHOW</button>
-      {show && <Notifier {...args} onClose={() => setShow(false)} />}
+      {show && <RcNotifier {...args} onClose={() => setShow(false)} />}
     </div>
   );
 };

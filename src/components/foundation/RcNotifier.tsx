@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { Fragment } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 
-export interface INotifierProps {
+export interface RcNotifierProps {
   onClose: () => void;
   title?: string;
   caption?: string;
@@ -29,7 +29,7 @@ export interface INotifierProps {
   cssMessage?: string;
 }
 
-export const Notifier: React.FC<INotifierProps> = ({
+export const RcNotifier: React.FC<RcNotifierProps> = ({
   onClose,
   title,
   caption,
