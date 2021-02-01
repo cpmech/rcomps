@@ -6,7 +6,7 @@ export default {
   title: 'Components/Pair',
   component: Pair,
   argTypes: {
-    spacing: { control: 'range', min: 0, max: 100, step: 1 },
+    spacing: { control: { type: 'range', min: 0, max: 100, step: 1 } },
     spaceBetween: { control: 'boolean' },
   },
 } as Meta;

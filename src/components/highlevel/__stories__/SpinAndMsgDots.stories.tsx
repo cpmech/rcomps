@@ -9,7 +9,9 @@ export default {
   },
 } as Meta;
 
-const Template: Story<ISpinAndMsgDotsProps> = (args) => <SpinAndMsgDots {...args} />;
+const Template: Story<ISpinAndMsgDotsProps> = (args) => (
+  <SpinAndMsgDots {...args} message="-^-" fontSize={34} />
+);
 
 export const Default = Template.bind({});
 

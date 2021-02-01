@@ -5,7 +5,7 @@ export default {
   title: 'Components/ChartRing',
   component: ChartRing,
   argTypes: {
-    pct: { control: 'range', min: 0, max: 100, step: 1 },
+    pct: { control: { type: 'range', min: 0, max: 100, step: 1 } },
   },
 } as Meta;
 

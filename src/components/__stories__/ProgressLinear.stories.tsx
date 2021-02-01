@@ -5,12 +5,12 @@ export default {
   title: 'Components/ProgressLinear',
   component: ProgressLinear,
   argTypes: {
-    progress: { control: 'range', min: 0, max: 100, step: 1 },
+    progress: { control: { type: 'range', min: 0, max: 100, step: 1 } },
     color: { control: 'color' },
     backgroundColor: { control: 'color' },
     borderColor: { control: 'color' },
     barColor: { control: 'color' },
-    borderRadius: { control: 'range', min: 0, max: 300, step: 1 },
+    borderRadius: { control: { type: 'range', min: 0, max: 300, step: 1 } },
   },
 } as Meta;
 

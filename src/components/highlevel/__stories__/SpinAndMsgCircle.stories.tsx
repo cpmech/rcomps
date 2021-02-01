@@ -6,7 +6,7 @@ export default {
   component: SpinAndMsgCircle,
   argTypes: {
     color: { control: 'color' },
-    size: { control: 'range', min: 0, max: 300, step: 1 },
+    size: { control: { type: 'range', min: 0, max: 300, step: 1 } },
   },
 } as Meta;
 
