@@ -1,22 +1,22 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Switch, ISwitchProps } from '../Switch';
+import { RcSwitch, RcSwitchProps } from '../RcSwitch';
 import { useState } from 'react';
 
 export default {
-  title: 'Foundation/Switch',
-  component: Switch,
+  title: 'Foundation/RcSwitch',
+  component: RcSwitch,
 } as Meta;
 
-const Template: Story<ISwitchProps> = (args) => <Switch {...args} />;
+const Template: Story<RcSwitchProps> = (args) => <RcSwitch {...args} />;
 
 export const Default = Template.bind({});
 
-export const Controlled: Story<ISwitchProps> = (args) => {
+export const Controlled: Story<RcSwitchProps> = (args) => {
   const [on, setOn] = useState(true);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <Switch {...args} on={on} onClick={() => setOn(!on)} />
+      <RcSwitch {...args} on={on} onClick={() => setOn(!on)} />
       {on ? <p>on = true</p> : <p>on = false</p>}
     </div>
   );

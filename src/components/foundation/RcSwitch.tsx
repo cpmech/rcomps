@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export interface ISwitchProps {
+export interface RcSwitchProps {
   on?: boolean;
   onClick?: ((event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void) | undefined;
   gap?: number;
@@ -19,7 +19,7 @@ export interface ISwitchProps {
   darkMode?: boolean;
 }
 
-export const Switch: React.FC<ISwitchProps> = ({
+export const RcSwitch: React.FC<RcSwitchProps> = ({
   on,
   onClick,
   gap = 4,

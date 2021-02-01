@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Switch } from '../foundation';
+import { RcSwitch } from '../foundation';
 
 export interface ISwitchAndTextProps {
   text: string;
@@ -41,7 +41,7 @@ export const SwitchAndText: React.FC<ISwitchAndTextProps> = ({
   if (textAtRight) {
     return (
       <div css={styleRoot}>
-        <Switch on={on} height={switchHeight} onClick={onClick} />
+        <RcSwitch on={on} height={switchHeight} onClick={onClick} />
         <div css={styleAtRight}>
           {cssText ? <div css={css(cssText)}>{text}</div> : <div>{text}</div>}
         </div>
@@ -54,7 +54,7 @@ export const SwitchAndText: React.FC<ISwitchAndTextProps> = ({
       <div css={styleAtLeft}>
         {cssText ? <div css={css(cssText)}>{text}</div> : <div>{text}</div>}
       </div>
-      <Switch on={on} height={switchHeight} onClick={onClick} />
+      <RcSwitch on={on} height={switchHeight} onClick={onClick} />
     </div>
   );
 };
