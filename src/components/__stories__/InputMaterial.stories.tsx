@@ -1,16 +1,21 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { InputMaterial } from '../InputMaterial';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { InputMaterial, IInputMaterialProps } from '../InputMaterial';
 
-const stories = storiesOf('InputMaterial', module);
+export default {
+  title: 'Components/InputMaterial',
+  component: InputMaterial,
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IInputMaterialProps> = (args) => (
+  <InputMaterial {...args} name="name" label="Name" />
+);
 
-stories.add('default', () => (
-  <form>
+export const Default = Template.bind({});
+
+export const Multiple: Story<IInputMaterialProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'column' }}>
     <InputMaterial name="name" label="Name" value="Hello World!" />
     <InputMaterial name="email" label="Email" />
     <InputMaterial name="password" label="Password" type="password" />
-  </form>
-));
+  </div>
+);

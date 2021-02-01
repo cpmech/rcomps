@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { InputNumber, IInputNumberProps } from '../InputNumber';
+import { useState } from 'react';
 import { cleanNumber } from '@cpmech/util';
-import { InputNumber } from '../InputNumber';
 
-const stories = storiesOf('InputNumber', module);
+export default {
+  title: 'Components/InputNumber',
+  component: InputNumber,
+} as Meta;
 
-stories.addDecorator(withKnobs);
-
-stories.add('default', () => {
+export const Default: Story<IInputNumberProps> = (args) => {
   const prefix = '$ ';
   const [cost, setCost] = useState(prefix);
   const [energy, setEnergy] = useState('');
   return (
     <div>
-      <InputNumber label="Cost in USD" value={cost} onChange={(v) => setCost(v)} prefix={prefix} />
       <InputNumber
+        {...args}
+        label="Cost in USD"
+        value={cost}
+        onChange={(v) => setCost(v)}
+        prefix={prefix}
+      />
+      <InputNumber
+        {...args}
         label="Energy in kWh"
         value={energy}
         onChange={(v) => setEnergy(v)}
@@ -30,16 +37,17 @@ stories.add('default', () => {
       </div>
     </div>
   );
-});
+};
 
 const prefix = 'R$ ';
 
-stories.add('Brazil', () => {
+export const Brazil: Story<IInputNumberProps> = (args) => {
   const [cost, setCost] = useState(prefix);
   const [energy, setEnergy] = useState('');
   return (
     <div>
       <InputNumber
+        {...args}
         label="Preço em Reais"
         value={cost}
         onChange={(v) => setCost(v)}
@@ -47,6 +55,7 @@ stories.add('Brazil', () => {
         swapDotByComma={true}
       />
       <InputNumber
+        {...args}
         label="Energia em kWh"
         value={energy}
         onChange={(v) => setEnergy(v)}
@@ -62,4 +71,4 @@ stories.add('Brazil', () => {
       </div>
     </div>
   );
-});
+};

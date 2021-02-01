@@ -1,0 +1,15 @@
+export const argTypesTypeA = {
+  height: { control: 'range', min: 1, max: 200, step: 1 },
+  borderRadius: { control: 'range', min: 1, max: 200, step: 1 },
+  flatLeft: { control: 'boolean' },
+  flatRight: { control: 'boolean' },
+  fontSize: { control: 'range', min: 1, max: 200, step: 1 },
+  labelFontSize: { control: 'range', min: 1, max: 200, step: 1 },
+  paddingHoriz: { control: 'range', min: 1, max: 200, step: 1 },
+  paddingRightPicker: { control: 'range', min: 1, max: 200, step: 1 },
+  labelPaddingHoriz: { control: 'range', min: 1, max: 200, step: 1 },
+  darkMode: { control: 'boolean' },
+  borderWidth: { control: 'range', min: 1, max: 200, step: 1 },
+  marginVert: { control: 'range', min: 1, max: 200, step: 1 },
+  extraDeltaLabel: { control: 'range', min: 1, max: 200, step: 1 },
+};

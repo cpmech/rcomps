@@ -1,25 +1,23 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
-import { ButtonLink } from '../ButtonLink';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { ButtonLink, IButtonLinkProps } from '../ButtonLink';
 import { IconAccount } from '@cpmech/react-icons';
-import { Pair } from '../Pair';
 
-const stories = storiesOf('ButtonLink', module);
+export default {
+  title: 'Components/ButtonLink',
+  component: ButtonLink,
+  argTypes: {
+    onClick: { action: 'button-link-clicked' },
+    color: { control: 'color' },
+    hoverColor: { control: 'color' },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IButtonLinkProps> = (args) => <ButtonLink {...args}>Hello World</ButtonLink>;
 
-stories.add('default', () => <ButtonLink onClick={action('Button')}>Hello World</ButtonLink>);
+export const Default = Template.bind({});
 
-stories.add('styled', () => (
-  <ButtonLink onClick={action('Button')} color="#803ced" hoverColor="#9f6cf1">
+export const Styled: Story<IButtonLinkProps> = (args) => (
+  <ButtonLink {...args} color="#803ced" hoverColor="#9f6cf1">
     <IconAccount size={64} />
   </ButtonLink>
-));
-
-stories.add('with text', () => (
-  <ButtonLink onClick={action('Button')} color="#236cd2" hoverColor="#548fe2">
-    <Pair left={<IconAccount size={32} />} right="ACCOUNT" />
-  </ButtonLink>
-));
+);

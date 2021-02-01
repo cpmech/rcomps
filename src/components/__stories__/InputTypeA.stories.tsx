@@ -1,201 +1,83 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { InputTypeA } from '../InputTypeA';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { InputTypeA, IInputTypeAProps } from '../InputTypeA';
+import { argTypesTypeA } from './argTypes';
 import { IconExclamation, IconEye, IconEyeNo } from '@cpmech/react-icons';
+import { useState } from 'react';
 
-const stories = storiesOf('InputTypeA', module);
+export default {
+  title: 'Components/InputTypeA',
+  component: InputTypeA,
+  argTypes: {
+    ...argTypesTypeA,
+    password: { control: 'boolean' },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IInputTypeAProps> = (args) => (
+  <InputTypeA {...args} name="name" label="Name" />
+);
 
-stories.add('default', () => (
-  <div>
-    <InputTypeA
-      name="email"
-      label="Email"
-      value="testing@example.com"
-      readOnly={boolean('readOnly', false)}
-    />
-    <InputTypeA name="email" label="Email" readOnly={boolean('readOnly', false)} />
+export const Default = Template.bind({});
+
+export const ReadOnly = Template.bind({});
+ReadOnly.args = {
+  ...Template.args,
+  readOnly: true,
+  value: "Don't change this",
+};
+
+export const Small = Template.bind({});
+Small.args = {
+  ...Template.args,
+  height: 32,
+  fontSize: 14,
+  labelFontSize: 14,
+  value: 'Smaller',
+};
+
+export const Errors: Story<IInputTypeAProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <InputTypeA {...args} name="email" label="Email" error="Please, enter a valid email" />
+    <InputTypeA {...args} name="email" label="Email" error="" value="No error here" />
+    <InputTypeA {...args} name="email" label="Email" error={true} />
+    <InputTypeA {...args} name="email" label="Email" error={false} value="No error here" />
   </div>
-));
+);
 
-stories.add('default (smaller)', () => (
-  <div>
-    <InputTypeA
-      name="email"
-      label="Email"
-      value="testing@example.com"
-      readOnly={boolean('readOnly', false)}
-      height={32}
-      fontSize={14}
-      labelFontSize={14}
-    />
-    <InputTypeA
-      name="email"
-      label="Email"
-      readOnly={boolean('readOnly', false)}
-      height={32}
-      fontSize={14}
-      labelFontSize={14}
-    />
+export const OnRow: Story<IInputTypeAProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <InputTypeA {...args} name="name" label="Name" value="Hello World!" flatRight={true} />
+    <InputTypeA {...args} name="email" label="Email" flatLeft={true} flatRight={true} />
+    <InputTypeA {...args} name="password" label="Password" password={true} flatLeft={true} />
   </div>
-));
+);
 
-stories.add('error', () => (
-  <div>
-    <InputTypeA name="email" label="Email" error="Please, enter a valid email" />
-    <InputTypeA name="email" label="Email" error="" />
-    <InputTypeA name="email" label="Email" error={true} />
-    <InputTypeA name="email" label="Email" error={false} />
-  </div>
-));
-
-stories.add('readonly', () => (
-  <InputTypeA name="email" label="Email" value="testing@example.com" readOnly={true} />
-));
-
-stories.add('stacked', () => (
+export const Stacked: Story<IInputTypeAProps> = (args) => (
   <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    `}
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
   >
-    <InputTypeA name="name" label="Name" value="Hello World!" />
-    <InputTypeA name="email" label="Email" />
-    <InputTypeA name="password" label="Password" password={true} />
+    <InputTypeA {...args} name="name" label="Name" value="Hello World!" />
+    <InputTypeA {...args} name="email" label="Email" />
+    <InputTypeA {...args} name="password" label="Password" password={true} />
   </div>
-));
+);
 
-stories.add('on row', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: row;
-    `}
-  >
-    <InputTypeA name="name" label="Name" value="Hello World!" flatRight={true} />
-    <InputTypeA name="email" label="Email" flatLeft={true} flatRight={true} />
-    <InputTypeA name="password" label="Password" password={true} flatLeft={true} />
-  </div>
-));
-
-stories.add('with suffix', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      width: 250px;
-    `}
-  >
-    <InputTypeA label="Energy" value="123.456" suffix="kWh" />
-    <InputTypeA label="Energy" value="123.456" suffix={<IconExclamation size={18} />} />
-  </div>
-));
-
-stories.add('sizing', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    `}
-  >
-    <form>
-      <InputTypeA
-        name="name"
-        label="Name"
-        value="Hello World!"
-        marginVert={40}
-        width="400px"
-        labelFontSize={12}
-        scaleLabel={1}
-      />
-      <InputTypeA
-        name="email"
-        label="Email"
-        marginVert={40}
-        width="400px"
-        labelFontSize={12}
-        scaleLabel={1}
-      />
-      <InputTypeA
-        name="password"
-        label="Password"
-        password={true}
-        marginVert={40}
-        width="400px"
-        labelFontSize={12}
-        scaleLabel={1}
-      />
-    </form>
-  </div>
-));
-
-const bgColor = '#2ecc71';
-
-stories.add('light and dark bg', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    `}
-  >
-    <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        background-color: ${bgColor};
-        height: 50vh;
-        width: 100%;
-      `}
-    >
-      <InputTypeA name="name" label="Name" value="Hello World!" bgColor={bgColor} darkMode={true} />
-      <InputTypeA name="email" label="Email" bgColor={bgColor} darkMode={true} />
-      <InputTypeA
-        name="password"
-        label="Password"
-        password={true}
-        bgColor={bgColor}
-        darkMode={true}
-      />
-    </div>
-    <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50vh;
-        width: 100%;
-      `}
-    >
-      <InputTypeA name="email" label="Email" />
-    </div>
-  </div>
-));
-
-const Controlled = () => {
-  const [value, setValue] = useState('');
+export const Controlled: Story<IInputTypeAProps> = (args) => {
+  const [name, setName] = useState('My Name Goes Here');
   return (
-    <InputTypeA name="name" label="Name" value={value} onChange={(e) => setValue(e.target.value)} />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <InputTypeA {...args} width="250px" value={name} onChange={(e) => setName(e.target.value)} />
+      <div>Name = {name}</div>
+    </div>
   );
 };
 
-stories.add('controlled', () => <Controlled />);
-
-const Password = () => {
+export const Password: Story<IInputTypeAProps> = (args) => {
   const [value, setValue] = useState('1234-5678');
   const [show, setShow] = useState(false);
   const icon = (
@@ -214,14 +96,80 @@ const Password = () => {
   );
 };
 
-stories.add('password', () => (
+export const WithSuffix: Story<IInputTypeAProps> = (args) => (
   <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      width: 250px;
-    `}
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      width: 250,
+    }}
   >
-    <Password />
+    <InputTypeA label="Energy" value="123.456" suffix="kWh" />
+    <InputTypeA label="Energy" value="123.456" suffix={<IconExclamation size={18} />} />
   </div>
-));
+);
+
+const bgColor = '#2ecc71';
+
+export const LightAndDarkBg: Story<IInputTypeAProps> = (args) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: bgColor,
+        height: '50vh',
+        width: '100%',
+      }}
+    >
+      <InputTypeA
+        {...args}
+        width="250px"
+        name="name"
+        label="Name"
+        bgColor={bgColor}
+        darkMode={true}
+      />
+      <InputTypeA
+        {...args}
+        width="250px"
+        name="email"
+        label="Email"
+        bgColor={bgColor}
+        darkMode={true}
+      />
+      <InputTypeA
+        {...args}
+        width="250px"
+        name="password"
+        label="Password"
+        bgColor={bgColor}
+        darkMode={true}
+        password={true}
+      />
+    </div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
+        width: '100%',
+      }}
+    >
+      <InputTypeA {...args} width="250px" name="name" label="Name" />
+      <InputTypeA {...args} width="250px" name="email" label="Email" />
+      <InputTypeA {...args} width="250px" name="password" label="Password" password={true} />
+    </div>
+  </div>
+);

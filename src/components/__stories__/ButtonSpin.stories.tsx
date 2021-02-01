@@ -1,32 +1,34 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
-import { ButtonSpin } from '../ButtonSpin';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { ButtonSpin, IButtonSpinProps } from '../ButtonSpin';
 
-const stories = storiesOf('ButtonSpin', module);
+export default {
+  title: 'Components/ButtonSpin',
+  component: ButtonSpin,
+  argTypes: {
+    onClick: { action: 'button-clicked' },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<IButtonSpinProps> = (args) => <ButtonSpin {...args}>Hello World</ButtonSpin>;
 
-stories.add('spinning', () => (
-  <ButtonSpin onClick={action('Spinning button clicked')} spin={true} width="200px">
-    Hello World
-  </ButtonSpin>
-));
+export const Default = Template.bind({});
 
-stories.add('spinning / disabled', () => (
-  <ButtonSpin
-    onClick={action('Disabled spinning button clicked')}
-    disabled={true}
-    spin={true}
-    width="200px"
-  >
-    Hello World
-  </ButtonSpin>
-));
+export const Spinning = Template.bind({});
+Spinning.args = {
+  ...Template.args,
+  spin: true,
+};
 
-stories.add('not spinning', () => (
-  <ButtonSpin onClick={action('Not spinning button clicked')} spin={false} width="200px">
-    Hello World
-  </ButtonSpin>
-));
+export const FixedWidth = Template.bind({});
+FixedWidth.args = {
+  ...Template.args,
+  width: '200px',
+  spin: true,
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Template.args,
+  disabled: true,
+  spin: true,
+};
