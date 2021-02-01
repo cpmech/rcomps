@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
 
-export interface IPairProps {
+export interface RcPairProps {
   left: ReactNode;
   right: ReactNode;
   spacing?: number;
@@ -11,7 +11,7 @@ export interface IPairProps {
   cssRight?: string;
 }
 
-export const Pair: React.FC<IPairProps> = ({
+export const RcPair: React.FC<RcPairProps> = ({
   left,
   right,
   spacing = 10,

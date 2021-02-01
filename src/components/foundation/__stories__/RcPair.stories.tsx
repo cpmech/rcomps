@@ -1,18 +1,18 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Pair, IPairProps } from '../Pair';
+import { RcPair, RcPairProps } from '../RcPair';
 import { ReactComponent as HouseIcon } from '../../../assets/house.svg';
 
 export default {
-  title: 'Foundation/Pair',
-  component: Pair,
+  title: 'Foundation/RcPair',
+  component: RcPair,
   argTypes: {
     spacing: { control: { type: 'range', min: 0, max: 100, step: 1 } },
     spaceBetween: { control: 'boolean' },
   },
 } as Meta;
 
-const Template: Story<IPairProps> = (args) => (
-  <Pair {...args} left={<HouseIcon width={32} />} right="Hello World" />
+const Template: Story<RcPairProps> = (args) => (
+  <RcPair {...args} left={<HouseIcon width={32} />} right="Hello World" />
 );
 
 export const Default = Template.bind({});

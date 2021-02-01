@@ -7,7 +7,7 @@ export * from './RcCard';
 export * from './RcInput';
 export * from './RcLinkOrDiv';
 export * from './RcNotifier';
-export * from './Pair';
+export * from './RcPair';
 export * from './PickerTypeA';
 export * from './Progress';
 export * from './RcSpinCircle';
