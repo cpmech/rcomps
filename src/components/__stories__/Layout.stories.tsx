@@ -2,6 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { Layout, ILayoutProps } from '../Layout';
 import { loremIpsum } from './loremIpsum';
 import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 export default {
   title: 'Components/Layout',
@@ -16,6 +17,7 @@ export default {
 
 export const Default: Story<ILayoutProps> = (args) => {
   const [showLeftMenu, setShowLeftMenu] = useState(false);
+  const isNarrow = useMediaQuery({ maxWidth: 600 });
 
   const warning = (
     <div
@@ -120,8 +122,8 @@ export const Default: Story<ILayoutProps> = (args) => {
       main={main}
       footer={footer}
       leftMenu={leftMenu}
+      showSideBar={!isNarrow}
       showLeftMenu={showLeftMenu}
-      showSideBar={!showLeftMenu}
     />
   );
 };
