@@ -20,7 +20,7 @@
     "sb": "start-storybook -p 9009 -s public",
     "bsb": "build-storybook -c .storybook -o docs",
     "build": "rm -rf dist && mkdir dist && rsync -av src/components/* dist --exclude __stories__ --exclude __tests__",
-    "dist": "yarn build && cp package.rlib.json dist/package.json && cd dist/ && yarn publish --access=public || true && cd .. && rm -rf dist/"
+    "dist": "yarn build && cp package-dist.json dist/package.json && cd dist/ && yarn publish --access=public || true && cd .. && rm -rf dist/"
   },
   "eslintConfig": {
     "extends": [
@@ -41,9 +41,9 @@
     ]
   },
   "dependencies": {
-    "@cpmech/basic": "^4.22.0",
-    "@cpmech/react-icons": "^2.22.0",
-    "@cpmech/util": "^1.25.0",
+    "@cpmech/basic": "^4.22.1",
+    "@cpmech/react-icons": "^3.0.0",
+    "@cpmech/util": "^1.25.1",
     "@emotion/react": "^11.1.4",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
@@ -60,7 +60,6 @@
     "web-vitals": "^1.1.0"
   },
   "devDependencies": {
-    "@storybook/addon-backgrounds": "^6.1.15",
     "@storybook/addon-essentials": "^6.1.15",
     "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/react": "^6.1.15",

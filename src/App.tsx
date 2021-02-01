@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { RcButton, RcCard } from './components';
 
 function App() {
   return (
@@ -17,6 +18,14 @@ function App() {
         >
           Learn React
         </a>
+        <div style={{ marginTop: 50, width: '90%', display: 'flex', flexWrap: 'wrap' }}>
+          <div>
+            <RcButton onClick={() => window.alert('Hello')}>CLICK ME</RcButton>
+          </div>
+          <div style={{ width: 300, color: '#484848' }}>
+            <RcCard title="Good News!">A message goes here</RcCard>
+          </div>
+        </div>
       </header>
     </div>
   );

@@ -2,11 +2,10 @@ module.exports = {
   stories: ['../src/components/**/*.stories.tsx'],
   addons: [
     { name: '@storybook/preset-create-react-app' },
-    { name: '@storybook/addon-backgrounds' },
     {
       name: '@storybook/addon-essentials',
       options: {
-        backgrounds: false,
+        backgrounds: true,
       },
     },
   ],
