@@ -1,53 +1,23 @@
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Switch, ISwitchProps } from '../Switch';
 import { useState } from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { Switch } from '../Switch';
 
-const stories = storiesOf('Switch', module);
+export default {
+  title: 'Components/Switch',
+  component: Switch,
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<ISwitchProps> = (args) => <Switch {...args} />;
 
-stories.add('default', () => {
-  const [on, setOn] = useState(false);
-  return <Switch on={on} onClick={() => setOn(!on)} />;
-});
+export const Default = Template.bind({});
 
-stories.add('outline', () => {
-  const [on, setOn] = useState(false);
-  return <Switch on={on} onClick={() => setOn(!on)} outline={true} />;
-});
+export const Controlled: Story<ISwitchProps> = (args) => {
+  const [on, setOn] = useState(true);
 
-stories.add('dark mode', () => {
-  const [on, setOn] = useState(false);
   return (
-    <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #2196f3;
-      `}
-    >
-      <Switch on={on} onClick={() => setOn(!on)} darkMode={true} />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <Switch {...args} on={on} onClick={() => setOn(!on)} />
+      {on ? <p>on = true</p> : <p>on = false</p>}
     </div>
   );
-});
-
-stories.add('dark mode and outline', () => {
-  const [on, setOn] = useState(false);
-  return (
-    <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #2196f3;
-      `}
-    >
-      <Switch on={on} onClick={() => setOn(!on)} outline={true} darkMode={true} />
-    </div>
-  );
-});
+};

@@ -1,125 +1,122 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import React from 'react';
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
-import { TextTypeA } from '../TextTypeA';
-import { PickerTypeA } from '../PickerTypeA';
-import { InputTypeA } from '../InputTypeA';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { TextTypeA, ITextTypeAProps } from '../TextTypeA';
+import { argTypesTypeA } from './argTypes';
 import { IconExclamation } from '@cpmech/react-icons';
 
-const stories = storiesOf('TextTypeA', module);
+export default {
+  title: 'Components/TextTypeA',
+  component: TextTypeA,
+  argTypes: {
+    ...argTypesTypeA,
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<ITextTypeAProps> = (args) => <TextTypeA {...args} name="name" label="Name" />;
 
-stories.add('default', () => <TextTypeA label="Name" value="Hello World!" />);
+export const Default = Template.bind({});
 
-stories.add('no border', () => <TextTypeA label="Name" value="Hello World!" borderWidth={0} />);
+export const Small = Template.bind({});
+Small.args = {
+  ...Template.args,
+  height: 32,
+  fontSize: 14,
+  labelFontSize: 14,
+  value: 'Smaller',
+};
 
-stories.add('on row', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: row;
-    `}
-  >
-    <TextTypeA name="name" label="Name" value="Hello World!" flatRight={true} />
-    <TextTypeA name="email" label="Email" flatLeft={true} flatRight={true} />
-    <TextTypeA name="password" label="Password" flatLeft={true} />
+export const OnRow: Story<ITextTypeAProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <TextTypeA {...args} name="name" label="Name" value="Hello World!" flatRight={true} />
+    <TextTypeA {...args} name="email" label="Email" flatLeft={true} flatRight={true} />
   </div>
-));
+);
 
-stories.add('with suffix', () => (
+export const Stacked: Story<ITextTypeAProps> = (args) => (
   <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      width: 250px;
-    `}
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <TextTypeA {...args} name="name" label="Name" value="Hello World!" />
+    <TextTypeA {...args} name="email" label="Email" />
+  </div>
+);
+
+export const WithSuffix: Story<ITextTypeAProps> = (args) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      width: 250,
+    }}
   >
     <TextTypeA label="Energy" value="123.456" suffix="kWh" />
     <TextTypeA label="Energy" value="123.456" suffix={<IconExclamation size={18} />} />
   </div>
-));
+);
 
 const bgColor = '#2ecc71';
 
-stories.add('light and dark bg', () => (
+export const LightAndDarkBg: Story<ITextTypeAProps> = (args) => (
   <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    `}
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
   >
     <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        background-color: ${bgColor};
-        height: 50vh;
-        width: 100%;
-      `}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: bgColor,
+        height: '50vh',
+        width: '100%',
+      }}
     >
       <TextTypeA
+        {...args}
+        width="250px"
+        name="name"
         label="Name"
-        value="Hello World!"
         bgColor={bgColor}
         darkMode={true}
-        mutedColor="#ffffff"
+      />
+      <TextTypeA
+        {...args}
+        width="250px"
+        name="email"
+        label="Email"
+        bgColor={bgColor}
+        darkMode={true}
+      />
+      <TextTypeA
+        {...args}
+        width="250px"
+        name="password"
+        label="Password"
+        bgColor={bgColor}
+        darkMode={true}
       />
     </div>
     <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 50vh;
-        width: 100%;
-      `}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
+        width: '100%',
+      }}
     >
-      <TextTypeA label="Name" value="Hello World!" />
+      <TextTypeA {...args} width="250px" name="name" label="Name" />
+      <TextTypeA {...args} width="250px" name="email" label="Email" />
     </div>
   </div>
-));
-
-const entries = [
-  {
-    message: 'First entry',
-    onClick: action('First entry was clicked'),
-  },
-  {
-    message: 'Second entry',
-    onClick: action('Second entry was clicked'),
-  },
-  {
-    message: 'Third entry',
-    onClick: action('Third entry was clicked'),
-  },
-];
-
-stories.add('with others', () => (
-  <div
-    css={css`
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    `}
-  >
-    <TextTypeA name="name" label="Name" value="Hello World!" width="250px" />
-    <InputTypeA name="email" label="Email" width="250px" value="First entry" />
-    <PickerTypeA
-      selected={entries[0].message}
-      entries={entries}
-      width="250px"
-      label="Choose one!"
-    />
-  </div>
-));
+);
