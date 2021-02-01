@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { RcGameCard, IRcGameCardProps } from '../RcGameCard';
+import { RcGameCard, RcGameCardProps } from '../RcGameCard';
 import { IconHouseThreeD } from '@cpmech/react-icons';
 import { LoremIpsumSmall } from '../../helpers';
 
@@ -44,7 +44,7 @@ export default {
   component: RcGameCard,
 } as Meta;
 
-const Template: Story<IRcGameCardProps> = (args) => (
+const Template: Story<RcGameCardProps> = (args) => (
   <RcGameCard {...args} title="Good News!">
     {LoremIpsumSmall}
   </RcGameCard>

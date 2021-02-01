@@ -4,12 +4,12 @@ import { Fragment, useState } from 'react';
 import { IconVertDots } from '@cpmech/react-icons';
 import { getFloatCss, OutsideClick } from '../helpers';
 
-export interface IRcGameCardMenuEntry {
+export interface RcGameCardMenuEntry {
   message: string;
   onClick: () => void;
 }
 
-export interface IRcGameCardProps {
+export interface RcGameCardProps {
   width?: number;
   height?: number;
   iconSize?: number;
@@ -17,7 +17,7 @@ export interface IRcGameCardProps {
   borderRadius?: number;
   bgColor?: string;
 
-  menuEntries?: IRcGameCardMenuEntry[];
+  menuEntries?: RcGameCardMenuEntry[];
   menuWidthBox?: string; // width of entries box
   menuHeightBox?: number; // height of entries box
   menuEntryHeight?: number;
@@ -47,7 +47,7 @@ export interface IRcGameCardProps {
   cssMenuText?: string;
 }
 
-export const RcGameCard: React.FC<IRcGameCardProps> = ({
+export const RcGameCard: React.FC<RcGameCardProps> = ({
   width = 280,
   height = 435,
   iconSize = 20,
