@@ -1,76 +1,23 @@
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { SpinCircle } from '../SpinCircle';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { SpinCircle, ISpinCircleProps } from '../SpinCircle';
 
-const stories = storiesOf('SpinCircle', module);
+export default {
+  title: 'Components/SpinCircle',
+  component: SpinCircle,
+  argTypes: {
+    size: { control: { type: 'range', min: 0, max: 300, step: 1 } },
+    thickness: { control: { type: 'range', min: 0, max: 300, step: 1 } },
+  },
+} as Meta;
 
-stories.addDecorator(withKnobs);
+const Template: Story<ISpinCircleProps> = (args) => <SpinCircle {...args} />;
 
-stories.add('default', () => (
-  <div
-    css={css`
-      background-color: #2ecc71;
-    `}
-  >
-    <SpinCircle />
-  </div>
-));
+export const Default = Template.bind({});
 
-stories.add('large', () => (
-  <div
-    css={css`
-      background-color: #2ecc71;
-    `}
-  >
-    <SpinCircle size={128} thickness={20} />
-  </div>
-));
-
-stories.add('green', () => (
-  <div
-    css={css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      width: 100%;
-    `}
-  >
-    <SpinCircle color="#2ecc71" />
-  </div>
-));
-
-stories.add('both', () => (
-  <div
-    css={css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `}
-  >
-    <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #2ecc71;
-        height: 50vh;
-        width: 100%;
-      `}
-    >
-      <SpinCircle />
-    </div>
-    <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50vh;
-        width: 100%;
-      `}
-    >
-      <SpinCircle color="#2ecc71" />
-    </div>
-  </div>
-));
+export const Large = Template.bind({});
+Large.args = {
+  ...Template.args,
+  size: 128,
+  thickness: 20,
+  time: '2s',
+};
