@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Modal, IModalProps } from '../Modal';
 import { useState } from 'react';
-import { loremIpsum } from './loremIpsum';
+import { LoremIpsum } from '../helpers';
 
 export default {
   title: 'Components/Modal',
@@ -19,7 +19,7 @@ const Template: Story<IModalProps> = (args) => {
   return (
     <div>
       <button onClick={() => setShow(true)}>SHOW MODAL</button>
-      <div>{loremIpsum}</div>
+      <div>{LoremIpsum}</div>
       {show && (
         <Modal
           {...args}
@@ -29,7 +29,7 @@ const Template: Story<IModalProps> = (args) => {
           height="70vh"
           width="90%"
         >
-          {loremIpsum}
+          {LoremIpsum}
         </Modal>
       )}
     </div>

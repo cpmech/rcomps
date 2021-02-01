@@ -1,7 +1,7 @@
-import { IconHouseThreeD } from '@cpmech/react-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Card, ICardProps } from '../Card';
-import { loremIpsumFew } from './loremIpsum';
+import { IconHouseThreeD } from '@cpmech/react-icons';
+import { LoremIpsumSmall } from '../../helpers';
 
 const Hero: React.FC = () => (
   <div
@@ -40,13 +40,13 @@ const Buttons: React.FC = () => (
 );
 
 export default {
-  title: 'Components/Card',
+  title: 'Foundation/Card',
   component: Card,
 } as Meta;
 
 const Template: Story<ICardProps> = (args) => (
   <Card {...args} title="Good News!">
-    {loremIpsumFew}
+    {LoremIpsumSmall}
   </Card>
 );
 

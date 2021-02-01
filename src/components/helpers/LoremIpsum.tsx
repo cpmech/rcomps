@@ -1,4 +1,4 @@
-export const loremIpsum = (
+export const LoremIpsum = (
   <div>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis pharetra turpis, et
@@ -55,7 +55,7 @@ export const loremIpsum = (
   </div>
 );
 
-export const loremIpsumFew = (
+export const LoremIpsumSmall = (
   <div>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis pharetra turpis, et

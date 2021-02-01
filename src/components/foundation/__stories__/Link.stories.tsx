@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { Link, ILinkProps } from '../Link';
 
 export default {
-  title: 'Components/Link',
+  title: 'Foundation/Link',
   component: Link,
   argTypes: {
     onClick: { action: 'link-clicked' },

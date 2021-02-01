@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Notifier, INotifierProps } from '../Notifier';
 import { useState } from 'react';
-import { loremIpsum } from './loremIpsum';
+import { LoremIpsum } from '../helpers';
 
 export default {
   title: 'Components/Notifier',
@@ -44,6 +44,6 @@ export const LongMessage = Template.bind({});
 LongMessage.args = {
   ...Template.args,
   title: 'Long Message',
-  message: loremIpsum,
+  message: LoremIpsum,
   cssTitle: 'font-weight: bold; color: #e62739;',
 };

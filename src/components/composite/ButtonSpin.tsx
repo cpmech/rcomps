@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { IButtonProps, Button } from './Button';
-import { SpinDots } from './SpinDots';
+import { IButtonProps, Button } from '../foundation/Button';
+import { SpinDots } from '../foundation/SpinDots';
 
 export interface IButtonSpinProps extends IButtonProps {
   spin?: boolean;

@@ -3,7 +3,7 @@ import { Switch, ISwitchProps } from '../Switch';
 import { useState } from 'react';
 
 export default {
-  title: 'Components/Switch',
+  title: 'Foundation/Switch',
   component: Switch,
 } as Meta;
 

@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Pair, IPairProps } from '../Pair';
-import { ReactComponent as HouseIcon } from '../../assets/house.svg';
+import { ReactComponent as HouseIcon } from '../../../assets/house.svg';
 
 export default {
-  title: 'Components/Pair',
+  title: 'Foundation/Pair',
   component: Pair,
   argTypes: {
     spacing: { control: { type: 'range', min: 0, max: 100, step: 1 } },

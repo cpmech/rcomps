@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { ButtonSpin, IButtonSpinProps } from '../ButtonSpin';
 
 export default {
-  title: 'Components/ButtonSpin',
+  title: 'Composite/ButtonSpin',
   component: ButtonSpin,
   argTypes: {
     onClick: { action: 'button-clicked' },

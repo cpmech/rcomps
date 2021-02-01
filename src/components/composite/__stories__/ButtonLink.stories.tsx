@@ -3,7 +3,7 @@ import { ButtonLink, IButtonLinkProps } from '../ButtonLink';
 import { IconAccount } from '@cpmech/react-icons';
 
 export default {
-  title: 'Components/ButtonLink',
+  title: 'Composite/ButtonLink',
   component: ButtonLink,
   argTypes: {
     onClick: { action: 'button-link-clicked' },

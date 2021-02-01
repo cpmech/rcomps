@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { SpinCircle } from '../SpinCircle';
+import { SpinCircle } from '../foundation/SpinCircle';
 
 export interface ISpinnerPageProps {
   color?: string;

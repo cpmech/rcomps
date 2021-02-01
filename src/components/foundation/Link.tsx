@@ -13,10 +13,9 @@ export const Link: React.FC<ILinkProps> = ({ href, children, ...rest }) => {
       </a>
     );
   }
-  // eslint-disable-next-line
   return (
-    <a {...rest} style={{ cursor: 'pointer' }}>
+    <div {...rest} style={{ cursor: 'pointer' }}>
       {children}
-    </a>
+    </div>
   );
 };

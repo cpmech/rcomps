@@ -1,7 +1,7 @@
 import { IconGlobe, IconHouseThreeD, IconMoney } from '@cpmech/react-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Tabs, ITabsProps } from '../Tabs';
-import { loremIpsumFew } from './loremIpsum';
+import { LoremIpsumSmall } from '../helpers';
 
 const entries = [
   {
@@ -55,7 +55,7 @@ export const Children: Story<ITabsProps> = (args) => (
         borderTopWidth: 0,
       }}
     >
-      {loremIpsumFew}
+      {LoremIpsumSmall}
     </div>
   </div>
 );

@@ -9,7 +9,7 @@ import {
 } from '@cpmech/react-icons';
 
 export default {
-  title: 'Components/ButtonIcon',
+  title: 'Composite/ButtonIcon',
   component: ButtonIcon,
   argTypes: {
     type: {

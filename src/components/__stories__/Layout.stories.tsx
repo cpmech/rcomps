@@ -1,8 +1,8 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Layout, ILayoutProps } from '../Layout';
-import { loremIpsum } from './loremIpsum';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { LoremIpsum } from '../helpers';
 
 export default {
   title: 'Components/Layout',
@@ -66,7 +66,7 @@ export const Default: Story<ILayoutProps> = (args) => {
     </div>
   );
 
-  const main = <div>{loremIpsum}</div>;
+  const main = <div>{LoremIpsum}</div>;
 
   const footer = (
     <div

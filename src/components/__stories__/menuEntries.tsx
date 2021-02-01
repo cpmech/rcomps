@@ -5,7 +5,7 @@ import {
   IconAddressBook,
   IconUser,
 } from '@cpmech/react-icons';
-import { Button } from '../Button';
+import { Button } from '../foundation/Button';
 
 export const entries = [
   {

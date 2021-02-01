@@ -2,9 +2,13 @@
 import { css } from '@emotion/react';
 import { useState, useRef, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
-import { Link } from './Link';
-import { IPickerEntry } from './Picker';
 import { getFloatCss, ITypeAProps, getTypeAcss } from './styles';
+
+export interface IPickerEntry {
+  message: string;
+  onClick?: () => void;
+  title?: string; // set title with this instead of message
+}
 
 export interface IPickerTypeAProps extends ITypeAProps {
   entries: IPickerEntry[];
@@ -102,9 +106,9 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
       </div>
       <div css={floatCss}>
         {entries.map((e) => (
-          <Link
+          <div
+            style={{ cursor: 'pointer' }}
             key={e.message}
-            href={e.href}
             onClick={() => {
               setOpen(false);
               if (!value) {
@@ -116,7 +120,7 @@ export const PickerTypeA: React.FC<IPickerTypeAProps> = ({
             }}
           >
             {cssMessage ? <span css={css(cssMessage)}>{e.message}</span> : <span>{e.message}</span>}
-          </Link>
+          </div>
         ))}
       </div>
     </div>

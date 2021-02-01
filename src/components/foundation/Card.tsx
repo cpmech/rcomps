@@ -2,8 +2,8 @@
 import { css } from '@emotion/react';
 import { Fragment, useState } from 'react';
 import { IconVertDots } from '@cpmech/react-icons';
-import { getFloatCss } from './styles';
-import { OutsideClick } from './helpers';
+import { getFloatCss } from '../styles';
+import { OutsideClick } from '../helpers';
 
 export interface ICardMenuEntry {
   message: string;

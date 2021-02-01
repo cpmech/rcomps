@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { Collapse, ICollapseProps } from '../Collapse';
 
 export default {
-  title: 'Components/Collapse',
+  title: 'Foundation/Collapse',
   component: Collapse,
   argTypes: {
     initShow: { control: 'boolean' },

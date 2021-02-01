@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { ChartRing, IChartRingProps } from '../ChartRing';
 
 export default {
-  title: 'Components/ChartRing',
+  title: 'Foundation/ChartRing',
   component: ChartRing,
   argTypes: {
     pct: { control: { type: 'range', min: 0, max: 100, step: 1 } },

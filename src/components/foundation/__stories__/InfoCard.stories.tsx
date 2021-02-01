@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { InfoCard, IInfoCardProps } from '../InfoCard';
-import { loremIpsumFew } from './loremIpsum';
+import { LoremIpsumSmall } from '../../helpers';
 
 export default {
-  title: 'Components/InfoCard',
+  title: 'Foundation/InfoCard',
   component: InfoCard,
   argTypes: {
     initShow: { control: 'boolean' },
@@ -12,7 +12,7 @@ export default {
 
 const Template: Story<IInfoCardProps> = (args) => (
   <InfoCard {...args} title="Good News!">
-    {loremIpsumFew}
+    {LoremIpsumSmall}
   </InfoCard>
 );
 

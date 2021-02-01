@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { getButtonCss } from './styles';
+import { getButtonCss } from '../styles';
 
 export interface IButtonProps {
   href?: string;

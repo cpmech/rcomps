@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { hex2rgb } from './helpers';
+import { hex2rgb } from '../helpers';
 
 export interface ISpinDotsProps {
   size?: number;
