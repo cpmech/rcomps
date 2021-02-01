@@ -8,3 +8,4 @@ export * from './ProgressPage';
 export * from './SpinAndMsgCircle';
 export * from './SpinAndMsgDots';
 export * from './SpinnerPage';
+export * from './SwitchAndText';

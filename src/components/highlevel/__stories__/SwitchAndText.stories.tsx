@@ -3,7 +3,7 @@ import { SwitchAndText, ISwitchAndTextProps } from '../SwitchAndText';
 import { useState } from 'react';
 
 export default {
-  title: 'Components/SwitchAndText',
+  title: 'HighLevel/SwitchAndText',
   component: SwitchAndText,
   argTypes: {
     on: { controle: 'boolean' },
