@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Progress } from '../foundation';
+import { RcProgress } from '../foundation';
 
 export interface IProgressBarProps {
   progress: number;
@@ -21,7 +21,7 @@ export const ProgressBar: React.FC<IProgressBarProps> = ({ progress }) => {
           width: 200px;
         `}
       >
-        <Progress progress={progress} />
+        <RcProgress progress={progress} />
       </div>
     </div>
   );

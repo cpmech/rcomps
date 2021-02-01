@@ -9,7 +9,7 @@ export * from './RcLinkOrDiv';
 export * from './RcNotifier';
 export * from './RcPair';
 export * from './RcPicker';
-export * from './Progress';
+export * from './RcProgress';
 export * from './RcSpinCircle';
 export * from './SpinDots';
 export * from './Switch';

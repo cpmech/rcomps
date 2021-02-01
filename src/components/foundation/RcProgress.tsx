@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-export interface IProgressProps {
+export interface RcProgressProps {
   progress: number;
   color?: string;
   backgroundColor?: string;
@@ -10,7 +10,7 @@ export interface IProgressProps {
   borderRadius?: number;
 }
 
-export const Progress: React.FC<IProgressProps> = ({
+export const RcProgress: React.FC<RcProgressProps> = ({
   progress,
   color = '#ffffff',
   backgroundColor = '#e5e5e5',

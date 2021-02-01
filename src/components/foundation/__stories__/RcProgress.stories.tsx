@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Progress, IProgressProps } from '../Progress';
+import { RcProgress, RcProgressProps } from '../RcProgress';
 
 export default {
-  title: 'Foundation/Progress',
-  component: Progress,
+  title: 'Foundation/RcProgress',
+  component: RcProgress,
   argTypes: {
     progress: { control: { type: 'range', min: 0, max: 100, step: 1 } },
     color: { control: 'color' },
@@ -14,7 +14,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IProgressProps> = (args) => <Progress {...args} />;
+const Template: Story<RcProgressProps> = (args) => <RcProgress {...args} />;
 
 export const Default = Template.bind({});
 
