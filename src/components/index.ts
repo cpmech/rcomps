@@ -31,6 +31,6 @@ export * from './Switch';
 export * from './Tabs';
 export * from './TextTypeA';
 export * from './YouTube';
-export * from './highlevel';
+export * from './composite';
 export * from './styles';
 export * from './helpers';

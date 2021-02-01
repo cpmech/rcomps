@@ -10,7 +10,7 @@ import {
   dateTranslationEn,
 } from '@cpmech/util';
 import { InputTypeA } from './InputTypeA';
-import { FormErrorField } from './highlevel';
+import { FormErrorField } from './composite';
 
 const styles = {
   onRow: css`
