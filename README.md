@@ -28,13 +28,10 @@ So you'll have to copy the components to your project. However, we suggest the f
 
 ```bash
 #!/bin/bash
-
 set -e
-
 echo "... installing rcomps ..."
 rm -rf ./src/rcomps
-mkdir -p ./src/rcomps
-cp -rv ./node_modules/@cpmech/rcomps/* ./src/rcomps/
+mv ./node_modules/@cpmech/rcomps/rcomps ./src/
 ```
 
 ## Documentation

@@ -19,7 +19,7 @@
     "lint:fix": "yarn lint --fix",
     "sb": "start-storybook -p 9009 -s public",
     "bsb": "build-storybook -c .storybook -o docs",
-    "build": "rm -rf dist && mkdir dist && rsync -av src/components/* dist --exclude __stories__ --exclude __tests__",
+    "build": "rm -rf dist && mkdir -p dist/rcomps && rsync -av src/components/* dist/rcomps --exclude __stories__ --exclude __tests__",
     "dist": "yarn build && cp package-dist.json dist/package.json && cd dist/ && yarn publish --access=public || true && cd .. && rm -rf dist/"
   },
   "eslintConfig": {
