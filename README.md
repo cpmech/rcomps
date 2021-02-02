@@ -126,7 +126,7 @@ We also create the following groups:
 
 The following auxiliary components are also defined:
 
-*. `RcMediaPhoneOrNot`: phone or (tablet,landscape,desktop)
-*. `RcMediaMobileOrNot`: (phone,tablet) or (landscape,desktop)
+* `RcMediaPhoneOrNot`: phone or (tablet,landscape,desktop)
+* `RcMediaMobileOrNot`: (phone,tablet) or (landscape,desktop)
 
 [See the storybook: Layout/RcMedia (play with it by resizing the panels)](https://cpmech.github.io/rcomps/?path=/story/layout-rcmedia--default)
