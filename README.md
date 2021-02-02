@@ -95,7 +95,7 @@ All components have the prefix _Rc_.
 
 ### RcMedia and alike
 
-We divide the width of screens/areas into four categories (see **rcSizes** in [RcMedia.tsx](https://github.com/cpmech/rcomps/blob/master/src/components/layout/RcMedia.tsx):
+We divide the width of screens/areas into four categories (see **rcSizes** in [RcMedia.tsx](https://github.com/cpmech/rcomps/blob/master/src/components/layout/RcMedia.tsx)):
 
 1. **phone** -- maxWidth = 620 px
 2. **tablet** -- maxWidth = 768 px
