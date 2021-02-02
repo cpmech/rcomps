@@ -4,7 +4,7 @@
 
 This project contains "a couple" of React Components written in TypeScript and using the [fantastic emotion js](https://github.com/emotion-js/emotion).
 
-### EXAMPLE: Using the RcLayout component
+**EXAMPLE:** `RcLayout`
 
 ```tsx
 import { useState } from 'react';
@@ -17,24 +17,20 @@ import { RcLayout, RcSideNav } from './rcomps';
 export const App: React.FC = () => {
   const [showLeftMenu, setShowLeftMenu] = useState(false);
   const isNarrow = useMediaQuery({ maxWidth: 600 });
-
   const warning = <Warning />;
   const header = <Header setShowLeftMenu={setShowLeftMenu} />;
   const footer = <Footer />;
   const sidebar = <SideBar />;
-
   const leftMenu = (
     <RcSideNav onClose={() => setShowLeftMenu(false)}>
       <SideBar />
     </RcSideNav>
   );
-
   const main = (
     <Router>
       <HomePage path="/" />
     </Router>
   );
-
   return (
     <RcLayout
       warning={warning}
@@ -50,7 +46,7 @@ export const App: React.FC = () => {
 };
 ```
 
-### EXAMPLE: Using the RcMedia component
+**EXAMPLE:** `RcMedia`
 
 ```tsx
 export const Default: React.FC = () => (
@@ -63,7 +59,7 @@ export const Default: React.FC = () => (
 );
 ```
 
-### EXAMPLE: Using the RcInput component
+**EXAMPLE:** `RcInput`
 
 ```tsx
 export const Password: React.FC = () => {
@@ -88,7 +84,7 @@ export const Password: React.FC = () => {
 
 ## Installation
 
-**NOTE:** [see bash script to bootstrap a create-react-app using rcomps](https://github.com/cpmech/new-react-app).
+[See a script to create an app using rcomps (calling create-react-app).](https://github.com/cpmech/new-react-app).
 
 ```bash
 yarn add @cpmech/rcomps
@@ -98,17 +94,13 @@ We export the components as **pure TypeScript** because **emotion** needs to be 
 
 So you'll have to copy the components to your project. However, we suggest the following strategy:
 
-### 1 Add the following line to your **package.json**:
+1. Add the following line to your **package.json**:
 
-```json
-{
-  "scripts": {
-    "postinstall": "bash ./scripts/npm_postinstall.bash",
-  }
-}
+```
+"postinstall": "bash ./scripts/npm_postinstall.bash"
 ```
 
-### 2 Add the following `./scripts/npm_postinstall.bash` script to your project:
+2. Create the file `./scripts/npm_postinstall.bash`:
 
 ```bash
 #!/bin/bash
@@ -122,7 +114,7 @@ fi
 
 ## Documentation
 
-[Check also the storybook](https://cpmech.github.io/rcomps)
+[Check also the storybook.](https://cpmech.github.io/rcomps)
 
 The components are organized into three kinds:
 
@@ -130,7 +122,7 @@ The components are organized into three kinds:
 2. **layout** are components that help to manage other components
 3. **composite** are components that rely on _foundation_ components
 
-All components have the prefix _Rc_.
+All components have the prefix **Rc**.
 
 **Foundation**
 
@@ -216,4 +208,4 @@ The following auxiliary components are also defined:
 
 ## Developers
 
-See [dev.to article about the publishing procedure](https://dev.to/cpmech/publishing-and-reusing-react-components-with-typescript-and-emotion-1p10).
+[See article about the publishing procedure](https://dev.to/cpmech/publishing-and-reusing-react-components-with-typescript-and-emotion-1p10).
