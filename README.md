@@ -4,7 +4,91 @@
 
 This project contains "a couple" of React Components written in TypeScript and using the [fantastic emotion js](https://github.com/emotion-js/emotion).
 
+### EXAMPLE: Using the RcLayout component
+
+```tsx
+import { useState } from 'react';
+import { Router } from '@reach/router';
+import { useMediaQuery } from 'react-responsive';
+import { HomePage } from './pages';
+import { Footer, Header, SideBar, Warning } from './components';
+import { RcLayout, RcSideNav } from './rcomps';
+
+export const App: React.FC = () => {
+  const [showLeftMenu, setShowLeftMenu] = useState(false);
+  const isNarrow = useMediaQuery({ maxWidth: 600 });
+
+  const warning = <Warning />;
+  const header = <Header setShowLeftMenu={setShowLeftMenu} />;
+  const footer = <Footer />;
+  const sidebar = <SideBar />;
+
+  const leftMenu = (
+    <RcSideNav onClose={() => setShowLeftMenu(false)}>
+      <SideBar />
+    </RcSideNav>
+  );
+
+  const main = (
+    <Router>
+      <HomePage path="/" />
+    </Router>
+  );
+
+  return (
+    <RcLayout
+      warning={warning}
+      header={header}
+      sidebar={sidebar}
+      main={main}
+      footer={footer}
+      leftMenu={leftMenu}
+      showSideBar={!isNarrow}
+      showLeftMenu={showLeftMenu}
+    />
+  );
+};
+```
+
+### EXAMPLE: Using the RcMedia component
+
+```tsx
+export const Default: React.FC = () => (
+  <RcMedia
+    phone={<Helper bgColor="#cecece">PHONE</Helper>}
+    tablet={<Helper bgColor="#ffcdcd">TABLET</Helper>}
+    landscape={<Helper bgColor="#cdd1ff">LANDSCAPE</Helper>}
+    desktop={<Helper bgColor="#d7ffcd">DESKTOP</Helper>}
+  />
+);
+```
+
+### EXAMPLE: Using the RcInput component
+
+```tsx
+export const Password: React.FC = () => {
+  const [value, setValue] = useState('1234-5678');
+  const [show, setShow] = useState(false);
+  const icon = (
+    <div onClick={() => setShow(!show)}>
+      {show ? <IconEye size={18} /> : <IconEyeNo size={18} />}
+    </div>
+  );
+  return (
+    <RcInput
+      label="Password"
+      password={!show}
+      value={value}
+      suffix={icon}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+};
+```
+
 ## Installation
+
+**NOTE:** [see bash script to bootstrap a create-react-app using rcomps](https://github.com/cpmech/new-react-app).
 
 ```bash
 yarn add @cpmech/rcomps
@@ -29,9 +113,11 @@ So you'll have to copy the components to your project. However, we suggest the f
 ```bash
 #!/bin/bash
 set -e
-echo "... installing rcomps ..."
-rm -rf ./src/rcomps
-mv ./node_modules/@cpmech/rcomps/rcomps ./src/
+if [[ -d "./node_modules/@cpmech/rcomps/rcomps" ]]; then
+    echo ">>> moving rcomps to src <<<"
+    rm -rf ./src/rcomps
+    mv ./node_modules/@cpmech/rcomps/rcomps ./src/
+fi
 ```
 
 ## Documentation
@@ -127,3 +213,7 @@ The following auxiliary components are also defined:
 * `RcMediaMobileOrNot`: (phone,tablet) or (landscape,desktop)
 
 [See the storybook: Layout/RcMedia (play with it by resizing the panels)](https://cpmech.github.io/rcomps/?path=/story/layout-rcmedia--default)
+
+## Developers
+
+See [dev.to article about the publishing procedure](https://dev.to/cpmech/publishing-and-reusing-react-components-with-typescript-and-emotion-1p10).
