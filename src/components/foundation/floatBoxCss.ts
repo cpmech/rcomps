@@ -5,6 +5,7 @@ export const floatBoxCss = (
   height?: number,
   width?: string,
   boxToRight?: boolean,
+  zIndex = 1,
 ) => css`
   display: ${show ? 'block' : 'none'};
   position: absolute;
@@ -12,7 +13,7 @@ export const floatBoxCss = (
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: ${zIndex};
   ${height ? `height: ${height}px; overflow: auto;` : ''}
   ${width ? `width: ${width};` : ''}
 `;

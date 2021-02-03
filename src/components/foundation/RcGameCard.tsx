@@ -21,6 +21,7 @@ export interface RcGameCardProps {
   menuEntries?: RcGameCardMenuEntry[];
   menuWidthBox?: string; // width of entries box
   menuHeightBox?: number; // height of entries box
+  menuZIndexBox?: number; // zIndex of box
   menuEntryHeight?: number;
 
   headerColor?: string;
@@ -59,6 +60,7 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
   menuEntries,
   menuWidthBox,
   menuHeightBox,
+  menuZIndexBox = 1,
   menuEntryHeight = 50,
 
   headerColor = '#484848',
@@ -123,7 +125,7 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
   }
 
   const floatCss = menuEntries
-    ? floatBoxCss(showMenu, menuHeightBox, menuWidthBox, true)
+    ? floatBoxCss(showMenu, menuHeightBox, menuWidthBox, true, menuZIndexBox)
     : undefined;
 
   const menuEntryCss = menuEntries ? floatBoxItemCss(paddingHoriz, menuEntryHeight) : undefined;

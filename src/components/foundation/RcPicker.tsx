@@ -20,6 +20,7 @@ export interface RcPickerProps extends InputElementCssOptions {
   widthBox?: string; // width of entries box
   heightBox?: number; // height of entries box
   boxToRight?: boolean;
+  zIndexBox?: number;
   iconPaddingRight?: number;
   readOnly?: boolean;
   menuPaddingHoriz?: number;
@@ -36,6 +37,7 @@ export const RcPicker: React.FC<RcPickerProps> = ({
   widthBox,
   heightBox,
   boxToRight,
+  zIndexBox = 1,
   iconPaddingRight = 15,
   readOnly = false,
   menuPaddingHoriz = 20,
@@ -79,7 +81,7 @@ export const RcPicker: React.FC<RcPickerProps> = ({
   };
 
   const root = inputElementCss(readOnly, true, rest);
-  const floatCss = floatBoxCss(open, heightBox, widthBox, boxToRight);
+  const floatCss = floatBoxCss(open, heightBox, widthBox, boxToRight, zIndexBox);
   const menuEntryCss = floatBoxItemCss(menuPaddingHoriz, menuEntryHeight);
   const { fontSize = 18, height = 50, color = '#484848' } = rest;
 
