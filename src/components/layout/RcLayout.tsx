@@ -1,19 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Fragment, ReactNode } from 'react';
+import { rcConfig } from './rcConfig';
 
 export interface RcLayoutProps {
-  warning: ReactNode;
-  header: ReactNode;
-  sidebar: ReactNode;
+  warning?: ReactNode;
+  header?: ReactNode;
+  sidebar?: ReactNode;
   main: ReactNode;
-  footer: ReactNode;
+  footer?: ReactNode;
   leftMenu?: ReactNode;
   showLeftMenu?: boolean;
   showSideBar?: boolean;
   stickyHeader?: boolean;
   stickyWarning?: boolean;
   maxContentWidth?: number;
+  zIndexStickyWarning?: number;
+  zIndexStickyHeader?: number;
 }
 
 export const RcLayout: React.FC<RcLayoutProps> = ({
@@ -28,7 +31,12 @@ export const RcLayout: React.FC<RcLayoutProps> = ({
   stickyWarning = true,
   stickyHeader = false,
   maxContentWidth = 1124,
+  zIndexStickyWarning,
+  zIndexStickyHeader,
 }) => {
+  zIndexStickyWarning = zIndexStickyWarning || rcConfig.zIndices.warning;
+  zIndexStickyHeader = zIndexStickyHeader || rcConfig.zIndices.header;
+
   const styleRoot = css`
     height: 100vh;
     display: grid;
@@ -44,35 +52,33 @@ export const RcLayout: React.FC<RcLayoutProps> = ({
   const styleWarning = stickyWarning
     ? css`
         grid-area: warning;
-        z-index: 2;
         position: sticky;
+        z-index: ${zIndexStickyWarning};
         top: 0;
       `
     : css`
         grid-area: warning;
-        z-index: 1;
       `;
 
   const styleHeader = stickyHeader
     ? css`
         grid-area: header;
-        z-index: 1;
         position: sticky;
+        z-index: ${zIndexStickyHeader};
         top: 0;
       `
     : css`
         grid-area: header;
-        z-index: 1;
       `;
 
   return (
     <Fragment>
       <div css={styleRoot}>
         {/* warning */}
-        <div css={styleWarning}>{warning}</div>
+        {warning && <div css={styleWarning}>{warning}</div>}
 
         {/* header */}
-        <div css={styleHeader}>{header}</div>
+        {header && <div css={styleHeader}>{header}</div>}
 
         {/* main */}
         <div
@@ -95,7 +101,7 @@ export const RcLayout: React.FC<RcLayoutProps> = ({
               `}
             >
               {/* sidebar */}
-              {showSideBar && <div>{sidebar}</div>}
+              {showSideBar && sidebar}
 
               {/* main content */}
               <div
@@ -111,13 +117,15 @@ export const RcLayout: React.FC<RcLayoutProps> = ({
         </div>
 
         {/* footer */}
-        <div
-          css={css`
-            grid-area: footer;
-          `}
-        >
-          {footer}
-        </div>
+        {footer && (
+          <div
+            css={css`
+              grid-area: footer;
+            `}
+          >
+            {footer}
+          </div>
+        )}
       </div>
       {showLeftMenu && leftMenu}
     </Fragment>

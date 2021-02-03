@@ -177,12 +177,12 @@ We divide the width of screens/areas into four categories (see **rcSizes** in [R
 3. **landscape** -- maxWidth = 960 px
 4. **desktop** -- maxWidth = infinite :-D
 
-These can be changed, for example (after importing rcSizes from RcMedia.tsx):
+These can be changed, for example (after importing `rcConfig` from `layout/rcConfig.tsx`):
 
 ```javascript
-rcSizes.phone.maxWidth = 400;
-rcSizes.tablet.maxWidth = 600;
-rcSizes.landscape.maxWidth = 800;
+rcConfig.media.phone.maxWidth = 400;
+rcConfig.media.tablet.maxWidth = 600;
+rcConfig.media.landscape.maxWidth = 800;
 ```
 
 NOTE: the maxWidth values should be in an increasing order.

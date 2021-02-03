@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { Fragment } from 'react';
 import { IconClose } from '@cpmech/react-icons';
 import { OutsideClick } from '../helpers';
+import { rcConfig } from './rcConfig';
 
 export interface RcSideNavEntry {
   item: any;
@@ -18,7 +19,6 @@ export interface RcSideNavProps {
   color?: string;
   bgColor?: string;
   zIndex?: number;
-
   menuEntryFontsize?: string;
   bottomVSpace?: number;
 }
@@ -31,16 +31,12 @@ export const RcSideNav: React.FC<RcSideNavProps> = ({
   iconPadding = 25,
   color = 'white',
   bgColor = '#484848',
-  zIndex = 1111,
-
+  zIndex,
   menuEntryFontsize = '20px',
   bottomVSpace = 30,
-
   children,
-
-  //
 }) => {
-  //
+  zIndex = zIndex || rcConfig.zIndices.sideNav;
 
   return (
     <OutsideClick action={onClose}>
@@ -68,7 +64,7 @@ export const RcSideNav: React.FC<RcSideNavProps> = ({
           }
         `}
       >
-        <div>
+        <Fragment>
           {entries &&
             entries.map((entry, i) => {
               if (typeof entry.item === 'string') {
@@ -105,7 +101,7 @@ export const RcSideNav: React.FC<RcSideNavProps> = ({
               ></div>
             </Fragment>
           )}
-        </div>
+        </Fragment>
 
         <div
           css={css`

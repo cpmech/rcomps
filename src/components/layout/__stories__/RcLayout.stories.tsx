@@ -3,37 +3,28 @@ import { RcLayout, RcLayoutProps } from '../RcLayout';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { LoremIpsum } from '../../helpers';
+import { rcConfig } from '../rcConfig';
 
-export default {
-  title: 'Layout/RcLayout',
-  component: RcLayout,
-  argTypes: {
-    showLeftMenu: { control: 'boolean' },
-    showSideBar: { control: 'boolean' },
-    stickyHeader: { control: 'boolean' },
-    stickyWarning: { control: 'boolean' },
-  },
-} as Meta;
+const warning = (
+  <div
+    style={{
+      backgroundColor: '#c01626',
+      minHeight: 50,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    WARNING WARNING WARNING
+  </div>
+);
 
-export const Default: Story<RcLayoutProps> = (args) => {
-  const [showLeftMenu, setShowLeftMenu] = useState(false);
-  const isNarrow = useMediaQuery({ maxWidth: 600 });
+interface HeaderProps {
+  showLeftMenu: () => void;
+}
 
-  const warning = (
-    <div
-      style={{
-        backgroundColor: '#c01626',
-        minHeight: 100,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING
-    </div>
-  );
-
-  const header = (
+const Header: React.FC<HeaderProps> = ({ showLeftMenu }) => {
+  return (
     <div
       style={{
         backgroundColor: '#4a76ff',
@@ -44,46 +35,53 @@ export const Default: Story<RcLayoutProps> = (args) => {
         alignItems: 'center',
       }}
     >
-      <button onClick={() => setShowLeftMenu(true)}>SHOW LEFT MENU</button>
-      <p>HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER</p>
+      <button onClick={() => showLeftMenu()}>SHOW LEFT MENU</button>
+      <p>HEADER HEADER HEADER</p>
     </div>
   );
+};
 
-  const sidebar = (
-    <div
-      style={{
-        backgroundColor: '#dedede',
-        minHeight: 200,
-        paddingTop: 40,
-        paddingLeft: 20,
-      }}
-    >
-      <p>SIDEBAR</p>
-      <p>SIDEBAR</p>
-      <p>SIDEBAR</p>
-      <p>SIDEBAR</p>
-      <p>SIDEBAR</p>
-    </div>
-  );
+const sidebar = (
+  <div
+    style={{
+      backgroundColor: '#dedede',
+      minHeight: 200,
+      paddingTop: 40,
+      paddingLeft: 20,
+      paddingRight: 20,
+    }}
+  >
+    <p>SIDEBAR</p>
+    <p>SIDEBAR</p>
+    <p>SIDEBAR</p>
+    <p>SIDEBAR</p>
+    <p>SIDEBAR</p>
+  </div>
+);
 
-  const main = <div>{LoremIpsum}</div>;
+const main = <div>{LoremIpsum}</div>;
 
-  const footer = (
-    <div
-      style={{
-        backgroundColor: '#343434',
-        height: 100,
-        color: 'white',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER
-    </div>
-  );
+const footer = (
+  <div
+    style={{
+      backgroundColor: '#343434',
+      height: 100,
+      color: 'white',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    FOOTER FOOTER FOOTER
+  </div>
+);
 
-  const leftMenu = (
+interface LeftMenuProps {
+  hide: () => void;
+}
+
+const LeftMenu: React.FC<LeftMenuProps> = ({ hide }) => {
+  return (
     <div
       style={{
         display: 'flex',
@@ -92,10 +90,10 @@ export const Default: Story<RcLayoutProps> = (args) => {
         position: 'fixed',
         top: 0,
         left: 0,
-        zIndex: 2,
+        zIndex: rcConfig.zIndices.sideNav,
       }}
     >
-      <button onClick={() => setShowLeftMenu(false)}>CLOSE</button>
+      <button onClick={() => hide()}>CLOSE</button>
       <div
         style={{
           backgroundColor: '#f5d2b5',
@@ -112,29 +110,56 @@ export const Default: Story<RcLayoutProps> = (args) => {
       </div>
     </div>
   );
+};
 
+export default {
+  title: 'Layout/RcLayout',
+  component: RcLayout,
+  argTypes: {
+    showLeftMenu: { control: 'boolean' },
+    showSideBar: { control: 'boolean' },
+    stickyHeader: { control: 'boolean' },
+    stickyWarning: { control: 'boolean' },
+  },
+} as Meta;
+
+export const Default: Story<RcLayoutProps> = (args) => {
+  const [showLeftMenu, setShowLeftMenu] = useState(false);
+  const isNarrow = useMediaQuery({ maxWidth: 600 });
   return (
     <RcLayout
       {...args}
       warning={warning}
-      header={header}
+      header={<Header showLeftMenu={() => setShowLeftMenu(true)} />}
       sidebar={sidebar}
       main={main}
       footer={footer}
-      leftMenu={leftMenu}
+      leftMenu={<LeftMenu hide={() => setShowLeftMenu(false)} />}
       showSideBar={!isNarrow}
       showLeftMenu={showLeftMenu}
     />
   );
 };
 
-export const WithNullAreas: Story<RcLayoutProps> = (args) => (
-  <RcLayout
-    {...args}
-    warning={null}
-    header={<div>HEADER</div>}
-    sidebar={null}
-    main={<div>MAIN</div>}
-    footer={null}
-  />
+export const StickyHeader: Story<RcLayoutProps> = (args) => {
+  const [showLeftMenu, setShowLeftMenu] = useState(false);
+  const isNarrow = useMediaQuery({ maxWidth: 600 });
+  return (
+    <RcLayout
+      {...args}
+      warning={warning}
+      header={<Header showLeftMenu={() => setShowLeftMenu(true)} />}
+      sidebar={sidebar}
+      main={main}
+      footer={footer}
+      leftMenu={<LeftMenu hide={() => setShowLeftMenu(false)} />}
+      showSideBar={!isNarrow}
+      showLeftMenu={showLeftMenu}
+      stickyHeader={true}
+    />
+  );
+};
+
+export const Minimalist: Story<RcLayoutProps> = (args) => (
+  <RcLayout {...args} main={main} footer={footer} />
 );

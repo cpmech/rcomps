@@ -5,10 +5,71 @@ import {
   IconBell,
   IconChartBar,
   IconGlobe,
+  IconHouseThreeD,
   IconShapes,
   IconSync,
   IconTicket,
 } from '@cpmech/react-icons';
+
+const entryStyle: React.CSSProperties = {
+  paddingLeft: 20,
+  paddingRight: 20,
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+};
+
+const entries = [
+  {
+    item: (
+      <div style={entryStyle}>
+        <IconBell />
+        BELL
+      </div>
+    ),
+  },
+  {
+    item: (
+      <div style={entryStyle}>
+        <IconChartBar />
+        BAR CHART
+      </div>
+    ),
+  },
+  {
+    item: (
+      <div style={entryStyle}>
+        <IconGlobe />
+        GLOBE
+      </div>
+    ),
+  },
+  {
+    item: (
+      <div style={entryStyle}>
+        <IconShapes />
+        SHAPES
+      </div>
+    ),
+  },
+  {
+    item: (
+      <div style={entryStyle}>
+        <IconSync />
+        SYNC
+      </div>
+    ),
+  },
+  {
+    item: (
+      <div style={entryStyle}>
+        <IconTicket />
+        TICKET
+      </div>
+    ),
+  },
+];
 
 export default {
   title: 'Layout/RcSideNav',
@@ -36,25 +97,24 @@ export const Default: Story<RcSideNavProps> = (args) => {
   );
 };
 
-export const CustomEntries: Story<RcSideNavProps> = (args) => {
+export const Custom: Story<RcSideNavProps> = (args) => {
   const [show, setShow] = useState(true);
 
   return (
     <div>
       <button onClick={() => setShow(true)}>Show SideNav</button>
       {show && (
-        <RcSideNav
-          {...args}
-          entries={[
-            { item: <IconBell /> },
-            { item: <IconChartBar /> },
-            { item: <IconGlobe /> },
-            { item: <IconShapes /> },
-            { item: <IconSync /> },
-            { item: <IconTicket /> },
-          ]}
-          onClose={() => setShow(false)}
-        />
+        <RcSideNav {...args} entries={entries} onClose={() => setShow(false)}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <IconHouseThreeD size={64} />
+          </div>
+        </RcSideNav>
       )}
     </div>
   );
