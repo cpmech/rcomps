@@ -6,6 +6,7 @@ export * from './RcInputNumber';
 export * from './RcModalYesNo';
 export * from './RcPopup';
 export * from './RcProgressBar';
+export * from './RcReadyOrErrorPopup';
 export * from './RcSpinAndMsgCircle';
 export * from './RcSpinAndMsgDots';
 export * from './RcSpinnerPage';
