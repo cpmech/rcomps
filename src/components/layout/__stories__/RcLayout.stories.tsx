@@ -127,17 +127,17 @@ export const Default: Story<RcLayoutProps> = (args) => {
   const [showLeftMenu, setShowLeftMenu] = useState(false);
   const isNarrow = useMediaQuery({ maxWidth: 600 });
   return (
-    <RcLayout
-      {...args}
-      warning={warning}
-      header={<Header showLeftMenu={() => setShowLeftMenu(true)} />}
-      sidebar={sidebar}
-      main={main}
-      footer={footer}
-      leftMenu={<LeftMenu hide={() => setShowLeftMenu(false)} />}
-      showSideBar={!isNarrow}
-      showLeftMenu={showLeftMenu}
-    />
+    <>
+      <RcLayout
+        {...args}
+        warning={warning}
+        header={<Header showLeftMenu={() => setShowLeftMenu(true)} />}
+        sidebar={!isNarrow && sidebar}
+        main={main}
+        footer={footer}
+      />
+      {showLeftMenu && <LeftMenu hide={() => setShowLeftMenu(false)} />}
+    </>
   );
 };
 
@@ -145,18 +145,18 @@ export const StickyHeader: Story<RcLayoutProps> = (args) => {
   const [showLeftMenu, setShowLeftMenu] = useState(false);
   const isNarrow = useMediaQuery({ maxWidth: 600 });
   return (
-    <RcLayout
-      {...args}
-      warning={warning}
-      header={<Header showLeftMenu={() => setShowLeftMenu(true)} />}
-      sidebar={sidebar}
-      main={main}
-      footer={footer}
-      leftMenu={<LeftMenu hide={() => setShowLeftMenu(false)} />}
-      showSideBar={!isNarrow}
-      showLeftMenu={showLeftMenu}
-      stickyHeader={true}
-    />
+    <>
+      <RcLayout
+        {...args}
+        warning={warning}
+        header={<Header showLeftMenu={() => setShowLeftMenu(true)} />}
+        sidebar={!isNarrow && sidebar}
+        main={main}
+        footer={footer}
+        stickyHeader={true}
+      />
+      {showLeftMenu && <LeftMenu hide={() => setShowLeftMenu(false)} />}
+    </>
   );
 };
 

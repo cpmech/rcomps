@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Fragment, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { rcConfig } from './rcConfig';
 
 export interface RcLayoutProps {
@@ -9,9 +9,6 @@ export interface RcLayoutProps {
   sidebar?: ReactNode;
   main: ReactNode;
   footer?: ReactNode;
-  leftMenu?: ReactNode;
-  showLeftMenu?: boolean;
-  showSideBar?: boolean;
   stickyHeader?: boolean;
   stickyWarning?: boolean;
   maxContentWidth?: number;
@@ -25,9 +22,6 @@ export const RcLayout: React.FC<RcLayoutProps> = ({
   sidebar,
   main,
   footer,
-  leftMenu,
-  showLeftMenu = false,
-  showSideBar = true,
   stickyWarning = true,
   stickyHeader = false,
   maxContentWidth = 1124,
@@ -72,62 +66,59 @@ export const RcLayout: React.FC<RcLayoutProps> = ({
       `;
 
   return (
-    <Fragment>
-      <div css={styleRoot}>
-        {/* warning */}
-        {warning && <div css={styleWarning}>{warning}</div>}
+    <div css={styleRoot}>
+      {/* warning */}
+      {warning && <div css={styleWarning}>{warning}</div>}
 
-        {/* header */}
-        {header && <div css={styleHeader}>{header}</div>}
+      {/* header */}
+      {header && <div css={styleHeader}>{header}</div>}
 
-        {/* main */}
+      {/* main */}
+      <div
+        css={css`
+          grid-area: main;
+        `}
+      >
+        {/* main centralizer */}
         <div
           css={css`
-            grid-area: main;
+            max-width: ${maxContentWidth}px;
+            margin: 0 auto;
           `}
         >
-          {/* main centralizer */}
+          {/* main wrapper */}
           <div
             css={css`
-              max-width: ${maxContentWidth}px;
-              margin: 0 auto;
+              display: flex;
+              flex-direction: row;
             `}
           >
-            {/* main wrapper */}
+            {/* sidebar */}
+            {sidebar}
+
+            {/* main content */}
             <div
               css={css`
-                display: flex;
-                flex-direction: row;
+                width: 100%;
+                margin: 0 auto;
               `}
             >
-              {/* sidebar */}
-              {showSideBar && sidebar}
-
-              {/* main content */}
-              <div
-                css={css`
-                  width: 100%;
-                  margin: 0 auto;
-                `}
-              >
-                {main}
-              </div>
+              {main}
             </div>
           </div>
         </div>
-
-        {/* footer */}
-        {footer && (
-          <div
-            css={css`
-              grid-area: footer;
-            `}
-          >
-            {footer}
-          </div>
-        )}
       </div>
-      {showLeftMenu && leftMenu}
-    </Fragment>
+
+      {/* footer */}
+      {footer && (
+        <div
+          css={css`
+            grid-area: footer;
+          `}
+        >
+          {footer}
+        </div>
+      )}
+    </div>
   );
 };
