@@ -1,3 +1,4 @@
+export * from './RcCenterPage';
 export * from './RcDualMenuHoriz';
 export * from './RcFlexTable';
 export * from './RcInputDate';
