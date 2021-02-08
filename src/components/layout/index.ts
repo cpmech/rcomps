@@ -1,3 +1,4 @@
+export * from './rcConfig';
 export * from './RcLayout';
 export * from './RcMedia';
 export * from './RcMenuHoriz';
