@@ -20,6 +20,9 @@ export interface RcMenuVertProps {
   gapHorizLabel?: number;
 
   fontSizeSubEntries?: string;
+
+  labelWordBreak?: boolean;
+  labelSubWordBreak?: boolean;
 }
 
 export const RcMenuVert: React.FC<RcMenuVertProps> = ({
@@ -39,6 +42,9 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
   gapHorizLabel = 10,
 
   fontSizeSubEntries = '90%',
+
+  labelWordBreak = false,
+  labelSubWordBreak = true,
   //
 }) => {
   //
@@ -67,10 +73,12 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     `,
 
     label: css`
+      ${labelWordBreak ? `word-break: break-all;` : ''}
       margin-left: ${gapHorizLabel}px;
     `,
 
     labelHL: css`
+      ${labelWordBreak ? `word-break: break-all;` : ''}
       cursor: pointer;
       margin-left: ${gapHorizLabel}px;
       :hover {
@@ -79,6 +87,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     `,
 
     labelSub: css`
+      ${labelSubWordBreak ? `word-break: break-all;` : ''}
       cursor: pointer;
       margin-left: ${gapHorizLabel}px;
       font-size: ${fontSizeSubEntries};
