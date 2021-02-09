@@ -20,17 +20,17 @@ export const entries: RcMenuEntry[] = [
   },
   {
     icon: <IconGlobe />,
-    label: 'Mundo',
-    onClick: () => window.alert('mundo selected'),
+    label: 'Hello World',
+    onClick: () => window.alert('Hello World selected'),
   },
   {
     icon: <IconMoney />,
-    label: 'Dinheiro',
-    onClick: () => window.alert('dinheiro selected'),
+    label: 'Setup Payments',
+    onClick: () => window.alert('Setup Payments selected'),
   },
   {
     icon: <IconHouseThreeD />,
-    label: 'Casa',
+    label: 'Little house',
     entries: [
       {
         label: 'First',
@@ -48,21 +48,21 @@ export const entries: RcMenuEntry[] = [
   },
   {
     icon: <IconAddressBook />,
-    label: 'Address book',
+    label: 'Address book with nice people in it',
     entries: [
       {
         icon: <IconUser size={16} />,
-        label: 'Bender',
+        label: 'Bender Rodriguez',
         onClick: () => window.alert('Bender clicked'),
       },
       {
         icon: <IconUser size={16} />,
-        label: 'Leela',
+        label: 'Turanga Leela',
         onClick: () => window.alert('Leela clicked'),
       },
       {
         icon: <IconUser size={16} />,
-        label: 'Fry',
+        label: 'Philip J Fry',
         onClick: () => window.alert('Fry clicked'),
       },
     ],
