@@ -14,13 +14,12 @@
     "test": "react-scripts test",
     "tw": "react-scripts test --watch",
     "cov": "react-scripts test --coverage",
-    "type-check": "tsc",
     "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
-    "lint:fix": "yarn lint --fix",
     "sb": "start-storybook -p 9009 -s public",
     "bsb": "build-storybook -c .storybook -o docs",
     "build": "rm -rf dist && mkdir -p dist/rcomps && rsync -av src/components/* dist/rcomps --exclude __stories__ --exclude __tests__",
-    "dist": "yarn build && cp package-dist.json dist/package.json && cd dist/ && yarn publish --access=public || true && cd .. && rm -rf dist/"
+    "dist": "yarn build && cp package-dist.json dist/package.json && cd dist/ && yarn publish --access=public || true && cd .. && rm -rf dist/",
+    "postinstall": "bash ./zscripts/npm_postinstall.bash"
   },
   "eslintConfig": {
     "extends": [
@@ -42,32 +41,30 @@
   },
   "dependencies": {
     "@cpmech/basic": "^4.22.1",
-    "@cpmech/react-icons": "^3.0.1",
+    "@cpmech/react-icons": "^3.1.0",
     "@cpmech/util": "^1.25.1",
-    "@emotion/react": "^11.1.4",
+    "@emotion/react": "^11.1.5",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
     "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.22",
+    "@types/node": "^14.14.25",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-responsive": "^8.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "4.0.2",
     "typescript": "^4.1.3",
     "web-vitals": "^1.1.0"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^6.1.16",
+    "@storybook/addon-essentials": "^6.1.17",
     "@storybook/preset-create-react-app": "^3.1.5",
-    "@storybook/react": "^6.1.16",
+    "@storybook/react": "^6.1.17",
     "@types/react-responsive": "^8.0.2",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "husky": "^4.3.8",
-    "lint-staged": "^10.5.3",
     "prettier": "^2.2.1"
   }
 }
