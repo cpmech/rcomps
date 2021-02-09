@@ -1257,10 +1257,10 @@
   resolved "https://registry.yarnpkg.com/@cpmech/basic/-/basic-4.22.1.tgz#26597922004f3f7e091d33fe1440b200f6ea18f3"
   integrity sha512-t7G7hbW5xG9ybpRSpJrRthtKK7ke+CHTcpP7Osas//vRlazoMfHbEQDCLsrlqP1xXPENzwfprhr+G+b2XfzP5w==
 
-"@cpmech/react-icons@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@cpmech/react-icons/-/react-icons-3.1.1.tgz#ea957ba3026b5238ed0f437eced7f45cb21bd12a"
-  integrity sha512-eoW5IYs7ayhR8xb+vMcva2dGNYOBATHBm370bTfUx9AOHW6WY5lFOrlJotVC/SbFN4qwHLWRdeQOSZPiqL0NuQ==
+"@cpmech/react-icons@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@cpmech/react-icons/-/react-icons-3.1.2.tgz#eb493b557c9be4ee42d24dc4d9dc67a67ac008ef"
+  integrity sha512-X7csv73koM8XZhizZ4LOZ7qpgKMo428q2lP5iQ/QlWnh1utrqYLOTtjkdBtgdCKCSUs6HXEZ9qh5wMe/IJvo1Q==
 
 "@cpmech/util@^1.25.1":
   version "1.25.1"

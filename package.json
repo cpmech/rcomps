@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@cpmech/basic": "^4.22.1",
-    "@cpmech/react-icons": "^3.1.1",
+    "@cpmech/react-icons": "^3.1.2",
     "@cpmech/util": "^1.25.1",
     "@emotion/react": "^11.1.5",
     "@storybook/addon-essentials": "^6.1.17",
@@ -67,7 +67,7 @@
   },
   "peerDependencies": {
     "@cpmech/basic": "^4.22.1",
-    "@cpmech/react-icons": "^3.1.1",
+    "@cpmech/react-icons": "^3.1.2",
     "@cpmech/util": "^1.25.1",
     "@emotion/react": "^11.1.5",
     "react": "^17.0.1",

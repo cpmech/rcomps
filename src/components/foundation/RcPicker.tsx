@@ -86,7 +86,12 @@ export const RcPicker: React.FC<RcPickerProps> = ({
   const { fontSize = 18, height = 50, color = '#484848' } = rest;
 
   return (
-    <div ref={refRoot}>
+    <div
+      ref={refRoot}
+      css={css`
+        position: relative;
+      `}
+    >
       <div css={root}>
         <input
           name={name}

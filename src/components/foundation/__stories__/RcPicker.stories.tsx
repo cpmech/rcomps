@@ -83,7 +83,13 @@ CssMessage.args = {
 
 export const OnRow: Story<RcPickerProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row' }}>
-    <RcPicker {...args} entries={entries} selected={entries[0].message} flatRight={true} />
+    <RcPicker
+      {...args}
+      entries={entries}
+      selected={entries[0].message}
+      flatRight={true}
+      boxToRight={true}
+    />
     <RcPicker
       {...args}
       selected={entries[1].message}
@@ -105,7 +111,7 @@ export const Stacked: Story<RcPickerProps> = (args) => (
     }}
   >
     <RcPicker {...args} entries={entries} selected={entries[0].message} />
-    <RcPicker {...args} selected={entries[1].message} entries={entries} />
+    <RcPicker {...args} selected={entries[1].message} entries={entries} boxToRight={true} />
     <RcPicker {...args} selected={entries[2].message} entries={entries} />
   </div>
 );
@@ -190,6 +196,7 @@ export const LightAndDarkBg: Story<RcPickerProps> = (args) => (
         label="Please, choose another"
         bgColor={bgColor}
         darkMode={true}
+        boxToRight={true}
       />
       <RcPicker
         {...args}
@@ -224,6 +231,7 @@ export const LightAndDarkBg: Story<RcPickerProps> = (args) => (
         entries={entries}
         width="250px"
         label="Please, choose another"
+        boxToRight={true}
       />
       <RcPicker
         {...args}
