@@ -10,7 +10,7 @@ export default {
 } as Meta;
 
 const Template: Story<RcSpinAndMsgDotsProps> = (args) => (
-  <RcSpinAndMsgDots {...args} message="-^-" fontSize={34} />
+  <RcSpinAndMsgDots {...args} message="-^-" fontSize="34px" />
 );
 
 export const Default = Template.bind({});
@@ -19,7 +19,7 @@ export const Styled = Template.bind({});
 Styled.args = {
   ...Template.args,
   color: '#D22385',
-  size: 200,
+  size: '200px',
   time: '3s',
-  thickness: 80,
+  thickness: '30px',
 };

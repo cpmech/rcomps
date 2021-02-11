@@ -38,12 +38,12 @@ export const MinWidth = Template.bind({});
 MinWidth.args = {
   ...Template.args,
   bgColor: '#cecece',
-  tabMinWidth: 200,
+  tabMinWidth: '200px',
 };
 
 export const Children: Story<RcTabsProps> = (args) => (
   <div>
-    <RcTabs bgColor="white" tabMinWidth={150} entries={entries} iniActive={1} />
+    <RcTabs bgColor="white" tabMinWidth="150px" entries={entries} iniActive={1} />
     <div
       style={{
         borderColor: '#17b580',

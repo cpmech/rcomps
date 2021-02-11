@@ -5,12 +5,12 @@ import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 
 export interface RcCollapseProps {
   title: string;
-  fontSize?: number;
-  iconSize?: number;
+  fontSize?: string;
+  iconSize?: string;
   width?: string;
-  height?: number;
-  paddingHoriz?: number;
-  iconPaddingRight?: number;
+  height?: string;
+  paddingHoriz?: string;
+  iconPaddingRight?: string;
   color?: string;
   bgColor?: string;
   borderColor?: string;
@@ -23,12 +23,12 @@ export interface RcCollapseProps {
 
 export const RcCollapse: React.FC<RcCollapseProps> = ({
   title,
-  fontSize = 18,
-  iconSize = 18,
+  fontSize = '18px',
+  iconSize = '18px',
   width,
-  height = 50,
-  paddingHoriz = 20,
-  iconPaddingRight = 15,
+  height = '50px',
+  paddingHoriz = '20px',
+  iconPaddingRight = '15px',
   color = '#484848',
   bgColor = '#ffffff',
   borderColor = '#cccccc',
@@ -65,13 +65,13 @@ export const RcCollapse: React.FC<RcCollapseProps> = ({
             display: flex;
             flex-direction: column;
             justify-content: center;
-            font-size: ${fontSize}px;
+            font-size: ${fontSize};
             box-sizing: border-box;
-            height: ${height}px;
+            height: ${height};
             ${titleBgColor ? `background-color:${titleBgColor};` : ''}
             ${titleBorderColor ? `border-bottom: 1px solid ${titleBorderColor};` : ''}
-            padding-left: ${paddingHoriz}px;
-            padding-right: ${paddingHoriz}px;
+            padding-left: ${paddingHoriz};
+            padding-right: ${paddingHoriz};
           `}
           onClick={() => setShow(!show)}
         >
@@ -80,8 +80,8 @@ export const RcCollapse: React.FC<RcCollapseProps> = ({
         <div
           css={css`
             display: ${show ? 'inline-block' : 'none'};
-            padding-left: ${paddingHoriz}px;
-            padding-right: ${paddingHoriz}px;
+            padding-left: ${paddingHoriz};
+            padding-right: ${paddingHoriz};
           `}
         >
           {children}
@@ -96,9 +96,9 @@ export const RcCollapse: React.FC<RcCollapseProps> = ({
         <div
           css={css`
             position: absolute;
-            line-height: ${fontSize}px;
-            top: ${height / 2 - fontSize / 2}px;
-            right: ${iconPaddingRight}px;
+            line-height: ${fontSize};
+            top: calc(${height} / 2 - ${fontSize} / 2);
+            right: ${iconPaddingRight};
             color: ${color};
           `}
           onClick={() => setShow(!show)}

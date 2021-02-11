@@ -9,6 +9,6 @@ export default {
   },
 } as Meta;
 
-const Template: Story<RcSpinnerPageProps> = (args) => <RcSpinnerPage {...args} heightMenu={0} />;
+const Template: Story<RcSpinnerPageProps> = (args) => <RcSpinnerPage {...args} />;
 
 export const Default = Template.bind({});

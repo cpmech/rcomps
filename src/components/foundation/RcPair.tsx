@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 export interface RcPairProps {
   left: ReactNode;
   right: ReactNode;
-  spacing?: number;
+  spacing?: string;
   spaceBetween?: boolean;
   cssLeft?: string;
   cssRight?: string;
@@ -19,7 +19,7 @@ export const RcPair: React.FC<RcPairProps> = ({
   cssLeft = '',
   cssRight,
 }) => {
-  cssLeft += `; padding-right: ${spacing}px;`;
+  cssLeft += `; padding-right: ${spacing};`;
 
   return (
     <div

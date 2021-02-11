@@ -11,35 +11,35 @@ export interface RcGameCardMenuEntry {
 }
 
 export interface RcGameCardProps {
-  width?: number;
-  height?: number;
-  iconSize?: number;
-  iconPadding?: number;
-  borderRadius?: number;
+  width?: string;
+  height?: string;
+  iconSize?: string;
+  iconPadding?: string;
+  borderRadius?: string;
   bgColor?: string;
 
   menuEntries?: RcGameCardMenuEntry[];
   menuWidthBox?: string; // width of entries box
-  menuHeightBox?: number; // height of entries box
+  menuHeightBox?: string; // height of entries box
   menuZIndexBox?: number; // zIndex of box
-  menuEntryHeight?: number;
+  menuEntryHeight?: string;
 
   headerColor?: string;
   headerBgColor?: string;
-  headerHeight?: number;
+  headerHeight?: string;
 
   title?: string;
   titleBgColor?: string;
   titleBorderColor?: string;
 
-  paddingHoriz?: number;
-  paddingVert?: number;
+  paddingHoriz?: string;
+  paddingVert?: string;
 
-  heroHeight?: number;
+  heroHeight?: string;
   heroBg?: string;
   hero?: any;
 
-  buttonsHeight?: number;
+  buttonsHeight?: string;
   buttonsBg?: string;
   buttons?: any;
 
@@ -50,33 +50,33 @@ export interface RcGameCardProps {
 }
 
 export const RcGameCard: React.FC<RcGameCardProps> = ({
-  width = 280,
-  height = 435,
-  iconSize = 20,
-  iconPadding = 25,
-  borderRadius = 8,
+  width = '280px',
+  height = '435px',
+  iconSize = '20px',
+  iconPadding = '25px',
+  borderRadius = '8px',
   bgColor = '#ffffff',
 
   menuEntries,
   menuWidthBox,
   menuHeightBox,
   menuZIndexBox = 1,
-  menuEntryHeight = 50,
+  menuEntryHeight = '50px',
 
   headerColor = '#484848',
   headerBgColor = '#ffffff',
-  headerHeight = 52,
+  headerHeight = '52px',
 
   title,
 
-  paddingHoriz = 20,
-  paddingVert = 10,
+  paddingHoriz = '20px',
+  paddingVert = '10px',
 
-  heroHeight = 100,
+  heroHeight = '100px',
   heroBg = `background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);`,
   hero,
 
-  buttonsHeight = 60,
+  buttonsHeight = '60px',
   buttonsBg = '#ffffff',
   buttons,
 
@@ -113,16 +113,12 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
         }
     `;
 
-  const contentWidth = width - 2 * paddingHoriz;
-  let contentHeight = height - headerHeight - 2 * paddingVert;
-  let contentTop = headerHeight + paddingVert;
-  if (hero) {
-    contentHeight -= heroHeight;
-    contentTop += heroHeight;
-  }
-  if (buttons) {
-    contentHeight -= buttonsHeight;
-  }
+  const dhHero = hero ? `- ${heroHeight}` : '';
+  const dtHero = hero ? `+ ${heroHeight}` : '';
+  const dhButtons = buttons ? `- ${buttonsHeight}` : '';
+  const contentWidth = `calc(${width} - 2 * ${paddingHoriz})`;
+  let contentHeight = `calc(${height} - ${headerHeight} - 2 * ${paddingVert} ${dhHero} ${dhButtons})`;
+  let contentTop = `calc(${headerHeight} + ${paddingVert} ${dtHero})`;
 
   const floatCss = menuEntries
     ? floatBoxCss(showMenu, menuHeightBox, menuWidthBox, true, menuZIndexBox)
@@ -138,11 +134,11 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
           padding: 0;
         }
         position: relative;
-        width: ${width}px;
-        height: ${height}px;
+        width: ${width};
+        height: ${height};
         background-color: ${bgColor};
         overflow: hidden;
-        border-radius: ${borderRadius}px;
+        border-radius: ${borderRadius};
         -webkit-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
         box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
         ${zoomCss}
@@ -154,7 +150,7 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
             /* header */
             position: absolute;
             top: 0;
-            left: ${paddingHoriz}px;
+            left: ${paddingHoriz};
             width: 100%;
             color: ${headerColor};
             background-color: ${headerBgColor};
@@ -166,7 +162,7 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
               display: flex;
               align-items: center;
               justify-content: flex-start;
-              height: ${headerHeight}px;
+              height: ${headerHeight};
             `}
           >
             {cssTitle ? <span css={css(cssTitle)}>{title}</span> : <span>{title}</span>}
@@ -179,7 +175,7 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
           css={css`
             /* hero container */
             position: absolute;
-            top: ${headerHeight}px;
+            top: ${headerHeight};
             left: 0;
             width: 100%;
             ${heroBg}
@@ -188,7 +184,7 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
           <div
             css={css`
               /* hero */
-              height: ${heroHeight}px;
+              height: ${heroHeight};
               display: flex;
               align-items: center;
               justify-content: center;
@@ -203,10 +199,10 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
         css={css`
           /* children */
           position: absolute;
-          top: ${contentTop}px;
-          left: ${paddingHoriz}px;
-          width: ${contentWidth}px;
-          height: ${contentHeight}px;
+          top: ${contentTop};
+          left: ${paddingHoriz};
+          width: ${contentWidth};
+          height: ${contentHeight};
           overflow: hidden;
         `}
       >
@@ -227,7 +223,7 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
           <div
             css={css`
               /* buttons */
-              height: ${buttonsHeight}px;
+              height: ${buttonsHeight};
               display: flex;
               align-items: center;
               justify-content: center;
@@ -256,8 +252,8 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: ${iconSize + iconPadding}px;
-                height: ${headerHeight}px;
+                width: calc(${iconSize} + ${iconPadding});
+                height: ${headerHeight};
                 color: ${headerColor};
               `}
               onClick={() => setShowMenu(true)}

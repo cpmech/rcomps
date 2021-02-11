@@ -8,7 +8,7 @@ export interface RcTextProps extends InputElementCssOptions {
   label?: string;
   value?: string;
   suffix?: ReactNode;
-  suffixPaddingRight?: number;
+  suffixPaddingRight?: string;
 }
 
 export const RcText: React.FC<RcTextProps> = ({
@@ -16,11 +16,11 @@ export const RcText: React.FC<RcTextProps> = ({
   label,
   value,
   suffix,
-  suffixPaddingRight = 20,
+  suffixPaddingRight = '20px',
   ...rest
 }) => {
   const root = inputElementCss(true, false, rest);
-  const { fontSize = 18, height = 50, mutedColor = '#898989' } = rest;
+  const { fontSize = '18px', height = '50px', mutedColor = '#898989' } = rest;
   return (
     <div css={root}>
       <input name={name} required={true} type="text" value={value} readOnly={true} />
@@ -29,9 +29,9 @@ export const RcText: React.FC<RcTextProps> = ({
         <div
           css={css`
             position: absolute;
-            line-height: ${fontSize}px;
-            top: ${height / 2 - fontSize / 2}px;
-            right: ${suffixPaddingRight}px;
+            line-height: ${fontSize};
+            top: calc(${height} / 2 - ${fontSize} / 2);
+            right: ${suffixPaddingRight};
             color: ${mutedColor};
           `}
         >

@@ -18,13 +18,13 @@ export interface RcPickerProps extends InputElementCssOptions {
   name?: string;
   label?: string;
   widthBox?: string; // width of entries box
-  heightBox?: number; // height of entries box
+  heightBox?: string; // height of entries box
   boxToRight?: boolean;
   zIndexBox?: number;
-  iconPaddingRight?: number;
+  iconPaddingRight?: string;
   readOnly?: boolean;
-  menuPaddingHoriz?: number;
-  menuEntryHeight?: number;
+  menuPaddingHoriz?: string;
+  menuEntryHeight?: string;
   cssMessage?: string;
 }
 
@@ -38,10 +38,10 @@ export const RcPicker: React.FC<RcPickerProps> = ({
   heightBox,
   boxToRight,
   zIndexBox = 1,
-  iconPaddingRight = 15,
+  iconPaddingRight = '15px',
   readOnly = false,
-  menuPaddingHoriz = 20,
-  menuEntryHeight = 50,
+  menuPaddingHoriz = '20px',
+  menuEntryHeight = '50px',
   cssMessage,
   ...rest
 }) => {
@@ -83,7 +83,7 @@ export const RcPicker: React.FC<RcPickerProps> = ({
   const root = inputElementCss(readOnly, true, rest);
   const floatCss = floatBoxCss(open, heightBox, widthBox, boxToRight, zIndexBox);
   const menuEntryCss = floatBoxItemCss(menuPaddingHoriz, menuEntryHeight);
-  const { fontSize = 18, height = 50, color = '#484848' } = rest;
+  const { fontSize = '18px', height = '50px', color = '#484848' } = rest;
 
   return (
     <div
@@ -106,9 +106,9 @@ export const RcPicker: React.FC<RcPickerProps> = ({
           <div
             css={css`
               position: absolute;
-              line-height: ${fontSize}px;
-              top: ${height / 2 - fontSize / 2}px;
-              right: ${iconPaddingRight}px;
+              line-height: ${fontSize};
+              top: calc((${height} - ${fontSize}) / 2);
+              right: ${iconPaddingRight};
               color: ${rest.darkMode ? 'white' : color};
             `}
             onClick={handleButtonClick}

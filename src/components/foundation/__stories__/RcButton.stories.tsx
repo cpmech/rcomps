@@ -24,11 +24,6 @@ export default {
     colorDisabled: { control: 'color' },
     hoverColor: { control: 'color' },
     hoverColorOutline: { control: 'color' },
-    height: { control: { type: 'range', min: 0, max: 100, step: 1 } },
-    paddingLeft: { control: { type: 'range', min: 0, max: 100, step: 1 } },
-    paddingRight: { control: { type: 'range', min: 0, max: 100, step: 1 } },
-    borderRadius: { control: { type: 'range', min: 0, max: 100, step: 1 } },
-    fontSize: { control: { type: 'range', min: 0, max: 100, step: 1 } },
     spinning: { control: 'boolean' },
     disabled: { control: 'boolean' },
     outline: { control: 'boolean' },
@@ -62,11 +57,11 @@ Outline.args = { ...Template.args, outline: true };
 export const Styled = Template.bind({});
 Styled.args = {
   ...Template.args,
-  height: 60,
-  paddingLeft: 100,
-  paddingRight: 100,
-  borderRadius: 100,
-  fontSize: 24,
+  height: '60px',
+  paddingLeft: '100px',
+  paddingRight: '100px',
+  borderRadius: '100px',
+  fontSize: '24px',
   fontWeight: 'bold',
   color: 'white',
   backgroundColor: '#803ced',
@@ -76,12 +71,12 @@ Styled.args = {
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   ...Template.args,
-  icon: <IconAngleRight size={80} />,
+  icon: <IconAngleRight size="80px" />,
   width: '100px',
-  height: 100,
-  paddingLeft: 4,
-  paddingRight: 0,
-  borderRadius: 300,
+  height: '100px',
+  paddingLeft: '4px',
+  paddingRight: '0px',
+  borderRadius: '300px',
 };
 
 export const MoreIcons = Template.bind({});

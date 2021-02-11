@@ -14,17 +14,17 @@ export interface RcTabsProps {
 
   width?: string;
   height?: string;
-  tabMinWidth?: number;
+  tabMinWidth?: string;
 
-  marginTop?: number;
-  marginBottom?: number;
-  marginHoriz?: number;
-  gapHorizLabel?: number;
-  entryPaddingVert?: number;
-  entryPaddingHoriz?: number;
+  marginTop?: string;
+  marginBottom?: string;
+  marginHoriz?: string;
+  gapHorizLabel?: string;
+  entryPaddingVert?: string;
+  entryPaddingHoriz?: string;
 
-  borderWidth?: number;
-  borderRadius?: number;
+  borderWidth?: string;
+  borderRadius?: string;
 }
 
 export const RcTabs: React.FC<RcTabsProps> = ({
@@ -40,15 +40,15 @@ export const RcTabs: React.FC<RcTabsProps> = ({
   height = '100%',
   tabMinWidth,
 
-  marginTop = 10,
-  marginBottom = 0,
-  marginHoriz = 0,
-  gapHorizLabel = 10,
-  entryPaddingVert = 6,
-  entryPaddingHoriz = 12,
+  marginTop = '10px',
+  marginBottom = '0px',
+  marginHoriz = '0px',
+  gapHorizLabel = '10px',
+  entryPaddingVert = '6px',
+  entryPaddingHoriz = '12px',
 
-  borderWidth = 1,
-  borderRadius = 8,
+  borderWidth = '1px',
+  borderRadius = '8px',
 }) => {
   const [indexActive, setIndexActive] = useState(0);
 
@@ -61,15 +61,15 @@ export const RcTabs: React.FC<RcTabsProps> = ({
   const styles = {
     root: css`
       height: ${height};
-      margin-top: ${marginTop}px;
-      margin-bottom: ${marginBottom}px;
-      margin-left: ${marginHoriz}px;
-      margin-right: ${marginHoriz}px;
+      margin-top: ${marginTop};
+      margin-bottom: ${marginBottom};
+      margin-left: ${marginHoriz};
+      margin-right: ${marginHoriz};
       ${bgColor ? `background-color: ${bgColor};` : ''}
       display:flex;
       justify-content: center;
       align-items: flex-end;
-      border-bottom: ${borderWidth}px solid ${colorActive};
+      border-bottom: ${borderWidth} solid ${colorActive};
     `,
 
     container: css`
@@ -82,7 +82,7 @@ export const RcTabs: React.FC<RcTabsProps> = ({
 
     entryContainer: css`
       position: relative;
-      ${tabMinWidth ? `min-width: ${tabMinWidth}px;` : ''}
+      ${tabMinWidth ? `min-width: ${tabMinWidth};` : ''}
     `,
 
     entry: css`
@@ -95,7 +95,7 @@ export const RcTabs: React.FC<RcTabsProps> = ({
       :hover {
         color: ${colorHover};
       }
-      padding: ${entryPaddingVert}px ${entryPaddingHoriz}px;
+      padding: ${entryPaddingVert} ${entryPaddingHoriz};
     `,
 
     entryActive: css`
@@ -105,25 +105,25 @@ export const RcTabs: React.FC<RcTabsProps> = ({
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      padding: ${entryPaddingVert}px ${entryPaddingHoriz}px;
-      border-left: ${borderWidth}px solid ${colorActive};
-      border-right: ${borderWidth}px solid ${colorActive};
-      border-top: ${borderWidth}px solid ${colorActive};
-      border-top-left-radius: ${borderRadius}px;
-      border-top-right-radius: ${borderRadius}px;
+      padding: ${entryPaddingVert} ${entryPaddingHoriz};
+      border-left: ${borderWidth} solid ${colorActive};
+      border-right: ${borderWidth} solid ${colorActive};
+      border-top: ${borderWidth} solid ${colorActive};
+      border-top-left-radius: ${borderRadius};
+      border-top-right-radius: ${borderRadius};
     `,
 
     entryActiveBorder: css`
       position: absolute;
-      width: calc(100% - ${borderWidth}px - ${borderWidth}px);
-      left: ${borderWidth}px;
-      bottom: -${borderWidth}px;
-      height: ${borderWidth}px;
+      width: calc(100% - ${borderWidth} - ${borderWidth});
+      left: ${borderWidth};
+      bottom: -${borderWidth};
+      height: ${borderWidth};
       background-color: ${bgColor};
     `,
 
     hspace: css`
-      margin-left: ${gapHorizLabel}px;
+      margin-left: ${gapHorizLabel};
     `,
   };
 

@@ -6,7 +6,6 @@ export default {
   title: 'Foundation/RcPair',
   component: RcPair,
   argTypes: {
-    spacing: { control: { type: 'range', min: 0, max: 100, step: 1 } },
     spaceBetween: { control: 'boolean' },
   },
 } as Meta;

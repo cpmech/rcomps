@@ -7,11 +7,7 @@ export default {
   component: RcSwitch,
 } as Meta;
 
-const Template: Story<RcSwitchProps> = (args) => <RcSwitch {...args} />;
-
-export const Default = Template.bind({});
-
-export const Controlled: Story<RcSwitchProps> = (args) => {
+const Template: Story<RcSwitchProps> = (args) => {
   const [on, setOn] = useState(true);
 
   return (
@@ -20,4 +16,15 @@ export const Controlled: Story<RcSwitchProps> = (args) => {
       {on ? <p>on = true</p> : <p>on = false</p>}
     </div>
   );
+};
+
+export const Default = Template.bind({});
+
+export const Styled = Template.bind({});
+Styled.args = {
+  height: '50vh',
+  borderWidth: '2px',
+  knobBorderWidth: '1px',
+  transitionTime: '0s',
+  gap: '15px',
 };

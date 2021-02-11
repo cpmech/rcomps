@@ -12,7 +12,7 @@ export interface RcInputNumberProps extends InputElementCssOptions {
   suffix?: ReactNode;
   swapDotByComma?: boolean; // use ',' instead of '.' for decimals
   numDigits?: number; // number of decimal digits 2 = default
-  suffixPaddingRight?: number;
+  suffixPaddingRight?: string;
 }
 
 export const RcInputNumber: React.FC<RcInputNumberProps> = ({

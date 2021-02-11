@@ -5,7 +5,7 @@ import { RcMenuEntry } from '../../layout';
 
 const entriesLeft: RcMenuEntry[] = [
   {
-    icon: <IconHouseThreeD size={80} />,
+    icon: <IconHouseThreeD size="80px" />,
     onClick: () => window.alert('house selected'),
   },
   {
@@ -39,17 +39,17 @@ const entriesRight: RcMenuEntry[] = [
     label: 'Address book',
     entries: [
       {
-        icon: <IconUser size={16} />,
+        icon: <IconUser size="16px" />,
         label: 'Bender',
         onClick: () => window.alert('Bender clicked'),
       },
       {
-        icon: <IconUser size={16} />,
+        icon: <IconUser size="16px" />,
         label: 'Leela',
         onClick: () => window.alert('Leela clicked'),
       },
       {
-        icon: <IconUser size={16} />,
+        icon: <IconUser size="16px" />,
         label: 'Fry',
         onClick: () => window.alert('Fry clicked'),
       },
@@ -65,8 +65,8 @@ export default {
 const Template: Story<RcDualMenuHorizProps> = (args) => (
   <RcDualMenuHoriz
     {...args}
-    left={{ entries: entriesLeft, gapHorizEntries: 20 }}
-    right={{ entries: entriesRight, gapHorizEntries: 50 }}
+    left={{ entries: entriesLeft, gapHorizEntries: '20px' }}
+    right={{ entries: entriesRight, gapHorizEntries: '50px' }}
   />
 );
 

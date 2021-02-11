@@ -18,9 +18,9 @@ export const Default = Template.bind({});
 export const Small = Template.bind({});
 Small.args = {
   ...Template.args,
-  height: 32,
-  fontSize: 14,
-  labelFontSize: 14,
+  height: '32px',
+  fontSize: '14px',
+  labelFontSize: '14px',
   value: 'Smaller',
 };
 
@@ -54,7 +54,7 @@ export const WithSuffix: Story<RcTextProps> = (args) => (
     }}
   >
     <RcText {...args} label="Energy" value="123.456" suffix="kWh" />
-    <RcText {...args} label="Energy" value="123.456" suffix={<IconExclamation size={18} />} />
+    <RcText {...args} label="Energy" value="123.456" suffix={<IconExclamation size="18px" />} />
   </div>
 );
 

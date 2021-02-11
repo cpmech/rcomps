@@ -21,18 +21,18 @@ export interface RcMenuHorizProps {
   color?: string;
   colorHover?: string;
 
-  minHeight?: number;
-  maxWidth?: number;
+  minHeight?: string;
+  maxWidth?: string;
   width?: string;
   height?: string;
 
-  marginTop?: number;
-  paddingVert?: number;
-  paddingHoriz?: number;
-  gapVert?: number;
-  gapVertSubEntries?: number;
-  gapHorizLabel?: number;
-  gapHorizEntries?: number;
+  marginTop?: string;
+  paddingVert?: string;
+  paddingHoriz?: string;
+  gapVert?: string;
+  gapVertSubEntries?: string;
+  gapHorizLabel?: string;
+  gapHorizEntries?: string;
 
   fontSizeSubEntries?: string;
 }
@@ -49,12 +49,12 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
   width = '100%',
   height = '100%',
 
-  marginTop = 10,
-  paddingVert = 5,
-  paddingHoriz = 20,
-  gapVert = 5,
-  gapVertSubEntries = 30,
-  gapHorizLabel = 10,
+  marginTop = '10px',
+  paddingVert = '5px',
+  paddingHoriz = '20px',
+  gapVert = '5px',
+  gapVertSubEntries = '30px',
+  gapHorizLabel = '10px',
   gapHorizEntries,
 
   fontSizeSubEntries = '90%',
@@ -63,11 +63,11 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
   //
   const styles = {
     root: css`
-      ${minHeight ? `min-height: ${minHeight}px;` : ''}
-      ${maxWidth ? `max-width: ${maxWidth}px; margin: 0 auto;` : ''}
+      ${minHeight ? `min-height: ${minHeight};` : ''}
+      ${maxWidth ? `max-width: ${maxWidth}; margin: 0 auto;` : ''}
       height: ${height};
-      padding: ${paddingVert}px ${paddingHoriz}px;
-      margin-top: ${marginTop}px;
+      padding: ${paddingVert} ${paddingHoriz};
+      margin-top: ${marginTop};
       ${bgColor ? `background-color: ${bgColor};` : ''}
       display:flex;
       justify-content: center;
@@ -81,14 +81,14 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      margin-top: -${gapVert}px;
+      margin-top: -${gapVert};
       > * {
-        margin-top: ${gapVert}px;
+        margin-top: ${gapVert};
       }
     `,
 
     vspaceSub: css`
-      padding-top: ${gapVertSubEntries}px;
+      padding-top: ${gapVertSubEntries};
     `,
 
     entry: css`
@@ -100,12 +100,12 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
     `,
 
     label: css`
-      margin-left: ${gapHorizLabel}px;
+      margin-left: ${gapHorizLabel};
     `,
 
     labelHL: css`
       cursor: pointer;
-      margin-left: ${gapHorizLabel}px;
+      margin-left: ${gapHorizLabel};
       :hover {
         color: ${colorHover};
       }
@@ -113,7 +113,7 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
 
     labelSub: css`
       cursor: pointer;
-      margin-left: ${gapHorizLabel}px;
+      margin-left: ${gapHorizLabel};
       font-size: ${fontSizeSubEntries};
       :hover {
         color: ${colorHover};
@@ -124,11 +124,11 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
     `,
 
     iconSub: css`
-      margin-right: ${gapHorizLabel}px;
+      margin-right: ${gapHorizLabel};
     `,
 
     gapBetweenEntries: css`
-      margin-left: ${gapHorizEntries}px;
+      margin-left: ${gapHorizEntries};
     `,
   };
 

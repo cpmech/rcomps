@@ -7,7 +7,7 @@ export interface RcProgressProps {
   backgroundColor?: string;
   borderColor?: string;
   barColor?: string;
-  borderRadius?: number;
+  borderRadius?: string;
 }
 
 export const RcProgress: React.FC<RcProgressProps> = ({
@@ -16,7 +16,7 @@ export const RcProgress: React.FC<RcProgressProps> = ({
   backgroundColor = '#e5e5e5',
   borderColor,
   barColor = '#4d50c6',
-  borderRadius = 300,
+  borderRadius = '300px',
 }) => {
   const p = progress || 0;
   const width = p < 0 ? 0 : p > 100 ? 100 : p;
@@ -25,7 +25,7 @@ export const RcProgress: React.FC<RcProgressProps> = ({
       css={css`
         ${backgroundColor ? `background-color: ${backgroundColor};` : ''}
         ${borderColor ? `border: 1px solid ${borderColor};` : ''}
-        border-radius: ${borderRadius}px;
+        border-radius: ${borderRadius};
       `}
     >
       <div
@@ -37,7 +37,7 @@ export const RcProgress: React.FC<RcProgressProps> = ({
           font-size: 15px;
           line-height: 1.5;
           background-color: ${barColor};
-          border-radius: ${borderRadius}px;
+          border-radius: ${borderRadius};
           text-align: center;
           padding-top: 1px;
         `}

@@ -7,12 +7,12 @@ import { useLockBodyScroll } from '../helpers';
 export interface RcModalProps {
   onClose?: () => void;
   title?: string;
-  titleFontSize?: number;
-  iconSize?: number;
-  marginVert?: number;
-  verticalGap?: number;
-  paddingHoriz?: number;
-  iconPadding?: number;
+  titleFontSize?: string;
+  iconSize?: string;
+  marginVert?: string;
+  verticalGap?: string;
+  paddingHoriz?: string;
+  iconPadding?: string;
   color?: string;
   bgColor?: string;
   bgOpacity?: number;
@@ -24,7 +24,7 @@ export interface RcModalProps {
   maxWidth?: string;
   minHeight?: string;
   maxHeight?: string;
-  borderRadius?: number;
+  borderRadius?: string;
   zIndex?: number;
   allowClickOutsideToClose?: boolean;
   noCloseButton?: boolean;
@@ -35,12 +35,12 @@ export interface RcModalProps {
 export const RcModal: React.FC<RcModalProps> = ({
   onClose,
   title,
-  titleFontSize = 16,
-  iconSize = 20,
-  marginVert = 10,
-  verticalGap = 10,
-  paddingHoriz = 20,
-  iconPadding = 25,
+  titleFontSize = '16px',
+  iconSize = '20px',
+  marginVert = '10px',
+  verticalGap = '10px',
+  paddingHoriz = '20px',
+  iconPadding = '25px',
   color = '#484848',
   bgColor = '#ffffff',
   bgOpacity = 0.4,
@@ -52,7 +52,7 @@ export const RcModal: React.FC<RcModalProps> = ({
   maxWidth,
   minHeight,
   maxHeight,
-  borderRadius = 8,
+  borderRadius = '8px',
   zIndex = 1,
   allowClickOutsideToClose = true,
   noCloseButton,
@@ -112,7 +112,7 @@ export const RcModal: React.FC<RcModalProps> = ({
           ${maxWidth ? `max-width:${maxWidth}; overflow:auto;` : ''}
           ${minHeight ? `min-height:${minHeight}; overflow:auto;` : ''}
           ${maxHeight ? `max-height:${maxHeight}; overflow:auto;` : ''}
-          ${borderRadius ? `border-radius: ${borderRadius}px;` : ''}
+          ${borderRadius ? `border-radius: ${borderRadius};` : ''}
         `}
       >
         {title && (
@@ -122,13 +122,13 @@ export const RcModal: React.FC<RcModalProps> = ({
               display: flex;
               flex-direction: column;
               justify-content: center;
-              font-size: ${titleFontSize}px;
+              font-size: ${titleFontSize};
               box-sizing: border-box;
               ${titleBgColor ? `background-color:${titleBgColor};` : ''}
               ${titleBorderColor ? `border-bottom: 1px solid ${titleBorderColor};` : ''}
-              margin-top: ${marginVert}px;
-              padding-left: ${paddingHoriz}px;
-              padding-right: ${paddingHoriz}px;
+              margin-top: ${marginVert};
+              padding-left: ${paddingHoriz};
+              padding-right: ${paddingHoriz};
             `}
           >
             {cssTitle ? <span css={css(cssTitle)}>{title}</span> : <span>{title}</span>}
@@ -138,9 +138,9 @@ export const RcModal: React.FC<RcModalProps> = ({
         <div
           css={css`
             /* children */
-            padding-left: ${paddingHoriz}px;
-            padding-right: ${paddingHoriz}px;
-            margin-top: ${verticalGap}px;
+            padding-left: ${paddingHoriz};
+            padding-right: ${paddingHoriz};
+            margin-top: ${verticalGap};
           `}
         >
           {children}
@@ -164,8 +164,8 @@ export const RcModal: React.FC<RcModalProps> = ({
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: ${iconSize + iconPadding}px;
-                height: ${iconSize + iconPadding}px;
+                width: calc(${iconSize} + ${iconPadding});
+                height: calc(${iconSize} + ${iconPadding});
                 border-radius: 2px;
                 ${noHightlightCloseButton ? '' : `:hover { background-color: rgba(0, 0, 0, 0.1); }`}
               `}

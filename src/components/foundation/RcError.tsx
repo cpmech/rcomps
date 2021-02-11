@@ -5,22 +5,22 @@ import { hasProp } from '@cpmech/basic';
 export interface RcErrorProps {
   error?: any;
   fixedHeight?: boolean;
-  height?: number;
-  fontSize?: number;
-  hpadding?: number;
-  vpadding?: number;
-  marginTop?: number;
+  height?: string;
+  fontSize?: string;
+  hpadding?: string;
+  vpadding?: string;
+  marginTop?: string;
   color?: string;
 }
 
 export const RcError: React.FC<RcErrorProps> = ({
   error,
   fixedHeight = false,
-  height = 18,
-  fontSize = 14,
-  hpadding = 20,
-  vpadding = 2,
-  marginTop = 7,
+  height = '18px',
+  fontSize = '14px',
+  hpadding = '20px',
+  vpadding = '2px',
+  marginTop = '7px',
   color = '#e62739',
 }) => {
   if (error === undefined || error === null) {
@@ -40,11 +40,11 @@ export const RcError: React.FC<RcErrorProps> = ({
   return (
     <div
       css={css`
-        ${fixedHeight ? `height:${height}px;` : ''}
-        font-size: ${fontSize}px;
-        line-height: ${fontSize}px;
-        padding: ${vpadding}px ${hpadding}px;
-        margin-top: ${marginTop}px;
+        ${fixedHeight ? `height:${height};` : ''}
+        font-size: ${fontSize};
+        line-height: ${fontSize};
+        padding: ${vpadding} ${hpadding};
+        margin-top: ${marginTop};
         color: ${color};
       `}
     >

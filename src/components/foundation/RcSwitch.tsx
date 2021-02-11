@@ -4,16 +4,16 @@ import { css } from '@emotion/react';
 export interface RcSwitchProps {
   on?: boolean;
   onClick?: ((event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void) | undefined;
-  gap?: number;
-  height?: number;
+  gap?: string;
+  height?: string;
   knobColor?: string;
   knobColorMuted?: string;
   backgroundColor?: string;
   backgroundColorMuted?: string;
   borderColor?: string;
-  borderWidth?: number;
+  borderWidth?: string;
   knobBorderColor?: string;
-  knobBorderWidth?: number;
+  knobBorderWidth?: string;
   transitionTime?: string;
   outline?: boolean;
   darkMode?: boolean;
@@ -22,47 +22,35 @@ export interface RcSwitchProps {
 export const RcSwitch: React.FC<RcSwitchProps> = ({
   on,
   onClick,
-  gap = 4,
-  height = 40,
+  gap = '4px',
+  height = '40px',
   knobColor = 'white',
   knobColorMuted = 'white',
   backgroundColor = '#2ecc71',
   backgroundColorMuted = '#ccc',
   borderColor = '#484848',
-  borderWidth = 0,
+  borderWidth = '0px',
   knobBorderColor = '#484848',
-  knobBorderWidth = 0,
+  knobBorderWidth = '0px',
   transitionTime = '0.3s',
   outline,
   darkMode,
 }) => {
   // check widths
   if (borderColor === '') {
-    borderWidth = 0;
+    borderWidth = '0px';
   }
   if (knobBorderColor === '') {
-    knobBorderWidth = 0;
+    knobBorderWidth = '0px';
   }
 
-  // check limits
-  if (borderWidth > height / 2) {
-    borderWidth = height / 2;
-  }
-  height -= 2 * borderWidth;
-  if (height < 0) {
-    height = 1;
-  }
-  if (knobBorderWidth + gap > height / 2) {
-    knobBorderWidth = height / 2 - gap;
-  }
-  if (gap > height / 3) {
-    gap = height / 3;
-  }
+  // fix height
+  height = `calc(${height} - ${borderWidth} * 2)`;
 
   // outline mode
   if (outline && !darkMode) {
-    borderWidth = 1;
-    knobBorderWidth = 1;
+    borderWidth = '1px';
+    knobBorderWidth = '1px';
     knobColor = knobBorderColor;
     backgroundColor = '';
     backgroundColorMuted = '';
@@ -70,7 +58,7 @@ export const RcSwitch: React.FC<RcSwitchProps> = ({
 
   // dark mode
   if (darkMode && !outline) {
-    knobBorderWidth = 1;
+    knobBorderWidth = '1px';
     knobColor = '#484848';
     knobColorMuted = 'white';
     backgroundColorMuted = 'white';
@@ -79,7 +67,7 @@ export const RcSwitch: React.FC<RcSwitchProps> = ({
 
   // darkmode and outline
   if (darkMode && outline) {
-    borderWidth = 1;
+    borderWidth = '1px';
     borderColor = 'white';
     backgroundColor = '';
     backgroundColorMuted = '';
@@ -87,11 +75,8 @@ export const RcSwitch: React.FC<RcSwitchProps> = ({
   }
 
   // constants
-  let diam = height - 2 * gap - 2 * knobBorderWidth - 2 * borderWidth;
-  if (diam < 0) {
-    diam = 1;
-  }
-  const width = 2 * diam + 2 * gap + 2 * knobBorderWidth + 2 * borderWidth;
+  const diam = `calc(${height} - 2 * ${gap} - 2 * ${knobBorderWidth} - 2 * ${borderWidth})`;
+  const width = `calc(2 * ${diam} + 2 * ${gap} + 2 * ${knobBorderWidth} + 2 * ${borderWidth})`;
 
   return (
     <div>
@@ -99,14 +84,14 @@ export const RcSwitch: React.FC<RcSwitchProps> = ({
         css={css`
           position: relative;
           display: inline-block;
-          width: ${width}px;
-          height: ${height}px;
-          line-height: ${height}px;
+          width: ${width};
+          height: ${height};
+          line-height: ${height};
 
           input:checked + span:before {
-            -webkit-transform: translateX(${diam}px);
-            -ms-transform: translateX(${diam}px);
-            transform: translateX(${diam}px);
+            -webkit-transform: translateX(${diam});
+            -ms-transform: translateX(${diam});
+            transform: translateX(${diam});
             ${knobColor ? `background-color: ${knobColor};` : ''}
           }
 
@@ -140,20 +125,20 @@ export const RcSwitch: React.FC<RcSwitchProps> = ({
             ${backgroundColorMuted ? `background-color: ${backgroundColorMuted};` : ''}
             -webkit-transition: ${transitionTime};
             transition: ${transitionTime};
-            border-radius: ${height * 2}px;
-            border: ${borderWidth}px solid ${borderColor};
+            border-radius: calc(2 * ${height});
+            border: ${borderWidth} solid ${borderColor};
 
             :before {
               position: absolute;
               content: '';
-              height: ${diam}px;
-              width: ${diam}px;
-              left: ${gap}px;
-              bottom: ${gap}px;
+              height: ${diam};
+              width: ${diam};
+              left: ${gap};
+              bottom: ${gap};
               ${knobColorMuted ? `background-color: ${knobColorMuted};` : ''}
               -webkit-transition: ${transitionTime};
               transition: ${transitionTime};
-              border: ${knobBorderWidth}px solid ${knobBorderColor};
+              border: ${knobBorderWidth} solid ${knobBorderColor};
             }
 
             :before {

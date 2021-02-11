@@ -3,20 +3,20 @@ import { css } from '@emotion/react';
 import { hex2rgb } from '../helpers';
 
 export interface RcSpinDotsProps {
-  size?: number;
+  size?: string;
   color?: string;
-  thickness?: number;
+  thickness?: string;
   time?: string;
 }
 
 export const RcSpinDots: React.FC<RcSpinDotsProps> = ({
-  size = 64,
+  size = '64px',
   color = '#236cd2',
   thickness,
   time = '0.6s',
 }) => {
-  const f = size / 7;
-  const d = thickness || size / 5;
+  const f = `calc(${size} / 7)`;
+  const d = thickness || `calc(${size} / 5)`;
 
   const { r, g, b } = hex2rgb(color);
 
@@ -29,19 +29,20 @@ export const RcSpinDots: React.FC<RcSpinDotsProps> = ({
   return (
     <div
       css={css`
-        height: ${size}px;
-        width: ${size}px;
+        height: ${size};
+        width: ${size};
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
       `}
     >
       <div
         className="loader"
         css={css`
-          font-size: ${f}px;
-          width: ${d}px;
-          height: ${d}px;
+          font-size: ${f};
+          width: ${d};
+          height: ${d};
           border-radius: 50%;
           position: relative;
           text-indent: -9999em;

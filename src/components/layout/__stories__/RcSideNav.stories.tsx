@@ -112,7 +112,7 @@ export const Custom: Story<RcSideNavProps> = (args) => {
               justifyContent: 'center',
             }}
           >
-            <IconHouseThreeD size={64} />
+            <IconHouseThreeD size="64px" />
           </div>
         </RcSideNav>
       )}
