@@ -1,6 +1,0 @@
-{
-  "*.{ts,tsx}": ["yarn lint:fix"],
-  "*.scss": ["prettier --write"],
-  "{*.{json,md}}": ["prettier --write"]
-}
-
