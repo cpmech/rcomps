@@ -27,10 +27,22 @@ ReadOnly.args = {
 export const Small = Template.bind({});
 Small.args = {
   ...Template.args,
-  height: 32,
-  fontSize: 14,
-  labelFontSize: 14,
+  height: '32px',
+  fontSize: '14px',
+  labelFontSize: '14px',
   value: 'Smaller',
+};
+
+export const NotRounded = Template.bind({});
+NotRounded.args = {
+  ...Template.args,
+  borderRadius: '0px',
+};
+
+export const NoBorderWidth = Template.bind({});
+NoBorderWidth.args = {
+  ...Template.args,
+  borderWidth: '0px',
 };
 
 export const Errors: Story<RcInputProps> = (args) => (
@@ -86,8 +98,8 @@ export const Password: Story<RcInputProps> = (args) => {
   const [value, setValue] = useState('1234-5678');
   const [show, setShow] = useState(false);
   const icon = (
-    <div onClick={() => setShow(!show)}>
-      {show ? <IconEye size={18} /> : <IconEyeNo size={18} />}
+    <div onClick={() => setShow(!show)} style={{ cursor: 'pointer' }}>
+      {show ? <IconEye size="18px" /> : <IconEyeNo size="18px" />}
     </div>
   );
   return (
@@ -111,7 +123,7 @@ export const WithSuffix: Story<RcInputProps> = (args) => (
     }}
   >
     <RcInput {...args} label="Energy" value="123.456" suffix="kWh" />
-    <RcInput {...args} label="Energy" value="123.456" suffix={<IconExclamation size={18} />} />
+    <RcInput {...args} label="Energy" value="123.456" suffix={<IconExclamation size="18px" />} />
   </div>
 );
 

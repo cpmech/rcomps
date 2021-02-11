@@ -20,9 +20,9 @@ export interface RcPopupProps {
   colorTitleLoading?: string;
   fontSizeTitle?: string;
   fontWeightTitle?: string;
-  vspaceTop?: number;
-  vspaceMiddle?: number;
-  vspaceBottom?: number;
+  vspaceTop?: string;
+  vspaceMiddle?: string;
+  vspaceBottom?: string;
 
   colorSpinner?: string;
 }
@@ -43,9 +43,9 @@ export const RcPopup: React.FC<RcPopupProps> = ({
   colorTitleLoading = '#236cd2',
   fontSizeTitle = '1.2em',
   fontWeightTitle = 'bold',
-  vspaceTop = 20,
-  vspaceMiddle = 20,
-  vspaceBottom = 30,
+  vspaceTop = '20px',
+  vspaceMiddle = '20px',
+  vspaceBottom = '30px',
 
   colorSpinner = '#236cd2',
 
@@ -55,8 +55,8 @@ export const RcPopup: React.FC<RcPopupProps> = ({
   const renderContent = () => (
     <div
       css={css`
-        margin-top: ${vspaceTop}px;
-        margin-bottom: ${vspaceBottom}px;
+        margin-top: ${vspaceTop};
+        margin-bottom: ${vspaceBottom};
       `}
     >
       {title && (
@@ -65,7 +65,7 @@ export const RcPopup: React.FC<RcPopupProps> = ({
             color: ${isError ? colorTitleError : isLoading ? colorTitleLoading : colorTitle};
             font-size: ${fontSizeTitle};
             font-weight: ${fontWeightTitle};
-            margin-bottom: ${vspaceMiddle}px;
+            margin-bottom: ${vspaceMiddle};
           `}
         >
           {title}

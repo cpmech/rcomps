@@ -4,12 +4,12 @@ import { RcSpinCircle } from '../foundation';
 
 export interface RcSpinnerPageProps {
   color?: string;
-  heightMenu?: number;
+  heightMenu?: string;
 }
 
 export const RcSpinnerPage: React.FC<RcSpinnerPageProps> = ({
   color = '#5d5c61',
-  heightMenu = 120,
+  heightMenu = '120px',
 }) => {
   return (
     <div
@@ -19,7 +19,7 @@ export const RcSpinnerPage: React.FC<RcSpinnerPageProps> = ({
         justify-content: center;
         align-items: center;
         margin: auto;
-        height: calc(100vh - ${heightMenu}px);
+        height: calc(100vh - ${heightMenu});
         max-width: 960px;
         padding-left: 20px;
         padding-right: 20px;

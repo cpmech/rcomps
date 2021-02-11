@@ -8,21 +8,21 @@ export interface RcNotifierProps {
   title?: string;
   caption?: string;
   message?: string;
-  titleFontSize?: number;
-  messageFontSize?: number;
-  iconSize?: number;
-  marginVert?: number;
-  verticalGap?: number;
-  paddingHoriz?: number;
-  iconPadding?: number;
+  titleFontSize?: string;
+  messageFontSize?: string;
+  iconSize?: string;
+  marginVert?: string;
+  verticalGap?: string;
+  paddingHoriz?: string;
+  iconPadding?: string;
   color?: string;
   bgColor?: string;
   borderColor?: string;
   titleBgColor?: string;
   titleBorderColor?: string;
-  heightPhone?: number;
-  heightTablet?: number;
-  heightDesktop?: number;
+  heightPhone?: string;
+  heightTablet?: string;
+  heightDesktop?: string;
   noHightlightCloseButton?: boolean;
   cssTitle?: string;
   cssCaption?: string;
@@ -34,21 +34,21 @@ export const RcNotifier: React.FC<RcNotifierProps> = ({
   title,
   caption,
   message,
-  titleFontSize = 16,
-  messageFontSize = 14,
-  iconSize = 20,
-  marginVert = 10,
-  verticalGap = 10,
-  paddingHoriz = 20,
-  iconPadding = 25,
+  titleFontSize = '16px',
+  messageFontSize = '14px',
+  iconSize = '20px',
+  marginVert = '10px',
+  verticalGap = '10px',
+  paddingHoriz = '20px',
+  iconPadding = '25px',
   color = '#484848',
   bgColor = '#ffffff',
   borderColor = '#cccccc',
   titleBgColor,
   titleBorderColor,
-  heightPhone = 60,
-  heightTablet = 100,
-  heightDesktop = 150,
+  heightPhone = '60px',
+  heightTablet = '100px',
+  heightDesktop = '150px',
   noHightlightCloseButton = true,
   cssTitle,
   cssCaption = `font-size: 14; font-weight: bold; color: #e62739;`,
@@ -65,12 +65,12 @@ export const RcNotifier: React.FC<RcNotifierProps> = ({
         color: ${color};
         background-color: ${bgColor};
         border-top: 1px solid ${borderColor};
-        height: ${heightPhone}px;
+        height: ${heightPhone};
         @media only screen and (min-width: 375px) {
-          height: ${heightTablet}px;
+          height: ${heightTablet};
         }
         @media only screen and (min-width: 600px) {
-          height: ${heightDesktop}px;
+          height: ${heightDesktop};
         }
         overflow: auto;
       `}
@@ -81,13 +81,13 @@ export const RcNotifier: React.FC<RcNotifierProps> = ({
             display: flex;
             flex-direction: column;
             justify-content: center;
-            font-size: ${titleFontSize}px;
+            font-size: ${titleFontSize};
             box-sizing: border-box;
             ${titleBgColor ? `background-color:${titleBgColor};` : ''}
             ${titleBorderColor ? `border-bottom: 1px solid ${titleBorderColor};` : ''}
-          margin-top: ${marginVert}px;
-            padding-left: ${paddingHoriz}px;
-            padding-right: ${paddingHoriz}px;
+          margin-top: ${marginVert};
+            padding-left: ${paddingHoriz};
+            padding-right: ${paddingHoriz};
           `}
         >
           {cssTitle ? <span css={css(cssTitle)}>{title}</span> : <span>{title}</span>}
@@ -96,10 +96,10 @@ export const RcNotifier: React.FC<RcNotifierProps> = ({
       {message && (
         <div
           css={css`
-            padding-left: ${paddingHoriz}px;
-            padding-right: ${paddingHoriz}px;
-            font-size: ${messageFontSize}px;
-            margin-top: ${verticalGap}px;
+            padding-left: ${paddingHoriz};
+            padding-right: ${paddingHoriz};
+            font-size: ${messageFontSize};
+            margin-top: ${verticalGap};
             width: 85%;
           `}
         >
@@ -124,8 +124,8 @@ export const RcNotifier: React.FC<RcNotifierProps> = ({
             display: flex;
             align-items: center;
             justify-content: center;
-            width: ${iconSize + iconPadding}px;
-            height: ${iconSize + iconPadding}px;
+            width: calc(${iconSize} + ${iconPadding});
+            height: calc(${iconSize} + ${iconPadding});
             border-radius: 2px;
             ${noHightlightCloseButton ? '' : `:hover { background-color: rgba(0, 0, 0, 0.1); }`}
           `}

@@ -25,7 +25,7 @@ export interface RcFlexTableProps {
   showLabelsWide?: boolean;
   showMissingLabels?: boolean;
   showControlButtons?: boolean;
-  narrowWidth?: number;
+  narrowWidth?: string;
 
   colorMainNarrow?: string;
   colorMainWide?: string;
@@ -45,9 +45,9 @@ export interface RcFlexTableProps {
   missingDataMessage?: string;
   controlHideAllText?: string;
   controlShowAllText?: string;
-  controlHeight?: number;
+  controlHeight?: string;
   controlButtonsProps?: RcButtonProps;
-  showHideIconSize?: number;
+  showHideIconSize?: string;
   hpadding?: string;
   vpadding?: string;
   hgapControlButtons?: string;
@@ -72,7 +72,7 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
   showLabelsWide = true,
   showMissingLabels = true,
   showControlButtons = true,
-  narrowWidth = 600,
+  narrowWidth = '600px',
 
   colorMainNarrow = 'slategrey',
   colorMainWide = '#ccc',
@@ -92,11 +92,11 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
   missingDataMessage = 'Missing data',
   controlHideAllText = 'Hide all',
   controlShowAllText = 'Show all',
-  controlHeight = 34,
+  controlHeight = '34px',
   controlButtonsProps = {
-    height: 28,
+    height: '28px',
   },
-  showHideIconSize = 18,
+  showHideIconSize = '18px',
   hpadding = '1.0em',
   vpadding = '0.8em',
   hgapControlButtons = '6px',
@@ -190,7 +190,7 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
 
   const styleControl = css`
     position: relative;
-    height: ${controlHeight}px;
+    height: ${controlHeight};
     display: ${showControlButtons ? 'block' : 'none'};
   `;
 
@@ -257,8 +257,8 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
     background-color: rgba(0, 0, 0, 0.07);
     border-radius: 5px;
     line-height: 0;
-    width: ${2.5 * showHideIconSize}px;
-    height: ${1.5 * showHideIconSize}px;
+    width: calc(2.5 * ${showHideIconSize});
+    height: calc(2.5 * ${showHideIconSize});
     margin-left: ${hpadding};
     :hover {
       background-color: rgba(0, 0, 0, 0.14);
@@ -288,7 +288,7 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
 
   if (isNarrow) {
     return (
-      <div>
+      <Fragment>
         {/* ----------------- control ----------------- */}
         <div css={styleControl}>
           <div css={styleControlButtons}>
@@ -370,14 +370,14 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
             ))}
           </Fragment>
         ))}
-      </div>
+      </Fragment>
     );
   }
 
   // wide ///////////////////////////////////////////////////////////////////////////////////////////
 
   return (
-    <div>
+    <Fragment>
       {/* ----------------- header ----------------- */}
       {showLabelsWide && (
         <Fragment>
@@ -446,7 +446,7 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
               key={col}
               css={css`
                 width: ${widths[J + 1]}%;
-                border-top: ${i === 0 ? 1 : 0}px solid ${colorBorderWide};
+                border-top: ${i === 0 ? `1px` : `0px`} solid ${colorBorderWide};
                 border-bottom: 1px solid ${colorBorderWide};
                 ${aligns && aligns[col] ? `align-items: ${aligns[col]};` : 'align-items: center;'}
                 ${styleColumnsWide}
@@ -457,6 +457,6 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
           ))}
         </div>
       ))}
-    </div>
+    </Fragment>
   );
 };

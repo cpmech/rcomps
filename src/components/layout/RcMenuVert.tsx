@@ -10,14 +10,14 @@ export interface RcMenuVertProps {
   color?: string;
   colorHover?: string;
 
-  minWidth?: number;
-  maxWidth?: number;
+  minWidth?: string;
+  maxWidth?: string;
 
-  paddingVert?: number;
-  paddingHoriz?: number;
-  gapVertEntries?: number;
-  gapVertSubEntries?: number;
-  gapHorizLabel?: number;
+  paddingVert?: string;
+  paddingHoriz?: string;
+  gapVertEntries?: string;
+  gapVertSubEntries?: string;
+  gapHorizLabel?: string;
 
   fontSizeSubEntries?: string;
 
@@ -35,11 +35,11 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
   minWidth,
   maxWidth,
 
-  paddingVert = 40,
-  paddingHoriz = 20,
-  gapVertEntries = 20,
-  gapVertSubEntries = 30,
-  gapHorizLabel = 10,
+  paddingVert = '40px',
+  paddingHoriz = '20px',
+  gapVertEntries = '20px',
+  gapVertSubEntries = '30px',
+  gapHorizLabel = '10px',
 
   fontSizeSubEntries = '90%',
 
@@ -50,18 +50,18 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
   //
   const styles = {
     root: css`
-      min-width: ${minWidth}px;
-      max-width: ${maxWidth}px;
-      padding: ${paddingVert}px ${paddingHoriz}px;
+      min-width: ${minWidth};
+      max-width: ${maxWidth};
+      padding: ${paddingVert} ${paddingHoriz};
       ${bgColor ? `background-color: ${bgColor};` : ''}
     `,
 
     vspaceMain: css`
-      padding-top: ${gapVertEntries}px;
+      padding-top: ${gapVertEntries};
     `,
 
     vspaceSub: css`
-      padding-top: ${gapVertSubEntries}px;
+      padding-top: ${gapVertSubEntries};
     `,
 
     entry: css`
@@ -74,13 +74,13 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
 
     label: css`
       ${labelWordBreak ? `word-break: break-all;` : ''}
-      margin-left: ${gapHorizLabel}px;
+      margin-left: ${gapHorizLabel};
     `,
 
     labelHL: css`
       ${labelWordBreak ? `word-break: break-all;` : ''}
       cursor: pointer;
-      margin-left: ${gapHorizLabel}px;
+      margin-left: ${gapHorizLabel};
       :hover {
         color: ${colorHover};
       }
@@ -89,7 +89,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     labelSub: css`
       ${labelSubWordBreak ? `word-break: break-all;` : ''}
       cursor: pointer;
-      margin-left: ${gapHorizLabel}px;
+      margin-left: ${gapHorizLabel};
       font-size: ${fontSizeSubEntries};
       :hover {
         color: ${colorHover};
@@ -100,7 +100,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     `,
 
     iconSub: css`
-      margin-right: ${gapHorizLabel}px;
+      margin-right: ${gapHorizLabel};
     `,
   };
 

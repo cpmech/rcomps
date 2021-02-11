@@ -15,7 +15,7 @@ export const entries: RcMenuEntry[] = [
     comp: <button onClick={() => window.alert('second clicked')}>Second</button>,
   },
   {
-    icon: <IconHouseThreeD size={80} />,
+    icon: <IconHouseThreeD size="80px" />,
     onClick: () => window.alert('house selected'),
   },
   {
@@ -51,17 +51,17 @@ export const entries: RcMenuEntry[] = [
     label: 'Address book with nice people in it',
     entries: [
       {
-        icon: <IconUser size={16} />,
+        icon: <IconUser size="16px" />,
         label: 'Bender Rodriguez',
         onClick: () => window.alert('Bender clicked'),
       },
       {
-        icon: <IconUser size={16} />,
+        icon: <IconUser size="16px" />,
         label: 'Turanga Leela',
         onClick: () => window.alert('Leela clicked'),
       },
       {
-        icon: <IconUser size={16} />,
+        icon: <IconUser size="16px" />,
         label: 'Philip J Fry',
         onClick: () => window.alert('Fry clicked'),
       },

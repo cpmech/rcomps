@@ -8,24 +8,24 @@ export interface RcCardProps {
   withShowHide?: boolean;
 
   width?: string;
-  minWidth?: number;
-  maxHeight?: number;
-  iconSize?: number;
-  iconPadding?: number;
-  borderRadius?: number;
+  minWidth?: string;
+  maxHeight?: string;
+  iconSize?: string;
+  iconPadding?: string;
+  borderRadius?: string;
   bgColor?: string;
 
   headerColor?: string;
   headerBgColor?: string;
-  headerHeight?: number;
-  headerPaddingHoriz?: number;
+  headerHeight?: string;
+  headerPaddingHoriz?: string;
 
   title?: string;
   titleBgColor?: string;
   titleBorderColor?: string;
 
-  paddingVert?: number;
-  paddingHoriz?: number;
+  paddingVert?: string;
+  paddingHoriz?: string;
 
   cssTitle?: string;
 }
@@ -37,20 +37,20 @@ export const RcCard: React.FC<RcCardProps> = ({
   width = '100%',
   minWidth,
   maxHeight,
-  iconSize = 20,
-  iconPadding = 25,
-  borderRadius = 8,
+  iconSize = '20px',
+  iconPadding = '25px',
+  borderRadius = '8px',
   bgColor = '#ffffff',
 
   headerColor = '#484848',
   headerBgColor = '#ffffff',
-  headerHeight = 52,
-  headerPaddingHoriz = 20,
+  headerHeight = '52px',
+  headerPaddingHoriz = '20px',
 
   title,
 
-  paddingVert = 5,
-  paddingHoriz = 10,
+  paddingVert = '5px',
+  paddingHoriz = '10px',
 
   cssTitle = `font-weight: bold;`,
 
@@ -62,18 +62,18 @@ export const RcCard: React.FC<RcCardProps> = ({
     setShow(!!initShow);
   }, [initShow]);
 
-  const contentMaxHeight = maxHeight ? Math.max(100, maxHeight - headerHeight) : undefined;
+  const contentMaxHeight = maxHeight ? `calc(${maxHeight} - ${headerHeight})` : '';
 
   return (
     <div
       css={css`
         position: relative;
         width: ${width};
-        ${minWidth ? `min-width: ${minWidth}px;` : ''}
+        ${minWidth ? `min-width: ${minWidth};` : ''}
         ${maxHeight ? `max-height: ${maxHeight};` : ''}
         background-color: ${bgColor};
         overflow: hidden;
-        border-radius: ${borderRadius}px;
+        border-radius: ${borderRadius};
         -webkit-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
         box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
       `}
@@ -82,8 +82,8 @@ export const RcCard: React.FC<RcCardProps> = ({
         <div
           css={css`
             /* header */
-            padding-left: ${headerPaddingHoriz}px;
-            padding-right: ${headerPaddingHoriz}px;
+            padding-left: ${headerPaddingHoriz};
+            padding-right: ${headerPaddingHoriz};
             width: 100%;
             color: ${headerColor};
             background-color: ${headerBgColor};
@@ -101,7 +101,7 @@ export const RcCard: React.FC<RcCardProps> = ({
               display: flex;
               align-items: center;
               justify-content: flex-start;
-              height: ${headerHeight}px;
+              height: ${headerHeight};
             `}
           >
             {cssTitle ? <span css={css(cssTitle)}>{title}</span> : <span>{title}</span>}
@@ -113,12 +113,12 @@ export const RcCard: React.FC<RcCardProps> = ({
         <div
           css={css`
             /* children */
-            ${contentMaxHeight ? `max-height: ${contentMaxHeight}px;` : ''}
+            ${contentMaxHeight ? `max-height: ${contentMaxHeight};` : ''}
             ${contentMaxHeight ? `overflow-y: scroll;` : ''}
-            padding-top: ${paddingVert}px;
-            padding-bottom: ${paddingVert}px;
-            padding-left: ${paddingHoriz}px;
-            padding-right: ${paddingHoriz}px;
+            padding-top: ${paddingVert};
+            padding-bottom: ${paddingVert};
+            padding-left: ${paddingHoriz};
+            padding-right: ${paddingHoriz};
           `}
         >
           {children}
@@ -141,8 +141,8 @@ export const RcCard: React.FC<RcCardProps> = ({
               display: flex;
               align-items: center;
               justify-content: center;
-              width: ${iconSize + iconPadding}px;
-              height: ${headerHeight}px;
+              width: calc(${iconSize} + ${iconPadding});
+              height: ${headerHeight};
               color: ${headerColor};
             `}
             onClick={() => setShow(!show)}

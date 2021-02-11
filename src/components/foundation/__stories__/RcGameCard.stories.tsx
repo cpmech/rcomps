@@ -11,7 +11,7 @@ const Hero: React.FC = () => (
       alignItems: 'center',
     }}
   >
-    <IconHouseThreeD size={90} />
+    <IconHouseThreeD size="90px" />
     <p
       style={{
         paddingLeft: 20,

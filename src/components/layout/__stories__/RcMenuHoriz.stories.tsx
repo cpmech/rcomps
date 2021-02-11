@@ -14,13 +14,13 @@ export const Default = Template.bind({});
 export const NoPadding = Template.bind({});
 NoPadding.args = {
   ...Template.args,
-  gapVert: 0,
-  gapVertSubEntries: 0,
-  paddingVert: 0,
+  gapVert: '0px',
+  gapVertSubEntries: '0px',
+  paddingVert: '0px',
 };
 
 export const MaxWidth = Template.bind({});
 MaxWidth.args = {
   ...Template.args,
-  maxWidth: 900,
+  maxWidth: '900px',
 };

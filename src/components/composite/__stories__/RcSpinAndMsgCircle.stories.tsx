@@ -6,12 +6,11 @@ export default {
   component: RcSpinAndMsgCircle,
   argTypes: {
     color: { control: 'color' },
-    size: { control: { type: 'range', min: 0, max: 300, step: 1 } },
   },
 } as Meta;
 
 const Template: Story<RcSpinAndMsgCircleProps> = (args) => (
-  <RcSpinAndMsgCircle {...args} message="-^-" fontSize={34} />
+  <RcSpinAndMsgCircle {...args} message="-^-" fontSize="34px" />
 );
 
 export const Default = Template.bind({});
@@ -20,5 +19,5 @@ export const Styled = Template.bind({});
 Styled.args = {
   ...Template.args,
   color: '#D22385',
-  size: 200,
+  size: '200px',
 };

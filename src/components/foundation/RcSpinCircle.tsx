@@ -3,41 +3,42 @@ import { css } from '@emotion/react';
 import { hex2rgb } from '../helpers';
 
 export interface RcSpinCircleProps {
-  size?: number;
+  size?: string;
   color?: string;
-  thickness?: number;
+  thickness?: string;
   time?: string;
 }
 
 export const RcSpinCircle: React.FC<RcSpinCircleProps> = ({
-  size = 64,
+  size = '64px',
   color = '#236cd2',
-  thickness = 6,
+  thickness = '6px',
   time = '0.6s',
 }) => {
-  const len = size - 2 * thickness;
+  const len = `calc(${size} - ${thickness} * 2)`;
   const { r, g, b } = hex2rgb(color);
   return (
     <div
       css={css`
         position: relative;
-        width: ${size}px;
-        height: ${size}px;
+        width: ${size};
+        height: ${size};
+        overflow: hidden;
       `}
     >
       <div
         css={css`
           position: absolute;
-          height: ${len}px;
-          width: ${len}px;
+          height: ${len};
+          width: ${len};
           -webkit-animation: rotation ${time} infinite linear;
           -moz-animation: rotation ${time} infinite linear;
           -o-animation: rotation ${time} infinite linear;
           animation: rotation ${time} infinite linear;
-          border-left: ${thickness}px solid rgba(${r}, ${g}, ${b}, 0.15);
-          border-right: ${thickness}px solid rgba(${r}, ${g}, ${b}, 0.15);
-          border-bottom: ${thickness}px solid rgba(${r}, ${g}, ${b}, 0.15);
-          border-top: ${thickness}px solid rgba(${r}, ${g}, ${b}, 0.8);
+          border-left: ${thickness} solid rgba(${r}, ${g}, ${b}, 0.15);
+          border-right: ${thickness} solid rgba(${r}, ${g}, ${b}, 0.15);
+          border-bottom: ${thickness} solid rgba(${r}, ${g}, ${b}, 0.15);
+          border-top: ${thickness} solid rgba(${r}, ${g}, ${b}, 0.8);
           border-radius: 100%;
           @-webkit-keyframes rotation {
             from {

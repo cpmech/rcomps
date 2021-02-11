@@ -13,27 +13,27 @@ export interface RcSideNavEntry {
 export interface RcSideNavProps {
   onClose: () => void;
   entries?: RcSideNavEntry[];
-  width?: number;
-  iconSize?: number;
-  iconPadding?: number;
+  width?: string;
+  iconSize?: string;
+  iconPadding?: string;
   color?: string;
   bgColor?: string;
   zIndex?: number;
   menuEntryFontsize?: string;
-  bottomVSpace?: number;
+  bottomVSpace?: string;
 }
 
 export const RcSideNav: React.FC<RcSideNavProps> = ({
   onClose,
   entries,
-  width = 250,
-  iconSize = 20,
-  iconPadding = 25,
+  width = '250px',
+  iconSize = '20px',
+  iconPadding = '25px',
   color = 'white',
   bgColor = '#484848',
   zIndex,
   menuEntryFontsize = '20px',
-  bottomVSpace = 30,
+  bottomVSpace = '30px',
   children,
 }) => {
   zIndex = zIndex || rcConfig.zIndices.sideNav;
@@ -44,7 +44,7 @@ export const RcSideNav: React.FC<RcSideNavProps> = ({
         css={css`
           /* side navigation menu */
           height: 100%;
-          width: ${width}px;
+          width: ${width};
           position: fixed;
           z-index: ${zIndex};
           top: 0;
@@ -96,7 +96,7 @@ export const RcSideNav: React.FC<RcSideNavProps> = ({
               {children}
               <div
                 css={css`
-                  padding-bottom: ${bottomVSpace}px;
+                  padding-bottom: ${bottomVSpace};
                 `}
               ></div>
             </Fragment>
@@ -120,8 +120,8 @@ export const RcSideNav: React.FC<RcSideNavProps> = ({
               display: flex;
               align-items: center;
               justify-content: center;
-              width: ${iconSize + iconPadding}px;
-              height: ${iconSize + iconPadding}px;
+              width: calc(${iconSize} + ${iconPadding});
+              height: calc(${iconSize} + ${iconPadding});
               border-radius: 2px;
             `}
           >

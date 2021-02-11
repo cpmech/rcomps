@@ -7,8 +7,8 @@ export interface RcSwitchAndTextProps {
   on: boolean;
   onClick: () => void;
   textAtRight?: boolean;
-  hgap?: number;
-  switchHeight?: number;
+  hgap?: string;
+  switchHeight?: string;
   spaceInBetween?: boolean;
   cssText?: string;
 }
@@ -18,8 +18,8 @@ export const RcSwitchAndText: React.FC<RcSwitchAndTextProps> = ({
   on,
   onClick,
   textAtRight,
-  hgap = 10,
-  switchHeight = 24,
+  hgap = '10px',
+  switchHeight = '24px',
   spaceInBetween = false,
   cssText,
 }) => {
@@ -31,11 +31,11 @@ export const RcSwitchAndText: React.FC<RcSwitchAndTextProps> = ({
   `;
 
   const styleAtLeft = css`
-    margin-right: ${hgap}px;
+    margin-right: ${hgap};
   `;
 
   const styleAtRight = css`
-    margin-left: ${hgap}px;
+    margin-left: ${hgap};
   `;
 
   if (textAtRight) {

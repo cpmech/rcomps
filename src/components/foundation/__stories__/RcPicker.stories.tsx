@@ -57,6 +57,27 @@ const Template: Story<RcPickerProps> = (args) => (
 
 export const Default = Template.bind({});
 
+export const Small = Template.bind({});
+Small.args = {
+  ...Template.args,
+  height: '32px',
+  fontSize: '14px',
+  labelFontSize: '14px',
+  value: 'Smaller',
+};
+
+export const NotRounded = Template.bind({});
+NotRounded.args = {
+  ...Template.args,
+  borderRadius: '0px',
+};
+
+export const NoBorderWidth = Template.bind({});
+NoBorderWidth.args = {
+  ...Template.args,
+  borderWidth: '0px',
+};
+
 export const UseTitle: Story<RcPickerProps> = (args) => (
   <RcPicker {...args} entries={entriesT} selected={entriesT[1].title} />
 );
@@ -117,7 +138,7 @@ export const Stacked: Story<RcPickerProps> = (args) => (
 );
 
 export const WithScrollbar: Story<RcPickerProps> = (args) => (
-  <RcPicker {...args} entries={manyEntries} selected={manyEntries[1].message} heightBox={300} />
+  <RcPicker {...args} entries={manyEntries} selected={manyEntries[1].message} heightBox="300px" />
 );
 
 export const Controlled: Story<RcPickerProps> = (args) => {

@@ -8,12 +8,12 @@ export interface RcChartRingProps {
   sufix?: string;
   animated?: boolean;
   color?: string;
-  thickness?: number;
+  thickness?: string;
   fontSizePrefix?: string;
   fontSizeMessage?: string;
   fontSizeSufix?: string;
   maxWidthPct?: number;
-  height?: number;
+  height?: string;
 }
 
 export const RcChartRing: React.FC<RcChartRingProps> = ({
@@ -23,12 +23,12 @@ export const RcChartRing: React.FC<RcChartRingProps> = ({
   sufix,
   animated = true,
   color = '#4cc790',
-  thickness = 1.8,
-  fontSizePrefix = 4,
-  fontSizeMessage = 10,
-  fontSizeSufix = 4,
+  thickness = '1.8px',
+  fontSizePrefix = '4px',
+  fontSizeMessage = '10px',
+  fontSizeSufix = '4px',
   maxWidthPct = 100,
-  height = 250,
+  height = '250px',
 }) => {
   return (
     <div
@@ -42,7 +42,7 @@ export const RcChartRing: React.FC<RcChartRingProps> = ({
           display: block;
           margin: 10px auto;
           max-width: ${maxWidthPct}%;
-          height: ${height}px;
+          height: ${height};
         `}
       >
         <path
@@ -61,7 +61,7 @@ export const RcChartRing: React.FC<RcChartRingProps> = ({
         {prefix && (
           <text
             css={css`
-              font-size: ${fontSizePrefix}px;
+              font-size: ${fontSizePrefix};
             `}
             x="50%"
             y="10"
@@ -74,7 +74,7 @@ export const RcChartRing: React.FC<RcChartRingProps> = ({
         {message && (
           <text
             css={css`
-              font-size: ${fontSizeMessage}px;
+              font-size: ${fontSizeMessage};
             `}
             x="50%"
             y="50%"
@@ -87,7 +87,7 @@ export const RcChartRing: React.FC<RcChartRingProps> = ({
         {sufix && (
           <text
             css={css`
-              font-size: ${fontSizeSufix}px;
+              font-size: ${fontSizeSufix};
             `}
             x="50%"
             y="26"

@@ -11,7 +11,7 @@ export interface RcLayoutProps {
   footer?: ReactNode;
   stickyHeader?: boolean;
   stickyWarning?: boolean;
-  maxContentWidth?: number;
+  maxContentWidth?: string;
   zIndexStickyWarning?: number;
   zIndexStickyHeader?: number;
 }
@@ -24,7 +24,7 @@ export const RcLayout: React.FC<RcLayoutProps> = ({
   footer,
   stickyWarning = true,
   stickyHeader = false,
-  maxContentWidth = 1124,
+  maxContentWidth = '1280px',
   zIndexStickyWarning,
   zIndexStickyHeader,
 }) => {
@@ -82,7 +82,7 @@ export const RcLayout: React.FC<RcLayoutProps> = ({
         {/* main centralizer */}
         <div
           css={css`
-            max-width: ${maxContentWidth}px;
+            max-width: ${maxContentWidth};
             margin: 0 auto;
           `}
         >

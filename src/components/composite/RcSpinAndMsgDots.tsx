@@ -5,15 +5,15 @@ import { RcSpinDots, RcSpinDotsProps } from '../foundation';
 export interface RcSpinAndMsgDotsProps extends RcSpinDotsProps {
   message: string;
   color?: string;
-  fontSize?: number;
-  gap?: number;
+  fontSize?: string;
+  gap?: string;
 }
 
 export const RcSpinAndMsgDots: React.FC<RcSpinAndMsgDotsProps> = ({
   message,
   color = '#236cd2',
-  fontSize = 14,
-  gap = 20,
+  fontSize = '14px',
+  gap = '20px',
   ...rest
 }) => {
   return (
@@ -27,7 +27,7 @@ export const RcSpinAndMsgDots: React.FC<RcSpinAndMsgDotsProps> = ({
     >
       <div
         css={css`
-          margin-bottom: ${gap}px;
+          margin-bottom: ${gap};
         `}
       >
         <RcSpinDots {...rest} color={color} />
@@ -35,7 +35,7 @@ export const RcSpinAndMsgDots: React.FC<RcSpinAndMsgDotsProps> = ({
       <div
         css={css`
           color: ${color};
-          font-size: ${fontSize}px;
+          font-size: ${fontSize};
         `}
       >
         {message}

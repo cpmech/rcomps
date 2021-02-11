@@ -8,23 +8,25 @@ export interface RcButtonProps {
   type?: 'button' | 'submit' | 'reset' | undefined;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   width?: string;
-  height?: number;
-  paddingLeft?: number;
-  paddingRight?: number;
-  borderRadius?: number;
-  fontSize?: number;
+  height?: string;
+  paddingLeft?: string;
+  paddingRight?: string;
+  borderRadius?: string;
+  fontSize?: string;
   fontWeight?: string;
   color?: string;
   colorDisabled?: string;
   backgroundColor?: string;
   hoverColor?: string;
   hoverColorOutline?: string;
+  spinDotsSize?: string;
   spinning?: boolean;
   disabled?: boolean;
   outline?: boolean;
   flatLeft?: boolean;
   flatRight?: boolean;
   icon?: ReactNode;
+  focusOutline?: string;
 }
 
 export const RcButton: React.FC<RcButtonProps> = ({
@@ -32,35 +34,40 @@ export const RcButton: React.FC<RcButtonProps> = ({
   type = 'button',
   onClick,
   width,
-  height = 40,
-  paddingLeft = 28,
-  paddingRight = 28,
-  borderRadius = 6,
-  fontSize = 0, // optional
+  height = '40px',
+  paddingLeft = '28px',
+  paddingRight = '28px',
+  borderRadius = '6px',
+  fontSize,
   fontWeight = 'normal',
   color = '#343434',
   colorDisabled = '#666666',
   backgroundColor = '#ebebeb',
   hoverColor = '#d7d7d7',
   hoverColorOutline = '#efefef',
+  spinDotsSize = '25px',
   spinning,
   disabled,
   outline,
   flatLeft,
   flatRight,
   icon,
+  focusOutline = 'thin solid rgba(0, 0, 0, 0)',
   children,
 }) => {
   const style = css`
+    :focus {
+      outline: ${focusOutline};
+    }
     ${width ? `width: ${width};` : ''}
-    height: ${height}px;
-    padding-left: ${paddingLeft}px;
-    padding-right: ${paddingRight}px;
-    border-radius: ${borderRadius}px;
+    height: ${height};
+    padding-left: ${paddingLeft};
+    padding-right: ${paddingRight};
+    border-radius: ${borderRadius};
     ${flatLeft ? `border-top-left-radius:0;border-bottom-left-radius:0;` : ''}
     ${flatRight ? `border-top-right-radius:0;border-bottom-right-radius:0;` : ''}
     border-width: 0;
-    ${fontSize ? `font-size: ${fontSize}px;` : ''}
+    ${fontSize ? `font-size: ${fontSize};` : ''}
     font-weight: ${fontWeight};
     color: ${disabled ? colorDisabled : color};
     ${!disabled ? `cursor: pointer` : ''};
@@ -95,11 +102,7 @@ export const RcButton: React.FC<RcButtonProps> = ({
             align-items: center;
           `}
         >
-          {spinning ? (
-            <RcSpinDots size={height && height > 25 ? height - 15 : 25} color={color} />
-          ) : (
-            icon
-          )}
+          {spinning ? <RcSpinDots size={spinDotsSize} color={color} /> : icon}
         </div>
       ) : (
         children

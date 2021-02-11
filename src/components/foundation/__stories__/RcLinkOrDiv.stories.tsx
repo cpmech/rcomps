@@ -16,6 +16,6 @@ export const Default = Template.bind({});
 
 export const Styled: Story<RcLinkOrDivProps> = (args) => (
   <RcLinkOrDiv {...args} color="#803ced" hoverColor="#9f6cf1">
-    <IconAccount size={64} />
+    <IconAccount size="64px" />
   </RcLinkOrDiv>
 );

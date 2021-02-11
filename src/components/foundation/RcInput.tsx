@@ -13,7 +13,7 @@ export interface RcInputProps extends InputElementCssOptions {
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   password?: boolean;
   suffix?: ReactNode;
-  suffixPaddingRight?: number;
+  suffixPaddingRight?: string;
   readOnly?: boolean;
 }
 
@@ -27,12 +27,12 @@ export const RcInput: React.FC<RcInputProps> = ({
   onBlur,
   password,
   suffix,
-  suffixPaddingRight = 20,
+  suffixPaddingRight = '20px',
   readOnly = false,
   ...rest
 }) => {
   const root = inputElementCss(readOnly, false, rest);
-  const { fontSize = 18, height = 50, mutedColor = '#898989' } = rest;
+  const { fontSize = '18px', height = '50px', mutedColor = '#898989' } = rest;
   return (
     <div css={root}>
       <input
@@ -51,9 +51,9 @@ export const RcInput: React.FC<RcInputProps> = ({
         <div
           css={css`
             position: absolute;
-            line-height: ${fontSize}px;
-            top: ${height / 2 - fontSize / 2}px;
-            right: ${suffixPaddingRight}px;
+            line-height: ${fontSize};
+            top: calc((${height} - ${fontSize}) / 2);
+            right: ${suffixPaddingRight};
             color: ${mutedColor};
           `}
         >

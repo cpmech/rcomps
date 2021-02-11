@@ -1,63 +1,65 @@
 import { css } from '@emotion/react';
 
 export interface InputElementCssOptions {
-  height?: number;
-  borderRadius?: number;
+  height?: string;
+  borderRadius?: string;
   flatLeft?: boolean;
   flatRight?: boolean;
   width?: string;
-  fontSize?: number;
-  labelFontSize?: number;
+  fontSize?: string;
+  labelFontSize?: string;
   scaleLabel?: number;
-  paddingHoriz?: number;
-  paddingRightPicker?: number;
-  labelPaddingHoriz?: number;
+  paddingHoriz?: string;
+  paddingRightPicker?: string;
+  labelPaddingHoriz?: string;
   mutedColor?: string;
   bgColor?: string;
   borderColor?: string;
   darkMode?: boolean;
-  borderWidth?: number;
+  borderWidth?: string;
   error?: boolean | string;
   color?: string;
   hlColor?: string;
   colorError?: string;
   transTime?: string;
-  marginVert?: number;
-  extraDeltaLabel?: number; // to account for weird fonts, because all the computations here are precise
+  marginVert?: string;
+  extraDeltaLabel?: string; // to account for weird fonts, because all the computations here are precise
 }
 
 export const inputElementCss = (
   textMode: boolean,
   pickerMode: boolean,
   {
-    height = 50,
-    borderRadius = 300,
+    height = '50px',
+    borderRadius = '300px',
     flatLeft = false,
     flatRight = false,
     width = '100%',
-    fontSize = 18,
-    labelFontSize = 18,
+    fontSize = '18px',
+    labelFontSize = '18px',
     scaleLabel = 0.8,
-    paddingHoriz = 20,
-    paddingRightPicker = 40,
-    labelPaddingHoriz = 5,
+    paddingHoriz = '20px',
+    paddingRightPicker = '40px',
+    labelPaddingHoriz = '5px',
     mutedColor = '#898989',
     bgColor = '#ffffff',
     borderColor = '#cccccc',
     darkMode = false,
-    borderWidth = 1,
+    borderWidth = '1px',
     error = false,
     color = '#484848',
     hlColor = '#1ca086',
     colorError = '#e62739',
     transTime = '300ms',
-    extraDeltaLabel = 0,
+    extraDeltaLabel = '0px',
     marginVert,
   }: InputElementCssOptions,
 ) => {
-  const deltaLabel = height / 2 + labelFontSize / 2 + extraDeltaLabel;
-  const deltaLine = height / 2;
-  const marginTop = marginVert || (scaleLabel * labelFontSize) / 2;
+  const deltaLabel = `--deltaLabel: calc((${height} + ${labelFontSize}) / 2 + ${extraDeltaLabel})`;
+  const deltaLine = `--deltaLine: calc(${height} / 2)`;
+  const marginTop = marginVert
+    ? `--marginTop: ${marginVert}`
+    : `--marginTop: calc((${labelFontSize} * ${scaleLabel}) / 2)`;
 
   if (darkMode) {
     color = 'white';
@@ -73,19 +75,23 @@ export const inputElementCss = (
   }
 
   const common = `
+    ${deltaLabel};
+    ${deltaLine};
+    ${marginTop};
+
     position: relative;
-    height: ${height}px;
-    margin-top: ${marginTop}px;
+    height: ${height};
+    margin-top: var(--marginTop);
     width: ${width};
     input {
-      font-size: ${fontSize}px;
+      font-size: ${fontSize};
       box-sizing: border-box;
-      height: ${height}px;
+      height: ${height};
       width: 100%;
-      padding-left: ${paddingHoriz}px;
-      padding-right: ${pickerMode ? paddingRightPicker : paddingHoriz}px;
-      border: ${borderWidth}px solid ${borderColor};
-      border-radius: ${borderRadius}px;
+      padding-left: ${paddingHoriz};
+      padding-right: ${pickerMode ? paddingRightPicker : paddingHoriz};
+      border: ${borderWidth} solid ${borderColor};
+      border-radius: ${borderRadius};
       ${flatLeft ? `border-top-left-radius:0;border-bottom-left-radius:0;` : ''}
       ${flatRight ? `border-top-right-radius:0;border-bottom-right-radius:0;` : ''}
       color: ${textMode ? mutedColor : color};
@@ -104,8 +110,8 @@ export const inputElementCss = (
     input[required] + label[placeholder] {
       display: block;
       pointer-events: none;
-      line-height: ${labelFontSize}px;
-      margin-top: -${deltaLabel}px;
+      line-height: ${labelFontSize};
+      margin-top: calc(var(--deltaLabel) * -1);
     }
   `;
 
@@ -120,21 +126,21 @@ export const inputElementCss = (
 
   const transform = `
     transform-origin: center left;
-    transform: translate(0, -${deltaLine}px) scale(${scaleLabel}, ${scaleLabel});
-    padding-left: ${borderWidth === 0 ? 0 : labelPaddingHoriz}px;
+    transform: translate(0, calc(var(--deltaLine) * -1)) scale(${scaleLabel}, ${scaleLabel});
+    padding-left: ${borderWidth === '0px' ? 0 : labelPaddingHoriz};
   `;
 
   const placeholder = `
     content: attr(placeholder);
     display: inline-block;
-    font-size: ${labelFontSize}px;
-    margin-left: ${borderWidth === 0 ? 0 : paddingHoriz + labelPaddingHoriz}px;
-    padding-right: ${labelPaddingHoriz}px;
+    font-size: ${labelFontSize};
+    margin-left: ${borderWidth === '0px' ? 0 : `calc(${paddingHoriz} + ${labelPaddingHoriz});`};
+    padding-right: ${labelPaddingHoriz};
     color: ${mutedColor};
     white-space: nowrap;
     transition: 0.3s ease-in-out;
     background-image: linear-gradient(to bottom, ${bgColor}, ${bgColor});
-    background-size: 100% ${height}px;
+    background-size: 100% ${height};
     background-repeat: no-repeat;
     background-position: center;
   `;

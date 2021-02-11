@@ -10,7 +10,6 @@ export default {
     backgroundColor: { control: 'color' },
     borderColor: { control: 'color' },
     barColor: { control: 'color' },
-    borderRadius: { control: { type: 'range', min: 0, max: 300, step: 1 } },
   },
 } as Meta;
 

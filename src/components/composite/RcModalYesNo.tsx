@@ -11,7 +11,7 @@ export interface RcModalYesNoProps extends RcModalProps {
   message?: string;
   colorNo?: string;
   noAtLeft?: boolean;
-  msgBtnGap?: number;
+  msgBtnGap?: string;
   btnWidth?: string;
   leftButtonStyle?: RcButtonProps;
   rightButtonStyle?: RcButtonProps;
@@ -26,7 +26,7 @@ export const RcModalYesNo: React.FC<RcModalYesNoProps> = ({
   message,
   colorNo = '#e62739',
   noAtLeft,
-  msgBtnGap = 30,
+  msgBtnGap = '30px',
   btnWidth,
   children,
   leftButtonStyle,
@@ -44,7 +44,7 @@ export const RcModalYesNo: React.FC<RcModalYesNoProps> = ({
         {message ? (
           <p
             css={css`
-              ${msgBtnGap ? `margin-bottom:${msgBtnGap}px;` : ''}
+              ${msgBtnGap ? `margin-bottom: ${msgBtnGap};` : ''}
             `}
           >
             {message}
