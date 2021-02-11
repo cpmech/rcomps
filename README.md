@@ -1,6 +1,6 @@
 # TypeScript React Components with Emotion
 
-[See the beautiful storybook!](https://cpmech.github.io/rcomps)
+[STORYBOOK](https://cpmech.github.io/rcomps)
 
 This project contains "a couple" of React Components written in TypeScript and using the [fantastic emotion js](https://github.com/emotion-js/emotion).
 
@@ -67,7 +67,7 @@ export const Password: React.FC = () => {
   const [show, setShow] = useState(false);
   const icon = (
     <div onClick={() => setShow(!show)}>
-      {show ? <IconEye size={18} /> : <IconEyeNo size={18} />}
+      {show ? <IconEye size="18px" /> : <IconEyeNo size="18px" />}
     </div>
   );
   return (
@@ -156,6 +156,7 @@ All components have the prefix **Rc**.
 
 **Composite**
 
+* `RcCenterPage` -- position something at the center of the page, horizontally and vertically
 * `RcDualMenuHoriz` -- presents two sets of horizontal menus (left and right)
 * `RcFlexTable` -- shows a (long) table while being flexible for narrow and wide screens
 * `RcInputDate` -- implements a (powerful) input box for dates (with translation)
@@ -163,6 +164,7 @@ All components have the prefix **Rc**.
 * `RcModalYesNo` -- shows a modal box, with buttons yes/no
 * `RcPopup` -- shows "popup" modal boxes, for different uses (message, error, is-loading, progress)
 * `RcProgressBar` -- shows a progress bar in a container
+* `RcReadyOrErrorPopup` -- shows a "popup" modal with a spinner, if not ready, or with an error message, if any
 * `RcSpinAndMsgCircle` -- shows a spinning cirlce and a message
 * `RcSpinAndMsgDots` -- shows spinning dots and a message
 * `RcSpinnerPage` -- shows a spinning circle in the middle of the page
