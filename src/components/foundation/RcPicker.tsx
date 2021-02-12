@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useState, useRef, useEffect } from 'react';
 import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
 import { floatBoxCss, floatBoxItemCss } from './floatBoxCss';
-import { inputElementCss, InputElementCssOptions } from './inputElementCss';
+import { inputElementCss, RcInputElementCssOptions } from './inputElementCss';
 
 export interface RcPickerEntry {
   message: string;
@@ -11,7 +11,7 @@ export interface RcPickerEntry {
   title?: string; // set title with this instead of message
 }
 
-export interface RcPickerProps extends InputElementCssOptions {
+export interface RcPickerProps extends RcInputElementCssOptions {
   entries: RcPickerEntry[];
   selected?: string; // title [use on uncontrolled component]
   value?: string; // title [use on controlled component]

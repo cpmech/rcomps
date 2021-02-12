@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
-import { inputElementCss, InputElementCssOptions } from './inputElementCss';
+import { inputElementCss, RcInputElementCssOptions } from './inputElementCss';
 
-export interface RcTextProps extends InputElementCssOptions {
+export interface RcTextProps extends RcInputElementCssOptions {
   name?: string;
   label?: string;
   value?: string;

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export interface InputElementCssOptions {
+export interface RcInputElementCssOptions {
   height?: string;
   borderRadius?: string;
   flatLeft?: boolean;
@@ -53,7 +53,7 @@ export const inputElementCss = (
     transTime = '300ms',
     extraDeltaLabel = '0px',
     marginVert,
-  }: InputElementCssOptions,
+  }: RcInputElementCssOptions,
 ) => {
   const deltaLabel = `--deltaLabel: calc((${height} + ${labelFontSize}) / 2 + ${extraDeltaLabel})`;
   const deltaLine = `--deltaLine: calc(${height} / 2)`;

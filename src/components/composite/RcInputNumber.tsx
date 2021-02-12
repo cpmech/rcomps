@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { ReactNode } from 'react';
 import { formatNumber } from '@cpmech/util';
-import { InputElementCssOptions, RcInput } from '../foundation';
+import { RcInputElementCssOptions, RcInput } from '../foundation';
 
-export interface RcInputNumberProps extends InputElementCssOptions {
+export interface RcInputNumberProps extends RcInputElementCssOptions {
   value: string;
   onChange: (formattedValue: string) => void;
   onBlur?: (formattedValue: string) => void;
