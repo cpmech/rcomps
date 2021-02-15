@@ -1,4 +1,3 @@
-import { IconGlobe, IconHouseThreeD, IconMoney } from '@cpmech/react-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { RcTabs, RcTabsProps } from '../RcTabs';
 import { LoremIpsumSmall } from '../../helpers';
@@ -6,15 +5,15 @@ import { RcMenuEntry } from '../RcMenuHoriz';
 
 const entries: RcMenuEntry[] = [
   {
-    icon: <IconHouseThreeD />,
+    icon: <div>ICON</div>,
     label: 'Home',
   },
   {
-    icon: <IconGlobe />,
+    icon: <div>ICON</div>,
     label: 'Mundo',
   },
   {
-    icon: <IconMoney />,
+    icon: <div>ICON</div>,
     label: 'Dinheiro',
   },
 ];

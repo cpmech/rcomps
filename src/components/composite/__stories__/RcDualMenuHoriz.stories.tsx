@@ -1,15 +1,14 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { RcDualMenuHoriz, RcDualMenuHorizProps } from '../RcDualMenuHoriz';
-import { IconAddressBook, IconGlobe, IconHouseThreeD, IconUser } from '@cpmech/react-icons';
 import { RcMenuEntry } from '../../layout';
 
 const entriesLeft: RcMenuEntry[] = [
   {
-    icon: <IconHouseThreeD size="80px" />,
+    icon: <div>ICON</div>,
     onClick: () => window.alert('house selected'),
   },
   {
-    icon: <IconGlobe />,
+    icon: <div>ICON</div>,
     label: 'Mundo',
     onClick: () => window.alert('mundo selected'),
   },
@@ -17,7 +16,7 @@ const entriesLeft: RcMenuEntry[] = [
 
 const entriesRight: RcMenuEntry[] = [
   {
-    icon: <IconHouseThreeD />,
+    icon: <div>ICON</div>,
     label: 'Casa',
     entries: [
       {
@@ -35,21 +34,21 @@ const entriesRight: RcMenuEntry[] = [
     ],
   },
   {
-    icon: <IconAddressBook />,
+    icon: <div>ICON</div>,
     label: 'Address book',
     entries: [
       {
-        icon: <IconUser size="16px" />,
+        icon: <div>ICON</div>,
         label: 'Bender',
         onClick: () => window.alert('Bender clicked'),
       },
       {
-        icon: <IconUser size="16px" />,
+        icon: <div>ICON</div>,
         label: 'Leela',
         onClick: () => window.alert('Leela clicked'),
       },
       {
-        icon: <IconUser size="16px" />,
+        icon: <div>ICON</div>,
         label: 'Fry',
         onClick: () => window.alert('Fry clicked'),
       },

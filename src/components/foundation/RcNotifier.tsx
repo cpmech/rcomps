@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Fragment } from 'react';
-import { IconClose } from '@cpmech/react-icons';
+import { RcIconClose } from '../icons';
 
 export interface RcNotifierProps {
   onClose: () => void;
@@ -130,7 +130,7 @@ export const RcNotifier: React.FC<RcNotifierProps> = ({
             ${noHightlightCloseButton ? '' : `:hover { background-color: rgba(0, 0, 0, 0.1); }`}
           `}
         >
-          <IconClose size={iconSize} />
+          <RcIconClose size={iconSize} />
         </div>
       </div>
     </div>

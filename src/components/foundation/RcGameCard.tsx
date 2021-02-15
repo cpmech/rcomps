@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Fragment, useState } from 'react';
-import { IconVertDots } from '@cpmech/react-icons';
+import { RcIconVertDots } from '../icons';
 import { floatBoxCss, floatBoxItemCss } from './floatBoxCss';
 import { OutsideClick } from '../helpers';
 
@@ -258,7 +258,7 @@ export const RcGameCard: React.FC<RcGameCardProps> = ({
               `}
               onClick={() => setShowMenu(true)}
             >
-              <IconVertDots size={iconSize} />
+              <RcIconVertDots size={iconSize} />
             </div>
           </div>
           <OutsideClick action={() => setShowMenu(false)}>

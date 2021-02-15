@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { Fragment, useState } from 'react';
 import { hasProp } from '@cpmech/basic';
 import { useMediaQuery } from 'react-responsive';
-import { IconAngleDown, IconAngleUp, IconPen } from '@cpmech/react-icons';
+import { RcIconAngleDown, RcIconAngleUp, RcIconPen } from '../icons';
 import { RcButton, RcButtonProps } from '../foundation';
 
 export type RcFlexTableLabels = { [column: string]: string };
@@ -325,7 +325,7 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
                         }
                       }}
                     >
-                      <IconPen size={showHideIconSize} />
+                      <RcIconPen size={showHideIconSize} />
                     </div>
                     {verticalButtonsMainNarrow && (
                       <div
@@ -341,9 +341,9 @@ export const RcFlexTable: React.FC<RcFlexTableProps> = ({
                   onClick={() => setHiddenRows({ ...hiddenRows, [i]: !hiddenRows[i] })}
                 >
                   {hiddenRows[i] ? (
-                    <IconAngleDown size={showHideIconSize} />
+                    <RcIconAngleDown size={showHideIconSize} />
                   ) : (
-                    <IconAngleUp size={showHideIconSize} />
+                    <RcIconAngleUp size={showHideIconSize} />
                   )}
                 </div>
               </div>

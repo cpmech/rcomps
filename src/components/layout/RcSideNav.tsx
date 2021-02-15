@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Fragment } from 'react';
-import { IconClose } from '@cpmech/react-icons';
+import { RcIconClose } from '../icons';
 import { OutsideClick } from '../helpers';
 import { rcConfig } from './rcConfig';
 
@@ -125,7 +125,7 @@ export const RcSideNav: React.FC<RcSideNavProps> = ({
               border-radius: 2px;
             `}
           >
-            <IconClose size={iconSize} />
+            <RcIconClose size={iconSize} />
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { RcGameCard, RcGameCardProps } from '../RcGameCard';
-import { IconHouseThreeD } from '@cpmech/react-icons';
 import { LoremIpsumSmall } from '../../helpers';
 
 const Hero: React.FC = () => (
@@ -11,7 +10,7 @@ const Hero: React.FC = () => (
       alignItems: 'center',
     }}
   >
-    <IconHouseThreeD size="90px" />
+    <div>ICON</div>
     <p
       style={{
         paddingLeft: 20,

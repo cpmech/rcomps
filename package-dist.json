@@ -7,14 +7,6 @@
     "email": "dorival.pedroso@gmail.com",
     "url": "https://github.com/cpmech"
   },
-  "scripts": {
-    "fix:ver1": "jq '.version = $newVal' --arg newVal `jq -r '.version' package.json` ../package.json > tmp.$$.json && mv -f tmp.$$.json ../package.json",
-    "fix:ver2": "jq '.version = $newVal' --arg newVal `jq -r '.version' package.json` ../package-dist.json > tmp.$$.json && mv -f tmp.$$.json ../package-dist.json",
-    "git:add": "git add ../package.json ../package-dist.json",
-    "git:tag": "git tag v`jq -r '.version' package.json`",
-    "git:all": "yarn git:add && git commit -m 'Publish' && yarn git:tag && git push && git push --tags",
-    "postpublish": "yarn fix:ver1 && yarn fix:ver2 && yarn git:all"
-  },
   "repository": "cpmech/rcomps",
   "description": "TypeScript React Components with Emotion",
   "keywords": [

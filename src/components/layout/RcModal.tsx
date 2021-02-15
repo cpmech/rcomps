@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useRef, useEffect } from 'react';
-import { IconClose } from '@cpmech/react-icons';
+import { RcIconClose } from '../icons';
 import { useLockBodyScroll } from '../helpers';
 
 export interface RcModalProps {
@@ -170,7 +170,7 @@ export const RcModal: React.FC<RcModalProps> = ({
                 ${noHightlightCloseButton ? '' : `:hover { background-color: rgba(0, 0, 0, 0.1); }`}
               `}
             >
-              <IconClose size={iconSize} />
+              <RcIconClose size={iconSize} />
             </div>
           </div>
         )}

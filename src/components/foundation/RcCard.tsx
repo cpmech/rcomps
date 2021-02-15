@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
-import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
+import { RcIconAngleDown, RcIconAngleUp } from '../icons';
 
 export interface RcCardProps {
   initShow?: boolean;
@@ -147,7 +147,7 @@ export const RcCard: React.FC<RcCardProps> = ({
             `}
             onClick={() => setShow(!show)}
           >
-            {show ? <IconAngleUp size={iconSize} /> : <IconAngleDown size={iconSize} />}
+            {show ? <RcIconAngleUp size={iconSize} /> : <RcIconAngleDown size={iconSize} />}
           </div>
         </div>
       )}

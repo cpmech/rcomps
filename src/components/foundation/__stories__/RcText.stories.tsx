@@ -1,7 +1,6 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { RcText, RcTextProps } from '../RcText';
 import { argTypesTypeA } from './argTypes';
-import { IconExclamation } from '@cpmech/react-icons';
 
 export default {
   title: 'Foundation/RcText',
@@ -54,7 +53,7 @@ export const WithSuffix: Story<RcTextProps> = (args) => (
     }}
   >
     <RcText {...args} label="Energy" value="123.456" suffix="kWh" />
-    <RcText {...args} label="Energy" value="123.456" suffix={<IconExclamation size="18px" />} />
+    <RcText {...args} label="Energy" value="123.456" suffix={<div>ICON</div>} />
   </div>
 );
 

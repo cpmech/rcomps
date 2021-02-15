@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { RcInput, RcInputProps } from '../RcInput';
-import { IconExclamation, IconEye, IconEyeNo } from '@cpmech/react-icons';
 import { useState } from 'react';
 import { argTypesTypeA } from './argTypes';
 
@@ -99,7 +98,7 @@ export const Password: Story<RcInputProps> = (args) => {
   const [show, setShow] = useState(false);
   const icon = (
     <div onClick={() => setShow(!show)} style={{ cursor: 'pointer' }}>
-      {show ? <IconEye size="18px" /> : <IconEyeNo size="18px" />}
+      {show ? <div>seeing</div> : <div>not seeing</div>}
     </div>
   );
   return (
@@ -123,7 +122,7 @@ export const WithSuffix: Story<RcInputProps> = (args) => (
     }}
   >
     <RcInput {...args} label="Energy" value="123.456" suffix="kWh" />
-    <RcInput {...args} label="Energy" value="123.456" suffix={<IconExclamation size="18px" />} />
+    <RcInput {...args} label="Energy" value="123.456" suffix={<div>ICON</div>} />
   </div>
 );
 

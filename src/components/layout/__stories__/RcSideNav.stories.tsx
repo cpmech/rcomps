@@ -1,15 +1,6 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { RcSideNav, RcSideNavProps } from '../RcSideNav';
 import { useState } from 'react';
-import {
-  IconBell,
-  IconChartBar,
-  IconGlobe,
-  IconHouseThreeD,
-  IconShapes,
-  IconSync,
-  IconTicket,
-} from '@cpmech/react-icons';
 
 const entryStyle: React.CSSProperties = {
   paddingLeft: 20,
@@ -24,7 +15,7 @@ const entries = [
   {
     item: (
       <div style={entryStyle}>
-        <IconBell />
+        <div>ICON</div>
         BELL
       </div>
     ),
@@ -32,7 +23,7 @@ const entries = [
   {
     item: (
       <div style={entryStyle}>
-        <IconChartBar />
+        <div>ICON</div>
         BAR CHART
       </div>
     ),
@@ -40,7 +31,7 @@ const entries = [
   {
     item: (
       <div style={entryStyle}>
-        <IconGlobe />
+        <div>ICON</div>
         GLOBE
       </div>
     ),
@@ -48,7 +39,7 @@ const entries = [
   {
     item: (
       <div style={entryStyle}>
-        <IconShapes />
+        <div>ICON</div>
         SHAPES
       </div>
     ),
@@ -56,7 +47,7 @@ const entries = [
   {
     item: (
       <div style={entryStyle}>
-        <IconSync />
+        <div>ICON</div>
         SYNC
       </div>
     ),
@@ -64,7 +55,7 @@ const entries = [
   {
     item: (
       <div style={entryStyle}>
-        <IconTicket />
+        <div>ICON</div>
         TICKET
       </div>
     ),
@@ -112,7 +103,7 @@ export const Custom: Story<RcSideNavProps> = (args) => {
               justifyContent: 'center',
             }}
           >
-            <IconHouseThreeD size="64px" />
+            <div>ICON</div>
           </div>
         </RcSideNav>
       )}

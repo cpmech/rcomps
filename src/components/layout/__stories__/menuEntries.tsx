@@ -1,10 +1,3 @@
-import {
-  IconGlobe,
-  IconHouseThreeD,
-  IconMoney,
-  IconAddressBook,
-  IconUser,
-} from '@cpmech/react-icons';
 import { RcMenuEntry } from '../RcMenuHoriz';
 
 export const entries: RcMenuEntry[] = [
@@ -15,21 +8,21 @@ export const entries: RcMenuEntry[] = [
     comp: <button onClick={() => window.alert('second clicked')}>Second</button>,
   },
   {
-    icon: <IconHouseThreeD size="80px" />,
+    icon: <div>ICON</div>,
     onClick: () => window.alert('house selected'),
   },
   {
-    icon: <IconGlobe />,
+    icon: <div>ICON</div>,
     label: 'Hello World',
     onClick: () => window.alert('Hello World selected'),
   },
   {
-    icon: <IconMoney />,
+    icon: <div>ICON</div>,
     label: 'Setup Payments',
     onClick: () => window.alert('Setup Payments selected'),
   },
   {
-    icon: <IconHouseThreeD />,
+    icon: <div>ICON</div>,
     label: 'Little house',
     entries: [
       {
@@ -47,21 +40,21 @@ export const entries: RcMenuEntry[] = [
     ],
   },
   {
-    icon: <IconAddressBook />,
+    icon: <div>ICON</div>,
     label: 'Address book with nice people in it',
     entries: [
       {
-        icon: <IconUser size="16px" />,
+        icon: <div>ICON</div>,
         label: 'Bender Rodriguez',
         onClick: () => window.alert('Bender clicked'),
       },
       {
-        icon: <IconUser size="16px" />,
+        icon: <div>ICON</div>,
         label: 'Turanga Leela',
         onClick: () => window.alert('Leela clicked'),
       },
       {
-        icon: <IconUser size="16px" />,
+        icon: <div>ICON</div>,
         label: 'Philip J Fry',
         onClick: () => window.alert('Fry clicked'),
       },

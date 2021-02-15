@@ -8,7 +8,7 @@ if [ -z "$staged_files" ]; then
 fi
 
 # run type-check
-yarn run --silent tsc
+npm run --silent tsc
 tsc_exit_code=$?
 
 # check the tsc exit code
@@ -20,7 +20,7 @@ else
 fi
 
 # run linter on staged files => save exit code for later
-yarn run --silent eslint $staged_files --quiet --fix
+npm run --silent eslint -- $staged_files --quiet --fix
 linter_exit_code=$?
 
 # add files auto-fixed by the linter

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState, useRef, useEffect } from 'react';
-import { IconAngleDown, IconAngleUp } from '@cpmech/react-icons';
+import { RcIconAngleDown, RcIconAngleUp } from '../icons';
 import { floatBoxCss, floatBoxItemCss } from './floatBoxCss';
 import { inputElementCss, RcInputElementCssOptions } from './inputElementCss';
 
@@ -113,7 +113,7 @@ export const RcPicker: React.FC<RcPickerProps> = ({
             `}
             onClick={handleButtonClick}
           >
-            {open ? <IconAngleUp size={fontSize} /> : <IconAngleDown size={fontSize} />}
+            {open ? <RcIconAngleUp size={fontSize} /> : <RcIconAngleDown size={fontSize} />}
           </div>
         )}
       </div>

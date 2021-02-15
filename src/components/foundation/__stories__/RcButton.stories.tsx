@@ -1,12 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { RcButton, RcButtonProps } from '../RcButton';
-import {
-  IconAngleLeft,
-  IconAngleRight,
-  IconArrowLeft,
-  IconGlobe,
-  IconHouseThreeD,
-} from '@cpmech/react-icons';
 
 export default {
   title: 'Foundation/RcButton',
@@ -71,7 +64,7 @@ Styled.args = {
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   ...Template.args,
-  icon: <IconAngleRight size="80px" />,
+  icon: <div>ICON</div>,
   width: '100px',
   height: '100px',
   paddingLeft: '4px',
@@ -84,9 +77,9 @@ MoreIcons.args = {
   ...Template.args,
   icon: (
     <div>
-      <IconAngleLeft />
-      <IconHouseThreeD /> <IconArrowLeft /> <IconGlobe />
-      <IconAngleRight />
+      <div>ICON</div>
+      <div>ICON</div> <div>ICON</div> <div>ICON</div>
+      <div>ICON</div>
     </div>
   ),
 };
