@@ -71,6 +71,7 @@
     "@cpmech/basic": "^4.25.0",
     "@cpmech/util": "^1.28.0",
     "@emotion/react": "^11.1.5",
+    "babel-loader": "8.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-responsive": "^8.2.0",
