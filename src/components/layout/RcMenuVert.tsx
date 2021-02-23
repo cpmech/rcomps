@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Fragment } from 'react';
-import { RcMenuEntry } from './RcMenuHoriz';
+import { RcMenuEntry } from './RcMenuEntry';
 
 export interface RcMenuVertProps {
   entries: RcMenuEntry[];
@@ -17,9 +17,12 @@ export interface RcMenuVertProps {
   paddingHoriz?: string;
   gapVertEntries?: string;
   gapVertSubEntries?: string;
+  gapVertSubSubEntries?: string;
   gapHorizLabel?: string;
+  gapHorizSubLabel?: string;
 
   fontSizeSubEntries?: string;
+  fontSizeSubSubEntries?: string;
 
   labelWordBreak?: boolean;
   labelSubWordBreak?: boolean;
@@ -39,9 +42,12 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
   paddingHoriz = '20px',
   gapVertEntries = '20px',
   gapVertSubEntries = '30px',
+  gapVertSubSubEntries = '10px',
   gapHorizLabel = '10px',
+  gapHorizSubLabel = '10px',
 
   fontSizeSubEntries = '90%',
+  fontSizeSubSubEntries = '80%',
 
   labelWordBreak = false,
   labelSubWordBreak = true,
@@ -62,6 +68,10 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
 
     vspaceSub: css`
       padding-top: ${gapVertSubEntries};
+    `,
+
+    vspaceSubSub: css`
+      padding-top: ${gapVertSubSubEntries};
     `,
 
     entry: css`
@@ -99,8 +109,25 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
       align-items: center;
     `,
 
+    labelSubSub: css`
+      ${labelSubWordBreak ? `word-break: break-all;` : ''}
+      cursor: pointer;
+      margin-left: calc(${gapHorizLabel} + ${gapHorizSubLabel});
+      font-size: ${fontSizeSubSubEntries};
+      :hover {
+        color: ${colorHover};
+      }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    `,
+
     iconSub: css`
-      margin-right: ${gapHorizLabel};
+      margin-right: ${gapHorizSubLabel};
+    `,
+
+    iconSubSub: css`
+      margin-right: ${gapHorizSubLabel};
     `,
   };
 
@@ -131,6 +158,16 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
                       <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
                       <div>{sub.label}</div>
                     </div>
+                    {sub.subSubEntries &&
+                      sub.subSubEntries.map((subsub, k) => (
+                        <Fragment key={`${i}-${j}-${k}`}>
+                          <div css={styles.vspaceSubSub}></div>
+                          <div css={styles.labelSubSub} onClick={subsub.onClick}>
+                            <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
+                            <div>{subsub.label}</div>
+                          </div>
+                        </Fragment>
+                      ))}
                   </Fragment>
                 ))}
             </div>

@@ -1,18 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Fragment, ReactNode } from 'react';
-
-export interface RcMenuEntry {
-  comp?: ReactNode;
-  icon?: ReactNode;
-  label?: string;
-  onClick?: () => void;
-  entries?: {
-    icon?: ReactNode;
-    label?: string;
-    onClick?: () => void;
-  }[];
-}
+import { Fragment } from 'react';
+import { RcMenuEntry } from './RcMenuEntry';
 
 export interface RcMenuHorizProps {
   entries: RcMenuEntry[];
@@ -31,10 +20,13 @@ export interface RcMenuHorizProps {
   paddingHoriz?: string;
   gapVert?: string;
   gapVertSubEntries?: string;
+  gapVertSubSubEntries?: string;
   gapHorizLabel?: string;
+  gapHorizSubLabel?: string;
   gapHorizEntries?: string;
 
   fontSizeSubEntries?: string;
+  fontSizeSubSubEntries?: string;
 }
 
 export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
@@ -54,10 +46,13 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
   paddingHoriz = '20px',
   gapVert = '5px',
   gapVertSubEntries = '30px',
+  gapVertSubSubEntries = '10px',
   gapHorizLabel = '10px',
+  gapHorizSubLabel = '10px',
   gapHorizEntries,
 
   fontSizeSubEntries = '90%',
+  fontSizeSubSubEntries = '80%',
   //
 }) => {
   //
@@ -89,6 +84,10 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
 
     vspaceSub: css`
       padding-top: ${gapVertSubEntries};
+    `,
+
+    vspaceSubSub: css`
+      padding-top: ${gapVertSubSubEntries};
     `,
 
     entry: css`
@@ -123,8 +122,24 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
       align-items: center;
     `,
 
+    labelSubSub: css`
+      cursor: pointer;
+      margin-left: calc(${gapHorizLabel} + ${gapHorizSubLabel});
+      font-size: ${fontSizeSubSubEntries};
+      :hover {
+        color: ${colorHover};
+      }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    `,
+
     iconSub: css`
       margin-right: ${gapHorizLabel};
+    `,
+
+    iconSubSub: css`
+      margin-right: ${gapHorizSubLabel};
     `,
 
     gapBetweenEntries: css`
@@ -165,6 +180,16 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
                           <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
                           <div>{sub.label}</div>
                         </div>
+                        {sub.subSubEntries &&
+                          sub.subSubEntries.map((subsub, k) => (
+                            <Fragment key={`${i}-${j}-${k}`}>
+                              <div css={styles.vspaceSubSub}></div>
+                              <div css={styles.labelSubSub} onClick={subsub.onClick}>
+                                <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
+                                <div>{subsub.label}</div>
+                              </div>
+                            </Fragment>
+                          ))}
                       </Fragment>
                     ))}
                 </div>

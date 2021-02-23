@@ -1,4 +1,4 @@
-import { RcMenuEntry } from '../RcMenuHoriz';
+import { RcMenuEntry } from '../RcMenuEntry';
 
 export const entries: RcMenuEntry[] = [
   {
@@ -47,6 +47,11 @@ export const entries: RcMenuEntry[] = [
         icon: <div>ICON</div>,
         label: 'Bender Rodriguez',
         onClick: () => window.alert('Bender clicked'),
+        subSubEntries: [1, 2, 3, 4].map((num) => ({
+          icon: <div>I</div>,
+          label: `${num}`,
+          onClick: () => window.alert(`Bender clicked on number ${num}`),
+        })),
       },
       {
         icon: <div>ICON</div>,

@@ -1,6 +1,7 @@
 export * from './rcConfig';
 export * from './RcLayout';
 export * from './RcMedia';
+export * from './RcMenuEntry';
 export * from './RcMenuHoriz';
 export * from './RcMenuVert';
 export * from './RcModal';
