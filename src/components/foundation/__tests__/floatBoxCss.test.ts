@@ -18,7 +18,7 @@ describe('floatBoxCss', () => {
   });
 
   it('should return styled values', () => {
-    const res = floatBoxCss(false, 350);
+    const res = floatBoxCss(false, '350px');
     expect(res.styles).toBe(
       '\n' +
         '  display: none;\n' +
