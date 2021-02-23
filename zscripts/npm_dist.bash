@@ -42,7 +42,8 @@ change package-dist.json
 echo
 echo "🔥 Compiling"
 rm -rf dist
-npm run tsc -- --jsx react-jsx src/svgs/assets/*.tsx --outDir dist --declaration
+mkdir -p dist/rcomps
+rsync -av src/components/* dist/rcomps --exclude __stories__ --exclude __tests__
 
 # publish
 echo
