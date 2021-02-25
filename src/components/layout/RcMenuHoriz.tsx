@@ -19,11 +19,12 @@ export interface RcMenuHorizProps {
   paddingVert?: string;
   paddingHoriz?: string;
   gapVert?: string;
-  gapVertSubEntries?: string;
   gapVertSubSubEntries?: string;
   gapHorizLabel?: string;
   gapHorizSubLabel?: string;
+  gapHorizSubSubLabel?: string;
   gapHorizEntries?: string;
+  indentSub?: string;
 
   fontSizeSubEntries?: string;
   fontSizeSubSubEntries?: string;
@@ -45,17 +46,16 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
   paddingVert = '5px',
   paddingHoriz = '20px',
   gapVert = '5px',
-  gapVertSubEntries = '30px',
   gapVertSubSubEntries = '10px',
   gapHorizLabel = '10px',
   gapHorizSubLabel = '10px',
+  gapHorizSubSubLabel = '10px',
   gapHorizEntries,
+  indentSub = '30px',
 
   fontSizeSubEntries = '90%',
   fontSizeSubSubEntries = '80%',
-  //
 }) => {
-  //
   const styles = {
     root: css`
       ${minHeight ? `min-height: ${minHeight};` : ''}
@@ -80,14 +80,6 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
       > * {
         margin-top: ${gapVert};
       }
-    `,
-
-    vspaceSub: css`
-      padding-top: ${gapVertSubEntries};
-    `,
-
-    vspaceSubSub: css`
-      padding-top: ${gapVertSubSubEntries};
     `,
 
     entry: css`
@@ -124,7 +116,7 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
 
     labelSubSub: css`
       cursor: pointer;
-      margin-left: calc(${gapHorizLabel} + ${gapHorizSubLabel});
+      margin-left: calc(${gapHorizLabel} + ${indentSub});
       font-size: ${fontSizeSubSubEntries};
       :hover {
         color: ${colorHover};
@@ -132,14 +124,15 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
       display: flex;
       flex-direction: row;
       align-items: center;
+      padding-top: ${gapVertSubSubEntries};
     `,
 
     iconSub: css`
-      margin-right: ${gapHorizLabel};
+      margin-right: ${gapHorizSubLabel};
     `,
 
     iconSubSub: css`
-      margin-right: ${gapHorizSubLabel};
+      margin-right: ${gapHorizSubSubLabel};
     `,
 
     gapBetweenEntries: css`
@@ -175,7 +168,7 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
                   {entry.entries &&
                     entry.entries.map((sub, j) => (
                       <Fragment key={`${i}-${j}`}>
-                        <div css={styles.vspaceSub}></div>
+                        <div></div>
                         <div css={styles.labelSub} onClick={sub.onClick}>
                           <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
                           <div>{sub.label}</div>
@@ -183,7 +176,7 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
                         {sub.subSubEntries &&
                           sub.subSubEntries.map((subsub, k) => (
                             <Fragment key={`${i}-${j}-${k}`}>
-                              <div css={styles.vspaceSubSub}></div>
+                              <div></div>
                               <div css={styles.labelSubSub} onClick={subsub.onClick}>
                                 <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
                                 <div>{subsub.label}</div>
