@@ -6,15 +6,17 @@ export interface RcMenuSubSubEntry {
   onClick?: () => void;
 }
 
+export interface RcMenuSubEntry {
+  icon?: ReactNode;
+  label?: string;
+  onClick?: () => void;
+  subSubEntries?: RcMenuSubSubEntry[];
+}
+
 export interface RcMenuEntry {
   comp?: ReactNode;
   icon?: ReactNode;
   label?: string;
   onClick?: () => void;
-  entries?: {
-    icon?: ReactNode;
-    label?: string;
-    onClick?: () => void;
-    subSubEntries?: RcMenuSubSubEntry[];
-  }[];
+  entries?: RcMenuSubEntry[];
 }
