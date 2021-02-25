@@ -13,13 +13,18 @@ export interface RcMenuVertProps {
   minWidth?: string;
   maxWidth?: string;
 
-  paddingVert?: string;
+  paddingTop?: string;
+  paddingBottom?: string;
   paddingHoriz?: string;
   gapVertEntries?: string;
+  gapVertEntriesWithoutSub?: string;
+  gapVertSeparator?: string;
   gapVertSubEntries?: string;
   gapVertSubSubEntries?: string;
   gapHorizLabel?: string;
   gapHorizSubLabel?: string;
+  gapHorizSubSubLabel?: string;
+  indentSub?: string;
 
   fontSizeSubEntries?: string;
   fontSizeSubSubEntries?: string;
@@ -38,41 +43,57 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
   minWidth,
   maxWidth,
 
-  paddingVert = '40px',
+  paddingTop = '40px',
+  paddingBottom = '80px',
   paddingHoriz = '20px',
-  gapVertEntries = '20px',
-  gapVertSubEntries = '30px',
+  gapVertEntries = '60px',
+  gapVertEntriesWithoutSub = '20px',
+  gapVertSeparator = '30px',
+  gapVertSubEntries = '15px',
   gapVertSubSubEntries = '10px',
   gapHorizLabel = '10px',
   gapHorizSubLabel = '10px',
+  gapHorizSubSubLabel = '10px',
+  indentSub = '30px',
 
   fontSizeSubEntries = '90%',
   fontSizeSubSubEntries = '80%',
 
   labelWordBreak = false,
   labelSubWordBreak = true,
-  //
 }) => {
-  //
+  const prevWasSeparator = (i: number) => i > 0 && i < entries.length && !!entries[i - 1].separator;
+
+  const hasSubEntries = (i: number) => i >= 0 && i < entries.length && !!entries[i].entries;
+
   const styles = {
     root: css`
       min-width: ${minWidth};
       max-width: ${maxWidth};
-      padding: ${paddingVert} ${paddingHoriz};
+      padding-top: ${paddingTop};
+      padding-bottom: ${paddingBottom};
+      padding-left: ${paddingHoriz};
+      padding-right: ${paddingHoriz};
       ${bgColor ? `background-color: ${bgColor};` : ''}
     `,
 
-    vspaceMain: css`
-      padding-top: ${gapVertEntries};
-    `,
+    vspaceMain: (i: number) =>
+      i === 0
+        ? ''
+        : css`
+            padding-top: ${prevWasSeparator(i)
+              ? gapVertSeparator
+              : hasSubEntries(i)
+              ? gapVertEntries
+              : gapVertEntriesWithoutSub};
+          `,
 
-    vspaceSub: css`
-      padding-top: ${gapVertSubEntries};
-    `,
-
-    vspaceSubSub: css`
-      padding-top: ${gapVertSubSubEntries};
-    `,
+    vspaceSeparator: (i: number) =>
+      i === 0
+        ? ''
+        : css`
+            padding-top: ${gapVertSeparator};
+          `,
 
     entry: css`
       color: ${color};
@@ -107,12 +128,13 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
       display: flex;
       flex-direction: row;
       align-items: center;
+      padding-top: ${gapVertSubEntries};
     `,
 
     labelSubSub: css`
       ${labelSubWordBreak ? `word-break: break-all;` : ''}
       cursor: pointer;
-      margin-left: calc(${gapHorizLabel} + ${gapHorizSubLabel});
+      margin-left: calc(${gapHorizLabel} + ${indentSub});
       font-size: ${fontSizeSubSubEntries};
       :hover {
         color: ${colorHover};
@@ -120,6 +142,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
       display: flex;
       flex-direction: row;
       align-items: center;
+      padding-top: ${gapVertSubSubEntries};
     `,
 
     iconSub: css`
@@ -127,14 +150,14 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     `,
 
     iconSubSub: css`
-      margin-right: ${gapHorizSubLabel};
+      margin-right: ${gapHorizSubSubLabel};
     `,
   };
 
   return (
     <div css={styles.root}>
       {entries.map((entry, i) => (
-        <div key={i} css={styles.vspaceMain}>
+        <div key={i} css={entry.separator ? styles.vspaceSeparator(i) : styles.vspaceMain(i)}>
           {/* given component */}
           {entry.comp}
 
@@ -153,7 +176,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
               {entry.entries &&
                 entry.entries.map((sub, j) => (
                   <Fragment key={`${i}-${j}`}>
-                    <div css={styles.vspaceSub}></div>
+                    <div></div>
                     <div css={styles.labelSub} onClick={sub.onClick}>
                       <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
                       <div>{sub.label}</div>
@@ -161,7 +184,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
                     {sub.subSubEntries &&
                       sub.subSubEntries.map((subsub, k) => (
                         <Fragment key={`${i}-${j}-${k}`}>
-                          <div css={styles.vspaceSubSub}></div>
+                          <div></div>
                           <div css={styles.labelSubSub} onClick={subsub.onClick}>
                             <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
                             <div>{subsub.label}</div>

@@ -19,4 +19,5 @@ export interface RcMenuEntry {
   label?: string;
   onClick?: () => void;
   entries?: RcMenuSubEntry[];
+  separator?: boolean;
 }
