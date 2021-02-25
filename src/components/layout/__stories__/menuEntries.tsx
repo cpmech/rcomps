@@ -1,4 +1,11 @@
 import { RcMenuEntry } from '../RcMenuEntry';
+import { IconEarth } from './IconEarth';
+import { IconHeart } from './IconHeart';
+import { IconHome } from './IconHome';
+import { IconImage } from './IconImage';
+import { IconRocket } from './IconRocket';
+import { IconSparkles } from './IconSparkles';
+import { IconStar } from './IconStar';
 
 export const entries: RcMenuEntry[] = [
   {
@@ -8,21 +15,21 @@ export const entries: RcMenuEntry[] = [
     comp: <button onClick={() => window.alert('second clicked')}>Second</button>,
   },
   {
-    icon: <div>ICON</div>,
+    icon: <IconHome size="48px" />,
     onClick: () => window.alert('house selected'),
   },
   {
-    icon: <div>ICON</div>,
+    icon: <IconEarth size="48px" />,
     label: 'Hello World',
     onClick: () => window.alert('Hello World selected'),
   },
   {
-    icon: <div>ICON</div>,
-    label: 'Setup Payments',
-    onClick: () => window.alert('Setup Payments selected'),
+    icon: <IconHeart size="32px" />,
+    label: 'Gimme some love',
+    onClick: () => window.alert('Gimme some love selected'),
   },
   {
-    icon: <div>ICON</div>,
+    icon: <IconImage size="32px" />,
     label: 'Little house',
     entries: [
       {
@@ -40,26 +47,26 @@ export const entries: RcMenuEntry[] = [
     ],
   },
   {
-    icon: <div>ICON</div>,
+    icon: <IconRocket size="32px" />,
     label: 'Address book with nice people in it',
     entries: [
       {
-        icon: <div>ICON</div>,
+        icon: <IconSparkles size="24px" />,
         label: 'Bender Rodriguez',
         onClick: () => window.alert('Bender clicked'),
         subSubEntries: [1, 2, 3, 4].map((num) => ({
-          icon: <div>I</div>,
+          icon: <IconStar size="18px" />,
           label: `${num}`,
           onClick: () => window.alert(`Bender clicked on number ${num}`),
         })),
       },
       {
-        icon: <div>ICON</div>,
+        icon: <IconSparkles size="24px" />,
         label: 'Turanga Leela',
         onClick: () => window.alert('Leela clicked'),
       },
       {
-        icon: <div>ICON</div>,
+        icon: <IconSparkles size="24px" />,
         label: 'Philip J Fry',
         onClick: () => window.alert('Fry clicked'),
       },
