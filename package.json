@@ -20,7 +20,9 @@
     "sb": "start-storybook -p 9009 -s public",
     "bsb": "build-storybook -c .storybook -o docs",
     "dist": "bash ./zscripts/npm_dist.bash",
-    "postinstall": "bash ./zscripts/npm_postinstall.bash"
+    "postinstall": "bash ./zscripts/npm_postinstall.bash",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +60,7 @@
     "babel-loader": "8.1.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "gh-pages": "^3.1.0",
     "jest": "26.6.0",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
