@@ -4,6 +4,7 @@ export * from './RcFlexTable';
 export * from './RcInputDate';
 export * from './RcInputNumber';
 export * from './RcModalYesNo';
+export * from './RcPairLinkOrDiv';
 export * from './RcPopup';
 export * from './RcProgressBar';
 export * from './RcReadyOrErrorPopup';
