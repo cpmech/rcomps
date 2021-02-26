@@ -162,6 +162,7 @@ All components have the prefix **Rc**.
 * `RcInputDate` -- implements a (powerful) input box for dates (with translation)
 * `RcInputNumber` -- implements an input box for numbers (with locales)
 * `RcModalYesNo` -- shows a modal box, with buttons yes/no
+* `RcPairLinkOrDiv` -- pair up left with right, horizontaly, and make a clickable link or div
 * `RcPopup` -- shows "popup" modal boxes, for different uses (message, error, is-loading, progress)
 * `RcProgressBar` -- shows a progress bar in a container
 * `RcReadyOrErrorPopup` -- shows a "popup" modal with a spinner, if not ready, or with an error message, if any
