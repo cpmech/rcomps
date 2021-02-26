@@ -2,7 +2,7 @@ import './App.css';
 import { RcMenuVert } from './components';
 import { entries } from './components/layout/__stories__/menuEntries';
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
       <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -23,6 +23,4 @@ function App() {
       </div>
     </div>
   );
-}
-
-export default App;
+};
