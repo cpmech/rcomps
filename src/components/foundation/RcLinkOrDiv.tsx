@@ -6,6 +6,8 @@ export interface RcLinkOrDivProps {
   onClick?: () => void;
   color?: string;
   hoverColor?: string;
+  underline?: boolean;
+  cssExtra?: string;
 }
 
 export const RcLinkOrDiv: React.FC<RcLinkOrDivProps> = ({
@@ -13,6 +15,8 @@ export const RcLinkOrDiv: React.FC<RcLinkOrDivProps> = ({
   onClick,
   color = '#343434',
   hoverColor = '#c7c7c7',
+  underline,
+  cssExtra,
   children,
 }) => {
   const style = css`
@@ -23,6 +27,8 @@ export const RcLinkOrDiv: React.FC<RcLinkOrDivProps> = ({
       color: ${hoverColor};
       background-image: none;
     }
+    ${underline ? 'text-decoration: underline;' : ''}
+    ${cssExtra ? cssExtra : ''}
   `;
 
   if (href) {
