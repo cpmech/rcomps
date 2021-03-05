@@ -11,6 +11,7 @@ export interface RcInputProps extends RcInputElementCssOptions {
   defaultValue?: string | number;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onEnterKeyUp?: () => void;
   password?: boolean;
   suffix?: ReactNode;
   suffixPaddingRight?: string;
@@ -25,6 +26,7 @@ export const RcInput: React.FC<RcInputProps> = ({
   defaultValue,
   onChange,
   onBlur,
+  onEnterKeyUp,
   password,
   suffix,
   suffixPaddingRight = '20px',
@@ -44,6 +46,15 @@ export const RcInput: React.FC<RcInputProps> = ({
         defaultValue={defaultValue}
         onChange={onChange}
         onBlur={onBlur}
+        onKeyUp={
+          onEnterKeyUp
+            ? (ev) => {
+                if (ev.key === 'Enter') {
+                  onEnterKeyUp();
+                }
+              }
+            : undefined
+        }
         readOnly={readOnly}
       />
       <label placeholder={label}></label>

@@ -87,6 +87,7 @@ export const Controlled: Story<RcInputProps> = (args) => {
         name="name"
         label="Name"
         onChange={(e) => setName(e.target.value)}
+        onEnterKeyUp={() => alert('onEnterKeyUp triggered')}
       />
       <div>Name = {name}</div>
     </div>
