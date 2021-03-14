@@ -31,5 +31,5 @@ export const Default = Template.bind({});
 export const MaxWidth = Template.bind({});
 MaxWidth.args = {
   ...Template.args,
-  maxWidth: '100px',
+  maxWidth: '140px',
 };

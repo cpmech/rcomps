@@ -65,22 +65,46 @@ export const entries: RcMenuEntry[] = [
         icon: <IconSparkles size="24px" />,
         label: 'Bender Rodriguez',
         onClick: () => window.alert('Bender clicked'),
-        subSubEntries: [1, 2, 3, 4].map((num) => ({
-          icon: <IconStar size="18px" />,
-          label: `${num}`,
-          onClick: () => window.alert(`Bender clicked on number ${num}`),
-        })),
+        subSubEntries: [
+          {
+            icon: <IconStar size="18px" />,
+            label: `first`,
+            onClick: () => window.alert(`Bender clicked on first`),
+          },
+          {
+            icon: <IconStar size="18px" />,
+            label: `second`,
+            onClick: () => window.alert(`Bender clicked on second`),
+          },
+          {
+            icon: <IconStar size="18px" />,
+            label: `third`,
+            onClick: () => window.alert(`Bender clicked on third`),
+          },
+        ],
       },
       {
         icon: <IconSparkles size="24px" />,
         label: 'Turanga Leela',
         onClick: () => window.alert('Leela clicked'),
-        subSubEntries: [1, 2].map((num) => ({
-          icon: <IconStar size="18px" />,
-          label: `${num}`,
-          href: 'route',
-          underline: true,
-        })),
+        subSubEntries: [
+          {
+            icon: <IconStar size="18px" />,
+            label: `first`,
+            href: 'route',
+            underline: true,
+          },
+          {
+            icon: <IconStar size="18px" />,
+            link: <button onClick={() => window.alert('second clicked')}>second</button>,
+          },
+          {
+            icon: <IconStar size="18px" />,
+            label: `third`,
+            href: 'route',
+            underline: true,
+          },
+        ],
       },
       {
         icon: <IconSparkles size="24px" />,

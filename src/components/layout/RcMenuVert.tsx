@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Fragment, ReactNode } from 'react';
+import { Fragment } from 'react';
 import { RcMenuEntry, RcMenuSubEntry, RcMenuSubSubEntry } from './RcMenuEntry';
 
 export interface RcMenuVertProps {
@@ -101,15 +101,36 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
       grid-template-columns: auto auto;
       justify-content: flex-start;
       align-items: center;
+      ${labelWordBreak ? `word-break: break-all;` : ''}
+    `,
+
+    sub: css`
+      color: ${color};
+      margin-left: ${gapHorizLabel};
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-top: ${gapVertSubEntries};
+      ${labelSubWordBreak ? `word-break: break-all;` : ''}
+    `,
+
+    subsub: css`
+      color: ${color};
+      margin-left: calc(${gapHorizLabel} + ${indentSub});
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-top: ${gapVertSubSubEntries};
+      ${labelSubWordBreak ? `word-break: break-all;` : ''}
     `,
 
     label: css`
+      color: ${color};
       ${labelWordBreak ? `word-break: break-all;` : ''}
     `,
 
     labelHL: (underline = false) => css`
       color: ${color};
-      ${labelWordBreak ? `word-break: break-all;` : ''}
       ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
       cursor: pointer;
       :hover {
@@ -119,34 +140,22 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
 
     labelSub: (underline = false) => css`
       color: ${color};
-      ${labelSubWordBreak ? `word-break: break-all;` : ''}
       ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
-      margin-left: ${gapHorizLabel};
       font-size: ${fontSizeSubEntries};
       cursor: pointer;
       :hover {
         color: ${colorHover};
       }
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding-top: ${gapVertSubEntries};
     `,
 
     labelSubSub: (underline = false) => css`
       color: ${color};
-      ${labelSubWordBreak ? `word-break: break-all;` : ''}
       ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
-      margin-left: calc(${gapHorizLabel} + ${indentSub});
       font-size: ${fontSizeSubSubEntries};
       cursor: pointer;
       :hover {
         color: ${colorHover};
       }
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding-top: ${gapVertSubSubEntries};
     `,
 
     icon: css`
@@ -170,19 +179,20 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
       subsub.link
     ) : subsub.onClick ? (
       <div css={styles.labelSubSub(subsub.underline)} onClick={subsub.onClick}>
-        <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
-        <div>{subsub.label}</div>
+        {subsub.label}
       </div>
     ) : (
       <a css={styles.labelSubSub(subsub.underline)} href={subsub.href}>
-        <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
-        <div>{subsub.label}</div>
+        {subsub.label}
       </a>
     );
     return (
       <Fragment key={key}>
         <div></div>
-        {ele}
+        <div css={styles.subsub}>
+          <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
+          {ele}
+        </div>
       </Fragment>
     );
   };
@@ -195,19 +205,20 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
       sub.link
     ) : sub.onClick ? (
       <div css={styles.labelSub(sub.underline)} onClick={sub.onClick}>
-        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
-        <div>{sub.label}</div>
+        {sub.label}
       </div>
     ) : (
       <a css={styles.labelSub(sub.underline)} href={sub.href}>
-        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
-        <div>{sub.label}</div>
+        {sub.label}
       </a>
     );
     return (
       <Fragment key={key}>
         <div></div>
-        {ele}
+        <div css={styles.sub}>
+          <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
+          {ele}
+        </div>
         {sub.subSubEntries?.map((subsub, k) => renderSubSubEntry(`${key}-${k}`, subsub))}
       </Fragment>
     );
