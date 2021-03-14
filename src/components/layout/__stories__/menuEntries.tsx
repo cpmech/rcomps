@@ -16,12 +16,19 @@ export const entries: RcMenuEntry[] = [
   },
   {
     icon: <IconHome size="48px" />,
-    onClick: () => window.alert('house selected'),
+    href: 'route',
   },
   {
     icon: <IconEarth size="48px" />,
     label: 'Hello World',
-    onClick: () => window.alert('Hello World selected'),
+    href: 'route',
+    underline: true,
+  },
+  {
+    icon: <IconHeart size="32px" />,
+    label: 'Gimme some love',
+    underline: true,
+    onClick: () => window.alert('Gimme some love selected'),
   },
   {
     icon: <IconHeart size="32px" />,
@@ -38,7 +45,7 @@ export const entries: RcMenuEntry[] = [
       },
       {
         label: 'Second',
-        onClick: () => window.alert('Second clicked'),
+        href: 'route',
       },
       {
         label: 'Third',
@@ -64,6 +71,11 @@ export const entries: RcMenuEntry[] = [
         icon: <IconSparkles size="24px" />,
         label: 'Turanga Leela',
         onClick: () => window.alert('Leela clicked'),
+        subSubEntries: [1, 2].map((num) => ({
+          icon: <IconStar size="18px" />,
+          label: `${num}`,
+          href: 'route',
+        })),
       },
       {
         icon: <IconSparkles size="24px" />,

@@ -108,20 +108,24 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
       margin-left: ${gapHorizLabel};
     `,
 
-    labelHL: css`
+    labelHL: (underline = false) => css`
+      color: ${color};
       ${labelWordBreak ? `word-break: break-all;` : ''}
-      cursor: pointer;
+      ${underline ? 'text-decoration: underline;' : ''}
       margin-left: ${gapHorizLabel};
+      cursor: pointer;
       :hover {
         color: ${colorHover};
       }
     `,
 
-    labelSub: css`
+    labelSub: (underline = false) => css`
+      color: ${color};
       ${labelSubWordBreak ? `word-break: break-all;` : ''}
-      cursor: pointer;
+      ${underline ? 'text-decoration: underline;' : ''}
       margin-left: ${gapHorizLabel};
       font-size: ${fontSizeSubEntries};
+      cursor: pointer;
       :hover {
         color: ${colorHover};
       }
@@ -131,11 +135,13 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
       padding-top: ${gapVertSubEntries};
     `,
 
-    labelSubSub: css`
+    labelSubSub: (underline = false) => css`
+      color: ${color};
       ${labelSubWordBreak ? `word-break: break-all;` : ''}
-      cursor: pointer;
+      ${underline ? 'text-decoration: underline;' : ''}
       margin-left: calc(${gapHorizLabel} + ${indentSub});
       font-size: ${fontSizeSubSubEntries};
+      cursor: pointer;
       :hover {
         color: ${colorHover};
       }
@@ -165,30 +171,55 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
           {(entry.icon || entry.label) && (
             <div css={styles.entry}>
               <div>{entry.icon}</div>
-              <div
-                css={entry.entries && !entry.onClick ? styles.label : styles.labelHL}
-                onClick={entry.onClick}
-              >
-                {entry.label}
-              </div>
+              {entry.href ? (
+                <a css={styles.labelHL(entry.underline)} href={entry.href}>
+                  {entry.label}
+                </a>
+              ) : (
+                <div
+                  css={
+                    entry.entries && !entry.onClick ? styles.label : styles.labelHL(entry.underline)
+                  }
+                  onClick={entry.onClick}
+                >
+                  {entry.label}
+                </div>
+              )}
 
               {/* sub-entries */}
               {entry.entries &&
                 entry.entries.map((sub, j) => (
                   <Fragment key={`${i}-${j}`}>
                     <div></div>
-                    <div css={styles.labelSub} onClick={sub.onClick}>
-                      <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
-                      <div>{sub.label}</div>
-                    </div>
+                    {sub.href ? (
+                      <a css={styles.labelSub(sub.underline)} href={sub.href}>
+                        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
+                        <div>{sub.label}</div>
+                      </a>
+                    ) : (
+                      <div css={styles.labelSub(sub.underline)} onClick={sub.onClick}>
+                        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
+                        <div>{sub.label}</div>
+                      </div>
+                    )}
                     {sub.subSubEntries &&
                       sub.subSubEntries.map((subsub, k) => (
                         <Fragment key={`${i}-${j}-${k}`}>
                           <div></div>
-                          <div css={styles.labelSubSub} onClick={subsub.onClick}>
-                            <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
-                            <div>{subsub.label}</div>
-                          </div>
+                          {subsub.href ? (
+                            <a css={styles.labelSubSub(subsub.underline)} href={subsub.href}>
+                              <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
+                              <div>{subsub.label}</div>
+                            </a>
+                          ) : (
+                            <div
+                              css={styles.labelSubSub(subsub.underline)}
+                              onClick={subsub.onClick}
+                            >
+                              <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
+                              <div>{subsub.label}</div>
+                            </div>
+                          )}
                         </Fragment>
                       ))}
                   </Fragment>
