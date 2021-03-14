@@ -96,7 +96,7 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
 
     labelHL: (underline = false) => css`
       color: ${color};
-      ${underline ? 'text-decoration: underline;' : ''}
+      ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
       margin-left: ${gapHorizLabel};
       cursor: pointer;
       :hover {
@@ -106,7 +106,7 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
 
     labelSub: (underline = false) => css`
       color: ${color};
-      ${underline ? 'text-decoration: underline;' : ''}
+      ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
       margin-left: ${gapHorizLabel};
       font-size: ${fontSizeSubEntries};
       cursor: pointer;
@@ -120,7 +120,7 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
 
     labelSubSub: (underline = false) => css`
       color: ${color};
-      ${underline ? 'text-decoration: underline;' : ''}
+      ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
       margin-left: calc(${gapHorizLabel} + ${indentSub});
       font-size: ${fontSizeSubSubEntries};
       cursor: pointer;

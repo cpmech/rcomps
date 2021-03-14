@@ -111,7 +111,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     labelHL: (underline = false) => css`
       color: ${color};
       ${labelWordBreak ? `word-break: break-all;` : ''}
-      ${underline ? 'text-decoration: underline;' : ''}
+      ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
       margin-left: ${gapHorizLabel};
       cursor: pointer;
       :hover {
@@ -122,7 +122,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     labelSub: (underline = false) => css`
       color: ${color};
       ${labelSubWordBreak ? `word-break: break-all;` : ''}
-      ${underline ? 'text-decoration: underline;' : ''}
+      ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
       margin-left: ${gapHorizLabel};
       font-size: ${fontSizeSubEntries};
       cursor: pointer;
@@ -138,7 +138,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     labelSubSub: (underline = false) => css`
       color: ${color};
       ${labelSubWordBreak ? `word-break: break-all;` : ''}
-      ${underline ? 'text-decoration: underline;' : ''}
+      ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
       margin-left: calc(${gapHorizLabel} + ${indentSub});
       font-size: ${fontSizeSubSubEntries};
       cursor: pointer;
