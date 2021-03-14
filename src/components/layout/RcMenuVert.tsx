@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Fragment } from 'react';
-import { RcMenuEntry, RcMenuSubEntry, RcMenuSubSubEntry } from './RcMenuEntry';
+import { RcMenuEntry, RcMenuSubEntry, RcMenuSubSubEntry } from './RcMenuTypes';
 
 export interface RcMenuVertProps {
   entries: RcMenuEntry[];
@@ -212,12 +212,31 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     return (
       <Fragment key={key}>
         <div></div>
-        <div>
+        <div
+          css={css`
+            position: relative;
+          `}
+        >
           <div css={styles.sub}>
             <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
             {ele}
           </div>
-          {sub.subSubEntries?.map((subsub, k) => renderSubSubEntry(`${key}-${k}`, subsub))}
+          {sub.subSubEntries && (
+            <Fragment>
+              <div>
+                {sub.subSubEntries?.map((subsub, k) => renderSubSubEntry(`${key}-${k}`, subsub))}
+              </div>
+              <div
+                css={css`
+                  position: absolute;
+                  top: 0;
+                  right: 0;
+                `}
+              >
+                X
+              </div>
+            </Fragment>
+          )}
         </div>
       </Fragment>
     );

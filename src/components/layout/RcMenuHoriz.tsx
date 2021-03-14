@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Fragment } from 'react';
-import { RcMenuEntry, RcMenuSubEntry, RcMenuSubSubEntry } from './RcMenuEntry';
+import { RcMenuEntry, RcMenuSubEntry, RcMenuSubSubEntry } from './RcMenuTypes';
 
 export interface RcMenuHorizProps {
   entries: RcMenuEntry[];

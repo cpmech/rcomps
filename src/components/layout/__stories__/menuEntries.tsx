@@ -1,4 +1,4 @@
-import { RcMenuEntry } from '../RcMenuEntry';
+import { RcMenuEntry } from '../RcMenuTypes';
 import { IconEarth } from './IconEarth';
 import { IconHeart } from './IconHeart';
 import { IconHome } from './IconHome';

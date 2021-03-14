@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
-import { RcMenuEntry } from './RcMenuEntry';
+import { RcMenuEntry } from './RcMenuTypes';
 
 export interface RcTabsProps {
   entries: RcMenuEntry[];
