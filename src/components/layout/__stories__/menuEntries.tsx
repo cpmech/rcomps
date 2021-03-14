@@ -25,6 +25,10 @@ export const entries: RcMenuEntry[] = [
     underline: true,
   },
   {
+    icon: <IconEarth size="48px" />,
+    link: <button onClick={() => window.alert('earth clicked')}>Link</button>,
+  },
+  {
     icon: <IconHeart size="32px" />,
     label: 'Gimme some love',
     underline: true,
@@ -75,6 +79,7 @@ export const entries: RcMenuEntry[] = [
           icon: <IconStar size="18px" />,
           label: `${num}`,
           href: 'route',
+          underline: true,
         })),
       },
       {

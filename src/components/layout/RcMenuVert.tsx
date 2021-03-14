@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Fragment } from 'react';
-import { RcMenuEntry } from './RcMenuEntry';
+import { Fragment, ReactNode } from 'react';
+import { RcMenuEntry, RcMenuSubEntry, RcMenuSubSubEntry } from './RcMenuEntry';
 
 export interface RcMenuVertProps {
   entries: RcMenuEntry[];
@@ -105,14 +105,12 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
 
     label: css`
       ${labelWordBreak ? `word-break: break-all;` : ''}
-      margin-left: ${gapHorizLabel};
     `,
 
     labelHL: (underline = false) => css`
       color: ${color};
       ${labelWordBreak ? `word-break: break-all;` : ''}
       ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
-      margin-left: ${gapHorizLabel};
       cursor: pointer;
       :hover {
         color: ${colorHover};
@@ -151,6 +149,10 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
       padding-top: ${gapVertSubSubEntries};
     `,
 
+    icon: css`
+      margin-right: ${gapHorizLabel};
+    `,
+
     iconSub: css`
       margin-right: ${gapHorizSubLabel};
     `,
@@ -160,72 +162,89 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({
     `,
   };
 
+  const renderSubSubEntry = (key: string, subsub: RcMenuSubSubEntry) => {
+    if (subsub.comp) {
+      return subsub.comp;
+    }
+    const ele = subsub.link ? (
+      subsub.link
+    ) : subsub.onClick ? (
+      <div css={styles.labelSubSub(subsub.underline)} onClick={subsub.onClick}>
+        <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
+        <div>{subsub.label}</div>
+      </div>
+    ) : (
+      <a css={styles.labelSubSub(subsub.underline)} href={subsub.href}>
+        <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
+        <div>{subsub.label}</div>
+      </a>
+    );
+    return (
+      <Fragment key={key}>
+        <div></div>
+        {ele}
+      </Fragment>
+    );
+  };
+
+  const renderSubEntry = (key: string, sub: RcMenuSubEntry) => {
+    if (sub.comp) {
+      return sub.comp;
+    }
+    const ele = sub.link ? (
+      sub.link
+    ) : sub.onClick ? (
+      <div css={styles.labelSub(sub.underline)} onClick={sub.onClick}>
+        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
+        <div>{sub.label}</div>
+      </div>
+    ) : (
+      <a css={styles.labelSub(sub.underline)} href={sub.href}>
+        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
+        <div>{sub.label}</div>
+      </a>
+    );
+    return (
+      <Fragment key={key}>
+        <div></div>
+        {ele}
+        {sub.subSubEntries?.map((subsub, k) => renderSubSubEntry(`${key}-${k}`, subsub))}
+      </Fragment>
+    );
+  };
+
+  const renderEntry = (key: string, entry: RcMenuEntry) => {
+    if (entry.comp) {
+      return entry.comp;
+    }
+    const ele = entry.link ? (
+      entry.link
+    ) : entry.onClick ? (
+      <div
+        css={entry.entries && !entry.onClick ? styles.label : styles.labelHL(entry.underline)}
+        onClick={entry.onClick}
+      >
+        {entry.label}
+      </div>
+    ) : (
+      <a css={styles.labelHL(entry.underline)} href={entry.href}>
+        {entry.label}
+      </a>
+    );
+    return (
+      <div css={styles.entry}>
+        <div css={styles.icon}>{entry.icon}</div>
+        {ele}
+        {entry.entries?.map((sub, j) => renderSubEntry(`${key}-${j}`, sub))}
+      </div>
+    );
+  };
+
   return (
     <div css={styles.root}>
       {entries.map((entry, i) => (
         <div key={i} css={entry.separator ? styles.vspaceSeparator(i) : styles.vspaceMain(i)}>
-          {/* given component */}
-          {entry.comp}
-
-          {/* icon and label */}
-          {(entry.icon || entry.label) && (
-            <div css={styles.entry}>
-              <div>{entry.icon}</div>
-              {entry.href ? (
-                <a css={styles.labelHL(entry.underline)} href={entry.href}>
-                  {entry.label}
-                </a>
-              ) : (
-                <div
-                  css={
-                    entry.entries && !entry.onClick ? styles.label : styles.labelHL(entry.underline)
-                  }
-                  onClick={entry.onClick}
-                >
-                  {entry.label}
-                </div>
-              )}
-
-              {/* sub-entries */}
-              {entry.entries &&
-                entry.entries.map((sub, j) => (
-                  <Fragment key={`${i}-${j}`}>
-                    <div></div>
-                    {sub.href ? (
-                      <a css={styles.labelSub(sub.underline)} href={sub.href}>
-                        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
-                        <div>{sub.label}</div>
-                      </a>
-                    ) : (
-                      <div css={styles.labelSub(sub.underline)} onClick={sub.onClick}>
-                        <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
-                        <div>{sub.label}</div>
-                      </div>
-                    )}
-                    {sub.subSubEntries &&
-                      sub.subSubEntries.map((subsub, k) => (
-                        <Fragment key={`${i}-${j}-${k}`}>
-                          <div></div>
-                          {subsub.href ? (
-                            <a css={styles.labelSubSub(subsub.underline)} href={subsub.href}>
-                              <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
-                              <div>{subsub.label}</div>
-                            </a>
-                          ) : (
-                            <div
-                              css={styles.labelSubSub(subsub.underline)}
-                              onClick={subsub.onClick}
-                            >
-                              <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
-                              <div>{subsub.label}</div>
-                            </div>
-                          )}
-                        </Fragment>
-                      ))}
-                  </Fragment>
-                ))}
-            </div>
-          )}
+          {renderEntry(`${i}`, entry)}
         </div>
       ))}
     </div>
