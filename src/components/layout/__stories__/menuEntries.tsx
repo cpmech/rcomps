@@ -30,14 +30,14 @@ export const entries: RcMenuEntry[] = [
   },
   {
     icon: <IconHeart size="32px" />,
-    label: 'Gimme some love',
+    label: 'Love is in the air',
     underline: true,
-    onClick: () => window.alert('Gimme some love selected'),
+    onClick: () => window.alert('Love is in the air selected'),
   },
   {
     icon: <IconHeart size="32px" />,
-    label: 'Gimme some love',
-    onClick: () => window.alert('Gimme some love selected'),
+    label: 'Love is in the air',
+    onClick: () => window.alert('Love is in the air selected'),
   },
   {
     icon: <IconImage size="32px" />,

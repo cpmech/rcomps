@@ -176,13 +176,10 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
       </a>
     );
     return (
-      <Fragment key={key}>
-        <div></div>
-        <div css={styles.subsub}>
-          <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
-          {ele}
-        </div>
-      </Fragment>
+      <div key={key} css={styles.subsub}>
+        <div css={subsub.icon && styles.iconSubSub}>{subsub.icon}</div>
+        {ele}
+      </div>
     );
   };
 
@@ -204,11 +201,13 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
     return (
       <Fragment key={key}>
         <div></div>
-        <div css={styles.sub}>
-          <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
-          {ele}
+        <div>
+          <div css={styles.sub}>
+            <div css={sub.icon && styles.iconSub}>{sub.icon}</div>
+            {ele}
+          </div>
+          {sub.subSubEntries?.map((subsub, k) => renderSubSubEntry(`${key}-${k}`, subsub))}
         </div>
-        {sub.subSubEntries?.map((subsub, k) => renderSubSubEntry(`${key}-${k}`, subsub))}
       </Fragment>
     );
   };
