@@ -4,12 +4,11 @@ import { RcMenuEntry, RcMenuOptions } from '../RcMenuTypes';
 import { RcMenuSubComp } from './RcMenuSubComp';
 
 export interface RcMenuCompProps {
-  id: string;
   entry: RcMenuEntry;
   options: RcMenuOptions;
 }
 
-export const RcMenuComp: React.FC<RcMenuCompProps> = ({ id, entry, options }) => {
+export const RcMenuComp: React.FC<RcMenuCompProps> = ({ entry, options }) => {
   const styleRoot = css`
     color: ${options.color};
     display: grid;
@@ -61,7 +60,7 @@ export const RcMenuComp: React.FC<RcMenuCompProps> = ({ id, entry, options }) =>
       <div css={styleIcon}>{entry.icon}</div>
       {ele}
       {entry.entries?.map((sub, j) => (
-        <RcMenuSubComp id={`${id}-${j}`} sub={sub} options={options} />
+        <RcMenuSubComp key={j} sub={sub} options={options} />
       ))}
     </div>
   );

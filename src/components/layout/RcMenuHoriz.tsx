@@ -68,7 +68,7 @@ export const RcMenuHoriz: React.FC<RcMenuHorizProps> = ({
 
             {/* the entry */}
             <div>
-              <RcMenuComp id={`${i}`} entry={entry} options={opts} />
+              <RcMenuComp entry={entry} options={opts} />
             </div>
           </Fragment>
         ))}

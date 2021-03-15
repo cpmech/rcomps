@@ -1,16 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+import { RcIconAngleDown, RcIconAngleUp } from '../../icons';
 import { RcMenuOptions, RcMenuSubEntry } from '../RcMenuTypes';
 import { RcMenuSubSubComp } from './RcMenuSubSubComp';
 
 export interface RcMenuSubCompProps {
-  id: string;
   sub: RcMenuSubEntry;
   options: RcMenuOptions;
+  initShowSubSub?: boolean;
+  showHideIconSize?: string;
 }
 
-export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({ id, sub, options }) => {
+export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({
+  sub,
+  options,
+  initShowSubSub,
+  showHideIconSize = '20px',
+}) => {
+  const [showSubSub, setShowSubSub] = useState<boolean>(initShowSubSub || true);
+
   const styleRoot = css`
     color: ${options.color};
     margin-left: ${options.gapHorizLabel};
@@ -52,7 +61,7 @@ export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({ id, sub, options }
   );
 
   return (
-    <Fragment key={id}>
+    <Fragment>
       <div></div>
       <div
         css={css`
@@ -64,22 +73,32 @@ export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({ id, sub, options }
           {ele}
         </div>
         {sub.subSubEntries && (
-          <Fragment>
-            <div>
-              {sub.subSubEntries?.map((subsub, k) => (
-                <RcMenuSubSubComp id={`${id}-${k}`} subsub={subsub} options={options} />
-              ))}
-            </div>
-            <div
-              css={css`
-                position: absolute;
-                top: 0;
-                right: 0;
-              `}
-            >
-              X
-            </div>
-          </Fragment>
+          <div
+            css={css`
+              color: ${options.color};
+              :hover {
+                color: ${options.colorHover};
+              }
+              cursor: pointer;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+            `}
+            onClick={() => setShowSubSub(!showSubSub)}
+          >
+            {showSubSub ? (
+              <RcIconAngleUp size={showHideIconSize} />
+            ) : (
+              <RcIconAngleDown size={showHideIconSize} />
+            )}
+          </div>
+        )}
+        {sub.subSubEntries && showSubSub && (
+          <div>
+            {sub.subSubEntries?.map((subsub, k) => (
+              <RcMenuSubSubComp key={k} subsub={subsub} options={options} />
+            ))}
+          </div>
         )}
       </div>
     </Fragment>

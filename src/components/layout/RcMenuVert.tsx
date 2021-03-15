@@ -50,7 +50,7 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({ entries, options }) => {
           <div key={i} css={styleSeparator(i)}></div>
         ) : (
           <div key={i} css={styleMain(i)}>
-            <RcMenuComp id={`${i}`} entry={entry} options={opts} />
+            <RcMenuComp entry={entry} options={opts} />
           </div>
         ),
       )}

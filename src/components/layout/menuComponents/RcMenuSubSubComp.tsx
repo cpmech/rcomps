@@ -3,12 +3,11 @@ import { css } from '@emotion/react';
 import { RcMenuOptions, RcMenuSubSubEntry } from '../RcMenuTypes';
 
 export interface RcMenuSubSubCompProps {
-  id: string;
   subsub: RcMenuSubSubEntry;
   options: RcMenuOptions;
 }
 
-export const RcMenuSubSubComp: React.FC<RcMenuSubSubCompProps> = ({ id, subsub, options }) => {
+export const RcMenuSubSubComp: React.FC<RcMenuSubSubCompProps> = ({ subsub, options }) => {
   const styleRoot = css`
     color: ${options.color};
     margin-left: calc(${options.gapHorizLabel} + ${options.indentSub});
@@ -50,7 +49,7 @@ export const RcMenuSubSubComp: React.FC<RcMenuSubSubCompProps> = ({ id, subsub, 
   );
 
   return (
-    <div key={id} css={styleRoot}>
+    <div css={styleRoot}>
       <div css={subsub.icon && styleIcon}>{subsub.icon}</div>
       {ele}
     </div>
