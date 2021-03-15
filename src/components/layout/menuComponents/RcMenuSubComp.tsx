@@ -44,6 +44,22 @@ export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({
     margin-right: ${options.gapHorizSubLabel};
   `;
 
+  const styleContainer = css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  `;
+
+  const styleShowHideIcon = css`
+    color: ${options.color};
+    margin-left: calc(${options.gapHorizSubLabel} / 2);
+    cursor: pointer;
+    :hover {
+      color: ${options.colorHover};
+    }
+  `;
+
   if (sub.comp) {
     return <div css={styleRoot}>{sub.comp}</div>;
   }
@@ -60,46 +76,43 @@ export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({
     </a>
   );
 
+  if (sub.subSubEntries) {
+    const shicon = showSubSub ? (
+      <RcIconAngleUp size={showHideIconSize} />
+    ) : (
+      <RcIconAngleDown size={showHideIconSize} />
+    );
+    return (
+      <Fragment>
+        <div></div>
+        <div>
+          <div css={styleRoot}>
+            <div css={sub.icon && styleIcon}>{sub.icon}</div>
+            <div css={styleContainer}>
+              {ele}
+              <div css={styleShowHideIcon} onClick={() => setShowSubSub(!showSubSub)}>
+                {shicon}
+              </div>
+            </div>
+          </div>
+          {showSubSub && (
+            <div>
+              {sub.subSubEntries?.map((subsub, k) => (
+                <RcMenuSubSubComp key={k} subsub={subsub} options={options} />
+              ))}
+            </div>
+          )}
+        </div>
+      </Fragment>
+    );
+  }
+
   return (
     <Fragment>
       <div></div>
-      <div
-        css={css`
-          position: relative;
-        `}
-      >
-        <div css={styleRoot}>
-          <div css={sub.icon && styleIcon}>{sub.icon}</div>
-          {ele}
-        </div>
-        {sub.subSubEntries && (
-          <div
-            css={css`
-              color: ${options.color};
-              :hover {
-                color: ${options.colorHover};
-              }
-              cursor: pointer;
-              display: flex;
-              flex-direction: row;
-              justify-content: center;
-            `}
-            onClick={() => setShowSubSub(!showSubSub)}
-          >
-            {showSubSub ? (
-              <RcIconAngleUp size={showHideIconSize} />
-            ) : (
-              <RcIconAngleDown size={showHideIconSize} />
-            )}
-          </div>
-        )}
-        {sub.subSubEntries && showSubSub && (
-          <div>
-            {sub.subSubEntries?.map((subsub, k) => (
-              <RcMenuSubSubComp key={k} subsub={subsub} options={options} />
-            ))}
-          </div>
-        )}
+      <div css={styleRoot}>
+        <div css={sub.icon && styleIcon}>{sub.icon}</div>
+        {ele}
       </div>
     </Fragment>
   );
