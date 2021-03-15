@@ -9,56 +9,59 @@ export interface RcMenuCompProps {
 }
 
 export const RcMenuComp: React.FC<RcMenuCompProps> = ({ entry, options }) => {
-  const styleRoot = css`
-    color: ${options.color};
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: flex-start;
+  const styleIconLabel = css`
+    display: flex;
+    flex-direction: row;
     align-items: center;
+  `;
+
+  const styleStaticLabel = css`
+    color: ${options.colorLabel};
     ${options.labelWordBreak ? `word-break: break-all;` : ''}
   `;
 
-  const styleLabel = css`
-    color: ${options.color};
+  const styleLabel = (underline = false) => css`
+    color: ${options.colorLabel};
     ${options.labelWordBreak ? `word-break: break-all;` : ''}
-  `;
-
-  const styleLabelHL = (underline = false) => css`
-    color: ${options.color};
     ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
     cursor: pointer;
     :hover {
-      color: ${options.colorHover};
+      color: ${options.colorLabelHover};
     }
   `;
 
   const styleIcon = css`
+    color: ${options.colorIcon};
     margin-right: ${options.gapHorizLabel};
   `;
 
   if (entry.comp) {
-    return <div css={styleRoot}>{entry.comp}</div>;
+    return <div>{entry.comp}</div>;
   }
 
+  const isStaticLabel = entry.entries && !entry.onClick && !entry.link;
+
   const ele = entry.link ? (
-    entry.link
+    <div>{entry.link}</div>
   ) : entry.onClick ? (
     <div
-      css={entry.entries && !entry.onClick ? styleLabel : styleLabelHL(entry.underline)}
+      css={isStaticLabel ? styleStaticLabel : styleLabel(entry.underline)}
       onClick={entry.onClick}
     >
       {entry.label}
     </div>
   ) : (
-    <a css={styleLabelHL(entry.underline)} href={entry.href}>
+    <a css={styleLabel(entry.underline)} href={entry.href}>
       {entry.label}
     </a>
   );
 
   return (
-    <div css={styleRoot}>
-      <div css={styleIcon}>{entry.icon}</div>
-      {ele}
+    <div>
+      <div css={styleIconLabel}>
+        <div css={styleIcon}>{entry.icon}</div>
+        {ele}
+      </div>
       {entry.entries?.map((sub, j) => (
         <RcMenuSubComp key={j} sub={sub} options={options} />
       ))}

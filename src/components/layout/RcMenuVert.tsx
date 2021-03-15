@@ -45,15 +45,11 @@ export const RcMenuVert: React.FC<RcMenuVertProps> = ({ entries, options }) => {
 
   return (
     <div css={styleRoot}>
-      {entries.map((entry, i) =>
-        entry.separator ? (
-          <div key={i} css={styleSeparator(i)}></div>
-        ) : (
-          <div key={i} css={styleMain(i)}>
-            <RcMenuComp entry={entry} options={opts} />
-          </div>
-        ),
-      )}
+      {entries.map((entry, i) => (
+        <div key={i} css={entry.separator ? styleSeparator(i) : styleMain(i)}>
+          <RcMenuComp entry={entry} options={opts} />
+        </div>
+      ))}
     </div>
   );
 };

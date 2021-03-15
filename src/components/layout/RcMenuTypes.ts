@@ -18,6 +18,7 @@ export interface RcMenuSubEntry {
   onClick?: () => void;
   href?: string;
   underline?: boolean;
+  initShowSubSub?: boolean;
   subSubEntries?: RcMenuSubSubEntry[];
 }
 
@@ -34,8 +35,11 @@ export interface RcMenuEntry {
 }
 
 export interface RcMenuOptions {
-  color?: string;
-  colorHover?: string;
+  iconSize?: string;
+  subIconSize?: string;
+  colorLabel?: string;
+  colorLabelHover?: string;
+  colorIcon?: string;
   bgColor?: string;
   minWidth?: string;
   maxWidth?: string;
@@ -50,7 +54,6 @@ export interface RcMenuOptions {
   gapHorizLabel?: string;
   gapHorizSubLabel?: string;
   gapHorizSubSubLabel?: string;
-  indentSub?: string;
   fontSizeSubEntries?: string;
   fontSizeSubSubEntries?: string;
   labelWordBreak?: boolean;
@@ -58,8 +61,11 @@ export interface RcMenuOptions {
 }
 
 export const rcDefaultMenuOptions = ({
-  color = '#484848',
-  colorHover = '#757575',
+  iconSize = undefined,
+  subIconSize = undefined,
+  colorLabel = '#484848',
+  colorLabelHover = '#757575',
+  colorIcon = '#484848',
   bgColor = undefined,
   minWidth = undefined,
   maxWidth = undefined,
@@ -74,14 +80,16 @@ export const rcDefaultMenuOptions = ({
   gapHorizLabel = '10px',
   gapHorizSubLabel = '10px',
   gapHorizSubSubLabel = '10px',
-  indentSub = '30px',
   fontSizeSubEntries = '90%',
   fontSizeSubSubEntries = '80%',
   labelWordBreak = false,
   labelSubWordBreak = true,
 }: RcMenuOptions): RcMenuOptions => ({
-  color,
-  colorHover,
+  iconSize,
+  subIconSize,
+  colorLabel,
+  colorLabelHover,
+  colorIcon,
   bgColor,
   minWidth,
   maxWidth,
@@ -96,7 +104,6 @@ export const rcDefaultMenuOptions = ({
   gapHorizLabel,
   gapHorizSubLabel,
   gapHorizSubSubLabel,
-  indentSub,
   fontSizeSubEntries,
   fontSizeSubSubEntries,
   labelWordBreak,

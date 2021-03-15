@@ -9,26 +9,31 @@ export interface RcMenuSubSubCompProps {
 
 export const RcMenuSubSubComp: React.FC<RcMenuSubSubCompProps> = ({ subsub, options }) => {
   const styleRoot = css`
-    color: ${options.color};
-    margin-left: calc(${options.gapHorizLabel} + ${options.indentSub});
+    padding-top: ${options.gapVertSubSubEntries};
+    margin-left: ${options.subIconSize
+      ? `calc(${options.subIconSize} + ${options.gapHorizLabel})`
+      : options.gapHorizLabel};
+  `;
+
+  const styleIconLabel = css`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: ${options.gapVertSubSubEntries};
-    ${options.labelSubWordBreak ? `word-break: break-all;` : ''}
   `;
 
   const styleLabel = (underline = false) => css`
-    color: ${options.color};
+    color: ${options.colorLabel};
+    ${options.labelSubWordBreak ? `word-break: break-all;` : ''}
     ${underline ? 'text-decoration: underline;' : 'text-decoration: none;'}
     font-size: ${options.fontSizeSubSubEntries};
     cursor: pointer;
     :hover {
-      color: ${options.colorHover};
+      color: ${options.colorLabelHover};
     }
   `;
 
   const styleIcon = css`
+    color: ${options.colorIcon};
     margin-right: ${options.gapHorizSubSubLabel};
   `;
 
@@ -50,8 +55,10 @@ export const RcMenuSubSubComp: React.FC<RcMenuSubSubCompProps> = ({ subsub, opti
 
   return (
     <div css={styleRoot}>
-      <div css={subsub.icon && styleIcon}>{subsub.icon}</div>
-      {ele}
+      <div css={styleIconLabel}>
+        <div css={subsub.icon && styleIcon}>{subsub.icon}</div>
+        {ele}
+      </div>
     </div>
   );
 };

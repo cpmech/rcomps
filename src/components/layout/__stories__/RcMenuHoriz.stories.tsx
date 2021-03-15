@@ -11,17 +11,22 @@ export default {
 const Template: Story<RcMenuHorizProps> = (args) => <RcMenuHoriz {...args} entries={entries} />;
 
 export const Default = Template.bind({});
-
-export const NoPadding = Template.bind({});
-NoPadding.args = {
+Default.args = {
   ...Template.args,
-  gapVert: '0px',
-  gapVertSubEntries: '0px',
-  paddingVert: '0px',
+  options: rcDefaultMenuOptions({
+    colorIcon: '#f57d1b',
+    iconSize: '32px',
+    subIconSize: '24px',
+  }),
 };
 
 export const MaxWidth = Template.bind({});
 MaxWidth.args = {
   ...Template.args,
-  options: rcDefaultMenuOptions({ maxWidth: '900px' }),
+  options: rcDefaultMenuOptions({
+    colorIcon: '#f57d1b',
+    maxWidth: '900px',
+    iconSize: '32px',
+    subIconSize: '24px',
+  }),
 };
