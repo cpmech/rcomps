@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { rcDefaultMenuOptions } from '../RcMenuTypes';
 import { RcMenuVert, RcMenuVertProps } from '../RcMenuVert';
 import { entries } from './menuEntries';
 
@@ -31,5 +32,5 @@ export const Default = Template.bind({});
 export const MaxWidth = Template.bind({});
 MaxWidth.args = {
   ...Template.args,
-  maxWidth: '140px',
+  options: rcDefaultMenuOptions({ maxWidth: '140px' }),
 };

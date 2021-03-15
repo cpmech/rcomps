@@ -1,5 +1,6 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { RcMenuHoriz, RcMenuHorizProps } from '../RcMenuHoriz';
+import { rcDefaultMenuOptions } from '../RcMenuTypes';
 import { entries } from './menuEntries';
 
 export default {
@@ -22,5 +23,5 @@ NoPadding.args = {
 export const MaxWidth = Template.bind({});
 MaxWidth.args = {
   ...Template.args,
-  maxWidth: '900px',
+  options: rcDefaultMenuOptions({ maxWidth: '900px' }),
 };
