@@ -12,7 +12,11 @@ export interface RcMenuSubCompProps {
 
 export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({ sub, options }) => {
   const [showSubSub, setShowSubSub] = useState<boolean>(
-    sub.initShowSubSub === undefined ? true : sub.initShowSubSub,
+    sub.initShowSubSub !== undefined
+      ? sub.initShowSubSub
+      : options.initShowAllSubSub !== undefined
+      ? options.initShowAllSubSub
+      : true,
   );
 
   const styleRoot = css`
@@ -47,6 +51,7 @@ export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({ sub, options }) =>
   const styleLabelShowHide = css`
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
   `;
@@ -76,7 +81,14 @@ export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({ sub, options }) =>
     </a>
   );
 
-  if (sub.subSubEntries) {
+  const useShowHideSubSub =
+    sub.useShowSubSub !== undefined
+      ? sub.useShowSubSub
+      : options.useShowHideSubSub !== undefined
+      ? options.useShowHideSubSub
+      : true;
+
+  if (sub.subSubEntries && sub.subSubEntries.length > 0 && useShowHideSubSub) {
     const shicon = showSubSub ? (
       <RcIconAngleUp size={options.showHideIconSize} />
     ) : (
@@ -107,6 +119,9 @@ export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({ sub, options }) =>
         <div css={sub.icon && styleIcon}>{sub.icon}</div>
         {ele}
       </div>
+      {sub.subSubEntries?.map((subsub, k) => (
+        <RcMenuSubSubComp key={k} subsub={subsub} options={options} />
+      ))}
     </div>
   );
 };

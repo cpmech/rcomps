@@ -18,6 +18,7 @@ export interface RcMenuSubEntry {
   onClick?: () => void;
   href?: string;
   underline?: boolean;
+  useShowSubSub?: boolean;
   initShowSubSub?: boolean;
   subSubEntries?: RcMenuSubSubEntry[];
 }
@@ -30,6 +31,7 @@ export interface RcMenuEntry {
   onClick?: () => void;
   href?: string;
   underline?: boolean;
+  useShowSub?: boolean;
   initShowSub?: boolean;
   entries?: RcMenuSubEntry[];
   separator?: boolean;
@@ -60,6 +62,10 @@ export interface RcMenuOptions {
   labelWordBreak?: boolean;
   labelSubWordBreak?: boolean;
   showHideIconSize?: string;
+  useShowHideSub?: boolean;
+  useShowHideSubSub?: boolean;
+  initShowAllSub?: boolean;
+  initShowAllSubSub?: boolean;
 }
 
 export const rcDefaultMenuOptions = ({
@@ -74,7 +80,7 @@ export const rcDefaultMenuOptions = ({
   paddingTop = '40px',
   paddingBottom = '80px',
   paddingHoriz = '20px',
-  gapVertEntries = '60px',
+  gapVertEntries = '25px',
   gapVertEntriesWithoutSub = '20px',
   gapVertSeparator = '30px',
   gapVertSubEntries = '15px',
@@ -87,6 +93,10 @@ export const rcDefaultMenuOptions = ({
   labelWordBreak = false,
   labelSubWordBreak = true,
   showHideIconSize = '20px',
+  useShowHideSub = true,
+  useShowHideSubSub = true,
+  initShowAllSub = true,
+  initShowAllSubSub = true,
 }: RcMenuOptions): RcMenuOptions => ({
   iconSize,
   subIconSize,
@@ -112,4 +122,8 @@ export const rcDefaultMenuOptions = ({
   labelWordBreak,
   labelSubWordBreak,
   showHideIconSize,
+  useShowHideSub,
+  useShowHideSubSub,
+  initShowAllSub,
+  initShowAllSubSub,
 });
