@@ -8,14 +8,9 @@ import { RcMenuSubSubComp } from './RcMenuSubSubComp';
 export interface RcMenuSubCompProps {
   sub: RcMenuSubEntry;
   options: RcMenuOptions;
-  showHideIconSize?: string;
 }
 
-export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({
-  sub,
-  options,
-  showHideIconSize = '20px',
-}) => {
+export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({ sub, options }) => {
   const [showSubSub, setShowSubSub] = useState<boolean>(
     sub.initShowSubSub === undefined ? true : sub.initShowSubSub,
   );
@@ -83,9 +78,9 @@ export const RcMenuSubComp: React.FC<RcMenuSubCompProps> = ({
 
   if (sub.subSubEntries) {
     const shicon = showSubSub ? (
-      <RcIconAngleUp size={showHideIconSize} />
+      <RcIconAngleUp size={options.showHideIconSize} />
     ) : (
-      <RcIconAngleDown size={showHideIconSize} />
+      <RcIconAngleDown size={options.showHideIconSize} />
     );
     return (
       <div css={styleRoot}>

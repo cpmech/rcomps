@@ -30,6 +30,7 @@ export interface RcMenuEntry {
   onClick?: () => void;
   href?: string;
   underline?: boolean;
+  initShowSub?: boolean;
   entries?: RcMenuSubEntry[];
   separator?: boolean;
 }
@@ -58,6 +59,7 @@ export interface RcMenuOptions {
   fontSizeSubSubEntries?: string;
   labelWordBreak?: boolean;
   labelSubWordBreak?: boolean;
+  showHideIconSize?: string;
 }
 
 export const rcDefaultMenuOptions = ({
@@ -84,6 +86,7 @@ export const rcDefaultMenuOptions = ({
   fontSizeSubSubEntries = '80%',
   labelWordBreak = false,
   labelSubWordBreak = true,
+  showHideIconSize = '20px',
 }: RcMenuOptions): RcMenuOptions => ({
   iconSize,
   subIconSize,
@@ -108,4 +111,5 @@ export const rcDefaultMenuOptions = ({
   fontSizeSubSubEntries,
   labelWordBreak,
   labelSubWordBreak,
+  showHideIconSize,
 });

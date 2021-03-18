@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useState } from 'react';
+import { RcIconAngleDown, RcIconAngleUp } from '../../icons';
 import { RcMenuEntry, RcMenuOptions } from '../RcMenuTypes';
 import { RcMenuSubComp } from './RcMenuSubComp';
 
@@ -9,6 +11,10 @@ export interface RcMenuCompProps {
 }
 
 export const RcMenuComp: React.FC<RcMenuCompProps> = ({ entry, options }) => {
+  const [showSub, setShowSub] = useState<boolean>(
+    entry.initShowSub === undefined ? true : entry.initShowSub,
+  );
+
   const styleIconLabel = css`
     display: flex;
     flex-direction: row;
@@ -35,6 +41,22 @@ export const RcMenuComp: React.FC<RcMenuCompProps> = ({ entry, options }) => {
     margin-right: ${options.gapHorizLabel};
   `;
 
+  const styleLabelShowHide = css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  `;
+
+  const styleShowHideIcon = css`
+    color: ${options.colorLabel};
+    margin-left: calc(${options.gapHorizSubLabel} / 2);
+    cursor: pointer;
+    :hover {
+      color: ${options.colorLabelHover};
+    }
+  `;
+
   if (entry.comp) {
     return <div>{entry.comp}</div>;
   }
@@ -56,15 +78,33 @@ export const RcMenuComp: React.FC<RcMenuCompProps> = ({ entry, options }) => {
     </a>
   );
 
-  return (
-    <div>
-      <div css={styleIconLabel}>
-        <div css={styleIcon}>{entry.icon}</div>
-        {ele}
+  if (entry.entries) {
+    const shicon = showSub ? (
+      <RcIconAngleUp size={options.showHideIconSize} />
+    ) : (
+      <RcIconAngleDown size={options.showHideIconSize} />
+    );
+    return (
+      <div>
+        <div css={styleIconLabel}>
+          <div css={styleIcon}>{entry.icon}</div>
+          <div css={styleLabelShowHide}>
+            {ele}
+            <div css={styleShowHideIcon} onClick={() => setShowSub(!showSub)}>
+              {shicon}
+            </div>
+          </div>
+        </div>
+        {showSub &&
+          entry.entries?.map((sub, j) => <RcMenuSubComp key={j} sub={sub} options={options} />)}
       </div>
-      {entry.entries?.map((sub, j) => (
-        <RcMenuSubComp key={j} sub={sub} options={options} />
-      ))}
+    );
+  }
+
+  return (
+    <div css={styleIconLabel}>
+      <div css={styleIcon}>{entry.icon}</div>
+      <div css={styleLabelShowHide}>{ele}</div>
     </div>
   );
 };
