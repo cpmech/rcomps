@@ -212,3 +212,12 @@ The following auxiliary components are also defined:
 ## Developers
 
 [See article about the publishing procedure](https://dev.to/cpmech/publishing-and-reusing-react-components-with-typescript-and-emotion-1p10).
+
+## Package updates
+
+**Important**: If using `ncu -u`, keep the following versions fixed:
+
+```
+    "babel-loader": "8.1.0",
+    "jest": "26.6.0",
+```
