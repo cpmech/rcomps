@@ -44,8 +44,8 @@
     ]
   },
   "devDependencies": {
-    "@cpmech/basic": "^4.31.0",
-    "@cpmech/util": "^1.34.0",
+    "@cpmech/basic": "^4.33.0",
+    "@cpmech/util": "^1.36.0",
     "@emotion/react": "^11.4.1",
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/preset-create-react-app": "^3.2.0",
@@ -54,8 +54,8 @@
     "@testing-library/react": "^12.1.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.2",
-    "@types/node": "^16.9.4",
-    "@types/react": "^17.0.22",
+    "@types/node": "^16.10.0",
+    "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "@types/react-responsive": "^8.0.3",
     "babel-loader": "8.1.0",
