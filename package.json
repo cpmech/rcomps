@@ -47,9 +47,9 @@
     "@cpmech/basic": "^4.33.0",
     "@cpmech/util": "^1.36.0",
     "@emotion/react": "^11.4.1",
-    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-essentials": "^6.5.16",
     "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.3.8",
+    "@storybook/react": "^7.5.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.0",
     "@testing-library/user-event": "^13.2.1",
@@ -67,7 +67,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-responsive": "^8.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.1",
     "typescript": "^4.4.3",
     "web-vitals": "^2.1.0"
   },
@@ -78,7 +78,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-responsive": "^8.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.1",
     "typescript": "^4.4.3",
     "web-vitals": "^2.1.0"
   }
