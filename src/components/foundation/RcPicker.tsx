@@ -118,10 +118,10 @@ export const RcPicker: React.FC<RcPickerProps> = ({
         )}
       </div>
       <div css={floatCss}>
-        {entries.map((e) => (
+        {entries.map((e, i) => (
           <div
             css={menuEntryCss}
-            key={e.message}
+            key={`${e.message}-${i}`}
             onClick={() => {
               setOpen(false);
               if (!value) {
