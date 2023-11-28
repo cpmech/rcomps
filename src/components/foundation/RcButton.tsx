@@ -86,6 +86,7 @@ export const RcButton: React.FC<RcButtonProps> = ({
       type={type}
       onClick={(e) => {
         e.preventDefault();
+        e.stopPropagation();
         if (href) {
           window.location.href = href;
         } else if (onClick) {
