@@ -7,6 +7,7 @@ export interface RcInputNumberProps extends RcInputElementCssOptions {
   value: string;
   onChange: (formattedValue: string) => void;
   onBlur?: (formattedValue: string) => void;
+  onEnterKeyUp?: () => void;
   label?: string;
   prefix?: string; // e.g. '' [default] or 'R$ '
   suffix?: ReactNode;
@@ -19,6 +20,7 @@ export const RcInputNumber: React.FC<RcInputNumberProps> = ({
   value,
   onChange,
   onBlur,
+  onEnterKeyUp,
   label,
   prefix = '',
   suffix,
@@ -47,6 +49,7 @@ export const RcInputNumber: React.FC<RcInputNumberProps> = ({
       value={value}
       onChange={handleChange}
       onBlur={onBlur ? handleBlur : undefined}
+      onEnterKeyUp={onEnterKeyUp}
       suffix={suffix}
       suffixPaddingRight={suffixPaddingRight}
       {...rest}
